@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<ImageView
+        android:id="@+id/showimg"
+        android:layout_marginTop="@dimen/register_tip_top"
+        android:layout_marginLeft="@dimen/violation_text_pad_right"
+        android:scaleType="fitXY"
+        android:layout_width="@dimen/license_valid_btn_w"
+        android:layout_height="@dimen/license_valid_btn_w"
+        android:background="@mipmap/danger_photo"
+        android:visibility="gone"/>-->
+
+
+
+
+
+   <RelativeLayout
+       android:id="@+id/rl_baseimg"
+       android:layout_width="@dimen/dangerimgup"
+       android:layout_height="@dimen/dangerimgup"
+       android:background="@drawable/localcar_listview_bg"
+       android:gravity="center"
+       android:layout_marginTop="@dimen/register_tip_top"
+       android:layout_marginLeft="@dimen/violation_text_pad_right"
+       android:layout_marginBottom="@dimen/car_news_search_iv_height">
+       <ImageView
+           android:id="@+id/showimg1"
+            android:layout_marginTop="@dimen/yisan"
+           android:layout_width="@dimen/tv_margin"
+           android:layout_height="@dimen/content_size"
+           android:background="@mipmap/danger_photo"
+           android:layout_centerHorizontal="true"/>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/showimg1"
+           android:layout_marginTop="@dimen/car_location_text_margin_top"
+           android:text="更多照片"
+           android:layout_centerHorizontal="true"
+           android:textSize="@dimen/swipelayout_rl_text_date_size"
+           android:textColor="@color/draw_left_color"/>
+   </RelativeLayout>
+
+
+
+
+        <ImageView
+            android:id="@+id/showimg"
+            android:layout_marginTop="@dimen/register_tip_top"
+            android:layout_marginLeft="@dimen/violation_text_pad_right"
+            android:layout_marginBottom="@dimen/car_news_search_iv_height"
+            android:layout_width="@dimen/dangerimgup"
+            android:scaleType="fitXY"
+            android:layout_height="@dimen/dangerimgup"
+            android:layout_centerHorizontal="true"/>
+
+
+
+
+
+    <ImageView
+        android:id="@+id/imgdelete"
+        android:layout_alignTop="@+id/rl_baseimg"
+        android:layout_marginTop="@dimen/imgview_mar"
+        android:layout_marginLeft="@dimen/imgview_margin"
+        android:layout_toRightOf="@+id/rl_baseimg"
+        android:layout_width="@dimen/car_change_top"
+        android:scaleType="centerInside"
+        android:background="@mipmap/danger_cancle"
+        android:layout_height="@dimen/car_change_top"
+        />
+</RelativeLayout>

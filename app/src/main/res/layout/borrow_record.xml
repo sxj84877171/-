@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--1-->
+    <include layout="@layout/borrowand_return_header"/>
+    <!--2-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_family_number_text_bg_high"
+        android:background="@drawable/modify_edit_bg"
+        android:text="@string/this_month"
+        android:paddingLeft="@dimen/violation_text_pad_right"
+        android:paddingTop="@dimen/yisan"
+        android:textSize="@dimen/listview_text"
+        android:textColor="@color/dialog_et_bg"/>
+    <ListView
+        android:id="@+id/lv_record"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"></ListView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom"
+        android:layout_weight="1"
+        android:background="@drawable/modify_edit_bg"/>
+</LinearLayout>

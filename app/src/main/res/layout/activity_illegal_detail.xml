@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <!--1-->
+    <include layout="@layout/illegal_detail_header"/>
+
+    <!--2-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="#f1f1f1"/>
+    <!--3-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/grey"></View>
+
+    <!--4-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/illegal_time"
+            android:textSize="14sp"
+            android:gravity="left|center"/>
+        <TextView
+            android:id="@+id/detailTimeTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="right|center"
+            android:textSize="14sp"
+            android:text="@string/illegal_time"/>
+    </LinearLayout>
+
+    <!--5-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/illegal_addr"
+            android:textSize="14sp"
+            android:gravity="left|center"/>
+        <TextView
+            android:id="@+id/detailAddrTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="right|center"
+            android:textSize="14sp"
+            android:text="@string/illegal_addr"/>
+    </LinearLayout>
+
+    <!--6-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/illegal_cent"
+            android:textSize="14sp"
+            android:gravity="left|center"/>
+        <TextView
+            android:id="@+id/detailCentTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="right|center"
+            android:textSize="14sp"
+            android:text="@string/illegal_cent"/>
+    </LinearLayout>
+
+    <!--7-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/illegal_money"
+            android:textSize="14sp"
+            android:gravity="left|center"/>
+        <TextView
+            android:id="@+id/detailMoneyTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="right|center"
+            android:textSize="14sp"
+            android:text="@string/illegal_money"/>
+    </LinearLayout>
+
+    <!--8-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/illegal_reason"
+            android:textSize="14sp"
+            android:gravity="left|center"/>
+        <TextView
+            android:id="@+id/detailReasonTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="right|center"
+            android:textSize="14sp"
+            android:text="@string/illegal_reason"/>
+    </LinearLayout>
+
+    <!--9-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/illegal_result"
+            android:textSize="14sp"
+            android:gravity="left|center"/>
+        <TextView
+            android:id="@+id/detailResultTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="right|center"
+            android:textSize="14sp"
+            android:text="@string/illegal_result"/>
+    </LinearLayout>
+
+    <!--10-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/illegal_result_r"
+            android:textSize="14sp"
+            android:gravity="left|center"/>
+        <TextView
+            android:id="@+id/detailReasonRTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="right|center"
+            android:textSize="14sp"
+            android:text="@string/illegal_result_r"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="24dp" />
+    <!--11-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/grey"></View>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#f1f1f1"/>
+
+</LinearLayout>

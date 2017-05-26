@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--1-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <!--1.1-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:background="@drawable/family_edit_bg"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/illegal_elect_margin"
+                android:layout_marginRight="@dimen/illegal_elect_margin">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/illegal_elet_deal_decision"
+                    android:textColor="@color/gray"
+                    android:gravity="center|left"
+                    android:textSize="13sp"/>
+                
+                <RelativeLayout
+                    android:layout_width="@dimen/illegal_elect_icon_width"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/decisionCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:button="@drawable/illegal_checkbox_bg"/>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <!--1.2-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:background="@drawable/family_edit_bg"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/illegal_elect_margin"
+                android:layout_marginRight="@dimen/illegal_elect_margin">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/illegal_elet_fine_ticket"
+                    android:textColor="@color/gray"
+                    android:gravity="center|left"
+                    android:textSize="13sp"/>
+
+                <RelativeLayout
+                    android:layout_width="@dimen/illegal_elect_icon_width"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/ticketCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:button="@drawable/illegal_checkbox_bg"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+        <!--1.3-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:background="#f1f1f1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="25dp">
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="11dp"
+                        android:src="@mipmap/illegal_address"
+                        android:layout_centerInParent="true"/>
+                </RelativeLayout>
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/illegal_elet_fine_address"
+                    android:textColor="@color/black2"
+                    android:textSize="11sp"
+                    android:gravity="center|left"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textColor="@color/black2"
+                    android:textSize="11sp"
+                    android:gravity="center|left"
+                    android:text="长沙银行营业厅"
+                    android:layout_marginLeft="8dp"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <!--2-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#f1f1f1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/illegalFeeBtn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_gravity="center"
+            android:text="@string/illegal_elet_fine_btn"
+            android:background="@color/colorAccent"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:gravity="center"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

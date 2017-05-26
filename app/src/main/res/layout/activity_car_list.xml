@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_car_list"
+    android:background="@color/background"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.soarsky.car.ui.trivelrecord.carlist.CarListActivity">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:background="@color/new_bg_color"
+        android:gravity="center_vertical">
+
+
+        <ImageView
+            android:id="@+id/carList_blackTv"
+            android:layout_width="@dimen/back_view_width"
+            android:layout_height="@dimen/back_view_width"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/back_view_margin_left"
+            android:src="@mipmap/arrow" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/ride_record_start_local_car"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+
+
+        <!--<TextView
+            android:id="@+id/riderecord_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/car_location_text_margin_left"
+            android:text="@string/ride_record_start_auto"
+            android:textColor="@color/white"
+            android:textSize="@dimen/map_route_textsize" />-->
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@mipmap/traverrecord_whirtbtn"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/violation_text_pad_right"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/carList_carNumrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/violation_text_pad_right"
+            android:layout_marginLeft="@dimen/violation_text_pad_right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/carList_carNum"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/flash_item_text_margin"
+                android:layout_marginBottom="@dimen/car_news_search_iv_height"
+                android:gravity="left"
+                android:textSize="@dimen/fault_size"
+                android:layout_weight="1"
+                android:text="湘A12345"
+                android:textColor="#5184ff"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/flash_item_text_margin"
+                android:layout_marginBottom="@dimen/car_news_search_iv_height"
+                android:gravity="right"
+                android:textSize="@dimen/fault_size"
+                android:layout_weight="1"
+                android:text="(当前状态)"
+                android:textColor="#5184ff"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+
+
+        <ListView
+            android:id="@+id/carlist_listView"
+            android:layout_width="match_parent"
+            android:divider="@null"
+            android:layout_height="wrap_content"></ListView>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

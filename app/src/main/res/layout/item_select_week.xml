@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:layout_height="match_parent">
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dadada"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#ffffff"
+        >
+
+        <TextView
+            android:id="@+id/item_selectweek_day"
+            android:layout_width="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#3c3c3c"
+            android:text="每周日"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/item_selectweek_select"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:background="@mipmap/auto_select"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

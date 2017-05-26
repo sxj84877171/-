@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--1-->
+    <include layout="@layout/forget_header3"/>
+
+    <!--2-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/road_side_fee_text_high"
+        android:text="@string/roadsidefeeway"
+        android:gravity="center|left"
+        android:background="@drawable/modify_edit_bg"
+        android:paddingLeft="@dimen/road_side_fee_text_pad"
+        />
+    <!--3-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <!--3.1-->
+        <LinearLayout
+            android:id="@+id/roadSideAlipayLay"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom"
+            android:layout_weight="1">
+            <RelativeLayout
+                android:layout_width="@dimen/road_side_fee_icon_width"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="@dimen/main_icon_margin_top"
+                    android:layout_height="@dimen/main_icon_margin_top"
+                    android:src="@mipmap/alipay"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/left_text_margin_left"/>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="@dimen/bottom"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/bottom"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/bottom"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/left_text_margin_left">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/roadsideapliy"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/password_text_size"
+                                android:gravity="center|left"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/roadsideapliytip"
+                                android:textColor="@color/black2"
+                                android:textSize="@dimen/yangzhao_text_size"
+                                android:gravity="center|left"/>
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/road_side_fee_icon_width"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/alipayView"
+                            android:layout_width="@dimen/dialog_b_ivleft"
+                            android:layout_height="@dimen/dialog_b_ivleft"
+                            android:src="@mipmap/fee_gou_u3"
+                            android:layout_centerInParent="true"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/half"
+                    android:layout_marginLeft="@dimen/car_return_margin_top"
+                    android:background="@color/grey"></View>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--3.2-->
+        <LinearLayout
+            android:id="@+id/roadSideWeChatLay"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom"
+            android:layout_weight="1">
+            <RelativeLayout
+                android:layout_width="@dimen/road_side_fee_icon_width"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="@dimen/layout_width"
+                    android:layout_height="@dimen/layout_width"
+                    android:src="@mipmap/wechat"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/violation_text_pad_right"/>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="@dimen/bottom"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/bottom"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/bottom"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="@dimen/car_return_margin_top">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerInParent="true">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/roadsidewechat"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/password_text_size"
+                                android:gravity="center|left"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/roadsidewechattip"
+                                android:textColor="@color/black2"
+                                android:textSize="@dimen/licenseinformation_color_size"
+                                android:gravity="center|left"/>
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/road_side_fee_icon_width"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/weChatView"
+                            android:layout_width="@dimen/dialog_b_ivleft"
+                            android:layout_height="@dimen/dialog_b_ivleft"
+                            android:src="@mipmap/fee_gou_u3"
+                            android:layout_centerInParent="true"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/half"
+                    android:layout_marginLeft="@dimen/car_return_margin_top"
+                    android:background="@color/grey"></View>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--3.3-->
+        <LinearLayout
+            android:id="@+id/roadSideUnionPayLay"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom"
+            android:layout_weight="1">
+            <RelativeLayout
+                android:layout_width="@dimen/road_side_fee_icon_width"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="@dimen/license_icon_lay_high"
+                    android:layout_height="@dimen/license_icon_lay_high"
+                    android:src="@mipmap/unionpay"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/car_return_margin_top"/>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="@dimen/bottom"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/car_return_margin_top">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/bottom"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/bottom"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerInParent="true">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/roadsideunionpay"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/password_text_size"
+                                android:gravity="center|left"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/roadsideunionpaytip"
+                                android:textColor="@color/black2"
+                                android:textSize="@dimen/yangzhao_text_size"
+                                android:gravity="center|left"/>
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/road_side_fee_icon_width"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/unionPayView"
+                            android:layout_width="@dimen/dialog_b_ivleft"
+                            android:layout_height="@dimen/dialog_b_ivleft"
+                            android:src="@mipmap/fee_gou_u3"
+                            android:layout_centerInParent="true"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:background="@color/grey"></LinearLayout>
+    </LinearLayout>
+
+    <!--4-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/car_bottom_high"
+        android:layout_weight="1.5">
+
+        <Button
+            android:id="@+id/roadSidePayBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/road_side_fee_btn_high"
+            android:layout_marginLeft="@dimen/road_side_apply_btn_margin"
+            android:layout_marginRight="@dimen/road_side_apply_btn_margin"
+            android:layout_marginTop="@dimen/sure_pay_margin_top"
+            android:background="@mipmap/fee_sure_btn"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

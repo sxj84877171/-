@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/borrow_rl_bg">
+    <include layout="@layout/car_details_header"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_family_number_text_pad"
+        android:background="@color/borrow_rl_bg"/>
+    <View
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/half"
+       android:background="@color/grey"
+       android:layout_alignParentBottom="true"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        >
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            ></ListView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/half"
+            android:background="@color/grey"
+            android:layout_below="@+id/listView"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragment_preserve_icon_lay_high"
+            android:background="@drawable/yin_ying"
+            android:layout_alignParentBottom="true"/>
+        <ImageView
+            android:id="@+id/iv_light"
+            android:layout_width="@dimen/light_width"
+            android:layout_height="@dimen/light_width"
+            android:src="@mipmap/shinning"
+            android:layout_marginBottom="@dimen/query_indicator_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+</LinearLayout>

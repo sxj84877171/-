@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--1-->
+    <include layout="@layout/forget_header3"/>
+    <!--2-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/road_side_list_detail_lay_high">
+
+        <ImageView
+            android:id="@+id/roadSideListDetailCancleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/order_cancle"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/roadSideListDetailCancleTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/roadsiderlistdetail"
+            android:layout_below="@+id/roadSideListDetailCancleView"
+            android:gravity="center_horizontal"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:background="@color/grey"
+        ></LinearLayout>
+
+    <!--3-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <include layout="@layout/road_side_order_lay3"/>
+
+
+    </LinearLayout>
+    <!--4-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/road_side_apply_order_mid_high"
+        android:background="@drawable/modify_edit_bg"/>
+    <!--5-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <include layout="@layout/road_side_order_car_lay3"/>
+
+
+    </LinearLayout>
+    <!--6-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/road_side_list_detail_lay_h"
+        android:background="@drawable/modify_edit_bg"/>
+
+</LinearLayout>

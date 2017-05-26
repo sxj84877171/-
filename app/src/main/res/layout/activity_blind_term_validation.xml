@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--1-->
+    <include layout="@layout/forget_header3"/>
+
+    <!--2-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/blind_validation_top_high" />
+    <!--3-->
+    <include layout="@layout/code_edit_lay_out3"/>
+    <!--4-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/blind_validation_edit_top_high" />
+    <!--5-->
+    <include layout="@layout/is_code_edit_lay_out3"/>
+    <!--6-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/blind_validation_edit_top_high" />
+        <!--7-->
+        <include layout="@layout/phone_validation_edit_lay_out"/>
+        <!--8-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/blind_validation_edit_top_high" />
+        <!--9-->
+        <include layout="@layout/blind_verify_lay_out"/>
+    </LinearLayout>
+    <!--10-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/blind_term_top_high" />
+
+    <!--11-->
+    <Button
+        android:id="@+id/blindTermValidfinshBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/blind_validation_btn_high"
+        android:layout_marginRight="@dimen/blind_term_margin"
+        android:layout_marginLeft="@dimen/blind_term_margin"
+        android:text="@string/blind_term_validation_finish"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="@dimen/blind_text_size"
+        android:background="@color/gray"/>
+
+</LinearLayout>

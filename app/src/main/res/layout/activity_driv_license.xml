@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--1-->
+    <include layout="@layout/forget_header3"/>
+
+    <!--2-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <LinearLayout
+            android:id="@+id/licenseCardLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/license_icon_lay_margin"
+            android:layout_marginLeft="@dimen/license_icon_lay_margin"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="@dimen/clearedittext_margin_right"
+                    android:layout_height="@dimen/clearedittext_margin_right"
+                    android:src="@mipmap/num_idcard"
+
+                    android:layout_marginTop="@dimen/driverlicen_iv_margin"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/licensenum"
+                    android:textSize="@dimen/license_text_size"
+                    android:textColor="@color/border"
+                    android:layout_marginLeft="@dimen/license_drawable_pad"
+                    android:layout_marginTop="17dp"
+                    android:gravity="left|center"
+
+                    />
+
+                <TextView
+                    android:id="@+id/drivLicenseTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/car_location_text_size"
+                    android:textColor="@color/border"
+                    android:text="@string/nodata"
+                    android:gravity="left|center"
+                    android:layout_marginLeft="@dimen/car_alarm_ll_margin"
+                    android:layout_marginTop="@dimen/dagerbasemessageup_button_textsize"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!--3-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/license_lay_high"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/map_route_set_icon_width">
+        <!--3.1-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom"
+            xmlns:custom="http://schemas.android.com/apk/res-auto"
+            android:layout_weight="1"
+            >
+
+            <LinearLayout
+                android:layout_width="@dimen/license_proess_high"
+                android:layout_height="@dimen/license_proess_high"
+                android:layout_centerHorizontal="true"
+               >
+                <com.soarsky.car.ui.license.view.CircleProgress
+                    android:id="@+id/circleProgress"
+                    android:layout_width="match_parent"
+                    custom:donut_circle_starting_degree="180"
+                    android:layout_height="match_parent"
+                    custom:donut_progress="0"
+                    custom:donut_progress_distance="@dimen/donut_progress_distance"
+                    custom:donut_unfinished_color="@color/grey"
+                    custom:donut_text_color="#ef4646"
+                    custom:donut_bottom_text_distance="@dimen/donut_bottom_text_distance"
+                    custom:donut_stroke_width="@dimen/car_news_search_text_margin_top"
+                    custom:donut_inner_bottom_text_color="@color/border"
+                    custom:donut_inner_bottom_text_size="@dimen/car_location_juli_text_size"
+                    custom:donut_finished_color="#ef4646"
+                    custom:donut_inner_bottom_text="@string/licensetotalcent"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <!--3.2-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/license_text_bottom_high"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="@dimen/license_text_width"
+                android:layout_height="@dimen/license_text_high"
+                android:layout_marginRight="@dimen/license_icon_lay_margin"
+                android:layout_marginLeft="@dimen/license_icon_lay_margin"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp">
+
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_horizontal">
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:gravity="center_horizontal">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/license_size"
+                    android:textColor="@color/border"
+                    android:text="@string/licensetime"
+                    android:id="@+id/textView9"
+                     />
+
+                <TextView
+                    android:layout_toRightOf="@+id/textView9"
+                    android:id="@+id/licenseEndTimeTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/license_size"
+                    android:textColor="@color/border"
+                    android:text="@string/nodata"
+                    android:layout_marginLeft="4dp"/></LinearLayout>
+               </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    
+    <!--4-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/license_text_margin"
+        android:background="@drawable/modify_edit_bg"
+        />
+
+    <!--5-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <include layout="@layout/license_bottom_lay"/>
+    </LinearLayout>
+   <!--6-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/license_bot_high"
+        android:background="@drawable/modify_edit_bg"
+        android:visibility="gone"/>
+
+</LinearLayout>

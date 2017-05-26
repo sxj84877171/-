@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/query_item_high"
+        android:layout_marginRight="@dimen/query_item_margin"
+        android:layout_marginLeft="@dimen/query_item_margin"
+        android:layout_marginTop="@dimen/query_item_margin"
+        android:layout_marginBottom="@dimen/query_item_margin"
+        android:orientation="vertical">
+        <!--1-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="@dimen/query_item_left_width"
+                android:layout_height="match_parent"
+                android:text="@string/item_time"
+                android:textSize="@dimen/query_item_text_size"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/querytimetv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/query_item_text_size"
+                android:text="2016-11-15 14:15:24"
+                android:gravity="left|center"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/query_item_text_size"
+                    android:text="扣"
+                    android:gravity="center"
+                    android:textColor="@color/gray"/>
+                <TextView
+                    android:id="@+id/queryCenttv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/query_item_text_title_size"
+                    android:gravity="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/query_item_text_size"
+                    android:gravity="center"
+                    android:text="分"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <!--2-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="@dimen/query_item_left_width"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/query_item_text_size"
+                android:text="@string/item_address"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/queryAddresstv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center"
+                android:textSize="@dimen/query_item_text_size"
+                android:text="长沙市麓谷大道口信息光"/>
+
+        </LinearLayout>
+        <!--3-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="@dimen/query_item_left_width"
+                android:layout_height="match_parent"
+                android:text="@string/item_reason"
+                android:textSize="@dimen/query_item_text_size"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/queryreasontv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="2016-11-15 14:15:24"
+                android:textStyle="bold"
+                android:textSize="@dimen/query_item_textbold_size"
+                android:gravity="left|center"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="罚"
+                    android:gravity="center"
+                    android:textSize="@dimen/query_item_text_size"
+                    android:textColor="@color/gray"/>
+                <TextView
+                    android:id="@+id/queryMoneytv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/query_item_text_title_size"
+                    android:gravity="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/query_item_text_size"
+                    android:textColor="@color/gray"
+                    android:gravity="center"
+                    android:text="元"/>
+                </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

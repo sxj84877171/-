@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_b_rhigh"
+        android:background="@drawable/modify_edit_bg">
+
+        <TextView
+            android:id="@+id/dialogTopicTv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/dialogroadsidecartype"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="@color/gray"/>
+
+
+        <TextView
+            android:id="@+id/dialogRoadSideConfirmTv"
+            android:layout_centerVertical="true"
+            android:text="@string/dialog_b_text"
+            android:textSize="@dimen/check_text_size"
+            android:textColor="@color/colorAccent"
+            android:layout_marginRight="@dimen/violation_text_pad_right"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+
+    <ListView
+        android:id="@+id/dialogRoadSideListview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/grey"
+        android:scrollbars="none"
+        android:divider="#00000000"
+        android:dividerHeight="@dimen/bottom"
+        ></ListView>
+
+
+</LinearLayout>

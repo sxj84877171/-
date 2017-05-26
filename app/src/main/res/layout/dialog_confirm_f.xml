@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_bg">
+
+
+
+    <LinearLayout
+
+        android:layout_width="@dimen/erliuo"
+        android:layout_height="@dimen/yijiuer"
+        android:layout_gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/title"
+            android:textSize="@dimen/check_text_size"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dialog_text_high"
+            android:gravity="center"
+            android:text="@string/dialog_ti"
+            android:textColor="#3c3c3c"
+            android:paddingTop="@dimen/car_position_text_high"/>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <include layout="@layout/layout_cause"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_view_high"
+        android:background="@color/grey" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/negativeButton"
+            android:layout_width="@dimen/bottom"
+            android:layout_height="@dimen/sier"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="@string/again"
+            android:textColor="@color/bt_borrow_bg"
+            android:textSize="@dimen/check_text_size"
+            />
+        <View
+            android:layout_width="@dimen/linehigh"
+            android:layout_height="@dimen/sier"
+            android:background="@color/grey"
+            />
+        <Button
+            android:id="@+id/positiveButton"
+            android:textColor="@color/bt_borrow_bg"
+            android:layout_width="@dimen/bottom"
+            android:layout_height="@dimen/sier"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="@string/zaici"
+            android:textSize="@dimen/check_text_size"
+            />
+
+    </LinearLayout>
+</LinearLayout>

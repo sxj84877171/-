@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--1-->
+    <include layout="@layout/rescue_header_lay3"/>
+
+
+
+    <!--3-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom"
+        android:layout_weight="2"
+        android:orientation="vertical">
+        <!--3.1-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:background="@color/borrow_rl_bg"
+            android:text="故障车牌号"
+            android:paddingLeft="20dp"
+            android:textColor="#999999"
+            android:textSize="13sp"
+            android:gravity="left|center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom"
+            android:layout_weight="1">
+            <include layout="@layout/road_side_carnum_lay3"/>
+        </LinearLayout>
+        <!--3.2-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:background="@color/borrow_rl_bg"
+            android:text="故障车辆类型"
+            android:paddingLeft="20dp"
+            android:textColor="#999999"
+            android:textSize="13sp"
+            android:gravity="left|center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom"
+            android:layout_weight="1">
+            <include layout="@layout/road_side_car_type_lay3"/>
+        </LinearLayout>
+        <!--3.3-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:background="@color/borrow_rl_bg"
+            android:text="服务项目"
+            android:paddingLeft="20dp"
+            android:textColor="#999999"
+            android:textSize="13sp"
+            android:gravity="left|center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom"
+            android:layout_weight="1">
+
+            <include layout="@layout/road_side_sever_lay3"/>
+
+        </LinearLayout>
+        <!--3.4-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:background="@color/borrow_rl_bg"
+            android:text="当前位置"
+            android:textColor="#999999"
+            android:textSize="13sp"
+            android:paddingLeft="20dp"
+            android:gravity="left|center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom"
+            android:layout_weight="1">
+
+            <include layout="@layout/road_side_position_lay3"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <!--4-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/roadSideMapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/half"
+        android:background="@color/grey"></LinearLayout>
+    <!--5-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom"
+        android:layout_weight="0.5">
+
+
+        <Button
+            android:id="@+id/roadSideApplyBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/road_side_apply_btn_high"
+            android:layout_gravity="center"
+            android:background="@mipmap/rescue_btn_bg"
+            android:layout_marginRight="@dimen/road_side_apply_btn_margin"
+            android:layout_marginLeft="@dimen/road_side_apply_btn_margin"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>

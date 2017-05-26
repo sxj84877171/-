@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--1-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/driv_record_top_high"
+        android:background="#f1f1f1"/>
+    <!--2-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/driv_record_text_high"
+        android:layout_gravity="center"
+        android:background="@drawable/family_edit_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="车 牌 号 :"
+            android:layout_marginLeft="15dp"
+            android:textSize="13sp"
+            android:textColor="#3c3c3c"/>
+        <EditText
+            android:id="@+id/illegalCarNumEt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:hint="@string/driv_record_number_tip"
+            android:textColor="@color/gray"
+            android:textSize="13sp"
+            android:background="@null"
+            android:textColorHint="@color/grey"
+            android:layout_marginLeft="12dp"/>
+        
+        <RelativeLayout
+            android:id="@+id/illegalCarNumLay"
+            android:layout_width="@dimen/illegal_r_icon_width"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/illegalCarNumView"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/illegal_delete"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+    <!--3-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/driv_record_text_high"
+        android:layout_gravity="center"
+        android:background="@drawable/family_edit_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:textSize="13sp"
+            android:textColor="#3c3c3c"
+            android:text="@string/illegal_query_pwd"/>
+
+        <EditText
+            android:id="@+id/illegalPwdEt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:textColor="@color/gray"
+            android:hint="@string/driv_record_pwd_tip"
+            android:textSize="13sp"
+            android:inputType="textPassword"
+            android:background="@null"
+            android:textColorHint="@color/grey"
+            android:layout_marginLeft="12dp"/>
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="53dp"
+            android:background="#dadada"
+            android:layout_marginRight="6dp"/>
+        <RelativeLayout
+            android:id="@+id/illegalPwdLay"
+            android:layout_width="@dimen/illegal_r_icon_width"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/illegalPwdView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/icon"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+    <!--4-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#f1f1f1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/illegalSureBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/driv_record_btn_high"
+            android:layout_marginLeft="@dimen/driv_record_btn_margin"
+            android:layout_marginRight="@dimen/driv_record_btn_margin"
+            android:text="@string/driv_record_sure"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@color/colorAccent"
+            android:layout_marginTop="@dimen/driv_record_btn_margin_top"
+            android:textSize="17sp"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

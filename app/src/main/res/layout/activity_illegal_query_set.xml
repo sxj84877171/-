@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--1-->
+    <include layout="@layout/forget_header3"/>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dagercompensate_tab_height" />
+
+    <!--3-->
+    <include layout="@layout/code_edit_lay_out3"/>
+
+    <include layout="@layout/is_code_edit_lay_out3"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dagerbasemessageup_button_height" />
+    
+    <Button
+        android:id="@+id/illegalSetFinishBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dagerbasemessageup_button_height"
+        android:layout_marginLeft="@dimen/dagerbasemessageup_button_height"
+        android:layout_marginRight="@dimen/dagerbasemessageup_button_height"
+        android:text="@string/illegal_query_set_finish"
+        android:textColor="@color/white"
+        android:textSize="@dimen/car_news_search_textsize"
+        android:gravity="center"
+        android:background="@color/gray"/>
+
+</LinearLayout>

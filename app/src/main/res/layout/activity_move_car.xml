@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--1-->
+    <include layout="@layout/borrowand_return_header"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="116dp"
+        android:src="@mipmap/movecar_tuceng"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f0f0f0"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#e6e6e6"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:paddingRight="@dimen/car_return_margin_top"
+                android:paddingLeft="@dimen/car_return_margin_top"
+                android:dividerHeight="0.5dp"></ListView>
+        
+
+
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/move_car_button_high"
+        android:text="@string/move_car_sure"
+        android:textSize="@dimen/move_car_button_text_size"
+        android:background="@color/fault_color_text"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        />
+    </RelativeLayout>
+</LinearLayout>

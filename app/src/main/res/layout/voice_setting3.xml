@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f0f0f0">
+    <include layout="@layout/car_news_header"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/half"
+        android:background="#e6e6e6"
+        android:layout_marginTop="30dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:background="@color/white">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="8dp"
+            android:layout_height="10.5dp"
+            android:src="@mipmap/volume_icon"
+            android:layout_marginTop="22dp"
+            android:layout_marginLeft="25dp"/>
+        <ImageView
+            android:layout_width="16.5dp"
+            android:layout_height="14.5dp"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/volume_icon_max"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="24dp"/>
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_below="@+id/image"
+            android:layout_marginTop="20dp"
+            android:thumb="@mipmap/ellipse"
+            android:maxHeight="20dp"
+            android:minHeight="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="10dp"
+            android:max="9"
+            android:progress="5"
+            android:progressDrawable="@drawable/seekbar_style"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="9sp"
+            android:textColor="#dadada"
+            android:text="注:音量不能低于20%"
+            android:layout_below="@+id/seekBar"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="24dp"/>
+    </RelativeLayout>
+
+</LinearLayout>

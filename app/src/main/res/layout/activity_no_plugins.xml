@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--头部-->
+    <include layout="@layout/activity_header"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/iv_plugin"
+            android:layout_width="@dimen/plugin_high"
+            android:layout_height="@dimen/plugin_high"
+            android:src="@mipmap/plugin"
+            android:layout_marginTop="@dimen/plugin_top"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plugins"
+            android:textSize="@dimen/query_text_title_size"
+            android:textColor="@color/color_text"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/iv_plugin"
+            android:layout_marginTop="@dimen/fragment_car_drawable_pad"/>
+        <TextView
+            android:id="@+id/text_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/do_plugin"
+            android:textSize="@dimen/query_text_title_size"
+            android:textColor="@color/color_text"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/text_1"
+            android:layout_marginTop="@dimen/plugin_tv_top"/>
+    </RelativeLayout>
+</LinearLayout>

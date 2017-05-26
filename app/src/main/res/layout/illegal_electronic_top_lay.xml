@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/illegal_elect_margin"
+        android:layout_marginRight="@dimen/illegal_elect_margin"
+        android:orientation="vertical">
+        <!--1-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="match_parent"
+
+                android:text="@string/illegal_elet_num"
+                android:textColor="@color/black2"
+                android:textSize="13sp"
+                android:gravity="center|left"/>
+
+            <TextView
+                android:id="@+id/illegalEleNumTv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/black2"
+                android:textSize="12sp"
+                android:gravity="center|right"/>
+
+        </LinearLayout>
+        <!--2-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="match_parent"
+                android:text="驾    照   号"
+                android:textColor="@color/black2"
+                android:textSize="13sp"
+                android:gravity="center|left"
+                android:id="@+id/textView10" />
+
+            <TextView
+                android:id="@+id/illegalEleDriverNoTv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/black2"
+                android:textSize="12sp"
+                android:gravity="center|right"/>
+        </LinearLayout>
+        <!--3-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="match_parent"
+                android:text="@string/illegal_elet_car_color"
+                android:textColor="@color/black2"
+                android:textSize="13sp"
+                android:gravity="center|left"/>
+
+            <TextView
+                android:id="@+id/illegalEleCarColorTv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/black2"
+                android:textSize="12sp"
+                android:gravity="center|right"/>
+        </LinearLayout>
+        <!--4-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="match_parent"
+                android:text="@string/illegal_elet_car_driver_color"
+                android:textColor="@color/black2"
+                android:textSize="13sp"
+                android:gravity="center|left"/>
+
+            <TextView
+                android:id="@+id/illegalEleDriverColorTv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/black2"
+                android:textSize="12sp"
+                android:gravity="center|right"/>
+
+        </LinearLayout>
+        <!--5-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="match_parent"
+                android:text="时           间"
+                android:textColor="@color/black2"
+                android:textSize="13sp"
+                android:gravity="center|left"/>
+
+            <TextView
+                android:id="@+id/illegalEleTimeTv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/black2"
+                android:textSize="12sp"
+                android:gravity="center|right"/>
+        </LinearLayout>
+        <!--6-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="match_parent"
+                android:text="地           点"
+                android:textColor="@color/black2"
+                android:textSize="13sp"
+                android:gravity="center|left"/>
+
+            <TextView
+                android:id="@+id/illegalEleAddressTv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/black2"
+                android:textSize="12sp"
+                android:gravity="center|right"/>
+
+        </LinearLayout>
+        <!--7-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="match_parent"
+                android:text="@string/illegal_elet_reason"
+                android:textColor="@color/black2"
+                android:textSize="13sp"
+                android:gravity="center|left"/>
+
+            <TextView
+                android:id="@+id/illegalEleReasonTv"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text=""
+                android:textColor="@color/black2"
+                android:textSize="12sp"
+                android:gravity="center|right"/>
+        </LinearLayout>
+        <!--8-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="match_parent"
+                android:text="扣           分"
+                android:textColor="@color/black2"
+                android:textSize="13sp"
+                android:gravity="center|left"/>
+
+            <TextView
+                android:id="@+id/illegalEleCentTv"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text=""
+                android:textColor="@color/black2"
+                android:textSize="12sp"
+                android:gravity="center|right"/>
+
+        </LinearLayout>
+        <!--9-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="match_parent"
+                android:text="罚           款"
+                android:textColor="@color/black2"
+                android:textSize="13sp"
+                android:gravity="center|left"/>
+
+            <TextView
+                android:id="@+id/illegalEleFineTv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/black2"
+                android:textSize="12sp"
+                android:gravity="center|right"/>
+        </LinearLayout>
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

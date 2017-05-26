@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/fragment_personal_div_high"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/personalPhoneTv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/personalphone"
+        android:paddingLeft="@dimen/fragment_personal_text_pad"
+        android:paddingRight="@dimen/fragment_personal_text_pad"
+        android:drawableLeft="@mipmap/personalphone"
+        android:gravity="left|center"
+        android:textSize="@dimen/fragment_personal_text_size"
+        android:textColor="@color/gray"
+        android:drawablePadding="@dimen/fragment_personal_text_pad"
+        android:drawableRight="@mipmap/arrow_r"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dadada"></LinearLayout>
+
+    <TextView
+        android:id="@+id/personalWordTv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/personalpassword"
+        android:paddingLeft="@dimen/fragment_personal_text_pad"
+        android:paddingRight="@dimen/fragment_personal_text_pad"
+        android:drawableLeft="@mipmap/personalword"
+        android:gravity="left|center"
+        android:textSize="@dimen/fragment_personal_text_size"
+        android:textColor="@color/gray"
+        android:drawablePadding="@dimen/fragment_personal_text_pad"
+        android:drawableRight="@mipmap/arrow_r"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dadada"></LinearLayout>
+
+    <TextView
+        android:id="@+id/app_blind_ter"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/appblindter"
+        android:paddingLeft="@dimen/fragment_personal_text_pad"
+        android:paddingRight="@dimen/fragment_personal_text_pad"
+        android:drawableLeft="@mipmap/personaldemand"
+        android:gravity="left|center"
+        android:textSize="@dimen/fragment_personal_text_size"
+        android:textColor="@color/gray"
+        android:drawablePadding="@dimen/fragment_personal_text_pad"
+        android:drawableRight="@mipmap/arrow_r"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dadada"></LinearLayout>
+
+    <TextView
+        android:id="@+id/app_change_car"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/changecar"
+        android:paddingLeft="@dimen/fragment_personal_text_pad"
+        android:paddingRight="@dimen/fragment_personal_text_pad"
+        android:drawableLeft="@mipmap/carchange"
+        android:gravity="left|center"
+        android:textSize="@dimen/fragment_personal_text_size"
+        android:textColor="@color/gray"
+        android:drawablePadding="@dimen/fragment_personal_text_pad"
+        android:drawableRight="@mipmap/arrow_r"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dadada"></LinearLayout>
+
+
+    <TextView
+        android:id="@+id/personaldemandTv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/personaldemand"
+        android:paddingLeft="@dimen/fragment_personal_text_pad"
+        android:paddingRight="@dimen/fragment_personal_text_pad"
+        android:drawableLeft="@mipmap/personaldemand"
+        android:gravity="left|center"
+        android:textSize="@dimen/fragment_personal_text_size"
+        android:textColor="@color/gray"
+        android:drawablePadding="@dimen/fragment_personal_text_pad"
+        android:drawableRight="@mipmap/arrow_r"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dadada"></LinearLayout>
+
+</LinearLayout>

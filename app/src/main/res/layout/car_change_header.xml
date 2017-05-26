@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/header_height"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:background="@color/new_bg_color">
+
+    <LinearLayout
+        android:id="@+id/backLay"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/backView"
+                android:layout_width="@dimen/back_view_width"
+                android:layout_height="@dimen/back_view_width"
+                android:src="@mipmap/arrow"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/back_view_margin_left"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/carchangetitle"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title_size"
+        android:layout_centerInParent="true"/>
+
+
+    <!--<TextView
+        android:id="@+id/carChangeSureTv"
+        android:layout_width="@dimen/car_right_width"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:text="@string/carchangeconfirm"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/password_text_size"/>-->
+
+</RelativeLayout>
+

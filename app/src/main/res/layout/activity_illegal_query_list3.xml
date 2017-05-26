@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--1-->
+    <include layout="@layout/illegal_manage_header_lay3"/>
+
+    <!--2-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/illegalQueryListCarNumTv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/illegal_elet_carnum"
+            android:textSize="15sp"
+            android:textColor="#666666"
+            android:gravity="center"/>
+    </LinearLayout>
+    <!--3-->
+    <include layout="@layout/fragment_illegal_content"/>
+
+</LinearLayout>

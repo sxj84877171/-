@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/violation_text_pad_right"
+        android:layout_centerVertical="true">
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/today"
+            android:textSize="@dimen/license_text_size"
+            android:textColor="@color/color_text"/>
+        <TextView
+            android:layout_below="@+id/date"
+            android:id="@+id/sTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/when"
+            android:textSize="@dimen/license_text_size"
+            android:textColor="@color/color_text"
+            android:layout_marginTop="@dimen/ml"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl2"
+        android:layout_marginTop="@dimen/violation_margin_icon_top"
+        android:layout_marginLeft="@dimen/car_icon_width"
+        android:layout_toRightOf="@+id/rl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/use_car_text"
+            android:text="@string/who_drives"/>
+        <TextView
+            android:id="@+id/driver"
+            style="@style/text_content_use_record"
+            android:text=""
+           />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl3"
+        android:layout_marginTop="@dimen/car_position_text_top"
+        android:layout_marginLeft="@dimen/car_icon_width"
+        android:layout_toRightOf="@+id/rl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl2">
+        <TextView
+            android:text="@string/license_num"
+            style="@style/use_car_text" />
+        <TextView
+            android:id="@+id/license_num"
+            android:text=""
+            style="@style/text_content_use_record" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl4"
+        android:layout_marginTop="@dimen/car_position_text_top"
+        android:layout_marginLeft="@dimen/car_icon_width"
+        android:layout_toRightOf="@+id/rl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl3"
+        android:layout_marginBottom="@dimen/violation_margin_icon_top">
+        <TextView
+            android:text="@string/use_time"
+            style="@style/use_car_text" />
+        <TextView
+            android:id="@+id/time"
+            android:text=""
+            style="@style/text_content_use_record" />
+    </RelativeLayout>
+</RelativeLayout>

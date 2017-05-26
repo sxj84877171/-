@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_ride_record_strat"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+ >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:background="@color/new_bg_color"
+        android:gravity="center_vertical">
+
+
+        <ImageView
+            android:id="@+id/riderecord_black"
+            android:layout_width="@dimen/back_view_width"
+            android:layout_height="@dimen/back_view_width"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/back_view_margin_left"
+            android:src="@mipmap/arrow" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/ride_record_start_record"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+
+
+
+    </RelativeLayout>
+
+
+    
+    <ImageView
+
+        android:layout_width="match_parent"
+        android:background="@mipmap/traverrecord_bg"
+        android:layout_height="347.5dp" />
+
+
+
+    <TextView
+        android:id="@+id/riderecord_ride"
+        android:layout_width="@dimen/borrow_bt_width"
+        android:layout_height="@dimen/car_bottom_high"
+        android:layout_marginTop="78dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@mipmap/traverrecord_ridebtn"/>
+
+    <TextView
+        android:id="@+id/riderecord_quit"
+        android:layout_width="@dimen/borrow_bt_width"
+        android:layout_height="@dimen/car_bottom_high"
+        android:layout_marginTop="14dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@mipmap/traverrecord_quitbtn"/>
+
+
+</LinearLayout>

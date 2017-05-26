@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/sier"
+    android:layout_marginTop="@dimen/ten"
+    android:gravity="center_horizontal">
+    <LinearLayout
+        android:layout_width="@dimen/ll_line_width"
+        android:layout_height="@dimen/sier"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/register_bg"
+        android:layout_marginTop="@dimen/login_icon_width">
+        <ImageView
+            android:layout_width="@dimen/register_icon_margin_top"
+            android:layout_height="@dimen/register_icon_margin_top"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/home_div_margin_top"
+            android:background="@mipmap/mobile_phone"
+            />
+
+        <View
+            android:layout_width="@dimen/query_drawable_pad"
+            android:layout_height="@dimen/home_map_top"
+            android:layout_gravity="center_vertical"
+            android:background="#cccccc"
+            android:layout_marginLeft="@dimen/fragment_personal_text_size"
+            />
+        <EditText
+            android:id="@+id/mobliephoneEt"
+            android:layout_width="@dimen/bottom"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:textSize="@dimen/query_text_size"
+            android:textColorHint="@color/black4"
+            android:layout_marginLeft="@dimen/fragment_personal_text_size"
+            android:maxLength="11"
+            android:inputType="number"
+            android:layout_weight="2"
+            android:background="@null"
+            android:hint="@string/hintphone"/>
+
+        <RelativeLayout
+            android:id="@+id/verCodeLay"
+            android:layout_width="@dimen/register_icon_width"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/verCodeView"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/fragment_family_number_edit_pad"
+                android:src="@mipmap/vercode_icon"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

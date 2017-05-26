@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--1-->
+    <include layout="@layout/switch_car_header"/>
+
+    <!--2-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_family_number_text_pad"
+        android:background="@color/borrow_rl_bg"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/half"
+        android:background="@color/grey"/>
+    <!--3-->
+    <ListView
+        android:id="@+id/lv_license_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"></ListView>
+</LinearLayout>

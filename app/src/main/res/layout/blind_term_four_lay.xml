@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/license_valid_text_high"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/family_edit_bg">
+        <EditText
+            android:layout_width="@dimen/license_valid_text_width"
+            android:layout_height="match_parent"
+            android:textColor="@color/gray"
+            android:text="验证码 :"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="@dimen/license_valid_text_pad"
+            android:textSize="@dimen/license_valid_text_size"
+            android:background="@null"
+            android:enabled="false"
+            android:editable="false" />
+        <EditText
+            android:id="@+id/blind_term_verCodeEt"
+            android:layout_width="@dimen/bottom"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:textColor="@color/gray"
+            android:hint="请输入验证码"
+            android:textSize="@dimen/license_valid_text_size"
+            android:background="@null"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

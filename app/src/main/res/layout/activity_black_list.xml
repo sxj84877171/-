@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_black_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="com.soarsky.car.ui.trivelrecord.blacklist.BlackListActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:background="@color/new_bg_color"
+        android:gravity="center_vertical">
+
+
+        <ImageView
+
+            android:layout_width="@dimen/back_view_width"
+            android:layout_height="@dimen/back_view_width"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/back_view_margin_left"
+            android:src="@mipmap/arrow" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="嫌疑车辆"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+
+
+
+
+    </RelativeLayout>
+
+    
+    <ImageView
+
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:background="@mipmap/traverrecord_warn1"
+        android:layout_height="278.5dp" />
+
+
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0.5dp"
+    android:background="#f0f0f0"
+    android:layout_marginTop="25dp"/>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:textColor="#333333"
+                android:layout_gravity="left"
+                android:textSize="15sp"
+                android:text="车牌号码"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/black_list_carnum"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:textColor="#666666"
+                android:gravity="right"
+
+                android:textSize="15sp"
+                android:layout_gravity="end"
+                android:text=""
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:textColor="#333333"
+                android:layout_gravity="left"
+                android:textSize="15sp"
+                android:text="号码种类"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/black_list_ptype"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:textColor="#666666"
+                android:gravity="right"
+
+                android:textSize="15sp"
+                android:layout_gravity="end"
+                android:text=""
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:textColor="#333333"
+                android:layout_gravity="left"
+                android:textSize="15sp"
+                android:text="嫌疑原因"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/black_list_reason"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:textColor="#666666"
+                android:gravity="right"
+                android:textSize="15sp"
+                android:layout_gravity="end"
+                android:text=""
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0.5dp"
+    android:background="#e6e6e6"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#f0f0f0"/>
+
+
+
+</LinearLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--1-->
+    <include layout="@layout/map_search_header" />
+
+    <!--3-->
+
+    <!--3-->
+    <LinearLayout
+        android:id="@+id/mapSearchMainLay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <!--1-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/map_text_high"
+            android:layout_marginLeft="@dimen/map_margin_left"
+           >
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="@dimen/map_search_ll_height"
+                android:layout_height="@dimen/radio_button"
+                android:layout_gravity="center_vertical"
+                android:background="@color/colorAccent"
+                android:layout_marginLeft="@dimen/map_search_ll_margin_left"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/bottom"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/car_news_search_ll_margin_left"
+                    android:gravity="left|center"
+                    android:textSize="@dimen/car_location_text_size"
+                    android:textColor="@color/history_record"
+                    android:text="@string/map_search_history"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/bottom"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+               <RelativeLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:layout_gravity="right"
+                   android:layout_marginRight="@dimen/back_view_width">
+
+                   <ImageView
+                       android:layout_width="@dimen/car_news_search_iv_height"
+                       android:layout_height="@dimen/car_news_search_iv_height"
+                       android:src="@mipmap/search_delete"
+                       android:layout_centerInParent="true"/>
+
+               </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/half"
+            android:background="@color/grey"></View>
+
+        <!--2-->
+        <ListView
+            android:id="@+id/mapSearchListView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom"
+            android:layout_weight="1"
+            android:divider="@null"
+            android:layout_marginLeft="@dimen/map_margin_left"></ListView>
+
+    </LinearLayout>
+
+</LinearLayout>

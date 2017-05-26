@@ -1,47 +1,19 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
-
-# Folder config file
-Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
+*.iml
+.gradle
+/local.properties
+/.idea/*
+/.idea/libraries
 .DS_Store
-.AppleDouble
-.LSOverride
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+/build
+/captures
+.externalNativeBuild
+/app/src/main/java/com/soarsky/car/data/local/db/dao/NoteDao.java
+/app/src/main/java/com/soarsky/car/data/local/db/dao/TborrowDao.java
+/app/src/main/java/com/soarsky/car/data/local/db/dao/TicketDao.java
+/app/src/main/java/com/soarsky/car/data/local/db/dao/DaoMaster.java
+/app/src/main/java/com/soarsky/car/data/local/db/dao/DaoSession.java
+/app/src/main/java/com/soarsky/car/data/local/db/dao/FamilyNumDao.java
+/app/src/main/java/com/soarsky/car/data/local/db/dao/DriverRecordDao.java
+/app/src/main/java/com/soarsky/car/data/local/db/dao/ErrorDriverDao.java
+/app/src/main/java/com/soarsky/car/data/local/db/dao
+/PushSDK/build

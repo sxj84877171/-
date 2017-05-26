@@ -1,0 +1,670 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="linewidth">1dp</dimen>
+    <dimen name="linehigh">0.5dp</dimen>
+
+    <!--登陆-->
+    <dimen name="login_head_top">58.67dp</dimen>
+    <dimen name="header_height">44dp</dimen>
+    <dimen name="login_forget_high">19dp</dimen>
+    <dimen name="title_size">17sp</dimen>
+    <dimen name="login_text_size">17.33dp</dimen>
+    <dimen name="login_edit_size">13.33dp</dimen>
+    <dimen name="hint_size">12dp</dimen>
+    <dimen name="login_layout_margin_left">22dp</dimen>
+    <dimen name="login_layout_margin_right">22dp</dimen>
+    <dimen name="register_lay_margin">21.33dp</dimen>
+    <dimen name="login_lay_margin_foret">20.67dp</dimen>
+    <dimen name="login_btn_bottom">24dp</dimen>
+    <dimen name="login_icon_width">38dp</dimen>
+    <dimen name="login_btn_high">44dp</dimen>
+    <dimen name="login_forgent_top">22.67dp</dimen>
+    <dimen name="login_btn_top">50dp</dimen>
+    <dimen name="login_line_top">2dp</dimen>
+    <dimen name="login_reister_margin_top">180.67dp</dimen>
+    <dimen name="userorpasswordhigh">50dp</dimen>
+    <dimen name="include_margin">33.33dp</dimen>
+    <dimen name="login_forget_lay_width">56dp</dimen>
+    <dimen name="login_margin_width">60dp</dimen>
+    <dimen name="login_pad_width">5dp</dimen>
+
+    <dimen name="margin_top">80dp</dimen>
+    <dimen name="head_lay_width">55.33dp</dimen>
+
+    <!--注册-->
+    <dimen name="register_layout_margin_left">19.33dp</dimen>
+    <dimen name="register_layout_margin_right">19.33dp</dimen>
+    <dimen name="register_head_top">58.67dp</dimen>
+    <dimen name="register_edit_high">38dp</dimen>
+    <dimen name="register_text_size">13.33dp</dimen>
+    <dimen name="register_hint_size">11.33dp</dimen>
+    <dimen name="register_margin">15dp</dimen>
+    <dimen name="register_tip_margin">28.67dp</dimen>
+    <dimen name="register_tip_top">24dp</dimen>
+    <dimen name="register_gou_width">16.67dp</dimen>
+    <dimen name="register_tip_size">8.67dp</dimen>
+    <dimen name="register_btn_margin">60dp</dimen>
+    <dimen name="register_btn_size">17.33dp</dimen>
+    <dimen name="register_pad_margin">8dp</dimen>
+    <dimen name="register_btn_top">15.67dp</dimen>
+    <dimen name="register_edit_pad">8dp</dimen>
+    <dimen name="register_icon_width">38dp</dimen>
+    <dimen name="register_icon_margin_left">28.67dp</dimen>
+    <dimen name="register_icon_margin_top">25dp</dimen>
+    <dimen name="register_icon_margin_right">8dp</dimen>
+
+    <!--找回密码-->
+    <dimen name="forget_head_icon_width">57dp</dimen>
+    <dimen name="forget_head_top">38.67dp</dimen>
+    <dimen name="forget_layout_margin_left">19.33dp</dimen>
+    <dimen name="forget_layout_margin_right">19.33dp</dimen>
+    <dimen name="forget_edit_pad">8dp</dimen>
+    <dimen name="forget_text_size">13.5dp</dimen>
+    <dimen name="forget_hint_size">11.5dp</dimen>
+    <dimen name="forget_edit_high">38dp</dimen>
+    <dimen name="forget_margin">30dp</dimen>
+    <dimen name="forget_icon_width">38dp</dimen>
+    <dimen name="forget_btn_width">76dp</dimen>
+    <dimen name="forget_btn_top">58dp</dimen>
+    <dimen name="forget_btn_margin">60dp</dimen>
+    <dimen name="forget_btn_size">17.33dp</dimen>
+    <dimen name="forget_text_tip_size">10.5dp</dimen>
+    <dimen name="forget_text_margin_left">33dp</dimen>
+    <dimen name="forget_text_margin_top">16.5dp</dimen>
+    <dimen name="forget_text_tip_top">4.5dp</dimen>
+
+    <!--修改密码-->
+    <dimen name="modify_bg_high">19dp</dimen>
+    <dimen name="modify_head_icon_width">57dp</dimen>
+    <dimen name="modify_head_top">31.5dp</dimen>
+    <dimen name="modify_layout_margin_left">19.33dp</dimen>
+    <dimen name="modify_layout_margin_right">19.33dp</dimen>
+    <dimen name="modify_edit_pad">8dp</dimen>
+    <dimen name="modify_text_size">13.5dp</dimen>
+    <dimen name="modify_hint_size">11.5dp</dimen>
+    <dimen name="modify_edit_high">38dp</dimen>
+    <dimen name="modify_margin">30dp</dimen>
+    <dimen name="modify_icon_width">38dp</dimen>
+    <dimen name="modify_btn_width">76dp</dimen>
+    <dimen name="modify_btn_top">58dp</dimen>
+    <dimen name="modify_btn_margin">60dp</dimen>
+    <dimen name="modify_btn_size">17.33dp</dimen>
+    <dimen name="modify_text_tip_size">10.5dp</dimen>
+    <dimen name="modify_text_margin_left">33dp</dimen>
+    <dimen name="modify_text_margin_top">16.5dp</dimen>
+    <dimen name="modify_text_tip_top">4.5dp</dimen>
+    <dimen name="modify_edit_top">39dp</dimen>
+    <dimen name="modify_bottom_margin_top">46dp</dimen>
+
+    <!--首页-->
+    <dimen name="home_btn_margin">22dp</dimen>
+    <dimen name="home_icon_high">178dp</dimen>
+    <dimen name="home_top_high">50dp</dimen>
+    <dimen name="home_icon_width">30dp</dimen>
+    <dimen name="home_div_license">39dp</dimen>
+    <dimen name="home_text_size">20sp</dimen>
+    <dimen name="home_text_tip_size">16sp</dimen>
+    <dimen name="home_tip_size">11sp</dimen>
+    <dimen name="home_text_margin_l">3dp</dimen>
+    <dimen name="home_icon_sure_width">20dp</dimen>
+    <dimen name="home_div_margin_l">8dp</dimen>
+    <dimen name="home_div_margin_top">15dp</dimen>
+    <dimen name="home_id_card_top">2dp</dimen>
+    <dimen name="home_map_top">10dp</dimen>
+    <dimen name="home_map_pad">5dp</dimen>
+    <dimen name="home_drawable_margin">18dp</dimen>
+    <dimen name="home_pad_left">20dp</dimen>
+    <dimen name="home_mid_high">90dp</dimen>
+    <dimen name="home_bott_high">160dp</dimen>
+    <dimen name="home_icon_lay">25dp</dimen>
+    <dimen name="home_icon_size">20dp</dimen>
+
+    <dimen name="home_title_high">44dp</dimen>
+    <dimen name="main_margin_img_left">18dp</dimen>
+    <dimen name="main_margin_img_right">18dp</dimen>
+
+    <!--个人中心-->
+    <dimen name="fragment_personal_top_high">158dp</dimen>
+    <dimen name="fragment_personal_iconlay_width">154dp</dimen>
+    <dimen name="fragment_personal_iconround_width">96dp</dimen>
+    <dimen name="fragment_personal_icon_width">86dp</dimen>
+    <dimen name="fragment_personal_icon_bottom">30dp</dimen>
+    <dimen name="fragment_personal_update_top">32dp</dimen>
+    <dimen name="fragment_personal_margin">7dp</dimen>
+    <dimen name="fragment_personal_div_high">250dp</dimen>
+    <dimen name="fragment_personal_text_high">62dp</dimen>
+    <dimen name="fragment_personal_text_pad">19dp</dimen>
+    <dimen name="fragment_personal_text_size">14dp</dimen>
+    <dimen name="fragment_btn_high">39dp</dimen>
+    <dimen name="fragment_btn_top">28dp</dimen>
+    <dimen name="fragment_btn_margin">84dp</dimen>
+    <dimen name="fragment_update_icon_high">19dp</dimen>
+
+    <!--维修保养-->
+    <dimen name="fragment_preserve_margin">10dp</dimen>
+    <dimen name="fragment_preserve_icon_lay_high">103dp</dimen>
+    <dimen name="fragment_preserve_icon_high">68dp</dimen>
+    <dimen name="fragment_preserve_icon_top">12dp</dimen>
+
+    <!--车辆管理-->
+    <dimen name="fragment_car_margin">7dp</dimen>
+    <dimen name="fragment_car_text_size">15sp</dimen>
+    <dimen name="fragment_car_texttip_size">12sp</dimen>
+    <dimen name="fragment_car_tip_size">11sp</dimen>
+    <dimen name="fragment_car_icon_pad">19dp</dimen>
+    <dimen name="fragment_car_drawable_pad">23dp</dimen>
+    <dimen name="fragment_car_drawable_padright">10dp</dimen>
+    <dimen name="fragment_car_top_margin">20dp</dimen>
+    <dimen name="fragment_car_icon_high">19dp</dimen>
+    <dimen name="fragment_car_textbg_high">36dp</dimen>
+    <dimen name="fragment_car_text_title_size">16sp</dimen>
+    <dimen name="fragment_car_right_left_width">70dp</dimen>
+    <dimen name="fragment_car_t_size">12sp</dimen>
+    <dimen name="fragment_car_icon_width">20dp</dimen>
+    <dimen name="fragment_car_line_margin">10dp</dimen>
+
+    <!--违章查询-->
+    <dimen name="query_top_high">29dp</dimen>
+    <dimen name="query_margin_top_high">28dp</dimen>
+    <dimen name="query_top_width">250dp</dimen>
+    <dimen name="query_tip_size">10sp</dimen>
+    <dimen name="query_text_size">14sp</dimen>
+    <dimen name="query_text_title_size">18sp</dimen>
+    <dimen name="query_drawable_pad">1dp</dimen>
+    <dimen name="query_text_pad">10dp</dimen>
+    <dimen name="query_bg_high">53dp</dimen>
+    <dimen name="deal_btn_high">48dp</dimen>
+    <dimen name="query_item_margin">8dp</dimen>
+    <dimen name="query_item_text_size">11sp</dimen>
+    <dimen name="query_item_textbold_size">12sp</dimen>
+    <dimen name="query_item_text_title_size">15sp</dimen>
+    <dimen name="query_item_left_width">50dp</dimen>
+    <dimen name="query_item_high">70dp</dimen>
+    <dimen name="query_item_right_width">70dp</dimen>
+    <dimen name="query_item_reasonright_width">80dp</dimen>
+    <dimen name="deal_item_high">100dp</dimen>
+    <dimen name="deal_item_margin">10dp</dimen>
+    <dimen name="query_text_high">5dp</dimen>
+    <dimen name="query_indicator_height">4dp</dimen>
+    <dimen name="query_background_high">58dp</dimen>
+    <dimen name="query_margin_bottom">10dp</dimen>
+
+    <!--亲情号码-->
+    <dimen name="fragment_family_number_text_bg_high">38dp</dimen>
+    <dimen name="fragment_family_number_text_pad">19dp</dimen>
+    <dimen name="fragment_family_number_text_size">12sp</dimen>
+    <dimen name="fragment_family_number_edit_size">14sp</dimen>
+    <dimen name="fragment_family_number_edit_high">48dp</dimen>
+    <dimen name="fragment_family_number_edit_pad">15dp</dimen>
+    <dimen name="fragment_family_number_btn_high">39dp</dimen>
+    <dimen name="fragment_family_number_btn_margintop">48dp</dimen>
+    <dimen name="fragment_family_number_btn_margin">60dp</dimen>
+    <dimen name="fragment_family_number_update_text_bg_high">20dp</dimen>
+    <dimen name="fragment_family_number_update_lay_width">78dp</dimen>
+    <dimen name="fragment_family_number_update_btn_width">58dp</dimen>
+    <dimen name="fragment_family_number_update_btn_high">24dp</dimen>
+    <dimen name="fragment_family_number_confirm_btn_high">39dp</dimen>
+    <dimen name="fragment_family_number_confirm_btn_top">50dp</dimen>
+    <dimen name="fragment_family_number_confirm_btn_r">50dp</dimen>
+    <dimen name="fragment_family_number_confirm_btn_l">50dp</dimen>
+
+    <!--我的机动车-->
+    <dimen name="car_text_bg_high">39dp</dimen>
+    <dimen name="car_text_size">17sp</dimen>
+    <dimen name="car_text_margin_l">15dp</dimen>
+    <dimen name="car_text_high">55dp</dimen>
+    <dimen name="car_icon_width">25dp</dimen>
+    <dimen name="car_texttip_size">14sp</dimen>
+    <dimen name="car_margin_width">20dp</dimen>
+    <dimen name="car_bottom_high">40dp</dimen>
+    <dimen name="car_pad_length">10dp</dimen>
+    <dimen name="car_icon_width_high">23dp</dimen>
+    <dimen name="car_icon_margin_l">15dp</dimen>
+    <dimen name="car_text_margin_left">11dp</dimen>
+
+
+    <!--我的驾驶证-->
+    <dimen name="license_top_high">60dp</dimen>
+    <dimen name="license_icon_lay_high">34dp</dimen>
+    <dimen name="license_icon_lay_margin">55dp</dimen>
+    <dimen name="license_text_size">14sp</dimen>
+    <dimen name="license_text_tip_size">12sp</dimen>
+    <dimen name="license_drawable_pad">7dp</dimen>
+    <dimen name="license_lay_high">214dp</dimen>
+    <dimen name="license_proess_high">145dp</dimen>
+    <dimen name="license_text_bottom_high">60dp</dimen>
+    <dimen name="license_text_high">50dp</dimen>
+    <dimen name="license_text_width">200dp</dimen>
+    <dimen name="license_text_margin">10dp</dimen>
+    <dimen name="license_size">13.5dp</dimen>
+    <dimen name="license_bot_high">15dp</dimen>
+    <dimen name="license_text_h">0dp</dimen>
+    <!--驾驶证验证-->
+    <dimen name="license_valid_tip_bg">38dp</dimen>
+    <dimen name="license_valid_text_pad">10dp</dimen>
+    <dimen name="license_valid_text_high">48dp</dimen>
+    <dimen name="license_valid_text_size">14sp</dimen>
+    <dimen name="license_valid_text_margin_top">10dp</dimen>
+    <dimen name="license_valid_text_width">90dp</dimen>
+    <dimen name="license_valid_btn_margin">40dp</dimen>
+    <dimen name="license_valid_btn_h">23dp</dimen>
+    <dimen name="license_valid_btn_w">70dp</dimen>
+    <dimen name="license_context_size">13sp</dimen>
+
+    <!--行驶记录-->
+    <dimen name="driv_record_margintop">9dp</dimen>
+    <dimen name="driv_record_text_size">13.5sp</dimen>
+    <dimen name="driv_record_top_high">27dp</dimen>
+    <dimen name="driv_record_text_high">53dp</dimen>
+    <dimen name="driv_record_btn_margin">60dp</dimen>
+    <dimen name="driv_record_btn_margin_top">70dp</dimen>
+    <dimen name="driv_record_btn_high">39dp</dimen>
+
+    <!--爱车位置-->
+    <dimen name="car_position_text_high">10dp</dimen>
+    <dimen name="car_position_text_top">9dp</dimen>
+    <dimen name="car_position_margin">11dp</dimen>
+    <dimen name="car_position_pad">4dp</dimen>
+    <dimen name="car_position_icon_width">125dp</dimen>
+    <dimen name="car_position_icon_text_size">17sp</dimen>
+    <dimen name="car_position_text_tip_size">10sp</dimen>
+
+    <!--防盗报警-->
+    <dimen name="car_alarm_search_high">40dp</dimen>
+    <dimen name="car_alarm_search_text_size">13sp</dimen>
+    <dimen name="car_alarm_search_icon_width">15dp</dimen>
+    <dimen name="car_alarm_search_icon_margin">8dp</dimen>
+
+
+    <!--���dialog���-->
+    <dimen name="dialog_text_high">40dp</dimen>
+    <dimen name="dialog_text_size">15dp</dimen>
+    <dimen name="dialog_view_high">1dp</dimen>
+    <dimen name="dialog_et_width">220dp</dimen>
+    <dimen name="dialog_et_high">105dp</dimen>
+    <dimen name="dialog_et_margin">12dp</dimen>
+    <dimen name="dialog_et_padding">14dp</dimen>
+    <dimen name="dialog_b_rhigh">46dp</dimen>
+    <dimen name="dialog_b_iv">16.5dp</dimen>
+    <dimen name="dialog_b_ivleft">21dp</dimen>
+    <dimen name="dialog_b_ts">14dp</dimen>
+
+    <dimen name="violation_margin_icon_top">16dp</dimen>
+    <dimen name="check_text_size">17sp</dimen>
+    <dimen name="violation_text_pad_right">20dp</dimen>
+    <dimen name="gv_item_high">50dp</dimen>
+    <dimen name="gv_item_left">30dp</dimen>
+    <dimen name="bottom">0dp</dimen>
+    <dimen name="yisiwu">145dp</dimen>
+
+    <!--借车还车-->
+    <dimen name="imageview_width">116dp</dimen>
+    <dimen name="imageview_height">132dp</dimen>
+    <dimen name="borrow_car_text_high">27dp</dimen>
+    <dimen name="borrow_car_rl_high">52dp</dimen>
+    <dimen name="borrow_bt_width">240dp</dimen>
+    <dimen name="borrow_margin_top">80dp</dimen>
+    <dimen name="right_text_size">14sp</dimen>
+    <dimen name="back_view_width">17dp</dimen>
+    <dimen name="back_view_margin_left">15dp</dimen>
+    <dimen name="iv_margin_left">25dp</dimen>
+    <dimen name="rl_time_margin_left">23dp</dimen>
+    <dimen name="time_text_size">13sp</dimen>
+    <dimen name="time_text_margin_left">4dp</dimen>
+    <dimen name="carnum_icon_margin_left">30dp</dimen>
+    <dimen name="no_car_return_text_size">14sp</dimen>
+    <dimen name="no_car_return_text_margin">15dp</dimen>
+    <dimen name="no_car_return_iv_margin">161dp</dimen>
+    <dimen name="no_car_return_iv_width">96dp</dimen>
+    <!--下来刷新-->
+    <dimen name="listview_text">13sp</dimen>
+    <dimen name="item_iv_width">51dp</dimen>
+    <dimen name="item_iv_height">18dp</dimen>
+    <dimen name="header_high">57dp</dimen>
+    <dimen name="layout_width">34dp</dimen>
+    <dimen name="ml">8dp</dimen>
+    <dimen name="seven">7dp</dimen>
+    <dimen name="text_size_sixth">16sp</dimen>
+    <dimen name="sier">42dp</dimen>
+    <dimen name="yijiuer">192dp</dimen>
+    <dimen name="erliuo">260dp</dimen>
+
+    <!--车辆检测-->
+    <dimen name="text_height">27dp</dimen>
+    <dimen name="yiqi">17dp</dimen>
+    <dimen name="plugin_high">95dp</dimen>
+    <dimen name="plugin_top">130dp</dimen>
+    <dimen name="plugin_tv_top">6dp</dimen>
+    <dimen name="normal_top">162dp</dimen>
+    <dimen name="qiqi">77dp</dimen>
+    <dimen name="erliu">27dp</dimen>
+    <dimen name="yisan">13dp</dimen>
+    <dimen name="half">0.5dp</dimen>
+    <dimen name="view_half">2.5dp</dimen>
+    <dimen name="fault_size">15sp</dimen>
+
+    <dimen name="button_width">134dp</dimen>
+    <dimen name="sanwu">35dp</dimen>
+    <dimen name="yiba">18dp</dimen>
+    <dimen name="si">4dp</dimen>
+    <dimen name="wuyi">51dp</dimen>
+    <dimen name="erba">28dp</dimen>
+    <dimen name="yibai">100dp</dimen>
+
+    <!--切换车辆-->
+    <dimen name="car_right_width">60dp</dimen>
+    <dimen name="car_change_top">15dp</dimen>
+    <dimen name="car_item_high">50dp</dimen>
+    <dimen name="car_item_icon_lay">27dp</dimen>
+    <dimen name="car_item_icon_r">60dp</dimen>
+    <dimen name="car_color_textsize">11sp</dimen>
+    <dimen name="switch_car_icon">15dp</dimen>
+
+    <!--绑定终端-->
+    <dimen name="blind_term_top_high">30dp</dimen>
+    <dimen name="blind_term_margin">60dp</dimen>
+    <dimen name="blind_btn_high">40dp</dimen>
+    <dimen name="blind_validation_top_high">30dp</dimen>
+    <dimen name="blind_validation_edit_top_high">10dp</dimen>
+    <dimen name="blind_validation_phone_width">60dp</dimen>
+    <dimen name="blind_validation_btn_high">48dp</dimen>
+    <dimen name="blind_text_size">17sp</dimen>
+
+    <!--道路救援-->
+    <dimen name="road_side_top_high">30dp</dimen>
+    <dimen name="road_side_text_high">55dp</dimen>
+    <dimen name="road_side_text_margin">18dp</dimen>
+    <dimen name="road_side_drawble_margin">20dp</dimen>
+    <dimen name="road_side_apply_btn_high">40dp</dimen>
+    <dimen name="road_side_apply_btn_margin">60dp</dimen>
+    <dimen name="road_side_apply_order_top_high">20dp</dimen>
+    <dimen name="road_side_apply_order_mid_high">11dp</dimen>
+    <dimen name="road_side_detail_text_high">20dp</dimen>
+    <dimen name="road_side_detail_bottom_high">90dp</dimen>
+    <dimen name="road_side_detail_text_size">18sp</dimen>
+    <dimen name="road_side_detail_tip_size">12sp</dimen>
+    <dimen name="road_side_detail_big_size">27sp</dimen>
+    <dimen name="road_side_fee_text_high">38dp</dimen>
+    <dimen name="road_side_fee_text_pad">20dp</dimen>
+    <dimen name="road_side_fee_icon_width">60dp</dimen>
+    <dimen name="road_side_fee_btn_high">40dp</dimen>
+    <dimen name="road_side_list_order_margin">20dp</dimen>
+
+    <dimen name="road_side_list_detail_lay_high">90dp</dimen>
+    <dimen name="road_side_list_detail_lay_h">70dp</dimen>
+
+    <!--道路救援-->
+    <dimen name="view_height">0.5dp</dimen>
+    <dimen name="img_size">25dp</dimen>
+    <dimen name="imageview_size">17dp</dimen>
+    <dimen name="img_margin">20dp</dimen>
+    <dimen name="tv_margin">23dp</dimen>
+    <dimen name="tv_deal_size">13.4sp</dimen>
+    <dimen name="tv_no_size">9sp</dimen>
+    <dimen name="textview_size">13.5dp</dimen>
+    <dimen name="textview_margin">1dp</dimen>
+    <dimen name="text_content_size">14sp</dimen>
+    <dimen name="content_size">19dp</dimen>
+    <dimen name="tv_height">5dp</dimen>
+    <dimen name="zeren_text_content_size">13sp</dimen>
+    <dimen name="double_one">11dp</dimen>
+    <dimen name="four">4dp</dimen>
+    <dimen name="textsize">12sp</dimen>
+    <dimen name="text_margin_left">15dp</dimen>
+    <dimen name="fourteenth">40dp</dimen>
+    <dimen name="iv_width">67dp</dimen>
+    <dimen name="iv_width_san">34dp</dimen>
+    <dimen name="ten">10dp</dimen>
+    <dimen name="imgview_margin">-10dp</dimen>
+    <dimen name="imgview_mar">-15dp</dimen>
+
+    <dimen name="roadsidedialoghigh">100dp</dimen>
+    <dimen name="objection_mar">12dp</dimen>
+    <dimen name="drawer_right_margin_top">248dp</dimen>
+    <dimen name="drawer_right_width">87dp</dimen>
+    <dimen name="drawer_margin_top">54dp</dimen>
+    <dimen name="drawer_top">19.5dp</dimen>
+    <dimen name="drawer_left_width">120dp</dimen>
+    <dimen name="view_margin">41dp</dimen>
+    <dimen name="rl_layout_height">115dp</dimen>
+    <dimen name="layout_height_width">26dp</dimen>
+    <dimen name="view_width">210dp</dimen>
+    <dimen name="round_width">106dp</dimen>
+    <!--主界面-->
+    <dimen name="main_tool_bar_high">44dp</dimen>
+    <dimen name="main_tool_icon_length">19dp</dimen>
+    <dimen name="main_tool_icon_right">18dp</dimen>
+    <dimen name="main_edit_top_high">39dp</dimen>
+    <dimen name="main_edit_top">12dp</dimen>
+    <dimen name="main_edit_margin">25dp</dimen>
+    <dimen name="main_edit_icon_width">35dp</dimen>
+    <dimen name="main_edit_margin_t">10dp</dimen>
+    <dimen name="main_edit_margin_b">10dp</dimen>
+    <dimen name="main_edit_botton_high">284dp</dimen>
+    <dimen name="main_drawble_pad">10dp</dimen>
+    <dimen name="main_position_car_high">83dp</dimen>
+    <dimen name="main_driver_high">40dp</dimen>
+    <dimen name="main_btn_margin_b">-40dp</dimen>
+    <dimen name="main_line_top">68dp</dimen>
+    <dimen name="main_line_margin">36dp</dimen>
+    <dimen name="main_line_margin_top">59dp</dimen>
+    <dimen name="main_line_bottom">39dp</dimen>
+    <dimen name="main_line_margin_bottom">59dp</dimen>
+    <dimen name="main_icon_margin_top">34dp</dimen>
+    <dimen name="main_right_line_margin_top">30dp</dimen>
+
+    <dimen name="license_item_high">115dp</dimen>
+    <dimen name="license_item_margin_left">25dp</dimen>
+    <dimen name="license_item_text_size">15sp</dimen>
+    <dimen name="license_text_margin_left">8dp</dimen>
+    <dimen name="license_text_margin_top">10dp</dimen>    <!--违章管理-->
+    <dimen name="illegal_r_icon_width">50dp</dimen>
+    <dimen name="illegal_elect_top">18dp</dimen>
+    <dimen name="illegal_elect_margin">25dp</dimen>
+    <dimen name="illegal_elect_icon_width">28dp</dimen>
+
+    <!--闪灯找车-->
+    <dimen name="light_width">72dp</dimen>
+    <dimen name="flash_item_high">51dp</dimen>
+    <dimen name="flash_item_margin_left">24dp</dimen>
+    <dimen name="flash_item_text_size">11sp</dimen>
+    <dimen name="flash_item_text_margin">16dp</dimen>
+    <dimen name="flash_dialog_text_margin">8dp</dimen>
+    <dimen name="flash_dialog_ll_margin">12dp</dimen>
+
+    <!--请人移车-->
+    <dimen name="edit_width">200dp</dimen>
+    <dimen name="local_imageview_width">13dp</dimen>
+    <dimen name="edit_margin">29dp</dimen>
+    <dimen name="edit_bg_width">313dp</dimen>
+    <dimen name="dialog_iv_width">34dp</dimen>
+    <dimen name="rl_layout_width">325dp</dimen>
+    <dimen name="move_car_listview_width">293dp</dimen>
+    <dimen name="rl_margin_top">118dp</dimen>
+    <dimen name="image_view_width">96dp</dimen>
+    <dimen name="move_car_text_size">15sp</dimen>
+    <dimen name="move_car_button_text_size">17sp</dimen>
+    <dimen name="move_car_tv_margin">13dp</dimen>
+    <dimen name="move_car_button_high">40dp</dimen>
+
+    <!--行驶证-->
+    <dimen name="licenseinformation_item_margin">27dp</dimen>
+    <dimen name="licenseinformation_item_type">11dp</dimen>
+    <dimen name="licenseinformation_item_text_size">13sp</dimen>
+    <dimen name="licenseinformation_rl_margin">27dp</dimen>
+    <dimen name="licenseinformation_item_high">72dp</dimen>
+    <dimen name="licenseinformation_ll_margin">17dp</dimen>
+    <dimen name="licenseinformation_ll_margin_left">25dp</dimen>
+    <dimen name="licenseinformation_color_size">11sp</dimen>
+
+
+    <dimen name="switch_car_margin">15dp</dimen>
+    <dimen name="switch_car_margin_text_size">14sp</dimen>
+
+    <!--右侧边栏-->
+    <dimen name="dashed_width">87dp</dimen>
+    <dimen name="dashed_high">3dp</dimen>
+    <dimen name="dashed_margin_top">20dp</dimen>
+    <dimen name="laba_width">17dp</dimen>
+    <dimen name="laba_margin_top">10dp</dimen>
+    <dimen name="laba_margi_top">4dp</dimen>
+    <dimen name="tv_margin_top">24dp</dimen>
+
+    <!--左侧边栏-->
+    <dimen name="left_imageview_margin_top">45dp</dimen>
+    <dimen name="left_item_high">60dp</dimen>
+    <dimen name="imageview_margin_bottom">36dp</dimen>
+    <dimen name="left_num_bar">12dp</dimen>
+    <dimen name="left_num_bar_size">8sp</dimen>
+    <dimen name="left_view_width">217dp</dimen>
+    <dimen name="left_text_margin_left">20dp</dimen>
+    <dimen name="date_text_margin_left">4dp</dimen>
+
+    <!--汽车资讯-->
+    <dimen name="car_news_header_textsize">14sp</dimen>
+    <dimen name="car_news_header_margin">8dp</dimen>
+    <dimen name="car_news_header_margin_right">15dp</dimen>
+    <dimen name="car_news_header_size">18sp</dimen>
+    <dimen name="viewpager_indicator_height">5dp</dimen>
+    <dimen name="tab_text_size">14sp</dimen>
+    <dimen name="car_news_item_margin_top">35dp</dimen>
+    <dimen name="car_news_item_margin_left">18dp</dimen>
+    <dimen name="car_news_item_high">76dp</dimen>
+    <dimen name="search_text_size">13sp</dimen>
+    <dimen name="search_text_margin_left">15dp</dimen>
+    <dimen name="search_view_margin_left">6dp</dimen>
+    <dimen name="search_view_hidth">0.5dp</dimen>
+    <dimen name="search_view_height">12dp</dimen>
+    <dimen name="search_imageview_height">15dp</dimen>
+    <dimen name="search_ll_height">24dp</dimen>
+    <dimen name="search_ll_width">322dp</dimen>
+    <dimen name="search_rl_height">39dp</dimen>
+    <dimen name="search_width">288dp</dimen>
+    <dimen name="searching_margin_left">32dp</dimen>
+    <dimen name="searching_cancel_margin_left">16dp</dimen>
+    <dimen name="searching_cancel_size">13sp</dimen>
+    <dimen name="searching_rl_margin">19dp</dimen>
+    <dimen name="search_record_margin_left">24dp</dimen>
+    <dimen name="no_read_width">20dp</dimen>
+    <dimen name="latest_read_width">67dp</dimen>
+    <dimen name="latest_read_width_margin_bottom">24dp</dimen>
+    <dimen name="latest_read_width_margin_right">12dp</dimen>
+
+    <!--我的收藏-->
+    <dimen name="swipelayout_text_hight">53dp</dimen>
+    <dimen name="swipelayout_text_size">15sp</dimen>
+    <dimen name="swipelayout_hight">77dp</dimen>
+    <dimen name="swipelayout_rl_margin_top">20dp</dimen>
+    <dimen name="swipelayout_rl_text_margin_left">25dp</dimen>
+    <dimen name="swipelayout_rl_text_margin_right">20dp</dimen>
+    <dimen name="swipelayout_rl_text_content_size">13sp</dimen>
+    <dimen name="swipelayout_rl_text_date_size">10sp</dimen>
+    <dimen name="swipelayout_text_width">315dp</dimen>
+    <dimen name="swipelayout_text_margin_top">7dp</dimen>
+    <dimen name="swipelayout_text_margin_left">25dp</dimen>
+
+    <!--文章详情-->
+    <dimen name="article_iv_width">17dp</dimen>
+    <dimen name="article_iv_height">16dp</dimen>
+    <dimen name="article_iv_margin_right">20dp</dimen>
+    <dimen name="article_iv_nei_margin_right">5dp</dimen>
+
+    <!--导航-->
+    <dimen name="map_margin_left">10dp</dimen>
+    <dimen name="map_margin_right">10dp</dimen>
+    <dimen name="map_text_high">44dp</dimen>
+    <dimen name="map_route_bottom_high">120dp</dimen>
+    <dimen name="map_route_margin">20dp</dimen>
+    <dimen name="map_route_plan_bottom_high">240dp</dimen>
+    <dimen name="map_route_plan_icon_high">10dp</dimen>
+    <dimen name="map_route_plan_text_high">60dp</dimen>
+    <dimen name="map_route_set_lay_height">90dp</dimen>
+    <dimen name="map_route_set_lay_icon_width">50dp</dimen>
+    <dimen name="map_route_set_icon_width">30dp</dimen>
+    <dimen name="map_route_set_icon_high">45dp</dimen>
+    <dimen name="map_route_set_text_width">50dp</dimen>
+    <dimen name="map_route_set_btn_high">45dp</dimen>
+    <dimen name="map_route_set_margin">55dp</dimen>
+
+
+    <!--出险报警-->
+    <dimen name="button_margin_top">54dp</dimen>
+    <dimen name="green_icon_high">15dp</dimen>
+    <dimen name="green_icon_width">3dp</dimen>
+    <dimen name="radiogroup_margin_bottom">20dp</dimen>
+    <dimen name="text_size">13sp</dimen>
+    <dimen name="yangzhao_text_size">11sp</dimen>
+    <dimen name="upload_button_margin_top">45dp</dimen>
+
+
+    <dimen name="clearedittext_margin_right">25dp</dimen>
+    <dimen name="quthentication_edittext_width">250dp</dimen>
+    <dimen name="car_alarm_rl_margin">10dp</dimen>
+    <dimen name="car_alarm_ll_margin">4dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="car_location_rl_height">80dp</dimen>
+    <dimen name="car_location_text_size">13sp</dimen>
+    <dimen name="car_location_juli_text_size">12sp</dimen>
+    <dimen name="car_location_text_margin_right">5dp</dimen>
+    <dimen name="car_location_text_margin_left">15dp</dimen>
+    <dimen name="car_location_text_margin_top">10dp</dimen>
+    <dimen name="car_location_iv_margin_top">8dp</dimen>
+    <dimen name="car_location_iv_height">18dp</dimen>
+    <dimen name="car_news_search_textsize">16sp</dimen>
+    <dimen name="car_news_search_text_margin_top">12dp</dimen>
+    <dimen name="car_news_search_iv_margin_top">96dp</dimen>
+    <dimen name="car_news_search_iv_height">14dp</dimen>
+    <dimen name="car_news_search_rl_height">38dp</dimen>
+    <dimen name="car_news_search_ll_margin_left">10dp</dimen>
+    <dimen name="car_return_margin_top">20dp</dimen>
+    <dimen name="password_text_size">14sp</dimen>
+    <dimen name="car_validation_et_height">48dp</dimen>
+    <dimen name="indicator_text_height">40dp</dimen>
+    <dimen name="dagerbasemessageup_ll_width">322dp</dimen>
+    <dimen name="dagerbasemessageup_rl_padding_top">8dp</dimen>
+    <dimen name="dagerbasemessageup_text_width">5dp</dimen>
+    <dimen name="dagerbasemessageup_button_width">240dp</dimen>
+    <dimen name="dagerbasemessageup_button_height">40dp</dimen>
+    <dimen name="dagerbasemessageup_button_textsize">17sp</dimen>
+    <dimen name="dagerbasemessageup_ll_padding_top">16dp</dimen>
+    <dimen name="dagerbasemessageup_et_padding_bottom">7dp</dimen>
+    <dimen name="dagercompensate_tab_height">50dp</dimen>
+    <dimen name="dagerpolice_view_width">341dp</dimen>
+    <dimen name="driverlicen_iv_margin">11dp</dimen>
+    <dimen name="donut_bottom_text_distance">9dp</dimen>
+    <dimen name="donut_progress_distance">-2dp</dimen>
+    <dimen name="delete_width">52dp</dimen>
+    <dimen name="map_route_textsize">15sp</dimen>
+    <dimen name="map_route_iv_height">30dp</dimen>
+    <dimen name="map_route_ll_height">130dp</dimen>
+    <dimen name="map_route_textview_margin">22dp</dimen>
+    <dimen name="map_route_textview_margin_left">12dp</dimen>
+    <dimen name="map_route_ll_margin_left">140dp</dimen>
+    <dimen name="radio_button">12dp</dimen>
+    <dimen name="map_route_select_view_height">1dp</dimen>
+    <dimen name="map_search_ll_height">2dp</dimen>
+    <dimen name="map_search_ll_margin_left">24dp</dimen>
+    <dimen name="road_side_detail_ll_height">135dp</dimen>
+    <dimen name="road_side_detail_ll_margin_top">7dp</dimen>
+    <dimen name="road_side_detail_iv_height">44dp</dimen>
+    <dimen name="road_side_detail_iv_width">23dp</dimen>
+    <dimen name="road_side_detail_rel_margin_top">29dp</dimen>
+    <dimen name="road_side_detail_rl_margin_top">21.5dp</dimen>
+    <dimen name="sure_pay_margin_top">198dp</dimen>
+    <dimen name="pay_done_margin_top">165dp</dimen>
+    <dimen name="dangerimgup">67dp</dimen>
+
+    <dimen name="ride_record_start_iv_height">269.5dp</dimen>
+    <dimen name="main_right_margintop">37dp</dimen>
+    <dimen name="ll_line_width">307dp</dimen>
+    <dimen name="license_width_bg">340dp</dimen>
+
+
+</resources>

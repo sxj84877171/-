@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ll"
+    >
+    <RelativeLayout
+        android:id="@+id/rl_voice_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_right_margintop"
+        >
+        <ImageView
+            android:id="@+id/iv_voice_setting"
+            android:layout_width="@dimen/main_edit_icon_width"
+            android:layout_height="@dimen/main_edit_icon_width"
+            android:src="@mipmap/voice_setting"
+            android:layout_marginLeft="@dimen/fragment_car_drawable_pad"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/tv_voice_setting"
+            android:layout_below="@+id/iv_voice_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/car_alarm_search_text_size"
+            android:text="@string/voice_setting"
+            android:textColor="@color/border"
+            android:layout_marginTop="@dimen/ten"
+            android:layout_centerHorizontal="true"/>
+
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+
+            <ImageView
+                android:layout_width="@dimen/dashed_width"
+                android:layout_height="@dimen/dashed_high"
+                android:src="@mipmap/dashed_line_yellow"
+                android:layout_marginTop="@dimen/img_margin"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/tv_voice_setting"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="@dimen/bottom"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@color/voice_bg"
+                >
+                <ImageView
+                    android:layout_width="@dimen/laba_width"
+                    android:layout_height="@dimen/laba_width"
+                    android:src="@mipmap/voice_two"
+                    android:layout_marginTop="@dimen/laba_margin_top"
+                    android:layout_gravity="center_horizontal"/>
+                <com.soarsky.car.ui.home.main.VerticalSeekBar
+                    android:id="@+id/voice_SeekBar"
+                    android:layout_height="182dp"
+                    android:layout_marginTop="@dimen/laba_margi_top"
+                    android:layout_width="@dimen/laba_margin_top"
+                    android:max="9"
+                    android:progress="5"
+                    android:thumb="@mipmap/ellipse"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <ImageView
+                    android:layout_width="@dimen/laba_width"
+                    android:layout_height="@dimen/laba_width"
+                    android:src="@mipmap/voice_one"
+                    android:layout_marginTop="@dimen/laba_margi_top"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/laba_margin_top"/>
+            </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/car_alarm_search_text_size"
+                    android:text="@string/phone_num_setting"
+                    android:textColor="@color/color_text"
+                    android:layout_marginTop="@dimen/dashed_margin_top"
+                    android:layout_gravity="center_horizontal"/>
+            <ImageView
+                android:layout_width="@dimen/dashed_width"
+                android:layout_height="@dimen/dashed_high"
+                android:src="@mipmap/dashed_line_grey"
+                android:layout_marginTop="@dimen/searching_cancel_margin_left"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/car_alarm_search_text_size"
+            android:text="@string/drawer_left_setting"
+            android:textColor="@color/color_text"
+            android:layout_marginTop="@dimen/dashed_margin_top"
+            android:layout_gravity="center_horizontal"/>
+
+
+            <ImageView
+                android:layout_width="@dimen/dashed_width"
+                android:layout_height="@dimen/dashed_high"
+                android:src="@mipmap/dashed_line_grey"
+                android:layout_marginTop="@dimen/searching_cancel_margin_left"
+                android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/car_alarm_search_text_size"
+                android:text="@string/drawer_left_triverrecord"
+                android:textColor="@color/color_text"
+                android:layout_marginTop="@dimen/dashed_margin_top"
+                android:layout_gravity="center_horizontal"/>
+
+
+            <ImageView
+                android:layout_width="@dimen/dashed_width"
+                android:layout_height="@dimen/dashed_high"
+                android:src="@mipmap/dashed_line_grey"
+                android:layout_marginTop="@dimen/searching_cancel_margin_left"
+                android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/car_alarm_search_text_size"
+                android:text="@string/drawer_left_service"
+                android:textColor="@color/color_text"
+                android:layout_marginTop="@dimen/dashed_margin_top"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/dashed_width"
+                android:layout_height="@dimen/dashed_high"
+                android:src="@mipmap/dashed_line_yellow"
+                android:layout_marginTop="@dimen/img_margin"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/tv_voice_setting"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_phone_setting"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/license_item_margin_left"
+        >
+        <ImageView
+            android:id="@+id/iv_phone_setting"
+            android:layout_width="@dimen/main_edit_icon_width"
+            android:layout_height="@dimen/main_edit_icon_width"
+            android:src="@mipmap/phone_num_setting"
+            android:layout_marginLeft="@dimen/fragment_car_drawable_pad"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/tv_phone_setting"
+           android:layout_below="@+id/iv_phone_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/car_alarm_search_text_size"
+            android:text="@string/phone_num_setting"
+            android:textColor="@color/border"
+            android:layout_marginTop="@dimen/ten"
+            android:layout_centerHorizontal="true"/>
+        <ImageView
+            android:layout_width="@dimen/dashed_width"
+            android:layout_height="@dimen/dashed_high"
+            android:src="@mipmap/dashed_line_yellow"
+            android:layout_marginTop="@dimen/img_margin"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_phone_setting"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_setting"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/swipelayout_rl_text_margin_left"
+        >
+        <ImageView
+            android:id="@+id/iv_pwd_setting"
+            android:layout_width="@dimen/main_edit_icon_width"
+            android:layout_height="@dimen/main_edit_icon_width"
+            android:src="@mipmap/pwd_setting"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:id="@+id/tv_pwd_setting"
+            android:layout_below="@+id/iv_pwd_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/car_alarm_search_text_size"
+            android:text="@string/drawer_left_setting"
+            android:textColor="@color/border"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/ten"/>
+        <ImageView
+            android:layout_width="@dimen/dashed_width"
+            android:layout_height="@dimen/dashed_high"
+            android:src="@mipmap/dashed_line_yellow"
+            android:layout_marginTop="@dimen/img_margin"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_pwd_setting"/>
+
+    </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_trivelrecord"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/swipelayout_rl_text_margin_left"
+                >
+                <ImageView
+                    android:id="@+id/iv_trivelrecord"
+                    android:layout_width="@dimen/main_edit_icon_width"
+                    android:layout_height="@dimen/main_edit_icon_width"
+                    android:src="@mipmap/traverrecord_ride"
+                    android:layout_centerHorizontal="true"
+                    />
+                <TextView
+                    android:id="@+id/tv_trivelrecord"
+                    android:layout_below="@+id/iv_trivelrecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/car_alarm_search_text_size"
+                    android:text="@string/drawer_left_triverrecord"
+                    android:textColor="@color/border"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/ten"/>
+                <ImageView
+                    android:layout_width="@dimen/dashed_width"
+                    android:layout_height="@dimen/dashed_high"
+                    android:src="@mipmap/dashed_line_yellow"
+                    android:layout_marginTop="@dimen/img_margin"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/tv_trivelrecord"/>
+
+            </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_service"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/swipelayout_rl_text_margin_left"
+        >
+        <ImageView
+            android:id="@+id/iv_service"
+            android:layout_width="@dimen/main_edit_icon_width"
+            android:layout_height="@dimen/main_edit_icon_width"
+            android:src="@mipmap/service_icon"
+            android:layout_marginLeft="@dimen/fragment_car_drawable_pad"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/tv_service"
+            android:layout_below="@+id/iv_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/car_alarm_search_text_size"
+            android:text="@string/drawer_left_service"
+            android:textColor="@color/border"
+            android:layout_marginTop="@dimen/ten"
+            android:layout_centerHorizontal="true"/>
+        <ImageView
+            android:layout_width="@dimen/dashed_width"
+            android:layout_height="@dimen/dashed_high"
+            android:src="@mipmap/dashed_line_yellow"
+            android:layout_marginTop="@dimen/img_margin"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_service"/>
+
+    </RelativeLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>
