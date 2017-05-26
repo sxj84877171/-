@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/forget_header"/>
+
+    <include layout="@layout/forget_name_edit"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/forget_text_margin_left"
+        android:layout_marginTop="@dimen/forget_text_tip_top"
+        android:text="@string/forgetnametip"
+        android:textColor="@color/red"
+        android:visibility="invisible"
+        android:textSize="@dimen/forget_text_tip_size"/>
+
+    <include layout="@layout/forget_real_edit"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/forget_text_margin_left"
+        android:layout_marginTop="@dimen/forget_text_tip_top"
+        android:text="@string/forgetrealtip"
+        android:textColor="@color/red"
+        android:visibility="invisible"
+        android:textSize="@dimen/forget_text_tip_size"/>
+
+    <include layout="@layout/forget_idnumber_edit"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/forget_text_margin_left"
+        android:layout_marginTop="@dimen/forget_text_tip_top"
+        android:text="@string/forgetIdtip"
+        android:textColor="@color/red"
+        android:visibility="invisible"
+        android:textSize="@dimen/forget_text_tip_size"/>
+
+    <include layout="@layout/forget_phone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/forget_text_margin_left"
+        android:layout_marginTop="@dimen/forget_text_tip_top"
+        android:text="@string/forgetphonetip"
+        android:textColor="@color/red"
+        android:visibility="invisible"
+        android:textSize="@dimen/forget_text_tip_size"/>
+
+    <include layout="@layout/forget_vercode_lay"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/forget_text_margin_left"
+        android:layout_marginTop="@dimen/forget_text_tip_top"
+        android:text="验证码不正确，请重新输入。"
+        android:textColor="@color/red"
+        android:visibility="invisible"
+        android:textSize="@dimen/forget_text_tip_size"/>
+
+
+
+    <Button
+        android:id="@+id/forgetConfirmBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/forget_edit_high"
+        android:layout_marginTop="@dimen/forget_btn_top"
+        android:layout_marginLeft="@dimen/forget_btn_margin"
+        android:layout_marginRight="@dimen/forget_btn_margin"
+        android:background="@color/gray"
+        android:text="@string/confirm"
+        android:textSize="@dimen/forget_btn_size"
+        android:gravity="center"
+        android:textColor="@color/white"/>
+
+</LinearLayout>
