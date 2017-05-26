@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--1-->
+    <include layout="@layout/borrowand_return_header"/>
+    <!--2-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/text_height"
+        android:background="@drawable/modify_edit_bg"/>
+    <ListView
+        android:id="@+id/lv_return"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"></ListView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/modify_edit_bg">
+        <Button
+            android:id="@+id/bt_return"
+            android:layout_width="@dimen/borrow_bt_width"
+            android:layout_height="@dimen/dialog_text_high"
+            android:background="@color/bt_borrow_bg"
+            android:text="@string/return_button"
+            android:textColor="@color/bt_borrow"
+            android:textSize="@dimen/car_text_size"
+            android:layout_marginTop="@dimen/borrow_margin_top"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,50 @@
+package com.soarsky.car.ui.danger.start;
+
+/**
+ * Andriod_Car_App
+ * 作者： 苏云
+ * 时间： 2016/12/23
+ * 公司：长沙硕铠电子科技有限公司
+ * Email：suyun@soarsky-e.com
+ * 公司网址：http://www.soarsky-e.com
+ * 公司地址（Add）  ：湖南省长沙市岳麓区麓谷信息港A座8楼
+ * 版本：1.0.0.0
+ * 邮编：410000
+ * 程序功能：
+ * 该类为
+ */
+
+
+public class DangerStartParam {
+
+    /**
+     * 未读记录数
+     */
+    private int data;
+    private String status;
+    private String message;
+
+    public int getData() {
+        return data;
+    }
+
+    public void setData(int data) {
+        this.data = data;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+}

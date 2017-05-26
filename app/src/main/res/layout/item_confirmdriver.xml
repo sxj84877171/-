@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/borrow_car_rl_high">
+    <ImageView
+        android:id="@+id/iv_item"
+        android:layout_width="@dimen/item_iv_width"
+        android:layout_height="@dimen/item_iv_height"
+        android:src="@drawable/iv_carnum_selector"
+        android:layout_marginLeft="@dimen/violation_text_pad_right"
+        android:layout_centerVertical="true"
+        />
+
+    <TextView
+        android:id="@+id/item_wifihot"
+        android:layout_toRightOf="@id/iv_item"
+        android:layout_marginLeft="@dimen/dialog_text_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/license_valid_text_size"
+        android:textColor="#3c3c3c"
+        android:layout_centerVertical="true"
+        android:text="@string/car_id"/>
+    <ImageView
+        android:id="@+id/iv_selected"
+        android:visibility="gone"
+        android:layout_width="@dimen/dialog_text_size"
+        android:layout_height="@dimen/dialog_text_size"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/home_icon_lay"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/selected_gou"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/linehigh"
+        android:layout_alignParentBottom="true"
+        android:background="@color/grey"/>
+</RelativeLayout>
+
+
+</RelativeLayout>

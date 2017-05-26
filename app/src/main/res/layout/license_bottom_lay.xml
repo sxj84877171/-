@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/license_text_h"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="@dimen/car_icon_width"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/total_dis"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/licensedistance"
+                    android:gravity="left|center"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/car_texttip_size"/>
+
+                <TextView
+                    android:id="@+id/licenseDistanceTv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:text="@string/nodata"
+                    android:gravity="right|center"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/car_texttip_size"
+                    android:layout_marginRight="@dimen/car_margin_width"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--4-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/license_text_h"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="@dimen/car_icon_width"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/model_car"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/licensemodel"
+                    android:gravity="left|center"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/car_texttip_size"/>
+
+                <TextView
+                    android:id="@+id/licenseModelTv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:text="@string/nodata"
+                    android:gravity="right|center"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/car_texttip_size"
+                    android:layout_marginRight="@dimen/car_margin_width"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <!--5-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/license_text_h"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="@dimen/car_icon_width"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/date_car"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/licensedate"
+                    android:gravity="left|center"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/car_texttip_size"/>
+
+                <TextView
+                    android:id="@+id/licenseDateTv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:text="@string/nodata"
+                    android:gravity="right|center"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/car_texttip_size"
+                    android:layout_marginRight="@dimen/car_margin_width"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <!--6-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/license_text_h"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="@dimen/car_icon_width"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/total_cent"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/licensecent"
+                    android:gravity="left|center"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/car_texttip_size"/>
+
+                <TextView
+                    android:id="@+id/licenseCentTv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:text="@string/nodata"
+                    android:gravity="right|center"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/car_texttip_size"
+                    android:layout_marginRight="@dimen/car_margin_width"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--8-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/license_text_h"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="@dimen/car_icon_width"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/car_state"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/licensestate"
+                    android:gravity="left|center"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/car_texttip_size"/>
+
+                <TextView
+                    android:id="@+id/licenseStateTv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:text="@string/nodata"
+                    android:gravity="right|center"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/car_texttip_size"
+                    android:layout_marginRight="@dimen/car_margin_width"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

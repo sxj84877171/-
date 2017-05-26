@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@color/borrow_rl_bg">
+
+        <TextView
+            android:id="@+id/text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginTop="@dimen/blind_validation_edit_top_high"
+            android:text="@string/warm_tip"
+            android:textColor="@color/tv_color"
+            android:textSize="@dimen/road_side_detail_tip_size" />
+
+        <TextView
+            android:id="@+id/text_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_1"
+
+            android:layout_marginLeft="@dimen/car_item_high"
+            android:layout_marginTop="@dimen/ml"
+            android:text="@string/textview_one"
+            android:textColor="@color/tv_color"
+            android:textSize="@dimen/road_side_detail_tip_size" />
+
+        <TextView
+            android:id="@+id/text_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/text_2"
+            android:layout_below="@+id/text_2"
+
+            android:layout_marginBottom="@dimen/dialog_et_padding"
+            android:layout_marginTop="@dimen/ml"
+            android:text="@string/textview_two"
+            android:textColor="@color/tv_color"
+            android:textSize="@dimen/road_side_detail_tip_size" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+
+        android:layout_height="@dimen/view_height"
+        android:background="@color/white" />
+
+
+    <!--1-->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/blind_validation_edit_top_high"
+
+        android:alpha="255"
+        android:background="@color/header_title_bg">
+
+
+        <ImageView
+            android:id="@+id/img_1_1"
+
+            android:layout_width="@dimen/layout_width"
+            android:layout_height="@dimen/layout_width"
+            android:layout_marginLeft="@dimen/ml"
+            android:background="@mipmap/danger_num1" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/blind_validation_edit_top_high"
+            android:layout_toRightOf="@+id/img_1_1"
+            android:text="@string/xianchang"
+
+            android:textColor="@color/border"
+            android:textSize="@dimen/text_content_size" />
+
+
+        <TextView
+            android:id="@+id/text_1_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/yiqi"
+            android:text="@string/tv_yangzhao"
+
+            android:textColor="@color/border"
+            android:textSize="@dimen/text_content_size" />
+
+
+        <ImageView
+            android:id="@+id/img_1_2"
+
+            android:layout_width="@dimen/yisan"
+            android:layout_height="@dimen/yisan"
+            android:layout_centerVertical="true"
+
+            android:layout_marginRight="@dimen/tv_height"
+            android:layout_toLeftOf="@+id/text_1_1"
+
+            android:background="@mipmap/danger_hint" />
+
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gridView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"></GridView>
+
+
+
+
+    <!--2-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/blind_validation_edit_top_high"
+
+        android:alpha="255"
+        android:background="@color/header_title_bg">
+
+
+        <ImageView
+            android:id="@+id/img_2_1"
+
+            android:layout_width="@dimen/iv_width_san"
+            android:layout_height="@dimen/iv_width_san"
+
+            android:layout_marginLeft="@dimen/ml"
+            android:background="@mipmap/danger_num2" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/car_position_text_high"
+            android:layout_toRightOf="@+id/img_2_1"
+            android:text="@string/xianchangjin"
+
+            android:textColor="@color/border"
+            android:textSize="@dimen/text_content_size" />
+
+
+        <TextView
+            android:id="@+id/text_2_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/imageview_size"
+            android:text="@string/tv_yangzhao"
+
+            android:textColor="@color/border"
+            android:textSize="@dimen/text_content_size" />
+
+
+        <ImageView
+            android:id="@+id/img_2_2"
+
+            android:layout_width="@dimen/yisan"
+            android:layout_height="@dimen/yisan"
+            android:layout_centerVertical="true"
+
+            android:layout_marginRight="@dimen/tv_height"
+            android:layout_toLeftOf="@+id/text_2_1"
+
+            android:background="@mipmap/danger_hint" />
+
+    </RelativeLayout>
+
+
+    <GridView
+        android:id="@+id/gridView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"></GridView>
+
+
+    <!--3-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/blind_validation_edit_top_high"
+
+        android:alpha="255"
+        android:background="@color/header_title_bg">
+
+
+        <ImageView
+            android:id="@+id/img_3_1"
+
+            android:layout_width="@dimen/layout_width"
+            android:layout_height="@dimen/layout_width"
+
+            android:layout_marginLeft="@dimen/ml"
+            android:background="@mipmap/danger_num3" />
+
+
+        <TextView
+
+            style="@style/text_xianchang"
+            android:layout_toRightOf="@+id/img_3_1"
+            android:text="@string/assident_quanjing"
+
+
+            />
+
+
+        <TextView
+            android:id="@+id/text_3_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/yiqi"
+            android:text="@string/tv_yangzhao"
+
+            android:textColor="@color/border"
+            android:textSize="@dimen/license_valid_text_size" />
+
+
+        <ImageView
+            android:id="@+id/img_3_2"
+
+            android:layout_width="@dimen/yisan"
+            android:layout_height="@dimen/yisan"
+            android:layout_centerVertical="true"
+
+            android:layout_marginRight="@dimen/tv_height"
+            android:layout_toLeftOf="@+id/text_3_1"
+
+            android:background="@mipmap/danger_hint" />
+
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gridView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"></GridView>
+
+    <!--4-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/home_map_top"
+
+        android:alpha="255"
+        android:background="@color/header_title_bg">
+
+
+        <ImageView
+            android:id="@+id/img_4_1"
+
+            android:layout_width="@dimen/license_icon_lay_high"
+            android:layout_height="@dimen/license_icon_lay_high"
+
+            android:layout_marginLeft="@dimen/modify_edit_pad"
+            android:background="@mipmap/danger_num4" />
+
+
+        <TextView
+
+            style="@style/text_xianchang"
+            android:layout_toRightOf="@+id/img_4_1"
+            android:text="@string/bujian_texie"
+
+
+            />
+
+
+        <TextView
+            android:id="@+id/text_4_1"
+
+            style="@style/tv_yangzhao"
+            android:text="@string/tv_yangzhao" />
+
+
+        <ImageView
+            android:id="@+id/img_4_2"
+
+            android:layout_width="@dimen/yisan"
+            android:layout_height="@dimen/yisan"
+            android:layout_centerVertical="true"
+
+            android:layout_marginRight="@dimen/tv_height"
+            android:layout_toLeftOf="@+id/text_4_1"
+
+            android:background="@mipmap/danger_hint" />
+
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gridView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"></GridView>
+
+    <!--5-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ten"
+
+        android:alpha="255"
+        android:background="@color/header_title_bg">
+
+
+        <ImageView
+            android:id="@+id/img_5_1"
+
+            android:layout_width="@dimen/layout_width"
+            android:layout_height="@dimen/layout_width"
+
+            android:layout_marginLeft="@dimen/ml"
+            android:background="@mipmap/danger_num5" />
+
+
+        <TextView
+
+            style="@style/text_xianchang"
+            android:layout_toRightOf="@+id/img_5_1"
+            android:text="@string/assident_car_num"
+
+
+            />
+
+
+        <TextView
+            android:id="@+id/text_5_1"
+
+            style="@style/tv_yangzhao"
+            android:text="@string/tv_yangzhao" />
+
+
+        <ImageView
+            android:id="@+id/img_5_2"
+
+            android:layout_width="@dimen/yisan"
+            android:layout_height="@dimen/yisan"
+            android:layout_centerVertical="true"
+
+            android:layout_marginRight="@dimen/tv_height"
+            android:layout_toLeftOf="@+id/text_5_1"
+
+            android:background="@mipmap/danger_hint" />
+
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gridView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"></GridView>
+    <!--6-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ten"
+
+        android:alpha="255"
+        android:background="@color/header_title_bg">
+
+
+        <ImageView
+            android:id="@+id/img_6_1"
+
+            android:layout_width="@dimen/iv_width_san"
+            android:layout_height="@dimen/iv_width_san"
+
+            android:layout_marginLeft="@dimen/ml"
+            android:background="@mipmap/danger_num6" />
+
+
+        <TextView
+
+            style="@style/text_xianchang"
+            android:layout_toRightOf="@+id/img_6_1"
+            android:text="@string/id_num_all"
+
+            />
+
+
+        <TextView
+            android:id="@+id/text_6_1"
+
+            style="@style/tv_yangzhao"
+            android:text="@string/tv_yangzhao" />
+
+
+        <ImageView
+            android:id="@+id/img_6_2"
+
+            android:layout_width="@dimen/yisan"
+            android:layout_height="@dimen/yisan"
+            android:layout_centerVertical="true"
+
+            android:layout_marginRight="@dimen/tv_height"
+            android:layout_toLeftOf="@+id/text_6_1"
+
+            android:background="@mipmap/danger_hint" />
+
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gridView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"></GridView>
+    <!--7-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ten"
+
+        android:alpha="255"
+        android:background="@color/header_title_bg">
+
+
+        <ImageView
+            android:id="@+id/img_7_1"
+
+            android:layout_width="@dimen/layout_width"
+            android:layout_height="@dimen/layout_width"
+
+            android:layout_marginLeft="@dimen/ml"
+            android:background="@mipmap/danger_num7" />
+
+
+        <TextView
+
+
+            style="@style/text_xianchang"
+            android:layout_toRightOf="@+id/img_7_1"
+            android:text="@string/person_car"
+
+            />
+
+
+        <TextView
+            android:id="@+id/text_7_1"
+
+            style="@style/tv_yangzhao"
+            android:text="@string/person_car" />
+
+
+        <ImageView
+            android:id="@+id/img_7_2"
+            android:layout_width="13dp"
+            android:layout_height="@dimen/yisan"
+            android:layout_centerVertical="true"
+
+            android:layout_marginRight="@dimen/tv_height"
+            android:layout_toLeftOf="@+id/text_7_1"
+
+            android:background="@mipmap/danger_hint" />
+
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gridView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"></GridView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/half"
+        android:layout_marginTop="@dimen/road_side_list_order_margin"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/borrow_rl_bg">
+        <Button
+            android:id="@+id/compenstate_imgup"
+            style="@style/common_button"
+            android:text="@string/bt_submit"
+            android:layout_marginTop="@dimen/car_icon_width"
+            android:layout_marginBottom="@dimen/license_valid_text_width" />
+    </RelativeLayout>
+</LinearLayout>
+
+

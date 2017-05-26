@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--1-->
+    <include layout="@layout/road_side_order_header"/>
+    <!--2-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"></LinearLayout>
+
+    <!--3-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorAccent"
+        android:orientation="vertical">
+        <!--3.1-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:text="@string/roadsidedetailrequest"
+                android:gravity="bottom|center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/road_side_detail_text_size"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:text="@string/roadsidedetailrequesttip"
+                android:gravity="center"/>
+
+        </LinearLayout>
+        <!--3.2-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/roadSideDetailTimeTv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/roadsidedetailtime"
+                android:textColor="@color/white"
+                android:textSize="@dimen/road_side_detail_big_size"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <!--4-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <include layout="@layout/road_side_order_lay"/>
+
+    </LinearLayout>
+
+    <!--5-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/road_side_detail_text_high"
+        android:background="@drawable/modify_edit_bg"/>
+    <!--6-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <include layout="@layout/road_side_order_car_lay"/>
+
+    </LinearLayout>
+    <!--7-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/road_side_detail_bottom_high"
+        android:background="@drawable/modify_edit_bg"/>
+
+
+
+</LinearLayout>

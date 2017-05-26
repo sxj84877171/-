@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--1-->
+    <include layout="@layout/borrowand_return_header"/>
+    <!--2-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom"
+        android:layout_weight="1"
+        android:background="@mipmap/cry_face"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bottom"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+               >
+                <ImageView
+                    android:layout_width="@dimen/violation_margin_icon_top"
+                    android:layout_height="@dimen/violation_margin_icon_top"
+                    android:layout_marginLeft="@dimen/violation_text_pad_right"
+                    android:src="@mipmap/refuse"
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/refuse_cause"
+                    android:textColor="@color/bt_borrow_bg"
+                    android:textSize="@dimen/license_valid_text_size"
+                    android:layout_marginLeft="@dimen/seven"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bottom"
+                android:layout_weight="3"
+                android:orientation="horizontal"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingRight="@dimen/dialog_text_size"
+                    android:paddingLeft="@dimen/dialog_text_size"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/text_cause"
+                        android:padding="@dimen/violation_text_pad_right"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="您好,自己有用车需要,不方便借车.您好,自己有用车需要,不方便借车.
+                        您好,自己有用车需要,不方便借车.您好,自己有用车需要,不方便借车.您好,
+                        自己有用车需要,不方便借车.您好,自己有用车需要,不方便借车.您好,自己有用车需要,
+                        不方便借车."
+                        android:textSize="@dimen/license_text_tip_size"
+                        android:textColor="@color/color_text"
+                        android:background="@drawable/cause_bg"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:id="@+id/rl_refuse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+                <Button
+                android:id="@+id/bt_sure"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/fragment_family_number_btn_high"
+                android:background="@color/bt_borrow_bg"
+                android:text="@string/back_sure"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/gv_item_left"
+
+
+                />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/rl_refuse"
+                android:layout_gravity="center_vertical">
+                <Button
+                    android:id="@+id/bt_borrow_again"
+                    android:layout_width="@dimen/button_width"
+                    android:layout_height="@dimen/fragment_family_number_btn_high"
+                    android:background="@color/bt_borrow_bg"
+                    android:text="@string/borrow_again"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="@dimen/gv_item_left"
+
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

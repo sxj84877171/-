@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/forget_header"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_family_number_update_text_bg_high"
+        android:background="#f1f1f1"/>
+    <include layout="@layout/family_number_confirm_one_lay"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_family_number_update_text_bg_high"
+        android:background="#f1f1f1"/>
+    <include layout="@layout/family_number_confirm_two_lay"/>
+
+    <Button
+        android:id="@+id/familyNumConfirmBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_family_number_confirm_btn_high"
+        android:layout_marginTop="@dimen/fragment_family_number_confirm_btn_top"
+        android:layout_marginLeft="@dimen/fragment_family_number_confirm_btn_l"
+        android:layout_marginRight="@dimen/fragment_family_number_confirm_btn_r"
+        android:text="@string/familynumberconfirm"
+        android:textColor="@color/white"
+        android:background="@drawable/family_btn_bg"/>
+
+
+</LinearLayout>

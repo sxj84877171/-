@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/forget_header"/>
+
+
+    <!--1-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_family_number_text_bg_high"
+        android:paddingLeft="@dimen/fragment_family_number_text_pad"
+        android:gravity="left|center"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/fragment_family_number_text_size"
+        android:text="@string/familynumberone"/>
+
+    <include layout="@layout/family_number_one_lay"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_family_number_text_bg_high"
+        android:paddingLeft="@dimen/fragment_family_number_text_pad"
+        android:gravity="left|center"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/fragment_family_number_text_size"
+        android:text="@string/familynumbertwo"/>
+
+    <include layout="@layout/family_number_two_lay"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_family_number_text_bg_high"
+        android:paddingLeft="@dimen/fragment_family_number_text_pad"
+        android:gravity="left|center"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/fragment_family_number_text_size"
+        android:text="@string/familynumberthree"/>
+
+    <include layout="@layout/family_number_three_lay"/>
+
+    <Button
+        android:id="@+id/familyNumBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_family_number_btn_high"
+        android:layout_marginTop="@dimen/fragment_family_number_btn_margintop"
+        android:layout_marginRight="@dimen/fragment_family_number_btn_margin"
+        android:layout_marginLeft="@dimen/fragment_family_number_btn_margin"
+        android:background="@drawable/family_btn_bg"
+        android:text="@string/familynumbersure"
+        android:textColor="@color/white"/>
+
+
+
+</LinearLayout>

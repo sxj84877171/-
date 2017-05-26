@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.soarsky.car">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission xmlns:tools="http://schemas.android.com/tools"
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="2xWQRMzNweVwVe29i2ulUiv6GIeTPRfm" />
+
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.register.RegisterActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.forget.ForgetPwdActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.modifypwd.ModifyPwdActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.validdriverlistener.ConfirmDirverActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.violationquery.ViolationQueryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.violationdeal.ViolationDealActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.car.CarActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.family.familynum.FamilyNumActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.family.familynumupdate.FamilyNumUpdateActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.family.familynumconfirm.FamilyNumConfirmActivity"
+            android:launchMode="standard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.license.DrivLicenseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.license.validation.LicenseValidationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.drivrecord.DrivRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.drivrecord.map.DrivingRecordMapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.carlocation.position.CarPositionActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.carlocation.alarm.CarAlarmActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.carcheck.carchecklogin.CarCheckActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.carcheck.NoPluginsActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.carcheck.CarFaultActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.carcheck.CarNormalActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.carcheck.CheckFaultActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.borrowandreturn.borrowaplication.aplicationrefuse.AplicationRefuseActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.borrowandreturn.borrowaplication.BorrowAplicationActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.borrowandreturn.borrow.SubmitedAplicationActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.borrowandreturn.borrowaplication.sucess.BorrowSuccessActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.borrowandreturn.borrowrecord.BorrowRecordActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.borrowandreturn.borrowaplication.refuse.RefuseCauseActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.borrowandreturn.borrow.AgreeBorrowActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+
+        <service
+            android:name=".server.check.ConfirmDriverService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".ui.carlocation.lovecar.CarLocationActivity"
+            android:screenOrientation="portrait" >
+
+        </activity>
+        <activity android:name=".ui.borrowandreturn.BorrowCarAndReturnActivity"
+            android:screenOrientation="portrait" >
+
+        </activity>
+        <activity android:name=".ui.borrowandreturn.borrow.IWantBorrowActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".ui.borrowandreturn.retur.IWantReturnActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".ui.borrowandreturn.recorddetails.RecordDetailsActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".ui.borrowandreturn.retur.carreturn.CarReturnActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".ui.borrowandreturn.retur.returnsuccess.ReturnSuccessActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity android:name=".ui.car.validation.CarValidationActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".ui.carchange.CarChangeActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".ui.blindterm.BlindTermActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".ui.blindterm.validation.BlindTermValidationActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".ui.roadside.RoadSideActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".ui.roadside.list.RoadSideListActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".ui.roadside.rescue.RoadSideRescueActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".ui.roadside.order.RoadSideOrderActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".ui.roadside.detail.RoadSideDetailActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".ui.roadside.fee.RoadSideFeeActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".ui.roadside.list.order.RoadSideListOrderActivity"
+            android:screenOrientation="portrait"></activity>
+
+ 		<activity android:name=".ui.danger.compen.CompensateActivity"
+            android:configChanges="orientation|keyboardHidden" ></activity>
+
+        <activity android:name=".ui.danger.start.DangerStartActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".ui.danger.responsibility.ResponsibilityListActivty"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.danger.responsibilitydetails.ResponsibilityDetailsActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.danger.responsibilitydetails.haveobjection.HaveObjectionActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.roadside.fee.state.RoadSideFeeStateActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.roadside.list.detail.RoadSideListDetailActivity"
+            android:screenOrientation="portrait"></activity>
+
+    </application>
+
+</manifest>

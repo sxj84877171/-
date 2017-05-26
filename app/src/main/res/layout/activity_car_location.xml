@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_car_location"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <include layout="@layout/forget_header" android:id="@+id/header"/>
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="7"
+        android:clickable="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="80dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前车辆所在位置:"
+            android:textSize="13sp"
+            android:textColor="#3c3c3c"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/dangqianweizhi"/>
+        <ImageView
+            android:id="@+id/dangqianweizhiimg"
+            android:layout_marginTop="8dp"
+            android:layout_alignLeft="@+id/dangqianweizhi"
+            android:layout_below="@+id/dangqianweizhi"
+            android:layout_width="14dp"
+            android:src="@drawable/posi"
+            android:layout_height="18dp"
+            />
+        <TextView
+            android:layout_toRightOf="@+id/dangqianweizhiimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="500M"
+            android:textSize="12sp"
+            android:textColor="#b33c3c3c"
+            android:layout_marginLeft="5dp"
+            android:layout_alignBottom="@+id/dangqianweizhiimg"
+            android:id="@+id/juli"/>
+
+        <TextView
+            android:layout_toRightOf="@+id/juli"
+            android:text="高新区岳麓大道658号附近"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#3c3c3c"
+            android:layout_alignBottom="@+id/dangqianweizhiimg"
+            android:layout_marginLeft="18dp"
+            android:id="@+id/carPosition" />
+
+
+    </RelativeLayout>
+</LinearLayout>

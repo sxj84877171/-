@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<!--1-->
+    <include layout="@layout/forget_header"/>
+<!--2-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/car_text_bg_high"
+        android:text="@string/carinfo"
+        android:textSize="@dimen/car_text_size"
+        android:paddingLeft="@dimen/car_text_margin_l"
+        android:gravity="left|center"
+        android:textColor="@color/gray"
+        android:background="@drawable/modify_edit_bg"/>
+
+      <!--3-->
+    <include layout="@layout/car_one_lay"/>
+
+    <!--4-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/car_bottom_high"
+        android:background="@drawable/modify_edit_bg"/>
+
+
+
+
+
+
+</LinearLayout>

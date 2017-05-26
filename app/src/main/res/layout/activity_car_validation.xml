@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--1-->
+    <include layout="@layout/forget_header"/>
+    <!--2-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/license_valid_tip_bg"
+        android:text="@string/licensevalidtip"
+        android:gravity="left|center"
+        android:textColor="@color/gray"
+        android:paddingLeft="@dimen/license_valid_text_pad"
+        android:background="#f1f1f1"/>
+
+    <!--3-->
+   <EditText
+       android:id="@+id/carInputTv"
+       android:layout_width="match_parent"
+       android:layout_height="48dp"
+       android:background="@drawable/family_edit_bg"
+       android:hint="@string/car_input"
+       android:paddingLeft="@dimen/car_pad_length"
+       android:paddingRight="@dimen/car_pad_length"
+       android:textSize="14sp"
+       android:gravity="left|center"/>
+    <!--4-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/license_valid_text_margin_top"
+        android:background="#f1f1f1"/>
+    <!--5-->
+    <EditText
+        android:id="@+id/carRealNameTv"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/family_edit_bg"
+        android:paddingLeft="@dimen/car_pad_length"
+        android:paddingRight="@dimen/car_pad_length"
+        android:hint="@string/car_real_name"
+        android:textSize="14sp"
+        android:gravity="left|center"/>
+    <!--6-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/license_valid_text_margin_top"
+        android:background="#f1f1f1"/>
+
+
+    <Button
+        android:id="@+id/carValidationSureBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/license_valid_tip_bg"
+        android:layout_margin="@dimen/license_valid_btn_margin"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:text="@string/licensevalidsure"/>
+
+</LinearLayout>
