@@ -11,6 +11,7 @@ import com.soarsky.car.App;
 import com.soarsky.car.R;
 import com.soarsky.car.base.BaseActivity;
 import com.soarsky.car.bean.AutomotiveInfo;
+import com.soarsky.car.bean.ResponseDataBean;
 import com.soarsky.car.data.local.db.bean.ArticleCollect;
 import com.soarsky.car.uitl.ToastUtil;
 
@@ -104,7 +105,6 @@ public class ArticleDetailsActivity extends BaseActivity<ArticleDetailsPresent,A
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.ll_colect:
-                if (null != info){
                 if (isCollect){
                     ArticleCollect collect = new ArticleCollect();
                     collect.setId(info.getId());
@@ -117,19 +117,15 @@ public class ArticleDetailsActivity extends BaseActivity<ArticleDetailsPresent,A
                     collect.setType(info.getType());
                     collect.setRead(info.isRead());
                     collect.setKeyWord(info.getKeyword());
-                    if (null != app.getCommonParam().getUserName()){
                     collect.setAppUser(app.getCommonParam().getUserName());
-                    }
                     mPresenter.insertData(collect);
+
                 }else {
-                    String userName = app.getCommonParam().getUserName();
-                    if (cUser.equals(userName)){
+                    if (cUser.equals(app.getCommonParam().getUserName())){
                     mPresenter.delete( info.getId());
                     }
                 }
-                }else {
-                    ToastUtil.show(this,getString(R.string.payattention));
-                }
+
 
                 break;
             case R.id.backLay:
@@ -144,10 +140,9 @@ public class ArticleDetailsActivity extends BaseActivity<ArticleDetailsPresent,A
     }
 
     @Override
-    public void showSuccess(AutomotiveInfo automotiveInfoResponseDataBean) {
+    public void showSuccess(ResponseDataBean<AutomotiveInfo> automotiveInfoResponseDataBean) {
         if (automotiveInfoResponseDataBean != null ){
-            info = automotiveInfoResponseDataBean;
-            webView.loadDataWithBaseURL(null,automotiveInfoResponseDataBean.getContent(),
+            webView.loadDataWithBaseURL(null,automotiveInfoResponseDataBean.getData().getContent(),
                     "text/html", "utf-8", null);
         }else {
 
@@ -205,7 +200,7 @@ public class ArticleDetailsActivity extends BaseActivity<ArticleDetailsPresent,A
 
         mPresenter.qurey();
         aid = getIntent().getExtras().getInt("aid");
-        //info = (AutomotiveInfo) getIntent().getSerializableExtra("info");
+        info = (AutomotiveInfo) getIntent().getSerializableExtra("info");
         mPresenter.getArticle(aid);
 
     }

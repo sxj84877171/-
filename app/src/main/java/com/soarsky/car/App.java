@@ -235,9 +235,7 @@ public class App extends Application {
                         SpUtil.save(Constants.TermData,msg.text);
                         Gson gson = new Gson();
                         TermDataBean bean = gson.fromJson(msg.text,TermDataBean.class);
-
-
-
+                        
                         if(bean != null) FileTermUtil.saveFile(bean);
 
 //                        if(bean.getParams().getPath()!=null){

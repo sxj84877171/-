@@ -6,21 +6,19 @@
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:orientation="vertical">
         <!--1-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-           android:layout_marginTop="18dp">
+            android:layout_height="0dp"
+            android:layout_weight="1">
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:textColor="#333333"
-                android:text="@string/who_drives"/>
+                style="@style/user_car_text"
+                android:text="@string/who_drives"
+                android:gravity="left|center"/>
             <TextView
                 android:id="@+id/driver_tv"
                 style="@style/user_car_text"
@@ -31,31 +29,27 @@
         <!--2-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="11sp">
+            android:layout_height="0dp"
+            android:layout_weight="1">
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:textColor="#333333"
+                style="@style/user_car_text"
                 android:text="@string/license_num"
-                />
+                android:gravity="left|center"/>
             <TextView
                 android:id="@+id/license_num_tv"
                 style="@style/user_car_text"
+                android:text=""
                 android:gravity="right|center"/>
         </LinearLayout>
         <!--3-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="11sp">
+            android:layout_height="0dp"
+            android:layout_weight="1">
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:textColor="#333333"
-                android:text="@string/use_time" />
+                style="@style/user_car_text"
+                android:text="@string/use_time"
+                android:gravity="left|center"/>
             <TextView
                 android:id="@+id/user_time_tv"
                 style="@style/user_car_text"

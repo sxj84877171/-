@@ -147,7 +147,7 @@ public class TicketUpLoad extends HandlerThread{
                  */
                 LogUtil.i(illeagalParam.toJson());
                 if(illeagalParam.getStatus().equals(Constants.REQUEST_SUCCESS)){
-                    TicketDb.getInstance(context).updateServiceStatus(Integer.parseInt(ticket.getId()));
+                    TicketDb.getInstance(context).updateServiceStatus(ticket.getId());
                     NotifictionUtils.getInstance().showNotifiction("罚单上传至服务器完成 "+"  罚单类型："+getInfString(ticket.getIno()));
 
 

@@ -70,7 +70,7 @@ public class DangerStartActivity extends BaseActivity<DangerStartPresent,DangerS
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_dangerpolice3;
+        return R.layout.activity_dangerpolice;
     }
 
     @Override

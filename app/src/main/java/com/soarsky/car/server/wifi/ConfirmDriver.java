@@ -444,6 +444,11 @@ public class ConfirmDriver extends HandlerThread {
             }
 
         }
+
+        @Override
+        public void onLoseCmd() {
+
+        }
     };
 
 
@@ -635,6 +640,7 @@ public class ConfirmDriver extends HandlerThread {
      */
     public void setConnectListener(OnConnectListener connectListener) {
         this.connectListener = connectListener;
+
     }
 
     /**

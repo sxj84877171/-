@@ -15,20 +15,16 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerInParent="true">
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="13dp"
-                android:src="@mipmap/map_select"
-                android:layout_gravity="center_vertical"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:drawableLeft="@mipmap/map_select"
                 android:drawablePadding="@dimen/dagerbasemessageup_et_padding_bottom"
                 android:text="@string/map_route_select"
                 android:gravity="center"
                 android:textSize="@dimen/car_location_text_size"
-                android:textColor="@color/new_bg_color"
-                android:layout_marginLeft="7dp"/>
+                android:textColor="@color/colorAccent"/>
 
 
         </LinearLayout>

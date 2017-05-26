@@ -49,23 +49,34 @@ public class BlueToothScan extends HandlerThread implements IScan, BluetoothIBri
     public static final String TAG = BlueToothScan.class.getSimpleName().toString();
     private Handler handler;
     private BluetoothIBridgeAdapter mAdapter;
+    /**
+     * 确认驾驶员扫描监听类
+     */
+
     private OnCarScanedListener carScanedListener;
-    Car car;
+
+    /**
+     * 请人移车扫描监听类
+     */
+    private OnCarScanedListener movecarScanedListener;
+
     private BlueToothAuto blueToothAuto;
 
 
-    private Handler scanHandler ;
     /**
      * 扫描到的蓝牙设备集合
      */
     private ArrayList<BluetoothIBridgeDevice> mDevices = new ArrayList<>();
 
-
-
     /**
      * 自动连接蓝牙设备集合
      */
     private ArrayList<BluetoothIBridgeDevice> autoDevices = new ArrayList<>();
+    /**
+     * 请人移车设备集合
+     */
+
+    private  ArrayList<BluetoothIBridgeDevice> moveCarDevices = new ArrayList<>();
 
     private Context context;
 
@@ -149,28 +160,35 @@ public class BlueToothScan extends HandlerThread implements IScan, BluetoothIBri
 
     public void startDiscovery() {
 
-//        // 如果手机与终端有数据交互 不允许断开蓝牙
-//        if(!BlueToothManage.getInstance().isTerminalUpdate()){
-//             result= android.bluetooth.BluetoothAdapter.getDefaultAdapter().disable();
-//        }
+
+
         if(mAdapter!=null){
-
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    if(isScan){
-                        mAdapter.startDiscovery();
-                    }
-
-                }
-            });
-//            handler.postDelayed(resertRunnable,15000);
+           if(BluetoothAdapter.getDefaultAdapter().isDiscovering()) {
+               mAdapter.stopDiscovery();
+           }
+            handler.removeCallbacks(scanRunable);
+            handler.postDelayed(scanRunable,2000);
             LogUtil.i("startDiscovery");
         }
 
 
 
     }
+
+
+    /**
+     * 扫描Runable
+     */
+
+    Runnable  scanRunable=new Runnable() {
+        @Override
+        public void run() {
+            if(isScan){
+                mAdapter.startDiscovery();
+            }
+        }
+    };
+
 
     /**
      * 关闭扫描
@@ -219,6 +237,13 @@ public class BlueToothScan extends HandlerThread implements IScan, BluetoothIBri
         this.carScanedListener = carScanedListener;
     }
 
+
+
+    public  void   setMovecarScanedListener(OnCarScanedListener carScanedListener){
+        this.movecarScanedListener=carScanedListener;
+    }
+
+
     @Override
     public List<Car> getScanedCarList() {
         return null;
@@ -260,6 +285,7 @@ public class BlueToothScan extends HandlerThread implements IScan, BluetoothIBri
             }
         }
         LogUtil.i("mDevices长度" + mDevices.size());
+        isScan=true;
         startDiscovery();
     }
 
@@ -271,7 +297,7 @@ public class BlueToothScan extends HandlerThread implements IScan, BluetoothIBri
 
     public void clearAutoDevices() {
 
-        LogUtil.i("清空数据");
+        LogUtil.i("清空自动连接数据数据");
         if (autoDevices != null) {
             ArrayList<BluetoothIBridgeDevice> newList = new ArrayList<BluetoothIBridgeDevice>();
             Iterator<BluetoothIBridgeDevice> it = autoDevices.iterator();
@@ -285,10 +311,33 @@ public class BlueToothScan extends HandlerThread implements IScan, BluetoothIBri
             }
         }
         LogUtil.i("mautoDevices长度" + autoDevices.size());
+        isScan=true;
         startDiscovery();
     }
 
+    /**
+     * 清空数据
+     */
 
+    public void clearMoveDevices() {
+
+        LogUtil.i("清空数据");
+        if (moveCarDevices != null) {
+            ArrayList<BluetoothIBridgeDevice> newList = new ArrayList<BluetoothIBridgeDevice>();
+            Iterator<BluetoothIBridgeDevice> it = moveCarDevices.iterator();
+            while (it.hasNext()) {
+                BluetoothIBridgeDevice d = it.next();
+            }
+            if (newList != null) {
+                synchronized (moveCarDevices) {
+                    moveCarDevices = newList;
+                }
+            }
+        }
+        LogUtil.i("moveCarDevices" + moveCarDevices.size());
+        isScan=true;
+        startDiscovery();
+    }
 
 
 
@@ -391,6 +440,26 @@ public class BlueToothScan extends HandlerThread implements IScan, BluetoothIBri
     }
 
 
+    /**
+     * 判断蓝牙设备是否存在
+     *
+     * @param device
+     * @return
+     */
+    private boolean moveCarExisted(BluetoothIBridgeDevice device) {
+        if (device == null)
+            return false;
+
+        Iterator<BluetoothIBridgeDevice> it = moveCarDevices.iterator();
+        while (it.hasNext()) {
+            BluetoothIBridgeDevice d = it.next();
+            if (d != null && d.equals(device))
+                return true;
+        }
+        return false;
+    }
+
+
     @Override
     public void onBluetoothOn() {
 
@@ -426,7 +495,7 @@ public class BlueToothScan extends HandlerThread implements IScan, BluetoothIBri
 
     @Override
     public void onDeviceFound(BluetoothIBridgeDevice bluetoothIBridgeDevice) {
-        LogUtil.i("有设备被发现");
+        LogUtil.i("有设备被发现"+bluetoothIBridgeDevice.getDeviceName());
 
         /**
          * *112湘A44444-
@@ -443,10 +512,12 @@ public class BlueToothScan extends HandlerThread implements IScan, BluetoothIBri
         Car car = new Car(bluetoothIBridgeDevice);
 
         if(car.getCarStatus().equals(Car.CAR_STATUS_STOP)){
+            if(movecarScanedListener!=null&&!moveCarExisted(bluetoothIBridgeDevice)){
+                movecarScanedListener.newBlueToothScan(bluetoothIBridgeDevice);
+            }
             return;
         }
         if (car.getCarNum().equals(App.getApp().getCarNum())) {
-            LogUtil.i("扫描到确认驾驶员的车" + car.getCarNum());
             time = new Date().getTime();
             App.getApp().setiBridgeDevice(bluetoothIBridgeDevice);
             if (car.isStop()) {
@@ -456,26 +527,14 @@ public class BlueToothScan extends HandlerThread implements IScan, BluetoothIBri
             }
 
         }
-        LogUtil.i("发现新设备" + bluetoothIBridgeDevice.getDeviceName() + "-------" + deviceExisted(bluetoothIBridgeDevice));
         if (!deviceExisted(bluetoothIBridgeDevice)) {
             synchronized (mDevices) {
                 if (carScanedListener != null) {
                     carScanedListener.newBlueToothScan(bluetoothIBridgeDevice);
                 }
-//                if (car.isReady()) {
-//                    LogUtil.i("开始自动连接1");
-//                    if (ConfirmDriverUtils.getConnectType(car) < 3) {
-//                        LogUtil.i("开始自动连接2");
-//                        //TODO 开始自动连接
-//                        if (blueToothAuto != null) {
-//                            blueToothAuto.addCar(car);
-//                        }
-//                    }
-//                }
                 mDevices.add(bluetoothIBridgeDevice);
             }
         }
-
 
         if (!deviceautoExisted(bluetoothIBridgeDevice)) {
             synchronized (autoDevices) {
@@ -485,17 +544,14 @@ public class BlueToothScan extends HandlerThread implements IScan, BluetoothIBri
                         LogUtil.i("开始自动连接2");
                         //TODO 开始自动连接
                         if (blueToothAuto != null) {
+                            LogUtil.i("添加到自动连接集合");
                             blueToothAuto.addCar(car);
                         }
                     }
                     autoDevices.add(bluetoothIBridgeDevice);
                 }
-
             }
         }
-
-
-
     }
 
     @Override
@@ -527,29 +583,7 @@ public class BlueToothScan extends HandlerThread implements IScan, BluetoothIBri
     /**
      * 验证驾驶员是否还在
      */
-//    public void checkDriverisLeave() {
-//        LogUtil.i("检查驾驶员是否离开");
-//        if (!App.getApp().isConfirmDriver()) {
-//            LogUtil.i("驾驶员已经离开");
-//            return;
-//        }
-//        LogUtil.i("------------------------");
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                if (time == 0) {
-//                    time = new Date().getTime();
-//                }
-//                long nowTime = new Date().getTime();
-//                if ((nowTime - time) > ConfirmDriverService.CHECK_IS_DRIVER_TIME) {
-//                    App.getApp().setConfirmDriver(false);
-//                    confirmDriverSucessCallBack.oncancle();
-//                }
-//                checkDriverisLeave();
-//            }
-//        }, ConfirmDriverService.CHECK_DRIVER_TIME_FREQUENCY);
-//
-//    }
+
 
 
     /**
@@ -600,8 +634,11 @@ public class BlueToothScan extends HandlerThread implements IScan, BluetoothIBri
     public void  isScan(boolean isScan){
         this.isScan=isScan;
         if(isScan){
-            startDiscovery();
-        }else{stopDiscovery();}
+
+            clearAutoDevices();
+
+        }else{
+            stopDiscovery();}
 
     }
 

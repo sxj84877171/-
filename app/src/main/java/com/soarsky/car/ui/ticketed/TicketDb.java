@@ -132,11 +132,7 @@ public class TicketDb {
     }
 
 
-    /**
-     * 修改罚单的终端状态
-     * @param id
-     */
-    public  void  updateData(int id){
+    public  void  updateTerminalStutus(int id){
         getTicketDao().getDao().getDatabase().execSQL("update  TICKET set TERMINAL_STATUS =2  where ID = '"+id+"'");
     }
 
@@ -145,33 +141,11 @@ public class TicketDb {
      * 修改罚单的服务端状态
      * @param id
      */
-    public  void  updateServiceStatus(int id){
+    public  void  updateServiceStatus(String id){
         getTicketDao().getDao().getDatabase().execSQL("update  TICKET set SERVICE_STATUS =2  where ID = '"+id+"'");
     }
 
 
-    /**
-     * 更新罚单状态
-     */
-    public void updateData(Ticket ticket){
-        getTicketDao().update(ticket).subscribe(new Subscriber<Ticket>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                e.printStackTrace();
-                LogUtil.i("onNext"+ e.getStackTrace().toString());
-            }
-
-            @Override
-            public void onNext(Ticket ticket) {
-                LogUtil.i("onNext"+ticket.toJson());
-            }
-        });
-    }
 
 
     /**

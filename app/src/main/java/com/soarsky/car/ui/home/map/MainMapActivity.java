@@ -136,10 +136,8 @@ public class MainMapActivity extends BaseActivity<MainMapPresent,MainMapModel> i
             @Override
             public void onMapStatusChange(MapStatus mapStatus) {
 
-                if(marker != null) {
-                    if (mapStatus != null) {
-                        marker.setPosition(mapStatus.target);
-                    }
+                if(mapStatus != null) {
+                    marker.setPosition(mapStatus.target);
                 }
             }
 

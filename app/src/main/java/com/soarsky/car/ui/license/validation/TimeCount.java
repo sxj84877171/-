@@ -2,8 +2,9 @@ package com.soarsky.car.ui.license.validation;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
-import android.widget.TextView;
+import android.widget.Button;
 
 import com.soarsky.car.R;
 
@@ -25,7 +26,7 @@ public class TimeCount extends CountDownTimer {
     /**
      * 按钮
      */
-    private TextView contentBtn;
+    private Button contentBtn;
     /**
      * 上下文本
      */
@@ -38,7 +39,7 @@ public class TimeCount extends CountDownTimer {
      * @param contentBtn
      * @param mContext
      */
-    public TimeCount(long millisInFuture, long countDownInterval, TextView contentBtn, Context mContext){
+    public TimeCount(long millisInFuture, long countDownInterval,Button contentBtn,Context mContext){
         super(millisInFuture, countDownInterval);//参数依次为总时长,和计时的时间间隔
         this.contentBtn = contentBtn;
         this.mContext = mContext;

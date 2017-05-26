@@ -51,7 +51,7 @@ public class ArticleDetailsPresent extends BasePresenter<ArticleDetailsModel,Art
             public void onNext(ResponseDataBean<AutomotiveInfo> automotiveInfoResponseDataBean) {
 
                 if (SUCCESS_FLAG.equals(automotiveInfoResponseDataBean.getStatus())){
-                    mView.showSuccess(automotiveInfoResponseDataBean.getData());
+                    mView.showSuccess(automotiveInfoResponseDataBean);
                 }
             }
         });

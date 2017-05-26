@@ -8,7 +8,6 @@ import com.soarsky.car.bean.CarInfo;
 import com.soarsky.car.bean.ResponseDataBean;
 import com.soarsky.car.uitl.SpUtil;
 
-import retrofit2.http.PATCH;
 import rx.Subscriber;
 
 /**
@@ -45,11 +44,13 @@ public class CarPresent extends BasePresenter<CarModel,CarView>{
         param.setTelePhone(SpUtil.get(Constants.TelePhone));
         app.setCarInfoParam(param);
 
-        mView.initCarData(param);
+        //修改 By 王松清
 
-        CarSendParam p = new CarSendParam();
+        //mView.initCarData(param);
+
+       /* CarSendParam p = new CarSendParam();
         p.setCarnum(app.getCommonParam().getCarNum());
-        getCarInfo(p);
+        getCarInfo(p);*/
 
     }
 
@@ -70,7 +71,7 @@ public class CarPresent extends BasePresenter<CarModel,CarView>{
             @Override
             public void onError(Throwable e) {
 
-                mView.stopProgess();
+               mView.stopProgess();
                 mView.showError();
             }
 
@@ -89,9 +90,9 @@ public class CarPresent extends BasePresenter<CarModel,CarView>{
                     SpUtil.save(Constants.CarInfoColor,param.getData().getColor());
                     SpUtil.save(Constants.OwerName,param.getData().getName());
                     SpUtil.save(Constants.TelePhone,param.getData().getPhone());
+                    mView.showSuccess(param);
                 }
 
-                mView.showSuccess(param);
             }
         }));
     }

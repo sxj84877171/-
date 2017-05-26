@@ -3,10 +3,8 @@ package com.soarsky.car.ui.register;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -89,8 +87,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresent, RegisterMode
      * 勾选协议
      */
     private ImageView gouView;
-
-    private RelativeLayout rl_gouView;
     /**
      * 设置账户
      */
@@ -138,13 +134,13 @@ public class RegisterActivity extends BaseActivity<RegisterPresent, RegisterMode
     /**
      * 发送验证码电话
      */
-    private TextView sendPhoneBtn;
+    private Button sendPhoneBtn;
     /**
      * 验证码
      */
     private EditText verCodeEt;
     /**
-     * 删除手机号码
+     * 删除验证码
      */
     private RelativeLayout verCodeLay;
     /**
@@ -152,36 +148,10 @@ public class RegisterActivity extends BaseActivity<RegisterPresent, RegisterMode
      */
     private TimeCount timeCount;
 
-    /**
-     * 删除验证码
-     */
-    private ImageView check_code_delete;
-
-    /**
-     * 删除设置的账号
-     */
-    private RelativeLayout rl_account_delete;
-
-    /**
-     * 删除设置密码
-     */
-    private RelativeLayout rl_pwd_delete;
-
-    /**
-     *删除确认密码
-     */
-    private RelativeLayout rl_confirm_pwd_delete;
-
-    /**
-     * 删除姓名
-     */
-    private RelativeLayout rl_real_name_delete;
-
-    private ImageView verCodeView;
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_register3;
+        return R.layout.activity_register;
     }
 
     @Override
@@ -210,12 +180,9 @@ public class RegisterActivity extends BaseActivity<RegisterPresent, RegisterMode
         gouView = (ImageView) findViewById(R.id.gouView);
         gouView.setOnClickListener(this);
 
-        rl_gouView = (RelativeLayout) findViewById(R.id.rl_gouView);
-        rl_gouView.setOnClickListener(this);
-
         gouView.setImageResource(R.mipmap.nogou);
 
-        //setCountView = (ImageView) findViewById(R.id.setCountView);
+        setCountView = (ImageView) findViewById(R.id.setCountView);
         setCodeView = (ImageView) findViewById(R.id.setCodeView);
         setCodeView.setOnClickListener(this);
         isCodeView = (ImageView) findViewById(R.id.isCodeView);
@@ -232,178 +199,13 @@ public class RegisterActivity extends BaseActivity<RegisterPresent, RegisterMode
         isCodeLay = (RelativeLayout) findViewById(R.id.isCodeLay);
         isCodeLay.setOnClickListener(this);
 
-        sendPhoneBtn = (TextView) findViewById(R.id.sendPhoneBtn);
+        sendPhoneBtn = (Button) findViewById(R.id.sendPhoneBtn);
         sendPhoneBtn.setOnClickListener(this);
 
         verCodeEt = (EditText) findViewById(R.id.verCodeEt);
 
         verCodeLay = (RelativeLayout) findViewById(R.id.verCodeLay);
         verCodeLay.setOnClickListener(this);
-
-        check_code_delete = (ImageView) findViewById(R.id.check_code_delete);
-        check_code_delete.setOnClickListener(this);
-
-        rl_account_delete = (RelativeLayout) findViewById(R.id.rl_account_delete);
-        rl_account_delete.setOnClickListener(this);
-
-        rl_pwd_delete = (RelativeLayout) findViewById(R.id.rl_pwd_delete);
-        rl_pwd_delete.setOnClickListener(this);
-
-        rl_confirm_pwd_delete = (RelativeLayout) findViewById(R.id.rl_confirm_pwd_delete);
-        rl_confirm_pwd_delete.setOnClickListener(this);
-
-        rl_real_name_delete = (RelativeLayout) findViewById(R.id.rl_real_name_delete);
-        rl_real_name_delete.setOnClickListener(this);
-
-        verCodeView = (ImageView) findViewById(R.id.verCodeView);
-
-        setCountEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                rl_account_delete.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String qtyString = s.toString().trim();
-                if (qtyString.length() > 0){
-                    rl_account_delete.setVisibility(View.VISIBLE);
-                }else {
-                    rl_account_delete.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-
-        setCodeEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                rl_pwd_delete.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String qtyString = s.toString().trim();
-                if (qtyString.length() > 0){
-                    rl_pwd_delete.setVisibility(View.VISIBLE);
-                }else {
-                    rl_pwd_delete.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-
-        isCodeEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                rl_confirm_pwd_delete.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String qtyString = s.toString().trim();
-                if (qtyString.length() > 0){
-                    rl_confirm_pwd_delete.setVisibility(View.VISIBLE);
-                }else {
-                    rl_confirm_pwd_delete.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-
-        realNameEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                rl_real_name_delete.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String qtyString = s.toString().trim();
-                if (qtyString.length() > 0){
-                    rl_real_name_delete.setVisibility(View.VISIBLE);
-                }else {
-                    rl_real_name_delete.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-
-        phoneEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String s1 = s.toString().trim();
-                if (s1.length() > 0){
-                    if (isMobile(s1)){
-                        verCodeView.setVisibility(View.VISIBLE);
-                        verCodeView.setImageResource(R.mipmap.yes);
-                    }else {
-                        verCodeView.setVisibility(View.VISIBLE);
-                        verCodeView.setImageResource(R.mipmap.vercode_icon);
-                    }
-                }else {
-                    verCodeView.setVisibility(View.INVISIBLE);
-                }
-
-            }
-        });
-
-
-        idNumberEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String str = s.toString().trim();
-
-                if (str.length() > 0){
-                    if (isCard(str)){
-                        idNumberView.setVisibility(View.VISIBLE);
-                        idNumberView.setImageResource(R.mipmap.yes);
-                    }else {
-                        idNumberView.setVisibility(View.VISIBLE);
-                        idNumberView.setImageResource(R.mipmap.vercode_icon);
-                    }
-                }else {
-                    idNumberView.setVisibility(View.INVISIBLE);
-                }
-
-            }
-        });
 
     }
 
@@ -433,7 +235,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresent, RegisterMode
             case R.id.closeLay:
                 finish();
                 break;
-            case R.id.rl_gouView:
             case R.id.gouView:
                 mPresenter.selectAgree();
                 break;
@@ -463,23 +264,9 @@ public class RegisterActivity extends BaseActivity<RegisterPresent, RegisterMode
 
                 break;
             case R.id.verCodeLay:
-                phoneEt.setText("");
+                verCodeEt.setText("");
                 break;
-            case R.id.check_code_delete:
-                verCodeEt.getText().clear();
-                break;
-            case R.id.rl_account_delete:
-                setCountEt.getText().clear();
-                break;
-            case R.id.rl_pwd_delete:
-                setCodeEt.getText().clear();
-                break;
-            case R.id.rl_confirm_pwd_delete:
-                isCodeEt.getText().clear();
-                break;
-            case R.id.rl_real_name_delete:
-                realNameEt.getText().clear();
-                break;
+
         }
     }
 

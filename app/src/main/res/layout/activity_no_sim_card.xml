@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.soarsky.car.ui.drivrecord.nosimcard.NoSimCardActivity">
-    <include layout="@layout/forget_header3"/>
+    <include layout="@layout/forget_header"/>
 
     <!--没检测到终端的sim卡-->
     <RelativeLayout

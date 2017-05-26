@@ -59,11 +59,7 @@ public class MoveCarPresent extends BasePresenter<MoveCarModel,MoveCarView> {
                 if( !ConfirmDriverUtils.deviceExisted(dervicelist,dervice)){
 
                synchronized (dervicelist){
-                Car  car =new Car();
-                car.setDevice(dervice);
-                car.setCarNum(dervice.getDeviceName().substring(3,10));
-                car.setCarType(dervice.getDeviceName().substring(1,3));
-                car.setCarStatus(dervice.getDeviceName().substring(0,1));
+                Car  car =new Car(dervice);
                 dervicelist.add(car);
                }
                 context.runOnUiThread(new Runnable() {

@@ -10,7 +10,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
@@ -36,7 +35,6 @@ import com.soarsky.car.bean.RoadSideCarTypeParam;
 import com.soarsky.car.bean.RoadSideRescueInfo;
 import com.soarsky.car.ui.roadside.RoadSideDialogListener;
 import com.soarsky.car.ui.roadside.dialog.RoadSideBottomDialog;
-import com.soarsky.car.ui.roadside.list.RoadSideListActivity;
 import com.soarsky.car.ui.roadside.order.RoadSideOrderActivity;
 import com.soarsky.car.uitl.ToastUtil;
 import com.soarsky.car.uitl.ValidatorUtils;
@@ -140,14 +138,10 @@ public class RoadSideRescueActivity extends BaseActivity<RoadSideRescuePresent,R
      */
     private static final String TAG = "RoadSideRescueActivity";
 
-    private TextView listTv;
-
-    private RelativeLayout listLay;
-
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_road_side_rescue3;
+        return R.layout.activity_road_side_rescue;
     }
 
     @Override
@@ -160,7 +154,7 @@ public class RoadSideRescueActivity extends BaseActivity<RoadSideRescuePresent,R
         backLay.setOnClickListener(this);
 
         topicTv = (TextView) findViewById(R.id.topicTv);
-        topicTv.setText("故障救援");
+        topicTv.setText(getString(R.string.roadsideapply));
 
         road_side_rescue_carnumEt = (EditText) findViewById(R.id.road_side_rescue_carnumEt);
         road_side_rescue_carnumEt.setText(app.getCommonParam().getCarNum()==null?"":app.getCommonParam().getCarNum());
@@ -182,12 +176,6 @@ public class RoadSideRescueActivity extends BaseActivity<RoadSideRescuePresent,R
         roadSideApplyBtn.setOnClickListener(this);
 
         roadSideMapView = (MapView) findViewById(R.id.roadSideMapView);
-
-        listTv = (TextView) findViewById(R.id.listTv);
-        listTv.setOnClickListener(this);
-
-        listLay = (RelativeLayout) findViewById(R.id.listLay);
-        listLay.setOnClickListener(this);
 
     }
 
@@ -299,12 +287,6 @@ public class RoadSideRescueActivity extends BaseActivity<RoadSideRescuePresent,R
                 //有弹框，无需向用户提示          王松清
                 //ToastUtil.show(this,"road_side_sever_Lay");
                 mPresenter.showSeverDialog(sever_list);
-                break;
-            case R.id.listTv:
-            case R.id.listLay:
-                Intent intent = new Intent();
-                intent.setClass(this, RoadSideListActivity.class);
-                startActivity(intent);
                 break;
         }
     }

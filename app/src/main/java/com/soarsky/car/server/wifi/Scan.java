@@ -123,7 +123,6 @@ public class Scan extends HandlerThread implements IScan {
     public void getScanResult(final List<ScanResult> scanResults) {
 
 
-        LogUtil.i("wifi获取扫描结果");
         //todo  服务没有注册
         if (wifiBroadcast != null) {
 
@@ -159,7 +158,7 @@ public class Scan extends HandlerThread implements IScan {
             for (ScanResult sr : scanResults) {
                 //验证是否是有效热点
                 if (ValidatorUtils.validatorSsid(sr.SSID)) {
-                    LogUtil.i("wifi扫描到车辆" + sr.SSID);
+//                    LogUtil.i("wifi扫描到车辆" + sr.SSID);
                     Car car = new Car(sr.SSID);
                     if (car.isReady()) {
                         autocarList.add(car);
@@ -219,7 +218,6 @@ public class Scan extends HandlerThread implements IScan {
      */
     public void onDestory() {
 
-        LogUtil.i("ondestoy");
         if (wifiBroadcast != null) {
             try {
                 context.unregisterReceiver(wifiBroadcast);

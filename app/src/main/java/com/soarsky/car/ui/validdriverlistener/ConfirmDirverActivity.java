@@ -5,9 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -22,7 +20,6 @@ import com.soarsky.car.base.BaseActivity;
 import com.soarsky.car.base.RxBus;
 import com.soarsky.car.base.RxManager;
 import com.soarsky.car.bean.Car;
-import com.soarsky.car.server.bluetooth.BlueToothScan;
 import com.soarsky.car.server.check.ConfirmDriverService;
 import com.soarsky.car.server.design.IScan;
 import com.soarsky.car.uitl.LogUtil;
@@ -95,9 +92,6 @@ public class ConfirmDirverActivity extends BaseActivity<ConfirmDriverPresent, Co
      * 是否显示失败的dialog
      */
     private boolean isShowDialog=true;
-
-    Handler handler;
-
     @Override
     public int getLayoutId() {
         return R.layout.activity_confirmdriver;
@@ -125,13 +119,6 @@ public class ConfirmDirverActivity extends BaseActivity<ConfirmDriverPresent, Co
                 wifiListAdapter.setSelectedPosition(position);
                 wifiListAdapter.notifyDataSetInvalidated();
 
-            }
-        });
-        handler=new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                BlueToothScan.getInstance(App.getApp()).isScan(true);
             }
         });
 
@@ -195,7 +182,7 @@ public class ConfirmDirverActivity extends BaseActivity<ConfirmDriverPresent, Co
         @Override
         public void onServiceDisconnected(ComponentName name) {
             LogUtil.i("onServiceDisconnected");
-
+            mPresenter.setIsAuto(true);
             mPresenter.setScan(null);
             mPresenter.setConfirmDriverService(null);
             confirmDriverService = null;
@@ -283,7 +270,7 @@ public class ConfirmDirverActivity extends BaseActivity<ConfirmDriverPresent, Co
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.backView:
-                mPresenter.setIsAuto(true);
+
                 isShowDialog=false;
                 finish();
                 break;

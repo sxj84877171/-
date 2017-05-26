@@ -5,12 +5,11 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -30,13 +29,16 @@ import com.soarsky.car.bean.LoginInfo;
 import com.soarsky.car.bean.ResponseDataBean;
 import com.soarsky.car.server.check.ConfirmDriverService;
 import com.soarsky.car.ui.forget.ForgetPwdActivity;
-import com.soarsky.car.ui.main.NewMainActivity;
+import com.soarsky.car.ui.home.main.MainActivity;
 import com.soarsky.car.ui.register.RegisterActivity;
+import com.soarsky.car.uitl.CRC16;
 import com.soarsky.car.uitl.KeyboardUtils;
 import com.soarsky.car.uitl.SpUtil;
 import com.soarsky.car.uitl.StringUtils;
 import com.soarsky.car.uitl.ToastUtil;
 import com.umeng.analytics.MobclickAgent;
+
+import java.util.regex.Pattern;
 
 import static com.soarsky.car.ConstantsUmeng.FORGET_PWD;
 import static com.soarsky.car.ConstantsUmeng.LOGIN_BTN;
@@ -74,7 +76,7 @@ public class LoginActivity extends BaseActivity<LoginPresent,LoginModel> impleme
     /**
      * 注册
      */
-    private TextView registerBtn;
+    private Button registerBtn;
     /**
      * 忘记密码
      */
@@ -91,7 +93,10 @@ public class LoginActivity extends BaseActivity<LoginPresent,LoginModel> impleme
      * rootView
      */
     private LinearLayout rootView;
-
+    /**
+     * 关闭
+     */
+    private LinearLayout closeLay;
     /**
      * iconlay
      */
@@ -129,14 +134,9 @@ public class LoginActivity extends BaseActivity<LoginPresent,LoginModel> impleme
      */
     private ConfirmDriverService confirmDriverService;
 
-    /**
-     * 删除账号
-     */
-    private RelativeLayout rl_delete_account;
-
     @Override
     public int getLayoutId() {
-        return R.layout.activity_login3;
+        return R.layout.activity_login;
     }
 
     @Override
@@ -154,19 +154,20 @@ public class LoginActivity extends BaseActivity<LoginPresent,LoginModel> impleme
         UserNameEt = (EditText) findViewById(R.id.UserNameEt);
         PassWordEt = (EditText) findViewById(R.id.PassWordEt);
 
-        registerBtn = (TextView) findViewById(R.id.registerBtn);
+        registerBtn = (Button) findViewById(R.id.registerBtn);
         registerBtn.setOnClickListener(this);
 
         forgetTv = (TextView) findViewById(R.id.forgetTv);
         forgetTv.setOnClickListener(this);
 
-        /*closeView = (ImageView) findViewById(R.id.closeView);
-        closeView.setOnClickListener(this);*/
+        closeView = (ImageView) findViewById(R.id.closeView);
+        closeView.setOnClickListener(this);
 
         rootView = (LinearLayout) findViewById(R.id.rootView);
         rootView.setOnClickListener(this);
 
-
+        closeLay = (LinearLayout) findViewById(R.id.closeLay);
+        closeLay.setOnClickListener(this);
 
         forgetLay = (LinearLayout) findViewById(R.id.forgetLay);
         forgetLay.setOnClickListener(this);
@@ -177,32 +178,7 @@ public class LoginActivity extends BaseActivity<LoginPresent,LoginModel> impleme
         loginIconView = (ImageView) findViewById(R.id.loginIconView);
         loginIconView.setOnClickListener(this);
 
-        rl_delete_account = (RelativeLayout) findViewById(R.id.rl_delete_account);
-        rl_delete_account.setOnClickListener(this);
-
-        UserNameEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                rl_delete_account.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String qtyString = s.toString().trim();
-                if (qtyString.length() > 0){
-                    rl_delete_account.setVisibility(View.VISIBLE);
-                }else {
-                    rl_delete_account.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-
-        /*findViewById(R.id.closeView).setOnLongClickListener(new View.OnLongClickListener() {
+        findViewById(R.id.closeView).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 String uname = UserNameEt.getText().toString();
@@ -217,7 +193,7 @@ public class LoginActivity extends BaseActivity<LoginPresent,LoginModel> impleme
                 }
                 return false;
             }
-        });*/
+        });
 
     }
     /**
@@ -225,7 +201,7 @@ public class LoginActivity extends BaseActivity<LoginPresent,LoginModel> impleme
      */
     private void startHomeActivity(){
         Intent i = new Intent();
-        i.setClass(LoginActivity.this, NewMainActivity.class);
+        i.setClass(LoginActivity.this, MainActivity.class);
         startActivity(i);
         finish();
     }
@@ -284,14 +260,13 @@ public class LoginActivity extends BaseActivity<LoginPresent,LoginModel> impleme
                 MobclickAgent.onEvent(LoginActivity.this,FORGET_PWD);
                 mPresenter.gotoForgetPage();
                 break;
-
+            case R.id.closeView:
+            case R.id.closeLay:
+                finish();
+                break;
             case R.id.loginIconLay:
             case R.id.loginIconView:
                 mPresenter.isVisiablePassword();
-                break;
-
-            case R.id.rl_delete_account:
-                UserNameEt.getText().clear();
                 break;
 
         }
@@ -349,7 +324,7 @@ public class LoginActivity extends BaseActivity<LoginPresent,LoginModel> impleme
         //登录成功，页面跳转，无需提示
         /*ToastUtil.show(LoginActivity.this, R.string.loginvicetory);*/
         Intent i = new Intent();
-        i.setClass(LoginActivity.this, NewMainActivity.class);
+        i.setClass(LoginActivity.this, MainActivity.class);
         startActivity(i);
 
 

@@ -12,6 +12,7 @@ import com.soarsky.car.App;
 import com.soarsky.car.R;
 import com.soarsky.car.base.BaseActivity;
 import com.soarsky.car.bean.AutomotiveInfo;
+import com.soarsky.car.bean.ResponseDataBean;
 import com.soarsky.car.data.local.db.bean.ArticleCollect;
 import com.soarsky.car.ui.carnews.ArticleDetailsActivity;
 import com.soarsky.car.ui.carnews.ArticleDetailsModel;
@@ -122,7 +123,7 @@ public class MyColectionActivity extends BaseActivity<ArticleDetailsPresent,Arti
     }
 
     @Override
-    public void showSuccess(AutomotiveInfo p) {
+    public void showSuccess(ResponseDataBean<AutomotiveInfo> p) {
 
     }
 

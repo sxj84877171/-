@@ -55,21 +55,11 @@ public class MoveCarModel implements BaseModel {
      * @param carScanedListener 监听
      */
     public void setCarScanedListener(OnCarScanedListener carScanedListener){
-        if(scan != null){
-            scan.setCarScanedListener(carScanedListener);
+        if(confirmDriverService != null){
+            confirmDriverService.setMoveCarScanedListener(carScanedListener);
         }
     }
 
-    /**
-     * 获得扫描结果
-     * @return 车的集合
-     */
-    public List<Car> getScanedCarList(){
-        if(scan != null){
-            return scan.getScanedCarList();
-        }
-        return null;
-    }
 
     /**
      * 设置连接监听

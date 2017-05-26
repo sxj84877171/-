@@ -61,7 +61,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/half"
-                android:background="@color/background"
+                android:background="@color/grey"
                 android:layout_marginLeft="@dimen/car_text_margin_left"/>
 
 
@@ -124,7 +124,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/half"
-                android:background="@color/background"
+                android:background="@color/grey"
                 android:layout_marginLeft="@dimen/car_text_margin_left"/>
 
 
@@ -176,7 +176,7 @@
                     android:layout_width="@dimen/bottom"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:text=""
+                    android:text="@string/nodata"
                     android:gravity="right|center"
                     android:textColor="@color/border"
                     android:textSize="@dimen/car_texttip_size"
@@ -188,7 +188,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/half"
-                android:background="@color/background"
+                android:background="@color/grey"
                 android:layout_marginLeft="@dimen/car_text_margin_left"/>
 
         </LinearLayout>
@@ -250,7 +250,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/half"
-                android:background="@color/background"
+                android:background="@color/grey"
                 android:layout_marginLeft="@dimen/car_text_margin_left"/>
 
         </LinearLayout>
@@ -312,7 +312,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/half"
-                android:background="@color/background"
+                android:background="@color/grey"
                 android:layout_marginLeft="@dimen/car_text_margin_left"/>
 
         </LinearLayout>
@@ -374,7 +374,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/half"
-                android:background="@color/background"
+                android:background="@color/grey"
                 android:layout_marginLeft="@dimen/car_text_margin_left"/>
 
         </LinearLayout>
@@ -436,7 +436,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/half"
-                android:background="@color/background"
+                android:background="@color/grey"
                 android:layout_marginLeft="@dimen/car_text_margin_left"/>
 
         </LinearLayout>
@@ -498,7 +498,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/half"
-                android:background="@color/background"
+                android:background="@color/grey"
                 android:layout_marginLeft="@dimen/car_text_margin_left"/>
 
         </LinearLayout>
@@ -518,7 +518,7 @@
             <ImageView
                 android:layout_width="@dimen/car_icon_width_high"
                 android:layout_height="@dimen/car_icon_width_high"
-                android:src="@mipmap/car_date"
+                android:src="@mipmap/car_color"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
 

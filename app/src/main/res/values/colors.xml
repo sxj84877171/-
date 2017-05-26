@@ -18,7 +18,6 @@
     <color name="black2">#888888</color>
     <color name="black3">#444444</color>
     <color name="black4">#999999</color>
-    <color name="black5">#333333</color>
 
 
 
@@ -31,8 +30,8 @@
     <color name="colorAccent">#fff8c120</color>
     <color name="colorAccent_e">#B2f8c120</color>
 
-    <color name="maintab_textviewColor_selected">#5f95ff</color>
-    <color name="maintab_textviewColor_unselected">#dadada</color>
+    <color name="maintab_textviewColor_selected">@color/colorAccent</color>
+    <color name="maintab_textviewColor_unselected">@android:color/tertiary_text_dark</color>
     <color name="dialog_et_bg">#aeaeae</color>
     <color name="check_text">#505050</color>
     <color name="dialog_b_tv">#3487d4</color>
@@ -66,12 +65,6 @@
     <color name="listviewcompat_devider">#dddbdb</color>
     <color name="button_color">#7D7D7D</color>
     <color name="time_select">#f5f5f5</color>
-
-    <color name="new_bg_color">#5f95ff</color>
-    <color name="xieyi_text_color">#fe4646</color>
-    <color name="electronic_name_bg">#e6e6e6</color>
-    <color name="background">#f0f0f0</color>
-
 
 
 

@@ -164,7 +164,25 @@ public class IllegalPersonalFragment extends BaseFragment<IllegalPersonalFragmen
                 int totalCent = 0;
                 for(ViolationDealIlist violationDealIlist:param.getData().getIlist()){
                     if(!violationDealIlist.getStatus().equals(Constants.REVOKED)){
+                        Log.d("TAG","driver=="+violationDealIlist.getDrivers());
+//                        ViolationDealIlist bean = new ViolationDealIlist();
+//                        bean.setPlateType(violationDealIlist.getPlateType());
+//                        bean.setCent(violationDealIlist.getCent());
+//                        bean.setAddress(violationDealIlist.getAddress());
+//                        bean.setCarnum(violationDealIlist.getCarnum());
+//                        bean.setDocNumber(violationDealIlist.getDocNumber());
+//                        bean.setDrivers(violationDealIlist.getDrivers());
+//                        bean.setEtime(violationDealIlist.getEtime());
+//                        bean.setId(violationDealIlist.getId());
+//                        bean.setInf(violationDealIlist.getInf());
+//                        bean.setLat(violationDealIlist.getLat());
+//                        bean.setLon(violationDealIlist.getLon());
+//                        bean.setMonery(violationDealIlist.getMonery());
+//                        bean.setSign(violationDealIlist.getSign());
+//                        bean.setStatus(violationDealIlist.getStatus());
+//                        bean.setStime(violationDealIlist.getStime());
                         list.add(violationDealIlist);
+//                        list.add(bean);
                         try {
                             totalCent = totalCent + Integer.parseInt(violationDealIlist.getCent());
                             totalMoney = totalMoney +Integer.parseInt(violationDealIlist.getMonery());

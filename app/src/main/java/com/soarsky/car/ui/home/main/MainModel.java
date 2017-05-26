@@ -19,7 +19,7 @@ import com.soarsky.car.bean.ViolationDealInfo;
 import com.soarsky.car.data.local.db.bean.FamilyNum;
 import com.soarsky.car.helper.RxSchedulers;
 import com.soarsky.car.server.check.ConfirmDriverService;
-import com.soarsky.car.data.local.db.FamilyNumDb;
+import com.soarsky.car.ui.family.FamilyNumDb;
 import com.soarsky.car.ui.violationdeal.ViolationDealSendParam;
 
 import java.io.File;
@@ -73,6 +73,16 @@ public class MainModel implements BaseModel {
      */
     public  void  setConfirmDriverService(ConfirmDriverService confirmDriverService){
         this.confirmDriverService=confirmDriverService;
+    }
+
+    /**
+     * 设置连接监听
+     * @param listener 连接监听
+     */
+    public void  setVolumeListener(OnVolumeListener listener){
+        if(confirmDriverService != null){
+//            confirmDriverService.setVolumeListener(listener);
+        }
     }
 
     /**

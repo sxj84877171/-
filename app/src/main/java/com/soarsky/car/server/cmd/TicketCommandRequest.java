@@ -23,7 +23,7 @@ public class TicketCommandRequest extends BaseCmd{
     /**
      *车牌号
      */
-    private String carNum;
+    private String carNum="";
 
     /**
      * 0 未已上传  1已上传 读取类型为3时才有此内容
@@ -35,7 +35,6 @@ public class TicketCommandRequest extends BaseCmd{
 
     private  byte[]  xuhao;
 
-//    private  byte[]  xuhao=new byte[]{0x00,0x01};
 
 
     /**
@@ -75,7 +74,7 @@ public class TicketCommandRequest extends BaseCmd{
             buffer.write(readType);
             buffer.write(xuhao);
             buffer.write(num);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         message=buffer.toByteArray();

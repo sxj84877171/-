@@ -1,8 +1,6 @@
 package com.soarsky.car.ui.illegal;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -87,9 +85,6 @@ public class IllegalManageFragmentPagerAdapter extends FragmentPagerAdapter {
         TextView tv = (TextView) view.findViewById(R.id.illeagltextView);
         tv.setText(mTitles[position]);
         tv.setTextSize(14);
-        if (position == 0) {
-            tv.setTextColor(view.getResources().getColor(R.color.new_bg_color));
-        }
         return view;
     }
 

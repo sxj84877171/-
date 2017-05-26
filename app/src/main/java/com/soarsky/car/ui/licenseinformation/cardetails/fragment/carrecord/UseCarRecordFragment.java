@@ -11,10 +11,11 @@ import com.soarsky.car.R;
 import com.soarsky.car.base.BaseFragment;
 import com.soarsky.car.bean.ResponseDataBean;
 import com.soarsky.car.bean.UseCarRecordParam;
-import com.soarsky.car.ui.usecarrecord.UseCarRecordAdapter;
 import com.soarsky.car.uitl.ToastUtil;
 
 import java.util.List;
+
+import static com.soarsky.car.R.string.get_data_fail;
 
 /**
  * Andriod_Car_App<br>
@@ -48,7 +49,7 @@ public class UseCarRecordFragment extends BaseFragment<UseCarRecordFragmentPrese
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_use_car_record3;
+        return R.layout.fragment_use_car_record;
     }
 
     @Override

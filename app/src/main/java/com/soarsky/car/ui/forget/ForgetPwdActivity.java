@@ -2,17 +2,14 @@ package com.soarsky.car.ui.forget;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.soarsky.car.App;
 import com.soarsky.car.Constants;
@@ -51,11 +48,11 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresent,ForgetPwdMo
     /**
      * 真实姓名布局
      */
-    //private RelativeLayout forgetRealNameLay;
+    private RelativeLayout forgetRealNameLay;
     /**
      * 真实姓名View
      */
-    //private ImageView forgetRealNameView;
+    private ImageView forgetRealNameView;
     /**
      * 身份证号布局
      */
@@ -99,7 +96,7 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresent,ForgetPwdMo
     /**
      * 验证码按钮
      */
-    private TextView forgetSendPhoneBtn;
+    private Button forgetSendPhoneBtn;
     /**
      * 验证码
      */
@@ -115,37 +112,18 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresent,ForgetPwdMo
     /**
      * 账号布局
      */
-    //private RelativeLayout forgetNameLay;
+    private RelativeLayout forgetNameLay;
     /**
      * 账号view
      */
-    //private ImageView forgetNameView;
+    private ImageView forgetNameView;
     /**
      * 账号是否可见
      */
     private boolean isName = true;
-
-    /**
-     * 删除验证码
-     */
-    private ImageView check_code_delete;
-
-    /**
-     * 删除设置的账号
-     */
-    private RelativeLayout rl_account_delete;
-
-    /**
-     * 删除姓名
-     */
-    private RelativeLayout rl_real_name_delete;
-
-
-    private ImageView verCodeView;
-
     @Override
     public int getLayoutId() {
-        return R.layout.activity_forget3;
+        return R.layout.activity_forget;
     }
 
     @Override
@@ -154,17 +132,14 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresent,ForgetPwdMo
         app = (App)getApplication();
         app.addActivity(TAG,this);
 
-       TextView title = (TextView) findViewById(R.id.titleTv);
-        title.setText(getString(R.string.find_pwd));
-
-        backLay = (LinearLayout) findViewById(R.id.closeLay);
+        backLay = (LinearLayout) findViewById(R.id.backLay);
         backLay.setOnClickListener(this);
 
         forgetRealNameEt = (EditText) findViewById(R.id.forgetRealNameEt);
-        /*forgetRealNameLay = (RelativeLayout) findViewById(forgetRealNameLay);
+        forgetRealNameLay = (RelativeLayout) findViewById(R.id.forgetRealNameLay);
         forgetRealNameLay.setOnClickListener(this);
-        forgetRealNameView = (ImageView) findViewById(forgetRealNameView);
-        forgetRealNameView.setOnClickListener(this);*/
+        forgetRealNameView = (ImageView) findViewById(R.id.forgetRealNameView);
+        forgetRealNameView.setOnClickListener(this);
 
         forgetIdNumberLay = (RelativeLayout) findViewById(R.id.forgetIdNumberLay);
         forgetIdNumberLay.setOnClickListener(this);
@@ -177,129 +152,16 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresent,ForgetPwdMo
         forgetConfirmBtn = (Button) findViewById(R.id.forgetConfirmBtn);
         forgetConfirmBtn.setOnClickListener(this);
 
-        forgetSendPhoneBtn = (TextView) findViewById(R.id.forgetSendPhoneBtn);
+        forgetSendPhoneBtn = (Button) findViewById(R.id.forgetSendPhoneBtn);
         forgetSendPhoneBtn.setOnClickListener(this);
 
         forgetVerCodeEt = (EditText) findViewById(R.id.forgetVerCodeEt);
 
         forgetNameEt = (EditText) findViewById(R.id.forgetNameEt);
-        /*forgetNameLay = (RelativeLayout) findViewById(forgetNameLay);
+        forgetNameLay = (RelativeLayout) findViewById(R.id.forgetNameLay);
         forgetNameLay.setOnClickListener(this);
-        forgetNameView = (ImageView) findViewById(forgetNameView);
-        forgetNameView.setOnClickListener(this);*/
-
-        check_code_delete = (ImageView) findViewById(R.id.check_code_delete);
-        check_code_delete.setOnClickListener(this);
-
-        rl_account_delete = (RelativeLayout) findViewById(R.id.rl_account_delete);
-        rl_account_delete.setOnClickListener(this);
-
-        rl_real_name_delete = (RelativeLayout) findViewById(R.id.rl_real_name_delete);
-        rl_real_name_delete.setOnClickListener(this);
-
-        verCodeView = (ImageView) findViewById(R.id.verCodeView);
-
-        forgetNameEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                rl_account_delete.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String qtyString = s.toString().trim();
-                if (qtyString.length() > 0){
-                    rl_account_delete.setVisibility(View.VISIBLE);
-                }else {
-                    rl_account_delete.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-
-        forgetRealNameEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                rl_real_name_delete.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String qtyString = s.toString().trim();
-                if (qtyString.length() > 0){
-                    rl_real_name_delete.setVisibility(View.VISIBLE);
-                }else {
-                    rl_real_name_delete.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-
-        mobliephoneEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String s1 = s.toString().trim();
-                if (s1.length() > 0){
-                    if (isMobile(s1)){
-                        verCodeView.setVisibility(View.VISIBLE);
-                        verCodeView.setImageResource(R.mipmap.yes);
-                    }else {
-                        verCodeView.setVisibility(View.VISIBLE);
-                        verCodeView.setImageResource(R.mipmap.vercode_icon);
-                    }
-                }else {
-                    verCodeView.setVisibility(View.INVISIBLE);
-                }
-
-            }
-        });
-
-
-        forgetIdNumberEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String str = s.toString().trim();
-
-                if (str.length() > 0 ){
-                    if (isCard(str)){
-                        forgetIdNumberView.setVisibility(View.VISIBLE);
-                        forgetIdNumberView.setImageResource(R.mipmap.yes);
-                    }else {
-                        forgetIdNumberView.setVisibility(View.VISIBLE);
-                        forgetIdNumberView.setImageResource(R.mipmap.vercode_icon);
-                    }
-                }else {forgetIdNumberView.setVisibility(View.INVISIBLE);}
-
-            }
-        });
+        forgetNameView = (ImageView) findViewById(R.id.forgetNameView);
+        forgetNameView.setOnClickListener(this);
 
     }
 
@@ -359,7 +221,7 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresent,ForgetPwdMo
 
         switch (type){
             case 0:
-                /*if(isRealName == true){
+                if(isRealName == true){
                     forgetRealNameEt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     forgetRealNameView.setImageResource(R.mipmap.icon);
                     isRealName = false;
@@ -367,7 +229,7 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresent,ForgetPwdMo
                     forgetRealNameEt.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                     forgetRealNameView.setImageResource(R.mipmap.confrim);
                     isRealName = true;
-                }*/
+                }
                 break;
             case 1:
                 if(isIdNumber == true){
@@ -381,7 +243,7 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresent,ForgetPwdMo
                 }
                 break;
             case 2:
-               /* if(isName == true){
+                if(isName == true){
 
                     forgetNameEt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     forgetNameView.setImageResource(R.mipmap.icon);
@@ -390,7 +252,7 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresent,ForgetPwdMo
                     forgetNameEt.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                     forgetNameView.setImageResource(R.mipmap.confrim);
                     isName = true;
-                }*/
+                }
                 break;
         }
     }
@@ -428,22 +290,13 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresent,ForgetPwdMo
     public void onClick(View view) {
 
         switch (view.getId()){
-            case R.id.closeLay:
+            case R.id.backLay:
                 finish();
                 break;
-            case R.id.rl_account_delete:
-                forgetNameEt.getText().clear();
-                break;
-            case R.id.rl_real_name_delete:
-                forgetRealNameEt.getText().clear();
-                break;
-            case R.id.check_code_delete:
-                forgetVerCodeEt.getText().clear();
-                break;
-            /*case forgetRealNameLay:
-            case forgetRealNameView:
+            case R.id.forgetRealNameLay:
+            case R.id.forgetRealNameView:
                 mPresenter.isVisiable(0);
-                break;*/
+                break;
             case R.id.forgetIdNumberLay:
             case R.id.forgetIdNumberView:
                 mPresenter.isVisiable(1);
@@ -461,10 +314,10 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresent,ForgetPwdMo
 
                 mPresenter.sendsms(mobliephoneEt.getText().toString(),"3");
                 break;
-            //case forgetNameLay:
-            /*case R.id.forgetNameView:
+            case R.id.forgetNameLay:
+            case R.id.forgetNameView:
                 mPresenter.isVisiable(2);
-                break;*/
+                break;
         }
     }
 

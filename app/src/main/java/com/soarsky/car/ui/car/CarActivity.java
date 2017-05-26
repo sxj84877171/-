@@ -11,7 +11,6 @@ import com.soarsky.car.R;
 import com.soarsky.car.base.BaseActivity;
 import com.soarsky.car.bean.CarInfo;
 import com.soarsky.car.bean.ResponseDataBean;
-import com.soarsky.car.uitl.CarTypeUtil;
 import com.soarsky.car.uitl.SpUtil;
 import com.soarsky.car.uitl.ToastUtil;
 
@@ -121,7 +120,7 @@ public class CarActivity extends BaseActivity<CarPresent,CarModel> implements Ca
     @Override
     protected void onResume() {
         super.onResume();
-//        requestCarInfo();
+        requestCarInfo();
     }
 
     /**
@@ -145,15 +144,15 @@ public class CarActivity extends BaseActivity<CarPresent,CarModel> implements Ca
 
     @Override
     public void initCarData(CarInfoParam param) {
-        carLienseTv.setText("" + param.getCarNum());
+       /* carLienseTv.setText("" + param.getCarNum());
         carPersonTv.setText("" + param.getOwerName());
-        carClassesTv.setText("" +param.getCarType());
+        carClassesTv.setText("" + param.getCarType());
         carColorTv.setText("" + param.getCarColor());
         carIdentifyTv.setText("" + param.getCarIdenty());
         carEngineTv.setText("" + param.getCarEngineNo());
         carTelTv.setText(""+param.getTelePhone());
         carStatusTv.setText("" + param.getCarDriviStatus());
-        carPeriodTv.setText("" + param.getCarDate());
+        carPeriodTv.setText("" + param.getCarDate());*/
     }
 
     /**
@@ -167,7 +166,7 @@ public class CarActivity extends BaseActivity<CarPresent,CarModel> implements Ca
             if(Constants.REQUEST_SUCCESS.equals(param.getStatus())) {
                 carLienseTv.setText("" + param.getData().getPlateno());
                 carPersonTv.setText("" + param.getData().getName());
-                carClassesTv.setText("" + CarTypeUtil.getCarType(param.getData().getVehicletype()));
+                carClassesTv.setText("" + param.getData().getVehicletype());
                 carColorTv.setText("" + param.getData().getColor());
                 carIdentifyTv.setText("" + param.getData().getVin());
                 carEngineTv.setText("" + param.getData().getEnginno());

@@ -4,10 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 <!--1-->
-    <include layout="@layout/forget_header3"/>
+    <include layout="@layout/forget_header"/>
 <!--2-->
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/car_text_bg_high"
@@ -20,6 +18,7 @@
 
       <!--3-->
     <include layout="@layout/car_one_lay"/>
+
     <!--4-->
     <TextView
         android:layout_width="match_parent"

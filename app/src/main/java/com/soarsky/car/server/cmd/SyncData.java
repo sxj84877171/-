@@ -90,7 +90,7 @@ public class SyncData {
              * 修改罚单状态
              */
             ticket.setTerminalStatus(2);
-            TicketDb.getInstance(context).updateData(ticket);
+//            TicketDb.getInstance(context).updateData(ticket);
         }
         if(ticketList.size()==0){
             getUnSyncFamilyNum();

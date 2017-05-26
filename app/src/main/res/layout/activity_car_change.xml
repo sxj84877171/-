@@ -2,33 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#f0f0f0">
+    android:orientation="vertical">
     <!--1-->
     <include layout="@layout/car_change_header"/>
     <!--2-->
-    <View
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:background="#f0f0f0"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#e6e6e6"/>
+        android:layout_height="@dimen/car_change_top"
+        android:background="@drawable/modify_edit_bg"/>
 
     <ListView
         android:id="@+id/carListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="#f0f0f0"
-        android:dividerHeight="@dimen/half"
-        android:background="@color/white"></ListView>
+        android:layout_height="@dimen/license_text_h"
+        android:layout_weight="1"
+        android:divider="@color/grey"
+        android:dividerHeight="@dimen/half"></ListView>
 
-    <ImageView
-        android:id="@+id/carChangeSureTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/button_confirm"
-        android:layout_marginTop="118dp"
-        android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>

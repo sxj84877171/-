@@ -11,7 +11,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_content_size"
             android:text="湘A88888"
-            android:textColor="@color/black5"
+            android:textColor="@color/border"
 
             android:layout_centerVertical="true"/>
         <ImageView

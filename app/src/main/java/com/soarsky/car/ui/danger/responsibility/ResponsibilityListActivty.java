@@ -69,7 +69,7 @@ public class ResponsibilityListActivty extends BaseActivity<ResponsibilityListPr
     private static final String TAG = "ResponsibilityListActivty";
     @Override
     public int getLayoutId() {
-        return R.layout.activity_responsibilitylist3;
+        return R.layout.activity_responsibilitylist;
     }
 
     @Override

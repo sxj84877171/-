@@ -104,7 +104,7 @@ public class RoadSideOrderActivity extends BaseActivity<RoadSideOrderPresent,Roa
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_road_side_order3;
+        return R.layout.activity_road_side_order;
     }
 
     @Override

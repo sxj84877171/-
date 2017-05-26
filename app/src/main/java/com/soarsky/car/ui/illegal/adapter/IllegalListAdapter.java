@@ -98,7 +98,7 @@ public class IllegalListAdapter extends BaseAdapter{
 
             holder = new IllegalListAdapter.ViewHolder();
 
-            view = inflater.inflate(R.layout.violation_deal_item_list3, null);
+            view = inflater.inflate(R.layout.violation_deal_item_list, null);
 
             holder.dealAddresstv = (TextView) view.findViewById(R.id.dealAddresstv);
             holder.dealCenttv = (TextView) view.findViewById(R.id.dealCenttv);
@@ -140,20 +140,21 @@ public class IllegalListAdapter extends BaseAdapter{
         holder.dealMoneytv.setText(""+list.get(position).getMonery()== null?"":list.get(position).getMonery());
         holder.dealCenttv.setText(""+list.get(position).getCent()== null?"":list.get(position).getCent());
         holder.dealReasontv.setText(""+list.get(position).getInf()==null?"":list.get(position).getInf());
+        Log.d("TAG","drivers="+list.get(position).getDrivers());
 
         if(Constants.NO_REVOKE.equals(list.get(position).getSign())){
             if (Constants.REVOKEING.equals(list.get(position).getStatus())){
-//                holder.dealbtn.setBackgroundColor(context.getResources().getColor(R.color.grey));
+                holder.dealbtn.setBackgroundColor(context.getResources().getColor(R.color.grey));
                 holder.dealbtn.setText(R.string.revoking);
             }else if(Constants.REVOKED.equals(list.get(position).getStatus())){
-//                holder.dealbtn.setBackgroundColor(context.getResources().getColor(R.color.grey));
+                holder.dealbtn.setBackgroundColor(context.getResources().getColor(R.color.grey));
                 holder.dealbtn.setText(R.string.revoked);
             }else {
-//                holder.dealbtn.setBackgroundColor(context.getResources().getColor(R.color.new_bg_color));
-                holder.dealbtn.setText(R.string.pay_money1);
+                holder.dealbtn.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+                holder.dealbtn.setText(R.string.pay_money);
             }
         }else if(Constants.CAN_REVOKE.equals(list.get(position).getSign())){
-//            holder.dealbtn.setBackgroundColor(context.getResources().getColor(R.color.new_bg_color));
+            holder.dealbtn.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
             holder.dealbtn.setText(R.string.revoke_application);
         }
 

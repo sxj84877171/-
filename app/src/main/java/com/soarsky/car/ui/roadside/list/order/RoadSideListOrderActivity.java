@@ -114,7 +114,7 @@ public class RoadSideListOrderActivity extends BaseActivity<RoadSideListOrderPre
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_road_side_list_order3;
+        return R.layout.activity_road_side_list_order;
     }
 
     @Override
@@ -124,7 +124,7 @@ public class RoadSideListOrderActivity extends BaseActivity<RoadSideListOrderPre
         backLay.setOnClickListener(this);
 
         topicTv = (TextView) findViewById(R.id.topicTv);
-        topicTv.setText("待支付");
+        topicTv.setText(getString(R.string.roadsideorder));
 
 //        roadSideOrderTelLay = (RelativeLayout) findViewById(R.id.roadSideOrderTelLay);
 //        roadSideOrderTelLay.setVisibility(View.GONE);

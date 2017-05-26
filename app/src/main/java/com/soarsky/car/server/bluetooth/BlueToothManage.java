@@ -8,9 +8,7 @@ import com.soarsky.car.App;
 import com.soarsky.car.Constants;
 import com.soarsky.car.bean.Car;
 import com.soarsky.car.bean.EmptySubscriber;
-import com.soarsky.car.bean.ResponseDataBean;
 import com.soarsky.car.data.remote.server1.ApiServiceImpl;
-import com.soarsky.car.helper.RxSchedulers;
 import com.soarsky.car.server.cmd.BaseCmd;
 import com.soarsky.car.server.design.ConfirmDriverSucessCallBack;
 import com.soarsky.car.server.design.IAutoConfirmDriverListener;
@@ -19,12 +17,10 @@ import com.soarsky.car.server.design.OnCmdListener;
 import com.soarsky.car.server.design.OnConnectListener;
 import com.soarsky.car.uitl.LogUtil;
 import com.soarsky.car.uitl.SpUtil;
+import com.soarsky.car.uitl.TerminalUpdateUtil;
 
-import rx.Scheduler;
-import rx.Subscriber;
 import rx.schedulers.Schedulers;
 
-import static com.soarsky.car.Constants.DREIVER_ALIVE_TIME;
 import static com.soarsky.car.server.check.ConfirmDriverService.CHECK_IS_DRIVER_TIME;
 
 /**
@@ -101,7 +97,7 @@ public class BlueToothManage extends HandlerThread {
 
 
     /**
-     * 版本升级中
+     * 同步数据过程中  不执行驾车随行指令
      */
     private boolean isTerminalUpdate = false;
 
@@ -221,7 +217,6 @@ public class BlueToothManage extends HandlerThread {
 
         final String deviceToken = SpUtil.getPublicKey(App.getApp(),Constants.UMENG_DEVICE_TOKEN);
         if(!TextUtils.isEmpty(deviceToken)){
-
                     new ApiServiceImpl().queryUpdateTask(car.getCarNum(),deviceToken,"1").subscribeOn(Schedulers.computation())
                             .subscribe(new EmptySubscriber());
 
@@ -229,7 +224,8 @@ public class BlueToothManage extends HandlerThread {
 
         }
         isTerminalUpdate=false;
-        syncData();
+        syncDataLoop();
+
     }
 
     /**
@@ -266,6 +262,7 @@ public class BlueToothManage extends HandlerThread {
 
         @Override
         public void onFailed(String result) {
+            isTerminalUpdate=false;
             buleToothConnet.clearConnectListener();
             if (serviceConnectListener != null) {
                 serviceConnectListener.onFailed(result);
@@ -292,6 +289,11 @@ public class BlueToothManage extends HandlerThread {
         @Override
         public void onNewCmd(BaseCmd cmd) {
             buleToothDataAnalyze.setCmd(cmd);
+        }
+
+        @Override
+        public void onLoseCmd() {
+            isTerminalUpdate=false;
         }
     };
 
@@ -323,7 +325,7 @@ public class BlueToothManage extends HandlerThread {
     /**
      * 同步终端数据
      */
-    private void syncData() {
+    private void syncDataLoop() {
 //        if (isTerminalUpdate) {
 //            return;
 //        }
@@ -331,10 +333,7 @@ public class BlueToothManage extends HandlerThread {
             return;
         }
         car.setDevice(App.getApp().getiBridgeDevice());
-        setCar(car, CONNECTTYPE, Constants.CHECK_ALIVE);
-
-
-
+        syncData();
         handler.removeCallbacks(runnable);
         handler.postDelayed(runnable,
             CHECK_IS_DRIVER_TIME);
@@ -343,10 +342,28 @@ public class BlueToothManage extends HandlerThread {
 
 
 
+
+    /**
+     * 同步终端数据
+     */
+    private void syncData(){
+        if (TerminalUpdateUtil.toBytes(Constants.TermSrc) != null) {
+            //终端升级消息
+            isTerminalUpdate=true;
+            init(Constants.TERMINAL_UPDATE);
+        } else {
+             buleToothDataAnalyze. setTerminalParam();
+        }
+    }
+
+
+    /**
+     * 同步数据runable
+     */
     Runnable runnable=new Runnable() {
         @Override
         public void run() {
-            syncData();
+            syncDataLoop();
         }
     };
 
@@ -360,9 +377,16 @@ public class BlueToothManage extends HandlerThread {
         }
     }
 
+    /**
+     * 执行完同步数据指令后  开始执行驾车随行循环
+     * @param terminalUpdate
+     */
 
     public void setTerminalUpdate(boolean terminalUpdate) {
         isTerminalUpdate = terminalUpdate;
+        if(!isTerminalUpdate){
+            driverfollow();
+        }
     }
 
 
@@ -378,4 +402,42 @@ public class BlueToothManage extends HandlerThread {
     public boolean isTerminalUpdate() {
         return isTerminalUpdate;
     }
+
+
+    /**
+     * 驾车随行
+     */
+    private   void  driverfollow(){
+
+        if(!isTerminalUpdate&&App.getApp().isConfirmDriver()){
+            init(Constants.CHECK_ALIVE);
+        }
+        handler.removeCallbacks(derverFollwoRunable);
+        handler.postDelayed(derverFollwoRunable,20*1000);
+
+    }
+
+
+    /**
+     * 销毁
+     */
+    public   void destory(){
+        single=null;
+        if(handler!=null){
+            try {
+                handler.getLooper().quit();
+            }catch (Exception e){
+
+            }
+
+        }
+    }
+
+    Runnable  derverFollwoRunable=new Runnable() {
+        @Override
+        public void run() {
+            driverfollow();
+        }
+    };
+
 }

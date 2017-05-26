@@ -13,13 +13,6 @@
         <item> 我的 </item>
     </string-array>
 
-    <string-array name="new_home_title">
-        <item> 首页 </item>
-        <item> 证照 </item>
-        <item> 资讯 </item>
-        <item> 我 </item>
-    </string-array>
-
     <!--登陆-->
     <string name="logintitle">登录</string>
     <string name="username">账号 :</string>
@@ -30,7 +23,7 @@
     <string name="loginvicetory">登陆成功</string>
 
     <string name="error">参数错误</string>
-    <string name="throwable">网络链接失败,请检查网络设置</string>
+    <string name="throwable">网络链接失败</string>
     <string name="cannot_login">无法登录</string>
     <string name="upload_success">上传成功</string>
     <string name="upload_no_pic">请拍摄图片！</string>
@@ -47,12 +40,12 @@
     <string name="idnumber">身份证号 :</string>
     <string name="registertip">我已阅读并接受</string>
     <string name="warntip">GTW车辆智能管理系统用户注册协议。</string>
-    <string name="sure">注册</string>
+    <string name="sure">注册并登陆</string>
     <string name="hintpass">请设置密码</string>
     <string name="confirmpass">请再次输入新密码</string>
-    <string name="hintphone">请输入真实有效手机号码</string>
-    <string name="hintname">请输入您的真实姓名</string>
-    <string name="hintid">请输入真实的身份证号</string>
+    <string name="hintphone">请输入有效手机号码</string>
+    <string name="hintname">请输入你的真实姓名</string>
+    <string name="hintid">请输入你的身份证号</string>
     <string name="counttip">设置账号为空</string>
     <string name="codetip">设置密码为空</string>
     <string name="iscodetip">确认密码为空</string>
@@ -746,7 +739,7 @@
     <string name="no_connet_internet">请检查网络设置</string>
     <string name="no_catch_card">没有存储卡</string>
     <string name="no_find_catch_dir">没有找到储存目录</string>
-    <string name="upload_img_fail">图片上传失败</string>
+    <string name="upload_img_fail">图片上传失败,请检查网络</string>
     <string name="no_this_news">暂无此类资讯</string>
     <string name="get_data_fail">获取信息失败</string>
     <string name="cancel_record_fail">取消故障救援记录失败</string>
@@ -766,7 +759,7 @@
 
 
     <!--乘车记录-->
-    <string name="ride_record_start_auto">关闭</string>
+    <string name="ride_record_start_auto">自动开启</string>
     <string name="ride_record_start_record">乘车记录</string>
     <string name="ride_record_start_warm_tip">为保障您乘车安全，欢迎使用乘车记录功能</string>
     <string name="ride_record_start_local_car">附近的车</string>
@@ -789,7 +782,6 @@
     <string name="revoke_application">申请撤销</string>
     <string name="pay_money">交罚款</string>
     <string name="take_two_photos">请拍摄两张照片上传！</string>
-    <string name="pay_money1">去处理</string>
 
     <string name="no_deal">未处理</string>
     <string name="dealing">处理中</string>
@@ -798,7 +790,7 @@
     <string name="redealed">已复审</string>
     <string name="friend">朋友</string>
     <string name="borrow">借车</string>
-    <string name="find_pwd">忘记密码</string>
+    <string name="find_pwd">找回密码</string>right_msg
     <string name="right_msg">输入的信息不正确请重新输入</string>
     <string name="version_name">-</string>
 
@@ -807,14 +799,6 @@
     <string name="voice_no_smaller">声音不能再小了！</string>
     <string name="start_permision_fail">该手机不能打开此界面</string>
     <string name="kefu">客服模块正在规划中</string>
-    <string name="electronic">电子证照</string>
-    <string name="wonderful_news">精彩资讯</string>
-    <string name="feed_back">意见反馈</string>
-    <string name="seting">设置</string>
-    <string name="modify_phone_num">修改手机号码</string>
 
-    <string name="traffic_safe">交通安全</string>
-    <string name="car_care">车辆保养</string>
-    <string name="traffic_rule">交通法规</string>
-    <string name="payattention">网络可能不好，请稍后再试</string>
+
 </resources>

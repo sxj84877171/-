@@ -89,7 +89,9 @@ public class CarDetailsActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        carnum = getIntent().getStringExtra("carnum");
+        Intent intent=getIntent();
+        Bundle bundle=intent.getExtras();
+        carnum = bundle.getString("carnum");
     }
 
     @Override

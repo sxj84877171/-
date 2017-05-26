@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.soarsky.car.ui.drivrecord.map.DrivingRecordMapActivity">
-    <include layout="@layout/forget_header3" android:id="@+id/header"/>
+    <include layout="@layout/forget_header" android:id="@+id/header"/>
 
     <RelativeLayout
         android:id="@+id/rl_date"

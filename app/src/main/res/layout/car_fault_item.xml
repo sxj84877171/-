@@ -8,32 +8,32 @@
         android:layout_height="@dimen/qiqi">
     <ImageView
         android:id="@+id/iv_warm"
-        android:layout_width="26dp"
-        android:layout_height="25.5dp"
+        android:layout_width="@dimen/erliu"
+        android:layout_height="@dimen/erliu"
         android:src="@mipmap/warm"
-        android:layout_marginTop="25.5dp"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/violation_text_pad_right"/>
 
         <TextView
-            android:layout_marginLeft="14dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginLeft="@dimen/dialog_text_size"
+            android:layout_marginTop="@dimen/item_iv_height"
             android:layout_toRightOf="@+id/iv_warm"
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/licenseendtime"
             android:textSize="@dimen/car_alarm_search_text_size"
-            android:textColor="@color/black5"
+            android:textColor="@color/border"
             />
         <TextView
-            android:textColor="@color/black5"
+            android:textColor="@color/border"
             android:layout_marginLeft="@dimen/dialog_text_size"
             android:id="@+id/tv_port"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fault_port"
             android:layout_below="@+id/tv_date"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/car_position_text_high"
             android:textSize="@dimen/fault_size"
             android:layout_toRightOf="@+id/iv_warm"/>
         <TextView
@@ -46,13 +46,13 @@
             android:layout_marginTop="@dimen/car_position_text_high"
             android:textSize="@dimen/fault_size"
             android:layout_toRightOf="@+id/tv_port"/>
-    <!--<ImageView
+    <ImageView
         android:layout_width="@dimen/yiqi"
         android:layout_height="@dimen/yiqi"
         android:src="@mipmap/to"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/yisan"
-        android:layout_centerVertical="true"/>-->
+        android:layout_centerVertical="true"/>
     <!--<View
         android:layout_width="match_parent"
         android:layout_height="@dimen/half"

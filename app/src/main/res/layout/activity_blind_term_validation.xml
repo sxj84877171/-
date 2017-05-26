@@ -5,20 +5,20 @@
     android:orientation="vertical">
 
     <!--1-->
-    <include layout="@layout/forget_header3"/>
+    <include layout="@layout/forget_header"/>
 
     <!--2-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/blind_validation_top_high" />
     <!--3-->
-    <include layout="@layout/code_edit_lay_out3"/>
+    <include layout="@layout/code_edit_lay_out"/>
     <!--4-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/blind_validation_edit_top_high" />
     <!--5-->
-    <include layout="@layout/is_code_edit_lay_out3"/>
+    <include layout="@layout/is_code_edit_lay_out"/>
     <!--6-->
     <LinearLayout
         android:layout_width="match_parent"

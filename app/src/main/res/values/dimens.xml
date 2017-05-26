@@ -663,8 +663,6 @@
 
     <dimen name="ride_record_start_iv_height">269.5dp</dimen>
     <dimen name="main_right_margintop">37dp</dimen>
-    <dimen name="ll_line_width">307dp</dimen>
-    <dimen name="license_width_bg">340dp</dimen>
 
 
 </resources>

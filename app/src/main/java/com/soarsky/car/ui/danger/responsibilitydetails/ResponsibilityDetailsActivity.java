@@ -104,7 +104,7 @@ public class ResponsibilityDetailsActivity extends BaseActivity<ResponsibilityDe
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_dangerbasemessage3;
+        return R.layout.activity_dangerbasemessage;
     }
 
     @Override

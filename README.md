@@ -235,28 +235,14 @@ com.soarsky.car.ui.violationdeal												违章处理
 com.soarsky.car.ui.violationquery												违章查询
 com.soarsky.car.uitl															包含一些常用的工具包				
 
-
-~~~
-
-
-~~~
 说明API
 更多说明，请按照如下操作：
-1. git clone http://192.168.100.19/gtw/Andriod_Car_App.git
+1. git clone http://192.168.100.19/gtw/android_police_app.git
 2. cd help
 3. 用浏览器打开index.html
 所有的类和方法注释都可以查看
-~~~
 
-## 编译
-* 安装好JDK1.8， 把JDK环境变量配置好。
-* 进入项目目录，打开cmd 命令窗口，windows 按 window键+ R键 
-* 输入cmd 回车
-* cd 进入代码跟目录
-* 执行 gradlew clean 在linux下面 执行./gradlew clean
-* 上个命令执行完成后，执行gradlew build   在linux下面 执行./gradlew build
-* 执行成功后，在../app/build/output/apk/ 目前下会生成两个APP，一个debug 版本，一个release版本。
-* release是签名版本。
+~~~
 
 ## 参考信息 
 请参阅http://android.developer.com/

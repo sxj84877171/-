@@ -5,38 +5,30 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent">
-    <include layout="@layout/forget_header3" android:id="@+id/header"/>
+    <include layout="@layout/forget_header" android:id="@+id/header"/>
     <com.baidu.mapapi.map.MapView
         android:id="@+id/bmapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="7"
         android:clickable="true" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/new_bg_color"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/new_bg_color"
-        android:layout_marginTop="2dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="71dp">
+        android:layout_weight="1"
+        android:layout_height="@dimen/car_location_rl_height">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="15sp"
-            android:textColor="@color/black5"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="14dp"
+            android:text="@string/car_location_where_car_locat"
+            android:textSize="@dimen/car_location_text_size"
+            android:textColor="@color/border"
+            android:layout_marginLeft="@dimen/car_location_text_margin_left"
+            android:layout_marginTop="@dimen/car_location_text_margin_top"
             android:id="@+id/dangqianweizhi"/>
         <ImageView
             android:id="@+id/dangqianweizhiimg"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="@dimen/car_location_iv_margin_top"
             android:layout_alignLeft="@+id/dangqianweizhi"
             android:layout_below="@+id/dangqianweizhi"
             android:layout_width="14dp"
@@ -49,7 +41,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="@dimen/car_location_juli_text_size"
-            android:textColor="@color/swipelayout_text"
+            android:textColor="@color/newborder"
             android:layout_marginLeft="@dimen/car_location_text_margin_right"
             android:layout_alignBottom="@+id/dangqianweizhiimg"
             android:id="@+id/juli"/>
@@ -59,8 +51,8 @@
             android:text="@string/car_location_car_locat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="@color/black5"
+            android:textSize="@dimen/car_location_text_size"
+            android:textColor="@color/border"
             android:layout_alignBottom="@+id/dangqianweizhiimg"
             android:layout_marginLeft="@dimen/car_location_iv_height"
             android:id="@+id/carPosition" />

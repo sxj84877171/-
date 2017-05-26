@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.soarsky.car.base.BaseModel;
 import com.soarsky.car.data.local.db.bean.FamilyNum;
-import com.soarsky.car.data.local.db.FamilyNumDb;
+import com.soarsky.car.ui.family.FamilyNumDb;
 
 import java.util.List;
 

@@ -18,7 +18,7 @@ public class CarLocationPresent extends BasePresenter<CarLocationModel,CarLocati
     }
 
     public void getCarLocation(String carNum) {
-        mView.showProgess();
+
         mModel.getCarLocation(carNum).subscribe(new Subscriber<ResponseDataBean<CarLocationBean>>() {
             @Override
             public void onCompleted() {
@@ -27,13 +27,11 @@ public class CarLocationPresent extends BasePresenter<CarLocationModel,CarLocati
 
             @Override
             public void onError(Throwable e) {
-                mView.stopProgess();
                 mView.onError();
             }
 
             @Override
             public void onNext(ResponseDataBean<CarLocationBean> carLocationBean) {
-                mView.stopProgess();
                 if (carLocationBean.getData()!=null){
                     LatLng latLng = new LatLng(Double.parseDouble(carLocationBean.getData().getLat()),Double.parseDouble(carLocationBean.getData().getLon()));
                     mView.showCarLocation(latLng);

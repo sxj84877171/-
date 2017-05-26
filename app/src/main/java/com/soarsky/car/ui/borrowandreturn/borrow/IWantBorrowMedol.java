@@ -7,7 +7,7 @@ import com.soarsky.car.base.BaseModel;
 import com.soarsky.car.bean.CheckBorrowCar;
 import com.soarsky.car.bean.ResponseDataBean;
 import com.soarsky.car.helper.RxSchedulers;
-import com.soarsky.car.data.local.db.FamilyNumDb;
+import com.soarsky.car.ui.family.FamilyNumDb;
 
 import rx.Observable;
 

@@ -14,7 +14,7 @@ import com.soarsky.car.server.check.ConfirmDriverService;
 import com.soarsky.car.server.design.IScan;
 import com.soarsky.car.server.design.OnCarScanedListener;
 import com.soarsky.car.server.design.OnConnectListener;
-import com.soarsky.car.data.local.db.FamilyNumDb;
+import com.soarsky.car.ui.family.FamilyNumDb;
 import com.soarsky.car.uitl.LogUtil;
 
 import java.util.List;

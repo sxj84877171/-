@@ -58,7 +58,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/background"
+                android:background="@color/grey"
                 android:layout_marginLeft="@dimen/car_text_margin_left">
 
             </LinearLayout>
@@ -79,15 +79,11 @@
             android:layout_width="@dimen/car_icon_width"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/car_icon_margin_l">
-
             <ImageView
                 android:layout_width="@dimen/car_icon_width_high"
                 android:layout_height="@dimen/car_icon_width_high"
                 android:src="@mipmap/model_car"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:id="@+id/imageView2" />
+                android:layout_centerInParent="true"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -128,7 +124,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/background"
+                android:background="@color/grey"
                 android:layout_marginLeft="@dimen/car_text_margin_left">
 
             </LinearLayout>
@@ -192,7 +188,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/background"
+                android:background="@color/grey"
                 android:layout_marginLeft="@dimen/car_text_margin_left">
 
             </LinearLayout>
@@ -211,15 +207,11 @@
             android:layout_width="@dimen/car_icon_width"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/car_icon_margin_l">
-
             <ImageView
                 android:layout_width="@dimen/car_icon_width_high"
                 android:layout_height="@dimen/car_icon_width_high"
                 android:src="@mipmap/total_cent"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/imageView3" />
+                android:layout_centerInParent="true"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -260,7 +252,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/background"
+                android:background="@color/grey"
                 android:layout_marginLeft="@dimen/car_text_margin_left">
 
             </LinearLayout>

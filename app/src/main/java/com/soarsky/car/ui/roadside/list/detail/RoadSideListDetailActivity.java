@@ -108,7 +108,7 @@ public class RoadSideListDetailActivity extends BaseActivity<RoadSideListDetailP
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_road_side_list_detail3;
+        return R.layout.activity_road_side_list_detail;
     }
 
     @Override

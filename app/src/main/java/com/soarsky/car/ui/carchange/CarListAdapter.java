@@ -159,9 +159,9 @@ public class CarListAdapter extends BaseAdapter{
 
         ViewHolder holder = (ViewHolder) view.getTag();
         if(selectedPosition == position){
-            holder.imageView.setImageResource(R.mipmap.selected_gou);
+            holder.imageView.setImageResource(R.mipmap.selected_);
         }else{
-            holder.imageView.setImageResource(R.mipmap.gou_grey);
+            holder.imageView.setImageResource(R.mipmap.no_selected);
         }
     }
 

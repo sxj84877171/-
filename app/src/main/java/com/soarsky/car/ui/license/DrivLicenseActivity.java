@@ -164,7 +164,7 @@ public class DrivLicenseActivity extends BaseActivity<DriviLicensePresent,DriviL
                 licenseDistanceTv.setText(param.getData().getDistance());
                 licenseCentTv.setText(param.getData().getScore());
                 licenseDateTv.setText(roundCleanDate(param.getData().getClearDate()));
-                licenseStateTv.setText("" + param.getData().getStatus());
+                licenseStateTv.setText(param.getData().getStatus().equals("0")?"正常":"注销");
 
                 SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date d = null;

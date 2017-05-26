@@ -7,13 +7,17 @@ import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.soarsky.car.App;
@@ -68,12 +72,22 @@ public class MoveCarActivity extends BaseActivity<MoveCarPresent,MoveCarModel> i
      * 确定按钮
      */
     private Button button;
-
+    /**
+     * 删除按钮
+     */
+    private ImageView iv_delete;
+    /**
+     * 搜索框编辑
+     */
+    private EditText editText;
     /**
      * 车的集合
      */
     private List<Car> listCar=new ArrayList<>();
-
+    /**
+     * 无搜索结果
+     */
+    private RelativeLayout rl_no_result;
     /**
      * 确认驾驶员服务
      */
@@ -109,10 +123,12 @@ public class MoveCarActivity extends BaseActivity<MoveCarPresent,MoveCarModel> i
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(this);
 
+        iv_delete = (ImageView) findViewById(R.id.iv_delete);
+        iv_delete.setOnClickListener(this);
 
-
-
-
+        rl_no_result = (RelativeLayout) findViewById(R.id.rl_no_result);
+        editText = (EditText) findViewById(R.id.editText);
+        search();
 
 
         listView = (ListView) findViewById(R.id.listView);
@@ -129,7 +145,7 @@ public class MoveCarActivity extends BaseActivity<MoveCarPresent,MoveCarModel> i
                     adapter.setSelectedPosition(i);
                     isSelected = false;
                     button.setVisibility(View.VISIBLE);
-                    button.setBackgroundColor(Color.parseColor("#5f95ff"));
+                    button.setBackgroundColor(Color.parseColor("#f8c120"));
                 }else {
                     adapter.setSelectedPosition(-1);
                     isSelected = true;
@@ -165,6 +181,49 @@ public class MoveCarActivity extends BaseActivity<MoveCarPresent,MoveCarModel> i
         mPresenter.setIsAuto(true);
     }
 
+    /**
+     * 搜索
+     */
+    private void search() {
+        //编辑输入框的监听
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                iv_delete.setVisibility(View.VISIBLE);
+                String edit = editText.getText().toString().trim();
+
+                List<Car> _list = new ArrayList<Car>();
+                for(Car car : listCar){
+                    if (car.getCarNum() == null){
+                        return;
+                    }else {
+                        if(car.getCarNum().contains(edit)){
+                            _list.add(car);
+                        }else {}
+                    }
+                }
+                if (_list.size() <= 0){
+                    rl_no_result.setVisibility(View.VISIBLE);
+                    button.setVisibility(View.GONE);
+                }else {
+                    rl_no_result.setVisibility(View.GONE);
+                }
+                adapter.setData(_list);
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+    }
+
     @Override
     protected String getHeaderTitle() {
         return null;
@@ -176,6 +235,9 @@ public class MoveCarActivity extends BaseActivity<MoveCarPresent,MoveCarModel> i
             case R.id.backView:
             case R.id.backLay:
                 finish();
+                break;
+            case R.id.iv_delete:
+            editText.getText().clear();
                 break;
             case R.id.button:
                 if (adapter.getSelectedPosition() == -1){
@@ -207,7 +269,7 @@ public class MoveCarActivity extends BaseActivity<MoveCarPresent,MoveCarModel> i
             mPresenter.listen();
             mPresenter.setIsAuto(false);
             mPresenter.setActivityAlive(true);
-            confirmDriverService.clearDervice();
+            confirmDriverService.clearMoveCarDervice();
         }
 
         @Override
@@ -236,7 +298,9 @@ public class MoveCarActivity extends BaseActivity<MoveCarPresent,MoveCarModel> i
     @Override
     public void showList(List<Car> list) {
         listCar=new ArrayList<>(list);
-
+        if (listCar.size() > 0){
+            rl_no_result.setVisibility(View.GONE);
+        }
         adapter.setData(listCar);
 
     }
@@ -287,11 +351,6 @@ public class MoveCarActivity extends BaseActivity<MoveCarPresent,MoveCarModel> i
 
     @Override
     public void noticeSuccess() {
-
-
-
-
-
 
         if(isAlive) {
             runOnUiThread(new Runnable() {

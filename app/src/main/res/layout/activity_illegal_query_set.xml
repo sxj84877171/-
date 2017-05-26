@@ -5,16 +5,16 @@
     android:orientation="vertical">
 
     <!--1-->
-    <include layout="@layout/forget_header3"/>
+    <include layout="@layout/forget_header"/>
     
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/dagercompensate_tab_height" />
 
     <!--3-->
-    <include layout="@layout/code_edit_lay_out3"/>
+    <include layout="@layout/code_edit_lay_out"/>
 
-    <include layout="@layout/is_code_edit_lay_out3"/>
+    <include layout="@layout/is_code_edit_lay_out"/>
 
     <TextView
         android:layout_width="match_parent"

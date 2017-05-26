@@ -12,7 +12,6 @@ import com.soarsky.car.base.BaseFragment;
 import com.soarsky.car.bean.FaultRecordDataBean;
 import com.soarsky.car.bean.FaultRecordInfo;
 import com.soarsky.car.bean.ResponseDataBean;
-import com.soarsky.car.ui.usecarrecord.FaultRecordExpandadapter;
 import com.soarsky.car.uitl.ToastUtil;
 
 import java.util.ArrayList;
@@ -52,7 +51,7 @@ public class FaultRecordFragment extends BaseFragment<FaultRecordFragmentPresent
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_fault_record3;
+        return R.layout.fragment_fault_record;
     }
 
     @Override

@@ -63,7 +63,7 @@ public class RoadSideListAdapter extends BaseAdapter{
         RoadSideListAdapter.ViewHolder holder = null;
         if(view == null){
             holder = new ViewHolder();
-            view = inflater.inflate(R.layout.road_side_sever_list_item3,null);
+            view = inflater.inflate(R.layout.road_side_sever_list_item,null);
             holder.roadSideSeverItemView = (ImageView) view.findViewById(R.id.roadSideSeverItemView);
             holder.roadSideSeverListItemFeeTv = (TextView) view.findViewById(R.id.roadSideSeverListItemFeeTv);
             holder.roadSideSeverListItemNameTv = (TextView) view.findViewById(R.id.roadSideSeverListItemNameTv);
@@ -85,10 +85,8 @@ public class RoadSideListAdapter extends BaseAdapter{
         String state ="";
         if("0".equals(list.get(position).getStatus())){
             state =context.getResources().getString(R.string.roadsidedeal);
-            holder.roadSideSeverListItemStateTv.setTextColor(context.getResources().getColor(R.color.new_bg_color));
         }else {
             state =context.getResources().getString(R.string.roadsidefinish);
-            holder.roadSideSeverListItemStateTv.setTextColor(context.getResources().getColor(R.color.black2));
         }
         holder.roadSideSeverListItemStateTv.setText(state);
     }

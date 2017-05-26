@@ -3,9 +3,9 @@ package com.soarsky.car.ui.carchange;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.soarsky.car.App;
 import com.soarsky.car.Constants;
@@ -38,7 +38,7 @@ public class CarChangeActivity extends BaseActivity<CarChangePresent,CarChangeMo
     /**
      * 切换确定
      */
-    private ImageView carChangeSureTv;
+    private TextView carChangeSureTv;
     /**
      * 返回
      */
@@ -80,7 +80,7 @@ public class CarChangeActivity extends BaseActivity<CarChangePresent,CarChangeMo
         app = (App)getApplication();
         app.addActivity(TAG,this);
 
-        carChangeSureTv = (ImageView) findViewById(R.id.carChangeSureTv);
+        carChangeSureTv = (TextView) findViewById(R.id.carChangeSureTv);
         carChangeSureTv.setOnClickListener(this);
 
         backLay = (LinearLayout) findViewById(R.id.backLay);

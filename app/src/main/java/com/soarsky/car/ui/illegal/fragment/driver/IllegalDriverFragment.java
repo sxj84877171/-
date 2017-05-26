@@ -93,7 +93,7 @@ public class IllegalDriverFragment extends BaseFragment<IllegalDriverFragmentPre
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_illegal_personal3;
+        return R.layout.fragment_illegal_personal;
     }
 
     @Override

@@ -50,7 +50,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@mipmap/check_down"
+                    android:background="@mipmap/map_route_plan_icon"
                     android:layout_centerInParent="true"
                     android:visibility="gone"/>
 
@@ -106,7 +106,7 @@
                         android:id="@+id/mapRoutePlanDistanceTv"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textColor="@color/new_bg_color"
+                        android:textColor="@color/colorAccent"
                         android:textSize="@dimen/car_location_text_size"
                         />
 
@@ -134,7 +134,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text=""
-                        android:textColor="@color/new_bg_color"
+                        android:textColor="@color/colorAccent"
                         android:textSize="@dimen/car_location_text_size"
                         android:gravity="left|center"/>
                     <TextView

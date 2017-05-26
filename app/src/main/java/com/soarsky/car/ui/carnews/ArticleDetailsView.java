@@ -2,6 +2,7 @@ package com.soarsky.car.ui.carnews;
 
 import com.soarsky.car.base.BaseView;
 import com.soarsky.car.bean.AutomotiveInfo;
+import com.soarsky.car.bean.ResponseDataBean;
 import com.soarsky.car.data.local.db.bean.ArticleCollect;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public interface ArticleDetailsView extends BaseView{
      * 请求成功
      * @param automotiveInfoResponseDataBean 汽车资讯的实体类
      */
-    public void showSuccess(AutomotiveInfo automotiveInfoResponseDataBean);
+    public void showSuccess(ResponseDataBean<AutomotiveInfo> automotiveInfoResponseDataBean);
     /**
      * 向数据库插入一条数据失败
      */

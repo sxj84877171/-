@@ -43,7 +43,9 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
-
+import com.hyphenate.chat.ChatClient;
+import com.hyphenate.helpdesk.easeui.util.IntentBuilder;
+import com.hyphenate.helpdesk.model.ContentFactory;
 import com.soarsky.car.App;
 import com.soarsky.car.CommonParam;
 import com.soarsky.car.Constants;
@@ -72,6 +74,7 @@ import com.soarsky.car.ui.borrowandreturn.BorrowCarAndReturnActivity;
 import com.soarsky.car.ui.callphone.PermissionCheck;
 import com.soarsky.car.ui.carchange.CarChangeActivity;
 import com.soarsky.car.ui.carlocation.lovecar.CarLocationActivity;
+import com.soarsky.car.ui.carnews.CarNewsActivity;
 import com.soarsky.car.ui.danger.start.DangerStartActivity;
 import com.soarsky.car.ui.family.familynum.FamilyNumActivity;
 import com.soarsky.car.ui.family.familynumupdate.FamilyNumUpdateActivity;
@@ -141,7 +144,7 @@ import static com.soarsky.car.ConstantsUmeng.SERVICE;
 import static com.soarsky.car.ConstantsUmeng.SWITCH_CAR;
 import static com.soarsky.car.ConstantsUmeng.VOICE_SETTING;
 
-public class MainActivity extends BaseActivity<MainPresent, MainModel> implements MainView, View.OnClickListener, BDLocationListener,EasyPermissions.PermissionCallbacks {
+public class MainActivity extends BaseActivity<MainPresent, MainModel> implements MainView, View.OnClickListener, BDLocationListener, EasyPermissions.PermissionCallbacks {
     /**
      * 常量--从相册选择照片
      */
@@ -534,25 +537,27 @@ public class MainActivity extends BaseActivity<MainPresent, MainModel> implement
         if (SpUtil.get(Constants.IMAGE_URL) != null && !("".equals(SpUtil.get(Constants.IMAGE_URL)))) {
             ImageUtil.loadImg(cover_user_photo, SpUtil.get(Constants.IMAGE_URL));
         }
+
+        mPresenter.initData();
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        // 不需要每次回到页面就重新获取这些信息。只需要应用程序打开时，更新一次，修改by Elvis
-//        mPresenter.initData();
-        mPresenter.changeCarText(tv_car_num,tv_id_card_num);
+        mPresenter.changeCarText(tv_car_num, tv_id_card_num);
 
         /**
          * 绑定服务
          */
         startService();
-
         Scan.getInstance(this);
-
         mainMapView.onResume();
+
+        if (confirmDriverService != null && !App.getApp().isConfirmDriver()) {
+            confirmDriverService.setAuto(true);
+        }
+
     }
 
     @Override
@@ -568,7 +573,7 @@ public class MainActivity extends BaseActivity<MainPresent, MainModel> implement
         if (serviceIntent != null) {
             LogUtil.i(getString(R.string.stop_service));
             stopService(serviceIntent);
-            serviceIntent=null;
+            serviceIntent = null;
         }
         //退出时销毁定位
         mLocationClient.stop();
@@ -658,12 +663,14 @@ public class MainActivity extends BaseActivity<MainPresent, MainModel> implement
                 break;
             case R.id.mainCarInfoLay:
                 MobclickAgent.onEvent(MainActivity.this, CAR_NEWS);
+                startActivity(new Intent(MainActivity.this, CarNewsActivity.class));
                 break;
 
             case R.id.driver_card:
                 MobclickAgent.onEvent(MainActivity.this, DRIVER_CARD);
                 //行驶证详情
                 startActivity(new Intent(MainActivity.this, DrivingLicenseInformationActivity.class));
+
                 break;
             case R.id.id_card:
                 MobclickAgent.onEvent(MainActivity.this, ID_CARD);
@@ -691,37 +698,53 @@ public class MainActivity extends BaseActivity<MainPresent, MainModel> implement
                 startActivity(new Intent(MainActivity.this, IllegalManageActivity.class));
                 break;
             case R.id.rl_exit:
-                MobclickAgent.onEvent(MainActivity.this, EXIT);
-                //退出账号
-                if (app.isOnline() == true) {
-
-                    new AlertDialog.Builder(mContext).setTitle(mContext.getString(R.string.back_title))
+                if (app.isConfirmDriver()) {
+                    new AlertDialog.Builder(mContext).setTitle("请先退出驾驶员！")
                             .setPositiveButton(mContext.getString(R.string.back_sure), new DialogInterface.OnClickListener() {
 
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     // 点击“确认”后的操作
-                                    app.setOnline(false);
-//                                    SpUtil.save(Constants.CONS_USERNAME,"");
-                                    SpUtil.saveUserName(MainActivity.this, "");
-
-                                    App.getApp().setConfirmDriver(false);
-                                    //app.exit();
-
-                                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                                    MobclickAgent.onProfileSignOff();
-                                    finish();
 
                                 }
                             })
-                            .setNegativeButton(mContext.getString(R.string.back_cancel), new DialogInterface.OnClickListener() {
+                            .show();
+                } else {
 
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // 点击“返回”后的操作,这里不设置没有任何操作
-                                }
-                            }).show();
+                    MobclickAgent.onEvent(MainActivity.this, EXIT);
+                    //退出账号
+                    if (app.isOnline() == true) {
+                        new AlertDialog.Builder(mContext).setTitle(mContext.getString(R.string.back_title))
+                                .setPositiveButton(mContext.getString(R.string.back_sure), new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // 点击“确认”后的操作
+                                        app.setOnline(false);
+//                                    SpUtil.save(Constants.CONS_USERNAME,"");
+                                        SpUtil.saveUserName(MainActivity.this, "");
+
+                                        App.getApp().setConfirmDriver(false);
+                                        //app.exit();
+
+                                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                                        MobclickAgent.onProfileSignOff();
+                                        finish();
+
+                                    }
+                                })
+                                .setNegativeButton(mContext.getString(R.string.back_cancel), new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // 点击“返回”后的操作,这里不设置没有任何操作
+                                    }
+                                }).show();
+                    }
+
                 }
+
+
                 break;
             case R.id.rl_setting:
                 MobclickAgent.onEvent(MainActivity.this, PWD_SETTING);
@@ -734,6 +757,42 @@ public class MainActivity extends BaseActivity<MainPresent, MainModel> implement
                 MobclickAgent.onEvent(MainActivity.this, SERVICE);
                 //客服
 
+//                new AlertDialog.Builder(mContext).setTitle(R.string.kefu)
+//                        .setNegativeButton(R.string.exit_cancel, new DialogInterface.OnClickListener() {
+//
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                // 点击“返回”后的操作,这里不设置没有任何操作
+//                            }
+//                        }).show();
+                if (ChatClient.getInstance().isLoggedInBefore()) {
+                    //已经登录，可以直接进入会话界面
+//                    Intent intent = new IntentBuilder(MainActivity.this)
+//                    .setServiceIMNumber("kefuchannelimid_303887") //获取地址：kefu.easemob.com，“管理员模式 > 渠道管理 > 手机APP”页面的关联的“IM服务号”
+//                    .setShowUserNick(false)
+//                           .setVisitorInfo(new VisitorInfo())
+//                            .build();
+//
+//                    startActivity(intent);
+
+
+                    Intent intent1 = new IntentBuilder(this)
+                            .setServiceIMNumber("客服")
+                            .setVisitorInfo(ContentFactory.createVisitorInfo(null)
+                                    .companyName("客服")
+                                    .email("13544204367@163.com")
+                                    .qq("12345")
+                                    .name("visitor_" + "客服")
+                                    .nickName("nick_" + "客服"))
+
+                            .build();
+                    startActivity(intent1);
+
+                } else {
+                    //未登录，需要登录后，再进入会话界面
+                    ToastUtil.show(this, "未登录，需要登录后，再进入会话界面");
+
+                }
                 break;
             case R.id.rl_picture:
                 MobclickAgent.onEvent(MainActivity.this, PICTURE);
@@ -1238,12 +1297,13 @@ public class MainActivity extends BaseActivity<MainPresent, MainModel> implement
 //                }
 
                 List<ViolationDealIlist> list = violationDealParam.getData().getIlist();
-                if(list != null){
+                if (list != null) {
 
-                    if(IllegalUtils.JudgeNotIllegal(list)>0){
+                    if (IllegalUtils.JudgeNotIllegal(list) > 0) {
                         num_bar.setVisibility(View.VISIBLE);
+                        num_bar.setText("" + violationDealParam.getData().getDealCount());
                         mPresenter.showNotification(this, IllegalUtils.JudgeNotIllegal(list));
-                    }else {
+                    } else {
                         num_bar.setVisibility(View.GONE);
                     }
                 }
@@ -1470,8 +1530,9 @@ public class MainActivity extends BaseActivity<MainPresent, MainModel> implement
         //intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);    //通过尝试这个flag符合
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
-        }{
-            ToastUtil.show(this,R.string.un_get_permission);
+        }
+        {
+            ToastUtil.show(this, R.string.un_get_permission);
         }
     }
 
@@ -1715,7 +1776,7 @@ public class MainActivity extends BaseActivity<MainPresent, MainModel> implement
                         App.getApp().setConfirmDriver(false);
                         driverCarnum.setText(getString(R.string.i_am_driver));
 
-                        TicketUpLoad ticketUpLoad=new TicketUpLoad(mContext);
+                        TicketUpLoad ticketUpLoad = new TicketUpLoad(mContext);
                         ticketUpLoad.uploadData();
 
 

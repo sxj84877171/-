@@ -12,6 +12,8 @@ import android.util.Log;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.soarsky.car.App;
 import com.soarsky.car.CommonParam;
 import com.soarsky.car.Constants;
@@ -22,6 +24,7 @@ import com.soarsky.car.bean.CheckVersionBean;
 import com.soarsky.car.bean.DriviLicenseSendParam;
 import com.soarsky.car.bean.DrivingLicenseInfo;
 import com.soarsky.car.bean.DrivingLicenseInformationDataBean;
+import com.soarsky.car.bean.FamilyNumIlistBean;
 import com.soarsky.car.bean.LicenseInfo;
 import com.soarsky.car.bean.QueryFamilyBean;
 import com.soarsky.car.bean.QueryFamilySendParam;
@@ -41,6 +44,7 @@ import com.soarsky.car.uitl.SpUtil;
 import com.soarsky.car.uitl.TimeUtils;
 import com.soarsky.car.uitl.ToastUtil;
 
+import java.lang.reflect.Array;
 import java.net.Socket;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -72,6 +76,7 @@ public class MainPresent extends BasePresenter<MainModel, MainView> {
 
     private ConnectCar connectCar;
     private App app ;
+    Gson gson = new Gson();
 
     @Override
     public void onStart() {
@@ -102,8 +107,8 @@ public class MainPresent extends BasePresenter<MainModel, MainView> {
 
         mView.initViewData(commonParam);
 
-        // 不需要每次回到页面就重新获取这些信息。只需要应用程序打开时，更新一次，修改by Elvis
-        initData();
+
+
     }
 
 
@@ -120,12 +125,12 @@ public class MainPresent extends BasePresenter<MainModel, MainView> {
         p.setVerCode(Constants.VerCode);
         getElecDriver(p);
 
-
         //获取违章信息条数
         ViolationDealSendParam pp = new ViolationDealSendParam();
         pp.setCarnum(app.getCommonParam().getCarNum());
         violationDeal(pp);
 
+        initFamilyPhoneNum();
     }
 
     /***
@@ -263,7 +268,26 @@ public class MainPresent extends BasePresenter<MainModel, MainView> {
         }
     }
 
+    /**
+     * 与终端连接监听
+     */
+    private void  connectVolumeListen(){
+        mModel.setVolumeListener(new OnVolumeListener() {
+            @Override
+            public void onVolumeSuccess(WifiTransfer transfer,Socket socket) {
+                mView.stopProgess();
+                mView.connectSuccess(transfer,socket);
+            }
 
+            @Override
+            public void onVolumeFailed() {
+
+                mView.stopProgess();
+                mView.connectFail();
+
+            }
+        });
+    }
 
 
     /**
@@ -274,6 +298,7 @@ public class MainPresent extends BasePresenter<MainModel, MainView> {
     public void  sendApply(Car car, int type){
 
         mView.showProgess();
+        connectVolumeListen();
         mModel.connectCar(car,type);
     }
 
@@ -332,6 +357,12 @@ public class MainPresent extends BasePresenter<MainModel, MainView> {
             public void onError(Throwable e) {
 //                mView.stopProgess();
 //                mView.getAllCarnumFail();
+                if(SpUtil.get(Constants.CAR_LIST)!=null &&!(("").equals(SpUtil.get(Constants.CAR_LIST)))){
+
+                    List<LicenseInfo> car_list = gson.fromJson(SpUtil.get(Constants.CAR_LIST), new TypeToken<List<LicenseInfo>>(){}.getType());
+
+                    app.setCar_list(car_list);
+                }
 
             }
 
@@ -341,7 +372,16 @@ public class MainPresent extends BasePresenter<MainModel, MainView> {
 //                mView.getAllCarnumSuccess(carNumParam);
                 if(carNumParam!=null) {
                     if (Constants.REQUEST_SUCCESS.equals(carNumParam.getStatus())) {
+                        List<LicenseInfo> car_list = carNumParam.getData();
+                        SpUtil.save(Constants.CAR_LIST,gson.toJson(car_list));
                         app.setCar_list(carNumParam.getData());
+                    }
+                }else {
+                    if(SpUtil.get(Constants.CAR_LIST)!=null &&!(("").equals(SpUtil.get(Constants.CAR_LIST)))){
+
+                        List<LicenseInfo> car_list = gson.fromJson(SpUtil.get(Constants.CAR_LIST), new TypeToken<List<LicenseInfo>>(){}.getType());
+
+                        app.setCar_list(car_list);
                     }
                 }
                 getTerminalInfo(carNumParam.getData());
@@ -652,8 +692,7 @@ public class MainPresent extends BasePresenter<MainModel, MainView> {
         });
     }
 
-
-    public void changeCarText(TextView carTv, TextView dateTv){
+    public void changeCarText(TextView carTv,TextView dateTv){
 
         carTv.setText(SpUtil.get(Constants.CAR_NUM));
         try {
@@ -689,6 +728,60 @@ public class MainPresent extends BasePresenter<MainModel, MainView> {
         return day;
     }
 
+    //初始化亲情号
+    public void initFamilyPhoneNum(){
 
+
+        mRxManager.add(mModel.deleteAll().observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<Void>() {
+            @Override
+            public void onCompleted() {
+
+                QueryFamilySendParam p = new QueryFamilySendParam();
+                p.setPhone(app.getCommonParam().getOwerPhone());
+                p.setUsername(app.getCommonParam().getUserName());
+                p.setCarnum(app.getCommonParam().getCarNum());
+                mModel.queryFirendPhone(p).subscribe(new Subscriber<ResponseDataBean<QueryFamilyBean>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+
+                    }
+
+                    @Override
+                    public void onNext(ResponseDataBean<QueryFamilyBean> param) {
+
+                        for (FamilyNumIlistBean bean : param.getData().getIlist()) {
+                            FamilyNum familyNum = new FamilyNum();
+                            familyNum.setPhone(bean.getPhone());
+                            familyNum.setUsername(app.getCommonParam().getUserName());
+                            familyNum.setCarnum(app.getCommonParam().getCarNum());
+                            familyNum.setIs_owner(bean.getIsOwner());
+                            familyNum.setSstate(1);
+                            familyNum.setTstate(0);
+                            insertFamilyNum(familyNum);
+                            Log.d("TAG","insertFamilyNum");
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+                LogUtil.d("suyun",e.getMessage());
+            }
+
+            @Override
+            public void onNext(Void aVoid) {
+
+
+            }
+        }));
+    }
 
 }

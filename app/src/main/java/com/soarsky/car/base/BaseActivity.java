@@ -49,7 +49,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        StatusBarUtil.setColorNoTranslucent(this, Color.parseColor("#5f95ff"));
+        StatusBarUtil.setColorNoTranslucent(this, Color.parseColor("#f8c120"));
         PushAgent.getInstance(mContext).onAppStart();
 
         setContentView(R.layout.base_layout);

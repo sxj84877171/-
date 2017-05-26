@@ -9,13 +9,13 @@ repositories {
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    buildToolsVersion '24.0.3'
     defaultConfig {
         applicationId "com.soarsky.car"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0.1.31"
+        versionName "1.0.1.37"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -94,10 +94,8 @@ dependencies {
     compile files('libs/locSDK_6.13.jar')
     compile files('libs/MobCommons-2016.1201.1839.jar')
     compile files('libs/MobTools-2016.1201.1839.jar')
-    //compile 'com.hyphenate:kefu-easeui-android:latest.release'
-    
-
-
+    //环信客服SDK
+    compile 'com.hyphenate:kefu-easeui-android:latest.release'
 
 
     //EaseUI中 头像获取用到了glide，请添加glide库

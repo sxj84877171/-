@@ -93,7 +93,7 @@ public class PhoneStateManage {
                     } else {
                         //// TODO: 2017/1/4 通知终端
                         if (app.isConfirmDriver()) {
-                            Car car = new Car(app.getSsID());
+                            Car car = new Car(app.getiBridgeDevice());
                             car.setDangerousType(DANGEROUS_TYPE_PHONE);
                             confirmDriverService.byBluetoothSendMeeage(car,13);
                         }

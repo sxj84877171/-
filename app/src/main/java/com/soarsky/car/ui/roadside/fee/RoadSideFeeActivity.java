@@ -83,7 +83,7 @@ public class RoadSideFeeActivity extends BaseActivity<RoadSideFeePresent,RoadSid
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_road_side_fee3;
+        return R.layout.activity_road_side_fee;
     }
 
     @Override
@@ -165,19 +165,19 @@ public class RoadSideFeeActivity extends BaseActivity<RoadSideFeePresent,RoadSid
     public void switchFeeWay(int i) {
         switch (i){
             case 0:
-                alipayView.setImageResource(R.mipmap.fee_gou_d3);
-                weChatView.setImageResource(R.mipmap.fee_gou_u3);
-                unionPayView.setImageResource(R.mipmap.fee_gou_u3);
+                alipayView.setImageResource(R.mipmap.fee_gou_d);
+                weChatView.setImageResource(R.mipmap.fee_gou_u);
+                unionPayView.setImageResource(R.mipmap.fee_gou_u);
                 break;
             case 1:
-                alipayView.setImageResource(R.mipmap.fee_gou_u3);
-                weChatView.setImageResource(R.mipmap.fee_gou_d3);
-                unionPayView.setImageResource(R.mipmap.fee_gou_u3);
+                alipayView.setImageResource(R.mipmap.fee_gou_u);
+                weChatView.setImageResource(R.mipmap.fee_gou_d);
+                unionPayView.setImageResource(R.mipmap.fee_gou_u);
                 break;
             case 2:
-                alipayView.setImageResource(R.mipmap.fee_gou_u3);
-                weChatView.setImageResource(R.mipmap.fee_gou_u3);
-                unionPayView.setImageResource(R.mipmap.fee_gou_d3);
+                alipayView.setImageResource(R.mipmap.fee_gou_u);
+                weChatView.setImageResource(R.mipmap.fee_gou_u);
+                unionPayView.setImageResource(R.mipmap.fee_gou_d);
                 break;
         }
     }

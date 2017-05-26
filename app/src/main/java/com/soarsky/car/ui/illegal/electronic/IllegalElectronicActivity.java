@@ -44,10 +44,6 @@ public class IllegalElectronicActivity extends BaseActivity<IllegalElectronicPre
      */
     private TextView topicTv;
     /**
-     * 车牌号
-     */
-    private TextView illegalCarNumTv;
-    /**
      * 文书编号
      */
     private TextView illegalEleNumTv;
@@ -106,7 +102,7 @@ public class IllegalElectronicActivity extends BaseActivity<IllegalElectronicPre
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_illegal_electronic3;
+        return R.layout.activity_illegal_electronic;
     }
 
     @Override
@@ -117,7 +113,6 @@ public class IllegalElectronicActivity extends BaseActivity<IllegalElectronicPre
         topicTv = (TextView) findViewById(R.id.topicTv);
         topicTv.setText(getString(R.string.illegal_elet_tict));
 
-        illegalCarNumTv = (TextView) findViewById(R.id.illegalCarNumTv);
         illegalEleNumTv = (TextView) findViewById(R.id.illegalEleNumTv);
         illegalEleDriverNoTv = (TextView) findViewById(R.id.illegalEleDriverNoTv);
         illegalEleCarColorTv = (TextView) findViewById(R.id.illegalEleCarColorTv);
@@ -142,7 +137,7 @@ public class IllegalElectronicActivity extends BaseActivity<IllegalElectronicPre
         flag = getIntent().getIntExtra("flag",-1);
         info = (IllegalInfo) getIntent().getSerializableExtra("info");
         if(info != null){
-            illegalCarNumTv.setText(info.getCarNum() == null?"":info.getCarNum());
+
             illegalEleNumTv.setText(info.getDocumentNo()== null?"":info.getDocumentNo());
             illegalEleDriverNoTv.setText(info.getDriverNo()==null?"":info.getDriverNo());
             illegalEleTimeTv.setText(info.getTime()== null?"":info.getTime());
@@ -150,6 +145,7 @@ public class IllegalElectronicActivity extends BaseActivity<IllegalElectronicPre
             illegalEleReasonTv.setText(info.getIllegalReason()== null?"":info.getIllegalReason());
             illegalEleCentTv.setText(info.getCent());
             illegalEleFineTv.setText(info.getFee());
+
             if("0".equals(info.getPlateType())){
                 illegalEleDriverColorTv.setText(getString(R.string.driver_color1));
             }else if("1".equals(info.getPlateType())) {

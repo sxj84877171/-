@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <!--1-->
-    <include layout="@layout/forget_header3"/>
+    <include layout="@layout/forget_header"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/carnum_icon_margin_left"

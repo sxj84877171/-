@@ -13,7 +13,6 @@ import com.soarsky.car.R;
 import com.soarsky.car.base.BaseActivity;
 import com.soarsky.car.bean.ResponseDataBean;
 import com.soarsky.car.bean.RoadSideListDataBean;
-import com.soarsky.car.ui.roadside.finish.RoadSideFinishActivity;
 import com.soarsky.car.ui.roadside.list.detail.RoadSideListDetailActivity;
 import com.soarsky.car.ui.roadside.list.order.RoadSideListOrderActivity;
 import com.soarsky.car.uitl.ToastUtil;
@@ -65,7 +64,7 @@ public class RoadSideListActivity extends BaseActivity<RoadSideListPresent,RoadS
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_road_side_list3;
+        return R.layout.activity_road_side_list;
     }
 
     @Override
@@ -93,11 +92,6 @@ public class RoadSideListActivity extends BaseActivity<RoadSideListPresent,RoadS
                     intent.putExtra("id", "" + bean.getId());
                     RoadSideListActivity.this.startActivity(intent);
 //                    finish();
-                }else if(Constants.ROADSIDE_FINISH_STATUS.equals(bean.getStatus())){
-                    Intent intent = new Intent();
-                    intent.setClass(RoadSideListActivity.this, RoadSideFinishActivity.class);
-                    intent.putExtra("id", "" + bean.getId());
-                    RoadSideListActivity.this.startActivity(intent);
                 }else {
                     Intent intent = new Intent();
                     intent.setClass(RoadSideListActivity.this, RoadSideListDetailActivity.class);

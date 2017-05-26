@@ -22,14 +22,13 @@ public class Constants {
      */
 
 
-    public static final String BASE_URL = "http://119.23.17.93:80/gtw/";//"http://m.gtw.soarsky-e.com/gtw/" ;
-    // "" ;  //http://192.168.100.16:8080/182.92.158.206//"http://182.92.158.206/";//"http://119.23.17.93:80/gtw/";
+    public static final String BASE_URL ="http://119.23.17.93:80/gtw/ ";
 
     /**
      * 企业服务器文件地址
      */
 
-    public static final String BASE_URL2 = "http://112.74.173.0:8080/";//"http://f.gtw.soarsky-e.com/";
+    public static final String BASE_URL2 = "http://112.74.173.0:8080/ ";//"http://112.74.173.0:8080/";//"http://f.gtw.soarsky-e.com/";
 
 
     /**
@@ -473,7 +472,8 @@ public class Constants {
      */
     public static final int PACKAGE_LENGTH = 128;
 
-    /***
+    public static final String CAR_LIST = "car_list";
+/***
      * 友盟推送device token key 值
      */
     public static final String UMENG_DEVICE_TOKEN = "umeng_device_token";

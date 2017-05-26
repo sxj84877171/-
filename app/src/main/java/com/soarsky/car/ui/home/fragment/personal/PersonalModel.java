@@ -9,7 +9,7 @@ import com.soarsky.car.bean.ResponseDataBean;
 import com.soarsky.car.data.local.db.bean.FamilyNum;
 import com.soarsky.car.data.remote.server1.ApiM;
 import com.soarsky.car.helper.RxSchedulers;
-import com.soarsky.car.data.local.db.FamilyNumDb;
+import com.soarsky.car.ui.family.FamilyNumDb;
 
 import rx.Observable;
 

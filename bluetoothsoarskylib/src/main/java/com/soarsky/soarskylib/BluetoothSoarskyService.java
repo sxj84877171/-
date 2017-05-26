@@ -11,7 +11,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.UUID;
 
 /**
@@ -56,7 +59,7 @@ public class BluetoothSoarskyService {
         void onConnectionLost();
     }
 
-    public static class DefaultOnBluetoothEvent implements OnBluetoothEvent{
+    public static class DefaultOnBluetoothEvent implements OnBluetoothEvent {
 
         /***
          * @param bytes
@@ -99,7 +102,9 @@ public class BluetoothSoarskyService {
         public void onConnectionLost() {
 
         }
-    };
+    }
+
+    ;
 
     private List<OnBluetoothEvent> onBluetoothEventList = new ArrayList<>();
 
@@ -117,6 +122,9 @@ public class BluetoothSoarskyService {
     private ConnectThread mConnectThread;
     private ConnectedThread mConnectedThread;
     private int mState;
+
+    private static Map<String, BluetoothSoarskyService> factroy = new TreeMap<>();
+    private BluetoothDevice device;
 
     /**
      * 闲置状态
@@ -154,48 +162,57 @@ public class BluetoothSoarskyService {
     }
 
     /**
-     * 初始化
-     */
-    public synchronized void init() {
-        Log.d(TAG, "start");
-        // Cancel any thread attempting to make a connection
-        if (mConnectThread != null) {
-            mConnectThread.cancel();
-            mConnectThread = null;
-        }
-
-        // Cancel any thread currently running a connection
-        if (mConnectedThread != null) {
-            mConnectedThread.cancel();
-            mConnectedThread = null;
-        }
-    }
-
-    /**
      * 连接指定的蓝牙设备
      *
      * @param device 连接指定的蓝牙设备
      */
     public synchronized void connect(BluetoothDevice device) {
         Log.d(TAG, "connect to: " + device);
+        disConnectOther();
+        if(device != null) {
+            this.device = device;
 
-        // Cancel any thread attempting to make a connection
-        if (mState == STATE_CONNECTING) {
-            if (mConnectThread != null) {
-                mConnectThread.cancel();
-                mConnectThread = null;
+            // Cancel any thread attempting to make a connection
+            if (mState == STATE_CONNECTING) {
+                if (mConnectThread != null) {
+                    mConnectThread.cancel();
+                    mConnectThread = null;
+                }
+            }
+
+            // Cancel any thread currently running a connection
+            if (mConnectedThread != null) {
+                mConnectedThread.cancel();
+                mConnectedThread = null;
+            }
+
+            // Start the thread to connect with the given device
+            mConnectThread = new ConnectThread(device);
+            mConnectThread.start();
+        }else{
+            connectionLost();
+        }
+    }
+
+    private void disConnectOther(){
+        Iterator<String> iterator = factroy.keySet().iterator();
+        for(String device = iterator.next();;iterator.hasNext()){
+            if(factroy.get(device).getState() == STATE_CONNECTED){
+                factroy.get(device).disConnect();
             }
         }
+    }
 
-        // Cancel any thread currently running a connection
-        if (mConnectedThread != null) {
-            mConnectedThread.cancel();
-            mConnectedThread = null;
+    public static boolean isDeviceConnected(BluetoothDevice device) {
+        BluetoothSoarskyService service = factroy.get(device.getAddress());
+        if (service != null) {
+            return service.getState() == STATE_CONNECTED;
         }
+        return false;
+    }
 
-        // Start the thread to connect with the given device
-        mConnectThread = new ConnectThread(device);
-        mConnectThread.start();
+    public static BluetoothSoarskyService getBluetoothSoarskyService(BluetoothDevice device){
+        return factroy.get(device);
     }
 
 
@@ -208,7 +225,7 @@ public class BluetoothSoarskyService {
      *
      * @param socket The BluetoothSocket on which the connection was made
      */
-    public synchronized void connected(BluetoothSocket socket) {
+    private synchronized void connected(BluetoothSocket socket) {
         // Cancel the thread that completed the connection
         if (mConnectThread != null) {
             mConnectThread = null;
@@ -246,6 +263,10 @@ public class BluetoothSoarskyService {
                 }
             }
         });
+        if(device != null) {
+            factroy.remove(device);
+            device = null;
+        }
         mState = STATE_NONE;
     }
 
@@ -265,6 +286,16 @@ public class BluetoothSoarskyService {
         }
         // Perform the write unsynchronized
         r.write(out);
+    }
+
+    /**
+     * 发送数据
+     *
+     * @param out 需要发送的数据
+     * @see ConnectedThread#write(byte[])
+     */
+    public void send(byte[] out) {
+       write(out);
     }
 
     /**
@@ -304,6 +335,10 @@ public class BluetoothSoarskyService {
                 }
             }
         });
+        if(device != null) {
+            factroy.remove(device);
+            device = null;
+        }
 
         mState = STATE_NONE;
     }
@@ -420,6 +455,7 @@ public class BluetoothSoarskyService {
                 });
 
             }
+            factroy.put(device.getAddress(),BluetoothSoarskyService.this);
             mState = STATE_CONNECTED;
         }
 
@@ -457,6 +493,7 @@ public class BluetoothSoarskyService {
             try {
                 if (mmOutStream != null) {
                     mmOutStream.write(buffer);
+                    mmOutStream.flush();
                 } else {
                     throw new Exception("OutStream is null");
                 }

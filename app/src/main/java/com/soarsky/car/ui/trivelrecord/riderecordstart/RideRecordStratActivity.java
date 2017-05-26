@@ -11,9 +11,11 @@ import android.view.View;
 import com.soarsky.car.R;
 import com.soarsky.car.base.BaseActivity;
 import com.soarsky.car.server.check.ConfirmDriverService;
+import com.soarsky.car.ui.trivelrecord.autoopen.AutoOpenActivity;
 import com.soarsky.car.ui.trivelrecord.carlist.CarListActivity;
 import com.umeng.analytics.MobclickAgent;
 
+import static com.soarsky.car.ConstantsUmeng.RIDERECORD_OPEN;
 import static com.soarsky.car.ConstantsUmeng.RIDERECORD_QUIT;
 import static com.soarsky.car.ConstantsUmeng.RIDERECORD_RIDE;
 
@@ -55,7 +57,7 @@ public class RideRecordStratActivity extends BaseActivity implements View.OnClic
         findViewById(R.id.riderecord_ride).setOnClickListener(this);
         findViewById(R.id.riderecord_quit).setOnClickListener(this);
         findViewById(R.id.riderecord_black).setOnClickListener(this);
-
+        findViewById(R.id.riderecord_autoopen).setOnClickListener(this);
     }
 
     @Override
@@ -77,6 +79,10 @@ public class RideRecordStratActivity extends BaseActivity implements View.OnClic
                 MobclickAgent.onEvent(RideRecordStratActivity.this,RIDERECORD_QUIT);
                 confirmDriverService.startTrvelRecord(false);
                 finish();
+                break;
+            case R.id.riderecord_autoopen:
+                MobclickAgent.onEvent(RideRecordStratActivity.this,RIDERECORD_OPEN);
+                startActivity(new Intent(this, AutoOpenActivity.class));
                 break;
             case R.id.riderecord_black:
                 finish();

@@ -58,7 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        myViewHolder holder=new myViewHolder(LayoutInflater.from(context).inflate(R.layout.item_responsibility3,parent,false));
+        myViewHolder holder=new myViewHolder(LayoutInflater.from(context).inflate(R.layout.item_responsibility,parent,false));
 
         return holder;
     }
@@ -97,24 +97,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
         if(TextUtils.isEmpty(data.get(position).getFirstFinalAffirm())){
             if(data.get(position).getFirstAffirm().equals(NO_DUTY)){
                 affirm = context.getString(R.string.no_duty);
-                ((myViewHolder) holder).status.setBackgroundResource(R.mipmap.noduty);
             }else if(data.get(position).getFirstAffirm().equals(SAME_DUTY)){
                 affirm = context.getString(R.string.same_duty);;
-                ((myViewHolder) holder).status.setBackgroundResource(R.mipmap.sameduty);
             }else {
                 affirm = context.getString(R.string.all_duty);
-                ((myViewHolder) holder).status.setBackgroundResource(R.mipmap.allduty);
             }
         }else{
             if(data.get(position).getFirstFinalAffirm().equals(NO_DUTY)){
                 affirm = context.getString(R.string.no_duty);
-                ((myViewHolder) holder).status.setBackgroundResource(R.mipmap.noduty);
             }else if(data.get(position).getFirstFinalAffirm().equals(SAME_DUTY)){
                 affirm = context.getString(R.string.same_duty);
-                ((myViewHolder) holder).status.setBackgroundResource(R.mipmap.sameduty);
             }else {
                 affirm = context.getString(R.string.all_duty);
-                ((myViewHolder) holder).status.setBackgroundResource(R.mipmap.allduty);
             }
 
         }
@@ -123,50 +117,41 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
             if(TextUtils.isEmpty(data.get(position).getFirstFinalAffirm())){
                 if(data.get(position).getSecondAffirm().equals(NO_DUTY)){
                     affirm = context.getString(R.string.no_duty);
-                    ((myViewHolder) holder).status.setBackgroundResource(R.mipmap.noduty);
                 }else if(data.get(position).getSecondAffirm().equals(SAME_DUTY)){
                     affirm = context.getString(R.string.same_duty);;
-                    ((myViewHolder) holder).status.setBackgroundResource(R.mipmap.sameduty);
                 }else {
                     affirm = context.getString(R.string.all_duty);
-                    ((myViewHolder) holder).status.setBackgroundResource(R.mipmap.allduty);
                 }
             }else{
                 if(data.get(position).getSecondFinalAffirm().equals(NO_DUTY)){
                     affirm = context.getString(R.string.no_duty);
-                    ((myViewHolder) holder).status.setBackgroundResource(R.mipmap.noduty);
                 }else if(data.get(position).getSecondFinalAffirm().equals(SAME_DUTY)){
                     affirm = context.getString(R.string.same_duty);
-                    ((myViewHolder) holder).status.setBackgroundResource(R.mipmap.sameduty);
                 }else {
                     affirm = context.getString(R.string.all_duty);
-                    ((myViewHolder) holder).status.setBackgroundResource(R.mipmap.allduty);
                 }
 
             }
         }
 
-//        ((myViewHolder) holder).respons.setText(affirm);
+        ((myViewHolder) holder).respons.setText(affirm);
         String status ="";
         if(data.get(position).getStatus().equals(NO_DUTY)){
             status = context.getString(R.string.no_deal);
-
         }
         if(data.get(position).getStatus().equals(SAME_DUTY)){
             status = context.getString(R.string.dealing);
-
         }
         if(data.get(position).getStatus().equals(ALL_DUTY)){
             status = context.getString(R.string.dealed);
         }
         if(data.get(position).getStatus().equals(REVIEW)){
             status = context.getString(R.string.redeal);
-            ((myViewHolder) holder).status.setBackgroundResource(R.mipmap.dealduty);
         }
         if(data.get(position).getStatus().equals(REVIEWED)){
             status = context.getString(R.string.redealed);
         }
-//        ((myViewHolder) holder).status.setText(status);
+        ((myViewHolder) holder).status.setText(status);
 
         if(mOnItemClickListener!=null){
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -201,7 +186,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
             time= (TextView) itemView.findViewById(R.id.item_responsibility_time);
             address= (TextView) itemView.findViewById(R.id.item_responsibility_address);
             status= (TextView) itemView.findViewById(R.id.item_responsibility_status);
-//            respons= (TextView) itemView.findViewById(R.id.item_responsibility_respons);
+            respons= (TextView) itemView.findViewById(R.id.item_responsibility_respons);
             /*t1= (TextView) itemView.findViewById(t1);
             t2= (TextView) itemView.findViewById(t2);*/
         }

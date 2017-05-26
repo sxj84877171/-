@@ -76,6 +76,7 @@ public class BlueToothAuto extends HandlerThread {
         LogUtil.i("开始自动确认驾驶员"+Thread.currentThread().getId());
         //已经确认驾驶员
         if (App.getApp().isConfirmDriver()) {
+            carList=new ArrayList<>();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -194,15 +195,12 @@ public class BlueToothAuto extends HandlerThread {
         public void run() {
             connetIndex++;
             if (connetIndex < index) {
-
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         connet(connetIndex);
                     }
                 }, 5000);
-
-
             } else {
                 handler.postDelayed(new Runnable() {
                     @Override

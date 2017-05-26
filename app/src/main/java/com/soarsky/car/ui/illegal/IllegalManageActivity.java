@@ -1,8 +1,6 @@
 package com.soarsky.car.ui.illegal;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -64,7 +62,7 @@ public class IllegalManageActivity extends BaseActivity<IllegalManagePresent,Ill
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_illegal_manage3;
+        return R.layout.activity_illegal_manage;
     }
 
     @Override
@@ -97,49 +95,6 @@ public class IllegalManageActivity extends BaseActivity<IllegalManagePresent,Ill
             TabLayout.Tab tab = mTablayout.getTabAt(i);
             tab.setCustomView(fragmentPagerAdapter.getTabView(i));
         }
-
-
-        mTablayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-
-                switch (tab.getPosition()){
-                    case 0:
-                        Resources resource=(Resources)getResources();
-                        ColorStateList csl=(ColorStateList)resource.getColorStateList(R.color.new_bg_color);
-                        TextView tv = (TextView) tab.getCustomView().findViewById(R.id.illeagltextView);
-                        tv.setTextColor(csl);
-                        break;
-                    case 1:
-                        TextView t =(TextView)tab.getCustomView().findViewById(R.id.illeagltextView);
-                        t.setTextColor(getResources().getColor(R.color.new_bg_color));
-                        break;
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-                switch (tab.getPosition()){
-                    case 0:
-                        Resources resource=(Resources)getResources();
-                        ColorStateList csl=(ColorStateList)resource.getColorStateList(R.color.black1);
-                        TextView tv = (TextView) tab.getCustomView().findViewById(R.id.illeagltextView);
-                        tv.setTextColor(csl);
-                        break;
-                    case 1:
-                        TextView t =(TextView)tab.getCustomView().findViewById(R.id.illeagltextView);
-                        t.setTextColor(getResources().getColor(R.color.black1));
-                        break;
-                }
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
 
     }
 

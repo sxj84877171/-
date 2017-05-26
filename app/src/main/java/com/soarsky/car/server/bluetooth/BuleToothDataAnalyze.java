@@ -122,7 +122,7 @@ public class BuleToothDataAnalyze {
                 FamilyNumDb.getInstance(App.getApp()).updateData();
 
             }
-            blueToothAutoConfirmDriver.init(Constants.SYNC_TIME);
+            blueToothAutoConfirmDriver.init(Constants.READ_TROUBLE);
 
 
         }
@@ -196,13 +196,8 @@ public class BuleToothDataAnalyze {
             if (checkDriverAliveCommandResponse.isAlive()) {
                 //更新获取终端时间
                 BlueToothScan.getInstance(App.getApp()).upteTime();
-                blueToothAutoConfirmDriver.setTerminalUpdate(true);
-                if (TerminalUpdateUtil.toBytes(Constants.TermSrc) != null) {
-                    //终端升级消息
-                    blueToothAutoConfirmDriver.init(Constants.TERMINAL_UPDATE);
-                } else {
-                    setTerminalParam();
-                }
+//                blueToothAutoConfirmDriver.setTerminalUpdate(true);
+
             } else {
                 blueToothAutoConfirmDriver.driverLeave();
                 App.getApp().setConfirmDriver(false);
@@ -351,7 +346,7 @@ public class BuleToothDataAnalyze {
                 int[] ids = syncTicketCommandResponse.getIds();
                 if (null != ids) {
                     for (int i = 0; i < ids.length; i++) {
-                        TicketDb.getInstance(app).updateData(ids[i]);
+                        TicketDb.getInstance(app).updateTerminalStutus(ids[i]);
 
                     }
                 }
@@ -442,7 +437,7 @@ public class BuleToothDataAnalyze {
     /**
      * 设置终端参数
      */
-    private void setTerminalParam() {
+    public  void setTerminalParam() {
         List<ParamSet> paramSetList = ParamSetDb.getInstance(App.getApp()).getParamSetlist(0);
         if (null == paramSetList || paramSetList.size() == 0) {
             //终端参数设置

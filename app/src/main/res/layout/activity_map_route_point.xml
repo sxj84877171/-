@@ -67,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/map_route_location_set_sure"
-                    android:textColor="@color/new_bg_color"
+                    android:textColor="@color/colorAccent"
                     android:textSize="@dimen/map_route_textsize"
                     android:gravity="right|center"/>
             </LinearLayout>

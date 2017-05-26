@@ -12,13 +12,18 @@
         android:layout_gravity="center"
         android:background="@drawable/edit_text_bg">
 
-        <ImageView
-            android:layout_width="@dimen/register_icon_margin_top"
-            android:layout_height="@dimen/register_icon_margin_top"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="@dimen/register_margin"
-
-            />
+        <EditText
+            android:layout_width="@dimen/bottom"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:text="@string/username"
+            android:gravity="left|center"
+            android:paddingLeft="@dimen/login_pad_width"
+            android:textSize="@dimen/login_edit_size"
+            android:background="@null"
+            android:enabled="false"
+            android:editable="false" />
         <EditText
             android:id="@+id/UserNameEt"
             android:layout_width="@dimen/bottom"

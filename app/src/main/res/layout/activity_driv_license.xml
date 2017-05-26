@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <!--1-->
-    <include layout="@layout/forget_header3"/>
+    <include layout="@layout/forget_header"/>
 
     <!--2-->
     <RelativeLayout
@@ -29,7 +29,7 @@
                 <ImageView
                     android:layout_width="@dimen/clearedittext_margin_right"
                     android:layout_height="@dimen/clearedittext_margin_right"
-                    android:src="@mipmap/num_idcard"
+                    android:src="@mipmap/idcard"
 
                     android:layout_marginTop="@dimen/driverlicen_iv_margin"/>
                 <TextView
@@ -86,12 +86,12 @@
                     custom:donut_progress="0"
                     custom:donut_progress_distance="@dimen/donut_progress_distance"
                     custom:donut_unfinished_color="@color/grey"
-                    custom:donut_text_color="#ef4646"
+                    custom:donut_text_color="@color/red"
                     custom:donut_bottom_text_distance="@dimen/donut_bottom_text_distance"
                     custom:donut_stroke_width="@dimen/car_news_search_text_margin_top"
                     custom:donut_inner_bottom_text_color="@color/border"
                     custom:donut_inner_bottom_text_size="@dimen/car_location_juli_text_size"
-                    custom:donut_finished_color="#ef4646"
+                    custom:donut_finished_color="@color/red"
                     custom:donut_inner_bottom_text="@string/licensetotalcent"
                     />
             </LinearLayout>

@@ -20,8 +20,13 @@ import com.soarsky.car.server.cmd.BaseCmd;
 
 public interface OnCmdListener {
     /**
-     *
      * @param cmd 终端返回的数据
      */
     public void onNewCmd(BaseCmd cmd);
+
+
+    /**
+     *终端未返回数据
+     */
+    public void onLoseCmd();
 }

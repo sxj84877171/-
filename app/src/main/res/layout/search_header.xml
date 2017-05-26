@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/header_height"
 
-    android:background="@color/new_bg_color">
+    android:background="@color/header_title_bg">
     <RelativeLayout
         android:id="@+id/rl_edit"
         android:layout_width="@dimen/search_width"

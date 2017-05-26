@@ -240,7 +240,7 @@ public class CompensateActivity extends BaseActivity<CompensatePresent, Compensa
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_dangerbasemessageup3;
+        return R.layout.activity_dangerbasemessageup;
     }
 
     @Override
@@ -888,7 +888,7 @@ public class CompensateActivity extends BaseActivity<CompensatePresent, Compensa
 
 //                BitmapUtils.transImage(fileStr,fileStr1,200,100,100);
 //                BitmapUtils.transImageCompress(fileStr,fileStr1,(float) 0.35,(float)0.35,100);
-                BitmapUtils.transImageCompress(fileStr,fileStr1,(float) 0.35,(float)0.35,100);
+                BitmapUtils.transImageCompress(fileStr,fileStr1,(float) 0.3,(float)0.3,100);
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

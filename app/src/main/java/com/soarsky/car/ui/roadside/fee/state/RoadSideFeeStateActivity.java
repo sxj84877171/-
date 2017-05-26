@@ -72,7 +72,7 @@ public class RoadSideFeeStateActivity extends BaseActivity<RoadSideFeeStatePrese
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_road_side_fee_state3;
+        return R.layout.activity_road_side_fee_state;
     }
 
     @Override
@@ -106,7 +106,7 @@ public class RoadSideFeeStateActivity extends BaseActivity<RoadSideFeeStatePrese
         flag = getIntent().getIntExtra("flag",0);
         info = (IllegalInfo) getIntent().getSerializableExtra("info");
         if(info != null){
-            stateFeeCarNumTv.setText(info.getCarNum()== null?"":info.getCarNum());
+            stateFeeCarNumTv.setText(info.getDriverNo()== null?"":info.getDriverNo());
             stateFeeTimeTv.setText(info.getTime()== null?"":info.getTime());
             stateFeeAddressTv.setText(info.getAddress() == null?"":info.getAddress());
             stateFeeReasonTv.setText(info.getIllegalReason()== null?"":info.getIllegalReason());
@@ -126,7 +126,7 @@ public class RoadSideFeeStateActivity extends BaseActivity<RoadSideFeeStatePrese
 
         switch (view.getId()){
             case R.id.finishLay:
-                finish();
+                mPresenter.finishFee();
                 break;
         }
     }

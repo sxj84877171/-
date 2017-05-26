@@ -82,19 +82,11 @@ public class IllegalQueryActivity extends BaseActivity<IllegalQueryPresent,Illeg
      * 密码是否可见的标志
      */
     private boolean isPassword = false;
-    /**
-     * car省份
-     */
-    private TextView carProvinceTv;
-    /**
-     * car城市
-     */
-    private TextView carCityTv;
 
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_illegal_query3;
+        return R.layout.activity_illegal_query;
     }
 
     @Override
@@ -104,7 +96,7 @@ public class IllegalQueryActivity extends BaseActivity<IllegalQueryPresent,Illeg
         backLay.setOnClickListener(this);
 
         topicTv = (TextView) findViewById(R.id.topicTv);
-        topicTv.setText("切换车辆");
+        topicTv.setText(getString(R.string.illegal_query));
 
         illegalCarNumEt = (EditText) findViewById(R.id.illegalCarNumEt);
         illegalCarNumLay = (RelativeLayout) findViewById(R.id.illegalCarNumLay);
@@ -117,12 +109,6 @@ public class IllegalQueryActivity extends BaseActivity<IllegalQueryPresent,Illeg
         illegalPwdView = (ImageView) findViewById(R.id.illegalPwdView);
         illegalSureBtn = (Button) findViewById(R.id.illegalSureBtn);
         illegalSureBtn.setOnClickListener(this);
-
-        carProvinceTv = (TextView) findViewById(R.id.carProvinceTv);
-        carProvinceTv.setOnClickListener(this);
-
-        carCityTv = (TextView) findViewById(R.id.carCityTv);
-        carCityTv.setOnClickListener(this);
 
         illegalCarNumEt.addTextChangedListener(new TextWatcher() {
             @Override

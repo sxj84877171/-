@@ -2,188 +2,62 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#f0f0f0">
+    android:orientation="vertical">
 
-    <include layout="@layout/forget_header3"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#e6e6e6"
-        android:layout_marginTop="20dp"/>
+    <include layout="@layout/forget_header"/>
 
-    <RelativeLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white">
+        android:layout_height="@dimen/modify_bg_high"
+        android:background="@drawable/modify_edit_bg"/>
 
-        <TextView
-            android:id="@+id/text1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="旧 密 码 :"
-            android:textSize="14sp"
-            android:textColor="#333333"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/iv_useCar"
-            android:layout_marginLeft="25dp"/>
-        <EditText
-            android:id="@+id/modifyCurrentpwdEt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left|center_vertical"
-            android:textColorHint="#999999"
-            android:textColor="#333333"
-            android:textSize="14sp"
-            android:hint="请输入旧密码"
-            android:inputType="textPassword"
-            android:layout_toRightOf="@+id/text1"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:maxLength="12"
-            android:layout_weight="2"
-            android:background="@null"
-            />
-        <RelativeLayout
-            android:id="@+id/modifyCurrentpwdLay"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp">
-            <ImageView
-                android:id="@+id/modifyCurrentpwdView"
-                android:layout_width="@dimen/iv_margin_left"
-                android:layout_height="@dimen/iv_margin_left"
-                android:src="@mipmap/icon"
-                android:layout_centerVertical="true"/>
-        </RelativeLayout>
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#e6e6e6"
-        />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#e6e6e6"
-        android:layout_marginTop="10dp"/>
+    <include layout="@layout/modify_current_pwd_edit"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white">
-
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="新 密 码 :"
-            android:textSize="14sp"
-            android:textColor="#333333"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/iv_useCar"
-            android:layout_marginLeft="25dp"/>
-        <EditText
-            android:id="@+id/modifyNowpwdEt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="请输入新密码"
-            android:gravity="left|center_vertical"
-            android:inputType="textPassword"
-            android:layout_toRightOf="@+id/text2"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:maxLength="12"
-            android:layout_weight="2"
-            android:textColorHint="#999999"
-            android:textColor="#333333"
-            android:textSize="14sp"
-            android:background="@null"
-            />
-        <RelativeLayout
-            android:id="@+id/modifyNowpwdLay"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp">
-            <ImageView
-                android:id="@+id/modifyNowpwdView"
-                android:layout_width="@dimen/iv_margin_left"
-                android:layout_height="@dimen/iv_margin_left"
-                android:src="@mipmap/icon"
-                android:layout_centerVertical="true"/>
-        </RelativeLayout>
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#e6e6e6"
-        />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#e6e6e6"
-        android:layout_marginTop="10dp"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white">
-
-        <TextView
-            android:id="@+id/text3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="确认密码:"
-            android:textSize="14sp"
-            android:textColor="#333333"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/iv_useCar"
-            android:layout_marginLeft="25dp"/>
-        <EditText
-            android:id="@+id/modifyConfirmpwdEt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left|center_vertical"
-            android:inputType="textPassword"
-            android:layout_toRightOf="@+id/text3"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:maxLength="12"
-            android:layout_weight="2"
-            android:textColorHint="#999999"
-            android:textColor="#333333"
-            android:textSize="14sp"
-            android:background="@null"
-            android:hint="请确认新密码"/>
-        <RelativeLayout
-            android:id="@+id/modifyConfirmpwdLay"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:visibility="gone">
-            <ImageView
-                android:id="@+id/modifyConfirmpwdView"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:src="@mipmap/delete_code"
-                android:layout_centerVertical="true"
-                />
-        </RelativeLayout>
-    </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/modifyBtn"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/save_num"
-        android:layout_marginTop="143dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_marginLeft="@dimen/modify_text_margin_left"
+        android:layout_marginTop="@dimen/modify_text_tip_top"
+        android:text="@string/modifycurrenttip"
+        android:textColor="@color/red"
+        android:visibility="invisible"
+        android:textSize="@dimen/forget_text_tip_size"/>
+
+    <include layout="@layout/modify_now_pwd_edit"/>
+
+    <include layout="@layout/modify_confirm_pwd_edit"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/modify_text_margin_left"
+        android:layout_marginTop="@dimen/modify_text_tip_top"
+        android:text="@string/modifyconfirmtip"
+        android:visibility="invisible"
+        android:textColor="@color/red"
+        android:textSize="@dimen/forget_text_tip_size"/>
+
+
+    <Button
+        android:id="@+id/modifyBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/modify_edit_high"
+        android:layout_marginTop="@dimen/modify_btn_top"
+        android:layout_marginLeft="@dimen/modify_btn_margin"
+        android:layout_marginRight="@dimen/modify_btn_margin"
+        android:background="@color/gray"
+        android:text="@string/confirm"
+        android:textSize="@dimen/modify_btn_size"
+        android:gravity="center"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom"
+        android:layout_marginTop="@dimen/modify_bottom_margin_top"
+        android:background="@drawable/modify_edit_bg"
+        android:layout_weight="1"
+        android:orientation="vertical"></LinearLayout>
 
 
 </LinearLayout>

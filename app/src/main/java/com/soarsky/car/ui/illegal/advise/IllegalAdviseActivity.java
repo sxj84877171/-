@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.soarsky.car.App;
 import com.soarsky.car.R;
 import com.soarsky.car.base.BaseActivity;
+import com.soarsky.car.uitl.LogUtil;
 import com.soarsky.car.uitl.ToastUtil;
 
 import java.io.File;
@@ -111,7 +112,7 @@ public class IllegalAdviseActivity extends BaseActivity<IllegalAdvisePresent,Ill
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_advise3;
+        return R.layout.activity_advise;
     }
 
     @Override
@@ -209,8 +210,8 @@ public class IllegalAdviseActivity extends BaseActivity<IllegalAdvisePresent,Ill
      */
     @Override
     public void uploadImgf(String message) {
-
-        ToastUtil.show(this,message);
+        LogUtil.e("违章撤销图片上传失败"+message);
+        ToastUtil.show(this,getText(R.string.upload_img_fail));
     }
 
     @Override

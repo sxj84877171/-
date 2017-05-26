@@ -166,11 +166,22 @@ public class ConfirmDriverService extends BaseService implements IScan , IMonito
         if(blueToothScan!=null){
             blueToothScan.setCarScanedListener(carScanedListener);
         }
+        if(blueToothScan!=null){
+
+        }
 
         if(IScan!=null){
             IScan.setCarScanedListener(carScanedListener);
         }
 
+    }
+
+
+
+    public void setMoveCarScanedListener(OnCarScanedListener carScanedListener) {
+        if(blueToothScan!=null){
+            blueToothScan.setMovecarScanedListener(carScanedListener);
+        }
     }
 
     /**
@@ -272,14 +283,19 @@ public class ConfirmDriverService extends BaseService implements IScan , IMonito
             blueToothScan.destory();
             blueToothScan=null;
         }
-
         if(mAdapter!=null){
             mAdapter.destroy();
+            mAdapter=null;
         }
 
         if(IScan!=null){
             IScan.onDestory();
         }
+        if(buleToothConnet!=null){
+            buleToothConnet.destory();
+            buleToothConnet=null;
+        }
+        BlueToothManage.getInstance().destory();
 
         super.onDestroy();
     }
@@ -344,6 +360,7 @@ public class ConfirmDriverService extends BaseService implements IScan , IMonito
      */
     public void setConnectListener(OnConnectListener connectListener) {
 
+//        connectListener.onFailed("");
         if (confirmDriver != null) {
             confirmDriver.setConnectListener(connectListener);
         }
@@ -476,7 +493,6 @@ public class ConfirmDriverService extends BaseService implements IScan , IMonito
         }
         mAdapter.setAutoWritePincode(true);
         mAdapter.setPincode("1234");
-        acquireWakeLock();
         blueToothScan=BlueToothScan.getInstance(context);
         blueToothScan.setBluetoothAdapter(mAdapter);
         blueToothScan.setConfirmDriverSucessCallBack(confirmDriverSucessCallBack);
@@ -507,20 +523,13 @@ public class ConfirmDriverService extends BaseService implements IScan , IMonito
         blueToothScan.clearDevices();
     }
 
-
-
-    private void acquireWakeLock() {
-        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, this
-                .getClass().getCanonicalName());
-        mWakeLock.acquire();
+    /**
+     * 清空扫描结果
+     */
+    public  void  clearMoveCarDervice(){
+        blueToothScan.clearMoveDevices();
     }
 
-    private void releaseWakeLock() {
-        if (mWakeLock != null && mWakeLock.isHeld()) {
-            mWakeLock.release();
-            mWakeLock = null;
-        }
-    }
+
 
 }

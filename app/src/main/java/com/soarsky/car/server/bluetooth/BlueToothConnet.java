@@ -18,6 +18,7 @@ import com.soarsky.car.uitl.ByteUtil;
 import com.soarsky.car.uitl.LogUtil;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Date;
 
 import static com.soarsky.car.Constants.APPLY_FIVE;
 import static com.soarsky.car.Constants.APPLY_FOUR;
@@ -43,6 +44,7 @@ import static com.soarsky.car.Constants.TICKET_SYNC;
 import static com.soarsky.car.Constants.TICKET_UNREAD;
 import static com.soarsky.car.Constants.TRAVEL_NOMALY;
 import static com.soarsky.car.Constants.VOLUME_SET;
+import static com.soarsky.car.server.check.ConfirmDriverService.CHECK_IS_DRIVER_TIME;
 
 /**
  * Andriod_Car_App
@@ -72,6 +74,10 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
     private final static String ISSC_GATT_NOTIFY_CHARC_UUID = "49535343-1E4D-4BD9-BA61-23C647249616";
     private final static String ISSC_GATT_WRITE_CHARC_UUID = "49535343-8841-43F4-A8D4-ECBE34729BB3";
 
+    /**
+     * 连接超时时间
+     */
+    private static final int TIME_OUT = 35 * 1000;
 
 
     private BluetoothIBridgeAdapter mAdapter;
@@ -112,14 +118,23 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
     /**
      * 发送数据包编号
      */
-    private int  packageCode;
+    private int packageCode;
 
 
     /**
      * 发送的数据包内容
      */
     private String strContent;
-    private Handler workHandler ;
+    private Handler workHandler;
+
+    /**
+     * 最后一次请求成功时间
+     */
+    private long requestSucesstime;
+    /**
+     * 最后一次请求失败
+     */
+    private long requestFailTime;
 
     //懒汉式单例类.在第一次调用的时候实例化自己
     private BlueToothConnet() {
@@ -131,8 +146,7 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
     private static BlueToothConnet single = null;
 
 
-
-    private BluetoothIBridgeDevice  mSelectedDevice;
+    private BluetoothIBridgeDevice mSelectedDevice;
 
     //静态工厂方法
     public static synchronized BlueToothConnet getInstance() {
@@ -151,15 +165,22 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
 
 
     public void connectDervice(Car car, int type) {
-        timer.start();
+        if (car == null || car.getDevice() == null) {
+            return;
+        }
+        workHandler.postDelayed(timeOutRunable, TIME_OUT);
         applyType = type;
         this.car = car;
-        mSelectedDevice=car.getDevice();
+        mSelectedDevice = car.getDevice();
         if (car.getDevice().isConnected()) {
             sendMessage(applyType);
         } else {
             if (mAdapter != null) {
-                mAdapter.connectDevice(car.getDevice());
+                try {
+                    mAdapter.connectDevice(car.getDevice());
+                } catch (Exception e) {
+                    LogUtil.e(e);
+                }
             }
 
         }
@@ -170,22 +191,29 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
      * 连接终端
      *
      * @param car
-     * @param type 申请类型
-     *  @param  packageCode  传送的数据包编号
+     * @param type        申请类型
+     * @param packageCode 传送的数据包编号
      */
 
 
-    public void connectDervice(Car car, int type,int packageCode) {
-        timer.start();
+    public void connectDervice(Car car, int type, int packageCode) {
+        if (car == null || car.getDevice() == null) {
+            return;
+        }
+        workHandler.postDelayed(timeOutRunable, TIME_OUT);
         applyType = type;
         this.car = car;
-        this.packageCode=packageCode;
-        mSelectedDevice=car.getDevice();
+        this.packageCode = packageCode;
+        mSelectedDevice = car.getDevice();
         if (car.getDevice().isConnected()) {
             sendMessage(applyType);
         } else {
             if (mAdapter != null) {
-                mAdapter.connectDevice(car.getDevice());
+                try {
+                    mAdapter.connectDevice(car.getDevice());
+                } catch (Exception e) {
+                    LogUtil.e(e);
+                }
             }
 
         }
@@ -193,30 +221,36 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
 
 
     /**
-     *
      * @param car
      * @param type
      * @param content 传送的数据内容
      */
-    public void connectDervice(Car car, int type,String content) {
-        timer.start();
+    public void connectDervice(Car car, int type, String content) {
+        if (car == null || car.getDevice() == null) {
+            return;
+        }
+        workHandler.postDelayed(timeOutRunable, TIME_OUT);
         applyType = type;
         this.car = car;
-        this.strContent=content;
-        mSelectedDevice=car.getDevice();
+        this.strContent = content;
+        mSelectedDevice = car.getDevice();
         if (car.getDevice().isConnected()) {
             sendMessage(applyType);
         } else {
-            if (mAdapter != null) {
-                mAdapter.connectDevice(car.getDevice());
+            if (mAdapter != null && car != null) {
+                try {
+                    mAdapter.connectDevice(car.getDevice());
+                } catch (Exception e) {
+                    LogUtil.e(e);
+                }
             }
 
         }
     }
 
 
-
     byte[] data = null;
+
     /**
      * 发送消息
      */
@@ -245,14 +279,13 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
                 data = CmdManage.getInstance().getApplyFive(car).toBytes();
                 break;
             case TICKET_UNREAD:
-                data = CmdManage.getInstance().getUnReadTicket(car,packageCode).toBytes();
+                data = CmdManage.getInstance().getUnReadTicket(car, packageCode).toBytes();
                 break;
             case TRAVEL_NOMALY:
                 data = CmdManage.getInstance().getErrorDriver(car).toBytes();
                 break;
-
             case CHECK_ALIVE:
-                data=CmdManage.getInstance().CheckDriverAlive().toBytes();
+                data = CmdManage.getInstance().CheckDriverAlive().toBytes();
                 break;
             case SYNC_DERANUM:
                 data = CmdManage.getInstance().getDearNumRequestBlueTooth(car).toBytes();
@@ -263,39 +296,33 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
             case VOLUME_SET:
                 data = CmdManage.getInstance().setVolume(car).toBytes();
                 break;
-
             case DRIVER_LEAVE:
-                data=CmdManage.getInstance().DriverLeave(car).toBytes();
+                data = CmdManage.getInstance().DriverLeave(car).toBytes();
                 break;
             case READ_TROUBLE:
                 data = CmdManage.getInstance().getTroubleCheck(car).toBytes();
                 break;
             case SYNC_TIME:
-                data=CmdManage.getInstance().SyncTime().toBytes();
+                data = CmdManage.getInstance().SyncTime().toBytes();
                 break;
-
             case TERMINAL_UPDATE:
-                data=CmdManage.getInstance().TerminalUpdate().toBytes();
+                data = CmdManage.getInstance().TerminalUpdate().toBytes();
                 break;
             case TERMINAL_TRANSFER_DATAPACKAGE:
-                data=CmdManage.getInstance().TermialTransfer(packageCode).toBytes();
+                data = CmdManage.getInstance().TermialTransfer(packageCode).toBytes();
                 break;
-
             case TERMINAL_PARAM_SET:
-                data=CmdManage.getInstance().TerminalParamSet(car,strContent).toBytes();
+                data = CmdManage.getInstance().TerminalParamSet(car, strContent).toBytes();
                 break;
             case TERMINAL_SOUNT_PARAM:
-                data=CmdManage.getInstance().TerminalParamVoiceSet(car,strContent).toBytes();
+                data = CmdManage.getInstance().TerminalParamVoiceSet(car, strContent).toBytes();
                 break;
-
             case READ_UNREADTICKET_COUNT:
-                data=CmdManage.getInstance().getUnReadTicketCount(car).toBytes();
+                data = CmdManage.getInstance().getUnReadTicketCount(car).toBytes();
                 break;
             case SYNC_TICKET:
-                data=CmdManage.getInstance().syncTicket(car).toBytes();
+                data = CmdManage.getInstance().syncTicket(car).toBytes();
                 break;
-
-
         }
 
         try {
@@ -303,17 +330,22 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if(null!=data&&null!=mAdapter){
-            workHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    mAdapter.send(car.getDevice(), data, data.length);
-//                    workHandler.postDelayed(reSendRunnable,5*1000);
 
+        workHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (null != data && null != mAdapter) {
+                    try {
+                        mAdapter.send(car.getDevice(), data, data.length);
+                    } catch (Exception e) {
+                    }
+
+                    workHandler.postDelayed(reSendRunnable, 10 * 1000);
                 }
-            });
+            }
+        });
 
-        }
+
         LogUtil.i("发送数据" + applyType + "     " + ByteUtil.bytearrayToHexString(data, data.length));
     }
 
@@ -398,13 +430,13 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
     @Override
     public void onDeviceConnected(BluetoothIBridgeDevice bluetoothIBridgeDevice) {
         if (mSelectedDevice != null) {
-            if (mSelectedDevice.getDeviceType() == BluetoothIBridgeDevice.DEVICE_TYPE_BLE){
+            if (mSelectedDevice.getDeviceType() == BluetoothIBridgeDevice.DEVICE_TYPE_BLE) {
                 if (isServiceExist(mSelectedDevice, IVT_GATT_SERVICE_UUID.toString())) {
                     mAdapter.bleSetTargetUUIDs(mSelectedDevice, IVT_GATT_SERVICE_UUID.toString()
                             , IVT_GATT_NOTIFY_CHARC_UUID.toString(), IVT_GATT_WRITE_CHARC_UUID.toString());
                     mAdapter.bleSetMtu(mSelectedDevice, 10);
 
-                } else if (isServiceExist(mSelectedDevice, ISSC_GATT_SERVICE_UUID.toString())){
+                } else if (isServiceExist(mSelectedDevice, ISSC_GATT_SERVICE_UUID.toString())) {
                     mAdapter.bleSetTargetUUIDs(mSelectedDevice, ISSC_GATT_SERVICE_UUID.toString()
                             , ISSC_GATT_NOTIFY_CHARC_UUID.toString(), ISSC_GATT_WRITE_CHARC_UUID.toString());
                 }
@@ -425,8 +457,13 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
 
     @Override
     public void onDeviceConnectFailed(BluetoothIBridgeDevice bluetoothIBridgeDevice, String s) {
-        LogUtil.i("onDeviceDisconnected" + s);
-        timer.cancel();
+        LogUtil.i("连接设备失败" + s);
+        BlueToothManage.getInstance().setTerminalUpdate(false);
+        requestFailTime = new Date().getTime();
+        compareDriverLeave();
+
+
+        workHandler.removeCallbacks(timeOutRunable);
         if (connectListener != null) {
             connectListener.onFailed("onDeviceConnectFailed");
         }
@@ -435,7 +472,7 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
 
     @Override
     public void onWriteFailed(BluetoothIBridgeDevice bluetoothIBridgeDevice, String s) {
-        timer.cancel();
+        workHandler.removeCallbacks(timeOutRunable);
         if (connectListener != null) {
             connectListener.onFailed("onWriteFailed");
         }
@@ -454,12 +491,20 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
      * 防止对方2个包一起发送，丢包的问题。
      * 防止包发送黏贴，使得包出现不完整情况
      * 防止包内容出错，后面包无法接收问题
+     *
      * @param bluetoothIBridgeDevice
      * @param bytes
      * @param i
      */
     @Override
-    public void onDataReceived(final BluetoothIBridgeDevice bluetoothIBridgeDevice,final byte[] bytes,final int i) {
+    public void onDataReceived(final BluetoothIBridgeDevice bluetoothIBridgeDevice, final byte[] bytes, final int i) {
+        //确认驾驶员成功 每次跟新最后一次请求终端成功的时间 用来做离车判断
+        if (App.getApp().isConfirmDriver()) {
+            requestSucesstime = new Date().getTime();
+        }
+        workHandler.removeCallbacks(timeOutRunable);
+
+
         workHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -497,7 +542,6 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
                                 if (cmd != null && onCmdListener != null) {
                                     onCmdListener.onNewCmd(cmd);
 
-                                    timer.cancel();
                                 }
                                 // 已经解析出包的数据，重置当前缓冲区的内容
                                 buffer.reset();
@@ -517,7 +561,7 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
 
                 // 超时设置，如果数据在给定的2秒内没有接收完成，则直接丢弃当前数据
                 workHandler.removeCallbacks(runnable);
-                workHandler.postDelayed(runnable,2000);
+                workHandler.postDelayed(runnable, 2000);
 
             }
         });
@@ -532,39 +576,35 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
     };
 
 
-
-
-
-    private Runnable reSendRunnable=new Runnable() {
+    /**
+     * 发送数据后10秒没返回 通知数据丢失
+     */
+    private Runnable reSendRunnable = new Runnable() {
         @Override
         public void run() {
 
-            if(mAdapter!=null&&data!=null){
-                mAdapter.send(car.getDevice(), data, data.length);
-                LogUtil.i("发送数据" + applyType + "     " + ByteUtil.bytearrayToHexString(data, data.length));
+            if (mAdapter != null && data != null) {
+                requestFailTime = new Date().getTime();
+                onCmdListener.onLoseCmd();
+                compareDriverLeave();
             }
-
+            if (connectListener != null) {
+                connectListener.onFailed("1");
+            }
         }
     };
 
 
+    //请求超时Runable
 
-    /**
-     * 定时器
-     */
-    private CountDownTimer timer = new CountDownTimer(35000, 1000) {
-
+    Runnable timeOutRunable = new Runnable() {
         @Override
-        public void onTick(long millisUntilFinished) {
-
-        }
-
-        @Override
-        public void onFinish() {
+        public void run() {
+            compareDriverLeave();
+            BlueToothManage.getInstance().setTerminalUpdate(false);
             if (connectListener != null) {
                 connectListener.onFailed("1");
             }
-
         }
     };
 
@@ -588,9 +628,44 @@ public class BlueToothConnet implements BluetoothIBridgeAdapter.EventReceiver, B
      * 断开连接
      */
 
-    public   void disConnected(){
-        if(mAdapter!=null){
+    public void disConnected() {
+        if (mAdapter != null) {
             mAdapter.disconnectDevice(mSelectedDevice);
+        }
+
+    }
+
+
+    /**
+     * 判断驾驶员是否离开
+     */
+    private void compareDriverLeave() {
+        if (!App.getApp().isConfirmDriver()) {
+            return;
+        }
+        if (requestSucesstime == 0) {
+            requestSucesstime = new Date().getTime();
+        }
+        if (requestFailTime - requestSucesstime > CHECK_IS_DRIVER_TIME) {
+
+            BlueToothManage.getInstance().driverLeave();
+            App.getApp().setConfirmDriver(false);
+            BlueToothScan.getInstance(App.getApp()).isScan(true);
+        }
+        LogUtil.i("离车时间：" + (requestFailTime - requestSucesstime));
+
+    }
+
+
+    /**
+     * workHandler
+     */
+    public void destory() {
+        try {
+            single = null;
+            workHandler.getLooper().quit();
+        } catch (Exception e) {
+
         }
 
     }

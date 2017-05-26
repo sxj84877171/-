@@ -152,15 +152,15 @@ public class ByteUtil {
 	public static byte[] stringToBytes(String s) {
 		return s.getBytes();
 	}
-	
+
 	public static void ShortToBytes(byte[] b, short x, int offset) {
 		//byte[] b = new byte[2];
-		
+
 		if (b.length-offset >= 2) {
 			b[offset + 1] = (byte) (x >> 8);
 			b[offset + 0] = (byte) (x >> 0);
 		}
-		
+
 		//return b;
 	}
 
@@ -169,10 +169,10 @@ public class ByteUtil {
 		if (b.length-offset >= 2) {
 			x = (short) (((b[offset + 1] << 8) | b[offset + 0] & 0xff));
 		}
-		
+
 		return x;
 	}
-	
+
 	//字节转为字符�?
 	public static String byteToHexString(byte b) {
 
@@ -184,14 +184,14 @@ public class ByteUtil {
 
 	public static void IntToBytes(byte[] b, int x, int offset) {
 		//byte[] b = new byte[4];
-		
+
 		if (b.length-offset >= 4) {
 			b[offset + 3] = (byte) (x >> 24);
 			b[offset + 2] = (byte) (x >> 16);
 			b[offset + 1] = (byte) (x >> 8);
 			b[offset + 0] = (byte) (x >> 0);
 		}
-		
+
 		//return b;
 	}
 
@@ -202,13 +202,13 @@ public class ByteUtil {
 					| ((b[offset + 2] & 0xff) << 16)
 					| ((b[offset + 1] & 0xff) << 8) | ((b[offset + 0] & 0xff) << 0)));
 		}
-		
+
 		return x;
 	}
 
 	public static void LongToBytes(byte[] b, long x, int offset) {
 		//byte[] b = new byte[8];
-		
+
 		if (b.length-offset >= 8) {
 			b[offset + 7] = (byte) (x >> 56);
 			b[offset + 6] = (byte) (x >> 48);
@@ -219,7 +219,7 @@ public class ByteUtil {
 			b[offset + 1] = (byte) (x >> 8);
 			b[offset + 0] = (byte) (x >> 0);
 		}
-		
+
 		//return b;
 	}
 
@@ -234,13 +234,13 @@ public class ByteUtil {
 					| (((long) b[offset + 2] & 0xff) << 16)
 					| (((long) b[offset + 1] & 0xff) << 8) | (((long) b[offset + 0] & 0xff) << 0));
 		}
-		
+
 		return x;
 	}
 
 	public static void CharToBytes(byte[] b, char ch, int offset) {
 		// byte[] b = new byte[2];
-		
+
 		if (b.length-offset >= 2) {
 			int temp = (int) ch;
 			for (int i = 0; i < 2; i ++ ) {
@@ -248,13 +248,13 @@ public class ByteUtil {
 				temp = temp >> 8; // ������8λ
 			}
 		}
-		
+
 		//return b;
 	}
 
 	public static char BytesToChar(byte[] b, int offset) {
 		int s = 0;
-		
+
 		if (b.length-offset >= 2) {
 			if (b[offset + 1] > 0)
 				s += b[offset + 1];
@@ -266,14 +266,14 @@ public class ByteUtil {
 			else
 				s += 256 + b[offset + 0];
 		}
-		
+
 		char ch = (char) s;
 		return ch;
 	}
 
 	public static void FloatToBytes(byte[] b, float x, int offset) {
 		//byte[] b = new byte[4];
-		
+
 		if (b.length-offset >= 4) {
 			int l = Float.floatToIntBits(x);
 			for (int i = 0; i < 4; i++) {
@@ -281,13 +281,13 @@ public class ByteUtil {
 				l = l >> 8;
 			}
 		}
-		
+
 		//return b;
 	}
 
 	public static float BytesToFloat(byte[] b, int offset) {
 		int l = 0;
-		
+
 		if (b.length-offset >= 4) {
 			l = b[offset + 0];
 			l &= 0xff;
@@ -297,13 +297,13 @@ public class ByteUtil {
 			l &= 0xffffff;
 			l |= ((long) b[offset + 3] << 24);
 		}
-		
+
 		return Float.intBitsToFloat(l);
 	}
 
 	public static void DoubleToBytes(byte[] b, double x, int offset) {
 		//byte[] b = new byte[8];
-		
+
 		if (b.length-offset >= 8) {
 			long l = Double.doubleToLongBits(x);
 			for (int i = 0; i < 4; i++) {
@@ -311,13 +311,13 @@ public class ByteUtil {
 				l = l >> 8;
 			}
 		}
-		
+
 		//return b;
 	}
 
 	public static double BytesToDouble(byte[] b, int offset) {
 		long l = 0;
-		
+
 		if (b.length-offset >= 8) {
 			l = b[0];
 			l &= 0xff;
@@ -335,10 +335,10 @@ public class ByteUtil {
 			l &= 0xffffffffffffffl;
 			l |= ((long) b[7] << 56);
 		}
-		
+
 		return Double.longBitsToDouble(l);
 	}
-	
+
 	/**
 	  * ��shortתΪ���ֽ���ǰ�����ֽ��ں�
 	  */
@@ -346,23 +346,23 @@ public class ByteUtil {
 	  byte[] b = new byte[2];
 	  b[0] = (byte) (n & 0xff);
 	  b[1] = (byte) (n >> 8 & 0xff);
-	  
+
 	  short ret = BytesToShort(b, 0);
 	  return ret;
 	}
-	
-	/** 
+
+	/**
 	  * ��shortתΪ���ֽ���ǰ�����ֽ��ں�
 	  */
 	public static short toHL(short n) {
 	  byte[] b = new byte[2];
 	  b[1] = (byte) (n & 0xff);
 	  b[0] = (byte) (n >> 8 & 0xff);
-	  
+
 	  short ret = BytesToShort(b, 0);
 	  return ret;
 	}
-	
+
 	/**
 	  * ��intתΪ���ֽ���ǰ�����ֽ��ں�
 	  */
@@ -372,11 +372,11 @@ public class ByteUtil {
 	  b[1] = (byte) (n >> 8 & 0xff);
 	  b[2] = (byte) (n >> 16 & 0xff);
 	  b[3] = (byte) (n >> 24 & 0xff);
-	  
+
 	  int ret = BytesToInt(b, 0);
 	  return ret;
 	}
-	  
+
 	/**
 	  * ��intתΪ���ֽ���ǰ�����ֽ��ں�
 	  */
@@ -386,11 +386,11 @@ public class ByteUtil {
 	  b[2] = (byte) (n >> 8 & 0xff);
 	  b[1] = (byte) (n >> 16 & 0xff);
 	  b[0] = (byte) (n >> 24 & 0xff);
-	  
+
 	  int ret = BytesToInt(b, 0);
 	  return ret;
 	}
-	
+
 	/**
 	  * ��longתΪ���ֽ���ǰ�����ֽ��ں�
 	  */
@@ -404,11 +404,11 @@ public class ByteUtil {
 	  b[5] = (byte) (n >> 40 & 0xff);
 	  b[6] = (byte) (n >> 48 & 0xff);
 	  b[7] = (byte) (n >> 56 & 0xff);
-	  
+
 	  long ret = BytesToLong(b, 0);
 	  return ret;
 	}
-	  
+
 	/**
 	  * ��longתΪ���ֽ���ǰ�����ֽ��ں�
 	  */
@@ -422,11 +422,11 @@ public class ByteUtil {
 	  b[2] = (byte) (n >> 40 & 0xff);
 	  b[1] = (byte) (n >> 48 & 0xff);
 	  b[0] = (byte) (n >> 56 & 0xff);
-	  
+
 	  long ret = BytesToLong(b, 0);
 	  return ret;
 	}
-	
+
 	//	private void OutputParamMain() {
 	//	byte[] param = new byte[100];
 	//	OutputParamByte(param);
@@ -437,7 +437,7 @@ public class ByteUtil {
 	//
 	//private void OutputParamByte(byte[] byParam) {
 	//	byte[] by = {(byte)0x30,(byte)0x31,(byte)0x32,(byte)0x33,(byte)0x34,(byte)0x35,(byte)0x36,(byte)0x37,(byte)0x38,(byte)0x39};
-	//	
+	//
 	//	if (byParam.length >= by.length) {
 	//		System.arraycopy(by, 0, byParam, 0, by.length);
 	//		ByteUtil.encodeOutputBytes(byParam, (short)by.length);
@@ -454,7 +454,7 @@ public class ByteUtil {
 			System.arraycopy(byShort, 0, b, 0, byShort.length);
 		}
 	}
-	
+
 	/**
 	  * ��byte[]���������з�����(��ʵ�����ݳ����Է���ֵ��ʽ����)
 	  */
@@ -462,9 +462,9 @@ public class ByteUtil {
 		byte[] byShort = new byte[2];
 		System.arraycopy(b, 0, byShort, 0, byShort.length);
 		short sLen = BytesToShort(byShort, 0);
-		
+
 		System.arraycopy(b, 2, b, 0, sLen);
-		
+
 		return sLen;
 	}
 

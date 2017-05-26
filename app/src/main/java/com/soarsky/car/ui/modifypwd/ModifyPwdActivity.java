@@ -1,11 +1,10 @@
 package com.soarsky.car.ui.modifypwd;
 
 import android.app.ProgressDialog;
-import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -83,7 +82,7 @@ public class ModifyPwdActivity extends BaseActivity<ModifyPwdPresent,ModifyPwdMo
     /**
      * 修改
      */
-    private ImageView modifyBtn;
+    private Button modifyBtn;
     /**
      * 当前是否可见
      */
@@ -142,34 +141,11 @@ public class ModifyPwdActivity extends BaseActivity<ModifyPwdPresent,ModifyPwdMo
         modifyConfirmpwdView = (ImageView) findViewById(R.id.modifyConfirmpwdView);
         modifyConfirmpwdView.setOnClickListener(this);
 
-        modifyBtn = (ImageView) findViewById(R.id.modifyBtn);
+        modifyBtn = (Button) findViewById(R.id.modifyBtn);
         modifyBtn.setOnClickListener(this);
 
         backLay = (LinearLayout) findViewById(R.id.backLay);
         backLay.setOnClickListener(this);
-
-
-        modifyConfirmpwdEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                modifyConfirmpwdLay.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String qtyString = s.toString().trim();
-                if (qtyString.length() > 0){
-                    modifyConfirmpwdLay.setVisibility(View.VISIBLE);
-                }else {
-                    modifyConfirmpwdLay.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
 
 
     }
@@ -258,7 +234,16 @@ public class ModifyPwdActivity extends BaseActivity<ModifyPwdPresent,ModifyPwdMo
                 break;
             case R.id.modifyConfirmpwdLay:
             case R.id.modifyConfirmpwdView:
-                modifyConfirmpwdEt.getText().clear();
+                if(isConfirm == false){
+                    modifyConfirmpwdEt.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    modifyConfirmpwdView.setImageResource(R.mipmap.confrim);
+                    isConfirm = true;
+                }else {
+                    modifyConfirmpwdEt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    modifyConfirmpwdView.setImageResource(R.mipmap.icon);
+                    isConfirm = false;
+                }
+
                 break;
             case R.id.modifyBtn:
                 String currentPwd = modifyCurrentpwdEt.getText().toString().trim();
