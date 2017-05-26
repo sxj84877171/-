@@ -1,0 +1,167 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/loginbackground">
+
+    <RelativeLayout
+        android:id="@+id/rl_picture"
+        android:layout_width="131.5dp"
+        android:layout_height="131.5dp"
+        android:layout_marginTop="90dp"
+        android:layout_centerHorizontal="true">
+        <ImageView
+            android:layout_width="131.5dp"
+            android:layout_height="131.5dp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@null"
+            android:src="@drawable/big_circle" />
+
+        <com.soarsky.installationmanual.view.CircularImage
+            android:id="@+id/cover_user_photo"
+            android:layout_width="107.5dp"
+            android:layout_height="107.5dp"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/ic_launcher"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_below="@+id/rl_picture"
+        android:layout_marginTop="55dp"
+        android:layout_centerHorizontal="true">
+
+        <RelativeLayout
+            android:id="@+id/idCard"
+            android:layout_width="280dp"
+            android:layout_height="43dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/login_text_bg">
+            <ImageView
+                android:id="@+id/idCardImg"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/id_card"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"/>
+            <View
+                android:id="@+id/idCardView"
+                android:layout_toRightOf="@+id/idCardImg"
+                android:layout_width="0.5dp"
+                android:layout_height="15dp"
+                android:background="#3e5776"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                />
+            <EditText
+                android:id="@+id/idCardEt"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#3498db"
+                android:textSize="14sp"
+                android:hint="身份证号："
+                android:textColorHint="#3498db"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/idCardView"
+                android:layout_marginLeft="19dp"/>
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/idCardDelImg"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@drawable/delete_text"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"/>
+            
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/pwd"
+            android:layout_marginTop="13dp"
+            android:layout_below="@+id/idCard"
+            android:layout_width="280dp"
+            android:layout_height="43dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/login_text_bg">
+            <ImageView
+                android:id="@+id/pwdImg"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/pwd"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"/>
+            <View
+                android:id="@+id/pwdView"
+                android:layout_toRightOf="@+id/pwdImg"
+                android:layout_width="0.5dp"
+                android:layout_height="15dp"
+                android:background="#3e5776"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                />
+            <EditText
+                android:inputType="textPassword"
+                android:id="@+id/pwdEt"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#3498db"
+                android:textSize="14sp"
+                android:hint="登录密码："
+                android:textColorHint="#3498db"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/pwdView"
+                android:layout_marginLeft="19dp"/>
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/eye"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/see_n"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/forgetPwd"
+            android:layout_below="@+id/pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#d5d5d5"
+            android:layout_marginTop="19dp"
+            android:textSize="12sp"
+            android:text="@string/wangjimima"
+            android:layout_marginLeft="60dp"/>
+
+        <TextView
+            android:id="@+id/newUser"
+            android:layout_below="@+id/pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#d5d5d5"
+            android:layout_marginTop="19dp"
+            android:textSize="12sp"
+            android:text="@string/zhucexinyonghu"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="270dp"
+        android:layout_height="43dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/login_btn_bg"
+        android:layout_marginBottom="50dp"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true"
+        android:text="登录"/>
+</RelativeLayout>

@@ -1,0 +1,67 @@
+package com.soarsky.installationmanual.bean;
+
+import com.google.gson.Gson;
+
+/**
+ * InstallationManual<br>
+ * 作者： 魏凯<br>
+ * 时间： 2017/1/11<br>
+ * 公司：长沙硕铠电子科技有限公司<br>
+ * Email：wangsongqing@soarsky-e.com<br>
+ * 公司网址：http://www.soarsky-e.com<br>
+ * 公司地址（Add）  ：湖南省长沙市岳麓区麓谷信息港A座8楼<br>
+ * 版本：1.0.0.0<br>
+ * 邮编：410000<br>
+ * 程序功能：<br>
+ * 该类为  服务器的响应参数类<br>
+ */
+
+public class ResponseDataBean<T> {
+    /**
+     * 服务器返回的状态码
+     */
+    private String status = "0" ;
+    /**
+     * 服务器响应的消息
+     */
+    private String message ;
+    /**
+     * 服务器返回的数据
+     */
+    private T data ;
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+    
+    public static ResponseDataBean parse(String json){
+        Gson gson = new Gson();
+        return gson.fromJson(json,ResponseDataBean.class);
+    }
+    
+    public String toJson(){
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+}

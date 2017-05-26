@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/upload_image_title_bg">
+
+
+            <ImageView
+                android:id="@+id/img_1_1"
+                android:layout_width="@dimen/layout_width"
+                android:layout_height="@dimen/layout_width"
+                android:background="@mipmap/danger_num1" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/blind_validation_edit_top_high"
+                android:layout_toRightOf="@+id/img_1_1"
+                android:text="车辆铭牌"
+
+                android:textColor="@color/border"
+                android:textSize="@dimen/car_location_juli_text_size" />
+
+
+            <TextView
+                android:id="@+id/text_1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/yiqi"
+                android:text="@string/tv_yangzhao"
+
+                android:textColor="@color/yangzhao_color"
+                android:textSize="@dimen/yangzhao_text_size" />
+
+
+            <ImageView
+                android:id="@+id/img_1_2"
+
+                android:layout_width="@dimen/yisan"
+                android:layout_height="@dimen/yisan"
+                android:layout_centerVertical="true"
+
+                android:layout_marginRight="@dimen/tv_height"
+                android:layout_toLeftOf="@+id/text_1_1"
+
+                android:background="@mipmap/danger_hint" />
+
+        </RelativeLayout>
+
+        <com.soarsky.installationmanual.view.GridViewInScrollView
+            android:id="@+id/gridView1"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="15dp"
+            android:columnWidth="100dp"
+            android:layout_height="wrap_content"
+            android:numColumns="3"></com.soarsky.installationmanual.view.GridViewInScrollView>
+
+
+
+
+        <!--2-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/blind_validation_edit_top_high"
+            android:layout_marginLeft="@dimen/ml"
+            android:background="@drawable/upload_image_title_bg">
+
+
+            <ImageView
+                android:id="@+id/img_2_1"
+
+                android:layout_width="@dimen/layout_width"
+                android:layout_height="@dimen/layout_width"
+
+
+                android:background="@mipmap/danger_num2" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/blind_validation_edit_top_high"
+                android:layout_toRightOf="@+id/img_2_1"
+                android:text="方向盘转向灯/喇叭线转向头一号接口"
+
+                android:textColor="@color/border"
+                android:textSize="@dimen/car_location_juli_text_size" />
+
+
+            <TextView
+                android:id="@+id/text_2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/yiqi"
+                android:text="@string/tv_yangzhao"
+
+                android:textColor="@color/yangzhao_color"
+                android:textSize="@dimen/yangzhao_text_size" />
+
+
+            <ImageView
+                android:id="@+id/img_2_2"
+
+                android:layout_width="@dimen/yisan"
+                android:layout_height="@dimen/yisan"
+                android:layout_centerVertical="true"
+
+                android:layout_marginRight="@dimen/tv_height"
+                android:layout_toLeftOf="@+id/text_2_1"
+
+                android:background="@mipmap/danger_hint" />
+
+        </RelativeLayout>
+
+
+        <com.soarsky.installationmanual.view.GridViewInScrollView
+            android:id="@+id/gridView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="15dp"
+            android:columnWidth="100dp"
+            android:numColumns="3"></com.soarsky.installationmanual.view.GridViewInScrollView>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/blind_validation_edit_top_high"
+            android:layout_marginLeft="@dimen/ml"
+            android:background="@drawable/upload_image_title_bg">
+
+
+            <ImageView
+                android:id="@+id/img_3_1"
+
+                android:layout_width="@dimen/layout_width"
+                android:layout_height="@dimen/layout_width"
+
+
+                android:background="@mipmap/danger_num3" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/blind_validation_edit_top_high"
+                android:layout_toRightOf="@+id/img_3_1"
+                android:text="2号接口远近光灯"
+
+                android:textColor="@color/border"
+                android:textSize="@dimen/car_location_juli_text_size" />
+
+
+            <TextView
+                android:id="@+id/text_3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/yiqi"
+                android:text="@string/tv_yangzhao"
+
+                android:textColor="@color/yangzhao_color"
+                android:textSize="@dimen/yangzhao_text_size" />
+
+
+            <ImageView
+                android:id="@+id/img_3_2"
+
+                android:layout_width="@dimen/yisan"
+                android:layout_height="@dimen/yisan"
+                android:layout_centerVertical="true"
+
+                android:layout_marginRight="@dimen/tv_height"
+                android:layout_toLeftOf="@+id/text_3_1"
+
+                android:background="@mipmap/danger_hint" />
+
+        </RelativeLayout>
+
+
+        <com.soarsky.installationmanual.view.GridViewInScrollView
+            android:id="@+id/gridView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="15dp"
+            android:columnWidth="100dp"
+            android:numColumns="3"></com.soarsky.installationmanual.view.GridViewInScrollView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/blind_validation_edit_top_high"
+            android:layout_marginLeft="@dimen/ml"
+            android:background="@drawable/upload_image_title_bg">
+
+
+            <ImageView
+                android:id="@+id/img_4_1"
+
+                android:layout_width="@dimen/layout_width"
+                android:layout_height="@dimen/layout_width"
+
+
+                android:background="@mipmap/danger_num4" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/blind_validation_edit_top_high"
+                android:layout_toRightOf="@+id/img_4_1"
+                android:text="线路捆扎美观（全景照片）"
+
+                android:textColor="@color/border"
+                android:textSize="@dimen/car_location_juli_text_size" />
+
+
+            <TextView
+                android:id="@+id/text_4_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/yiqi"
+                android:text="@string/tv_yangzhao"
+
+                android:textColor="@color/yangzhao_color"
+                android:textSize="@dimen/yangzhao_text_size" />
+
+
+            <ImageView
+                android:id="@+id/img_4_2"
+
+                android:layout_width="@dimen/yisan"
+                android:layout_height="@dimen/yisan"
+                android:layout_centerVertical="true"
+
+                android:layout_marginRight="@dimen/tv_height"
+                android:layout_toLeftOf="@+id/text_4_1"
+
+                android:background="@mipmap/danger_hint" />
+
+        </RelativeLayout>
+
+
+        <com.soarsky.installationmanual.view.GridViewInScrollView
+            android:id="@+id/gridView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="15dp"
+            android:columnWidth="100dp"
+            android:numColumns="3"></com.soarsky.installationmanual.view.GridViewInScrollView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/blind_validation_edit_top_high"
+            android:layout_marginLeft="@dimen/ml"
+            android:background="@drawable/upload_image_title_bg">
+
+
+            <ImageView
+                android:id="@+id/img_5_1"
+
+                android:layout_width="@dimen/layout_width"
+                android:layout_height="@dimen/layout_width"
+
+
+                android:background="@mipmap/danger_num5" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/blind_validation_edit_top_high"
+                android:layout_toRightOf="@+id/img_5_1"
+                android:text="车载终端位置（全景近景照片）"
+
+                android:textColor="@color/border"
+                android:textSize="@dimen/car_location_juli_text_size" />
+
+
+            <TextView
+                android:id="@+id/text_5_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/yiqi"
+                android:text="@string/tv_yangzhao"
+
+                android:textColor="@color/yangzhao_color"
+                android:textSize="@dimen/yangzhao_text_size" />
+
+
+            <ImageView
+                android:id="@+id/img_5_2"
+
+                android:layout_width="@dimen/yisan"
+                android:layout_height="@dimen/yisan"
+                android:layout_centerVertical="true"
+
+                android:layout_marginRight="@dimen/tv_height"
+                android:layout_toLeftOf="@+id/text_5_1"
+
+                android:background="@mipmap/danger_hint" />
+
+        </RelativeLayout>
+
+
+        <com.soarsky.installationmanual.view.GridViewInScrollView
+            android:id="@+id/gridView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="15dp"
+            android:columnWidth="100dp"
+            android:numColumns="3"></com.soarsky.installationmanual.view.GridViewInScrollView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/blind_validation_edit_top_high"
+            android:layout_marginLeft="@dimen/ml"
+            android:background="@drawable/upload_image_title_bg">
+
+
+            <ImageView
+                android:id="@+id/img_6_1"
+
+                android:layout_width="@dimen/layout_width"
+                android:layout_height="@dimen/layout_width"
+
+
+                android:background="@mipmap/danger_num6" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/blind_validation_edit_top_high"
+                android:layout_toRightOf="@+id/img_6_1"
+                android:text="ACC线正确接电瓶正极，搭铁接GND线"
+                android:textColor="@color/border"
+                android:textSize="@dimen/car_location_juli_text_size" />
+
+
+            <TextView
+                android:id="@+id/text_6_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/yiqi"
+                android:text="@string/tv_yangzhao"
+
+                android:textColor="@color/yangzhao_color"
+                android:textSize="@dimen/yangzhao_text_size" />
+
+
+            <ImageView
+                android:id="@+id/img_6_2"
+
+                android:layout_width="@dimen/yisan"
+                android:layout_height="@dimen/yisan"
+                android:layout_centerVertical="true"
+
+                android:layout_marginRight="@dimen/tv_height"
+                android:layout_toLeftOf="@+id/text_6_1"
+
+                android:background="@mipmap/danger_hint" />
+
+        </RelativeLayout>
+
+
+        <com.soarsky.installationmanual.view.GridViewInScrollView
+            android:id="@+id/gridView6"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="15dp"
+            android:columnWidth="100dp"
+            android:layout_height="wrap_content"
+            android:numColumns="3"></com.soarsky.installationmanual.view.GridViewInScrollView>
+        
+        <ImageView
+            android:id="@+id/uploadBtn"
+            android:layout_marginTop="50dp"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
+            android:src="@drawable/uploadbtn"
+            android:layout_marginBottom="50dp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+</ScrollView>

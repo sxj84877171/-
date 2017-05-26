@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:minHeight="90dp">
+
+    <TextView
+        android:text="2017-1-11 11:55"
+        android:layout_marginLeft="25dp"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:textColor="#666666"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="12sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/kaiShiShiJian" />
+
+    <TextView
+        android:text="2017-1-11 11:55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/kaiShiShiJian"
+        android:textSize="12sp"
+        android:textColor="#666666"
+        android:layout_above="@+id/kaiShiShiJian"
+        android:id="@+id/fenPeiShiJian" />
+
+
+    <TextView
+        android:text="2017-1-11 11:55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/kaiShiShiJian"
+        android:textSize="12sp"
+        android:textColor="#666666"
+        android:id="@+id/wanChengShiJian"
+        android:layout_alignLeft="@+id/kaiShiShiJian" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="湘A12345"
+            android:id="@+id/carNum"
+            android:layout_marginTop="28dp"
+            android:textSize="15sp"
+            android:textColor="#222222"/>
+        <TextView
+            android:id="@+id/finishStatus"
+            android:layout_marginTop="9dp"
+            android:layout_below="@+id/carNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已完成"
+            android:textSize="12sp"
+            android:textColor="#3498db"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/grey"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">安装手册</string>
+
+    <string name="wangjimima"><u>忘记密码？</u></string>
+    <string name="zhucexinyonghu"><u>注册新用户</u></string>
+
+    <string-array name="home_title">
+        <item> 任务 </item>
+        <item> 手册 </item>
+        <item> 我的 </item>
+    </string-array>
+    <string name="tv_yangzhao">拍摄样照</string>
+</resources>
