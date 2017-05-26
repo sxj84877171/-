@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/violation_text_high">
+
+    <LinearLayout
+        android:id="@+id/violationTimeLay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/violation_text_high"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/violationtime"
+            android:textColor="@color/home_text_color"
+            android:gravity="left|center"
+            android:paddingLeft="@dimen/violation_text_pad_left"
+            android:background="@color/white"
+            android:drawableLeft="@mipmap/time"
+            android:drawablePadding="@dimen/violation_text_drawble_margin"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/violationTimeTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:textColor="@color/check_text"
+            android:textSize="@dimen/violation_text_topic_size"
+            android:paddingRight="@dimen/violation_text_pad_right"
+            android:layout_weight="18"
+            android:paddingLeft="@dimen/violation_text_drawble_margin"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

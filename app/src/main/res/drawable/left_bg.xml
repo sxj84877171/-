@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <stroke android:width="2dp" android:color="@color/white" /><!--边框颜色-->
+            <solid android:color="@color/nav_bg" /><!--填充色-->
+            <size android:width="103dp"
+                android:height="103dp" />
+        </shape>
+    </item>
+</layer-list>
+
+
+

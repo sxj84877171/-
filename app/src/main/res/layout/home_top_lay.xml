@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/home_content_high">
+
+    <!--2-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_content_high"
+        android:orientation="horizontal">
+        <!--2.1-->
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/auditLay"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/home_lay_icon_high"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/auditTv"
+                    android:layout_width="@dimen/home_icon_width"
+                    android:layout_height="@dimen/home_icon_high"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/auti"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/home_icon_text_margin"
+                    android:text="@string/audit"
+                    android:gravity="center"
+                    android:textSize="@dimen/home_text_size"
+                    android:textColor="@color/home_text_color"/>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="@dimen/linewidth"
+            android:layout_height="match_parent"
+            android:background="@color/grey"/>
+
+
+        <!--2.2-->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/electronicLay"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/home_lay_icon_high"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/electronicTv"
+                    android:layout_width="@dimen/home_icon_width"
+                    android:layout_height="@dimen/home_icon_high"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/elect"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/home_icon_text_margin"
+                    android:text="@string/electronicticket"
+                    android:gravity="center"
+                    android:textSize="@dimen/home_text_size"
+                    android:textColor="@color/home_text_color"/>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

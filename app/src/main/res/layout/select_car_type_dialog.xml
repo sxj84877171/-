@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f1f1f1">
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="14sp"
+        android:textColor="#3487d4"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="请选择添加车辆方式"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#dadada"/>
+    <TextView
+        android:id="@+id/shoudong"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textSize="16sp"
+        android:textColor="@drawable/select_car_type_dialog_click"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="手动输入"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#dadada"/>
+    <TextView
+        android:id="@+id/fujin"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textSize="16sp"
+        android:textColor="@drawable/select_car_type_dialog_click"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="附近车辆"/>
+</LinearLayout>

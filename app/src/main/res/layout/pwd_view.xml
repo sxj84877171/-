@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="@dimen/rl_height"
+    android:background="@color/white">
+    <EditText
+        android:id="@+id/pwd"
+        android:layout_width="@dimen/et_width"
+        android:layout_height="match_parent"
+        android:hint="@string/hint"
+        android:layout_marginLeft="@dimen/et_left"
+        android:layout_marginRight="@dimen/et_right"
+        android:inputType="textPassword"
+        android:background="@null"
+        />
+
+    <ImageView
+        android:id="@+id/iv_switch"
+        android:layout_width="30dp"
+        android:background="@mipmap/see_n"
+        android:layout_toRightOf="@+id/pwd"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/iv_right"
+        android:layout_alignParentRight="true"
+        android:layout_height="30dp" />
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--1-->
+    <include layout="@layout/activity_check_header" />
+    <!--2-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/linewidth"
+        android:background="@color/grey"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/check_text_high"
+        android:background="@color/check_bg">
+        <TextView
+            android:id="@+id/fujincar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/fujin_car"
+            android:textColor="@color/check_text"
+            android:layout_marginLeft="@dimen/check_text_left"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/linewidth"
+        android:background="@color/grey"/>
+    <!--3-->
+    <GridView
+        android:id="@+id/gv_check"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"></GridView>
+</LinearLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--1-->
+    <include layout="@layout/blacklist_header" />
+    <!--2-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/linewidth"
+        android:background="@color/grey"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/blacklist_r_high"
+        android:background="@color/check_bg">
+        <TextView
+            android:id="@+id/text"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/blacklist_shuju_size"
+            android:layout_marginTop="@dimen/blacklist_shuju_top"
+            android:text="@string/bl_update"
+            android:textColor="#505050"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/text"
+                android:textColor="#505050"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp" />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/linewidth"
+        android:background="@color/grey"/>
+    <!--3-->
+    <GridView
+        android:id="@+id/bl_gridview"
+        android:layout_width="match_parent"
+        android:background="#f1f1f1"
+        android:layout_height="match_parent"
+
+        android:numColumns="2"></GridView>
+</LinearLayout>

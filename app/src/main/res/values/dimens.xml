@@ -1,0 +1,177 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="header_height">50dp</dimen>
+
+    <dimen name="title_size">28sp</dimen>
+
+    <dimen name="text_size">20sp</dimen>
+
+    <dimen name="hint_size">18sp</dimen>
+
+
+    <dimen name="userorpasswordhigh">50dp</dimen>
+
+    <dimen name="layout_margin">20dp</dimen>
+
+    <dimen name="include_margin">20dp</dimen>
+
+    <dimen name="margin_top">80dp</dimen>
+
+    <dimen name="margin_width">30dp</dimen>
+
+    <dimen name="lay_width">90dp</dimen>
+
+    <!--�登陆�-->
+    <dimen name="login_top_high">270.67dp</dimen>
+    <dimen name="login_top_logo_high">126.67dp</dimen>
+    <dimen name="login_et_pwd_high">48.67dp</dimen>
+    <dimen name="login_et_pwd_iv_left">15.33dp</dimen>
+    <dimen name="login_et_pwd_iv_top">12.67dp</dimen>
+    <dimen name="login_et_pwd_iv_right">21.33dp</dimen>
+    <dimen name="login_bg_top">76dp</dimen>
+    <dimen name="login_bg_high">96dp</dimen>
+    <dimen name="login_bg_margin">40dp</dimen>
+    <dimen name="login_drawble_pad">21.33dp</dimen>
+    <dimen name="login_btn_high">45.33dp</dimen>
+    <dimen name="login_btn_top">55dp</dimen>
+    <dimen name="login_text_size">17.33dp</dimen>
+    <dimen name="login_edit_high">48dp</dimen>
+    <dimen name="login_text_high">78.67dp</dimen>
+    <dimen name="login_text_bottom">26dp</dimen>
+    <dimen name="login_text_top">16dp</dimen>
+    <dimen name="login_text_forget_size">13.33sp</dimen>
+    <dimen name="login_edit_pad_left">15.33dp</dimen>
+
+    <dimen name="linewidth">0.5dp</dimen>
+
+
+    <!--首页-->
+
+    <dimen name="home_header_title_high">44dp</dimen>
+    <dimen name="home_header_left_iconwidth">48dp</dimen>
+    <dimen name="home_header_right_iconwidth">48dp</dimen>
+    <dimen name="home_content_high">228.33dp</dimen>
+    <dimen name="home_icon_width">68dp</dimen>
+    <dimen name="home_lay_icon_high">102.67dp</dimen>
+    <dimen name="home_icon_high">68dp</dimen>
+    <dimen name="home_icon_text_margin">12.33dp</dimen>
+    <dimen name="home_text_size">17dp</dimen>
+    <dimen name="home_text_high">64.67dp</dimen>
+    <dimen name="home_analy_pad_left">19.33dp</dimen>
+    <dimen name="home_analy_margin_top">7.33dp</dimen>
+    <dimen name="home_bottom_high">47.33dp</dimen>
+    <!--����-->
+    <dimen name="back_left">16dp</dimen>
+    <dimen name="check_text_size">17sp</dimen>
+    <dimen name="check_text_high">37dp</dimen>
+    <dimen name="check_text_left">20dp</dimen>
+    <dimen name="gv_item_high">50dp</dimen>
+    <dimen name="gv_item_left">30dp</dimen>
+    <dimen name="item_text">13.5sp</dimen>
+    <dimen name="item_text_left">15dp</dimen>
+    <dimen name="bottom">0dp</dimen>
+    <dimen name="half">0.5dp</dimen>
+
+
+    <!--���电子罚单���-->
+    <dimen name="violation_header_title_high">44dp</dimen>
+    <dimen name="violation_header_left_iconwidth">48dp</dimen>
+    <dimen name="violation_header_right_iconwidth">48dp</dimen>
+    <dimen name="violation_margin_bg_high">7.33dp</dimen>
+    <dimen name="violation_margin_icon_top">16dp</dimen>
+    <dimen name="violation_text_size">17.33dp</dimen>
+    <dimen name="violation_text_high">40dp</dimen>
+    <dimen name="violation_photo_high">160dp</dimen>
+    <dimen name="violation_text_pad_left">20dp</dimen>
+    <dimen name="violation_text_pad_right">20dp</dimen>
+    <dimen name="violation_text_topic_size">12dp</dimen>
+    <dimen name="violation_text_drawble_margin">20dp</dimen>
+    <dimen name="violation_btn_high">46dp</dimen>
+    <dimen name="violation_btn_margin_left">35dp</dimen>
+    <dimen name="violation_btn_margin_right">35dp</dimen>
+    <dimen name="violation_btn_margin_top">25dp</dimen>
+
+    <!--���dialog���-->
+    <dimen name="dialog_text_high">40dp</dimen>
+    <dimen name="dialog_text_size">15dp</dimen>
+    <dimen name="dialog_view_high">1dp</dimen>
+    <dimen name="dialog_et_width">220dp</dimen>
+    <dimen name="dialog_et_high">105dp</dimen>
+    <dimen name="dialog_et_margin">12dp</dimen>
+    <dimen name="dialog_et_padding">14dp</dimen>
+    <dimen name="dialog_b_rhigh">46dp</dimen>
+    <dimen name="dialog_b_iv">16.5dp</dimen>
+    <dimen name="dialog_b_ivleft">21dp</dimen>
+    <dimen name="dialog_b_ts">14dp</dimen>
+
+    <!--���detail���-->
+    <dimen name="detail_lay_high">194dp</dimen>
+    <dimen name="detail_view_high">10dp</dimen>
+    <dimen name="detail_top_high">97dp</dimen>
+    <dimen name="detail_left">13dp</dimen>
+    <dimen name="detail_top">28dp</dimen>
+    <dimen name="detail_iv_high">50dp</dimen>
+    <dimen name="detail_item_top">3dp</dimen>
+    <dimen name="detail_margin_buttom">13dp</dimen>
+
+    <!--���black���-->
+    <dimen name="blacklist_r_high">40dp</dimen>
+    <dimen name="blacklist_shuju_top">6dp</dimen>
+    <dimen name="blacklist_shuju_size">11sp</dimen>
+    <dimen name="iv">18dp</dimen>
+    <!--���home_lay���-->
+    <dimen name="home_lay_height">47dp</dimen>
+    <dimen name="home_lay_iv_high">18dp</dimen>
+    <dimen name="home_lay_tv_size">16sp</dimen>
+    <dimen name="home_lay_t_size">12sp</dimen>
+    <dimen name="home_lay_sy">44dp</dimen>
+    <dimen name="home_lay_eq">27dp</dimen>
+    <dimen name="home_lay_wu">5dp</dimen>
+
+
+    <dimen name="animator_centor_to_left">10dp</dimen>
+    <dimen name="iv_right">19dp</dimen>
+    <dimen name="bt_high">300dp</dimen>
+    <dimen name="et_right">18dp</dimen>
+    <dimen name="et_left">18dp</dimen>
+    <dimen name="et_width">280dp</dimen>
+    <dimen name="rl_height">54dp</dimen>
+    <dimen name="rl_size">15sp</dimen>
+    <dimen name="tv_mtop">45dp</dimen>
+
+    <dimen name="lay_top">52dp</dimen>
+    <dimen name="pic_high">100dp</dimen>
+
+    <dimen name="view_high">47dp</dimen>
+    <dimen name="et_high">320dp</dimen>
+    <dimen name="item_high">93dp</dimen>
+    <!--���电子罚单记录���-->
+    <dimen name="tv_high">11dp</dimen>
+    <dimen name="rl_high">9dp</dimen>
+    <dimen name="tt_size">14sp</dimen>
+    <dimen name="mg_left">8dp</dimen>
+    <dimen name="divider_high">0.5dp</dimen>
+
+    <dimen name="nav_tv_top">24dp</dimen>
+    <dimen name="nav_iv">93dp</dimen>
+    <dimen name="nav_circle">103dp</dimen>
+
+    <dimen name="drawer_text_size">17sp</dimen>
+    <dimen name="drawer_mt">90dp</dimen>
+    <dimen name="iv_r">4dp</dimen>
+    <dimen name="iv_l">2dp</dimen>
+    <dimen name="badp">8dp</dimen>
+    <dimen name="shier_dp">12dp</dimen>
+    <dimen name="layout_height">33dp</dimen>
+    <dimen name="layout_width">330dp</dimen>
+
+
+    <dimen name="blacklist_item_margin_left">20dp</dimen>
+    <dimen name="blacklist_item_text_margin_left">8dp</dimen>
+    <dimen name="blacklist_enforcement_text_size">10sp</dimen>
+    <dimen name="blacklist_enforcement_text_margin_left">7dp</dimen>
+    <dimen name="blacklist_details_text_size">13sp</dimen>
+</resources>

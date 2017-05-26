@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="45dp">
+
+    <TextView
+        android:text="湘A99999"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textSize="12sp"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/state"
+        android:textColor="#505050"
+        android:id="@+id/ssid" />
+
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/selectcaritemdelete"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="19dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"/>
+
+    <ImageView
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/selectcaritemloading"
+        android:layout_centerVertical="true"
+        android:id="@+id/state" />
+</RelativeLayout>

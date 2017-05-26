@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/home_header_title_high"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:background="@color/header_title_bg">
+
+    <!--<RelativeLayout
+        android:id="@+id/listIconLay"
+        android:layout_width="@dimen/home_header_left_iconwidth"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true">
+        <ImageView
+            android:id="@+id/listIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/list"/>
+    </RelativeLayout>-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hometitle"
+        android:layout_centerVertical="true"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="@dimen/home_text_size"
+        android:layout_marginLeft="@dimen/drawer_mt"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/newIconLay"
+        android:layout_width="@dimen/home_header_left_iconwidth"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true">
+        <ImageView
+            android:id="@+id/newIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/news"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--1-->
+    <include layout="@layout/violation_header" />
+    <!--2-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/violation_margin_bg_high"
+        android:background="@drawable/home_edit_bg"/>
+    <!--3-->
+    <include layout="@layout/violation_type_lay" />
+    <!--4-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/violation_margin_bg_high"
+        android:background="@drawable/home_edit_bg"/>
+    <!--5-->
+    <include layout="@layout/violation_license_lay" />
+    <!--6-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/violation_margin_bg_high"
+        android:background="@drawable/home_edit_bg"/>
+    <!--7-->
+    <include layout="@layout/violation_point_lay" />
+
+    <!--8-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/violation_margin_bg_high"
+        android:background="@drawable/home_edit_bg"/>
+    <!--9-->
+    <include layout="@layout/violation_money_lay" />
+    <!--10-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/violation_margin_bg_high"
+        android:background="@drawable/home_edit_bg"/>
+    <!--11-->
+    <include layout="@layout/violation_position_lay" />
+    <!--12-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/violation_margin_bg_high"
+        android:background="@drawable/home_edit_bg"/>
+    <!--13-->
+    <include layout="@layout/violation_time_lay" />
+
+    <!--14-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/violation_margin_icon_top"
+        android:background="@drawable/home_edit_bg"/>
+    <!--15-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/violation_photo_high"
+        android:layout_marginLeft="@dimen/violation_text_drawble_margin"
+        android:layout_marginRight="@dimen/violation_text_drawble_margin"
+        android:orientation="horizontal">
+
+        <com.soarsky.policeclient.ui.violation.ViolationHorizontalScrollView
+            android:id="@+id/id_horizontalScrollView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <LinearLayout
+                android:id="@+id/id_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal" >
+            </LinearLayout>
+
+        </com.soarsky.policeclient.ui.violation.ViolationHorizontalScrollView>
+
+        <ImageView
+            android:id="@+id/addPhotoView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@mipmap/add"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"/>
+
+    <Button
+        android:id="@+id/commitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/violation_btn_high"
+        android:layout_marginRight="@dimen/violation_btn_margin_left"
+        android:layout_marginLeft="@dimen/violation_btn_margin_right"
+        android:layout_marginTop="@dimen/violation_btn_margin_top"
+        android:background="@drawable/violation_btn_bg"
+        android:textColor="@color/white"
+        android:textSize="@dimen/violation_text_size"
+        android:text="@string/commit"/>
+
+
+
+
+</LinearLayout>

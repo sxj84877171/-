@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/violation_text_high">
+
+    <LinearLayout
+        android:id="@+id/violationPositionLay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/violation_text_high"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/violationposition"
+            android:textColor="@color/home_text_color"
+            android:gravity="left|center"
+            android:paddingLeft="@dimen/violation_text_pad_left"
+            android:drawableLeft="@mipmap/position"
+            android:background="@color/white"
+            android:drawablePadding="@dimen/violation_text_drawble_margin"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/violationPositionTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="18"
+            android:background="@color/white"
+            android:textColor="@color/check_text"
+            android:textSize="@dimen/violation_text_topic_size"
+            android:drawableRight="@mipmap/arrow_r"
+            android:paddingRight="@dimen/violation_text_pad_right"
+            android:paddingLeft="@dimen/violation_text_drawble_margin"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

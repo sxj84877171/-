@@ -1,0 +1,140 @@
+<resources>
+    <string name="app_name">一寻</string>
+    <!--登陆-->
+    <string name="logintitle">登录</string>
+    <string name="username">警员编号</string>
+    <string name="password">登录密码</string>
+    <string name="forgetpass">忘记密码?</string>
+    <string name="isEmpty">您输入的用户名或密码为空</string>
+    <string name="login_un_pw_error">用户名或密码错误</string>
+    <string name="login_net_error">网络连接错误</string>
+    <string name="empty">您输入的密码为空</string>
+    <string name="pwd_confirm">输入的新密码不一致</string>
+
+
+    <string name="crash_msg">很抱歉，程序异常即将退出！</string>
+    <string name="about">关于</string>
+    <string name="version_code">1.0.0.0</string>
+    <string name="loading">正在加载...</string>
+    <string name="newest">已是最新版本,无需更新</string>
+    <string name="update_version">发现新版本，请更新</string>
+    <string name="load_success">下载成功</string>
+    <string name="load_fail">下载失败</string>
+    <string name="success">成功</string>
+    <string name="get_fail">获取新版本失败：</string>
+    <string name="update">升级提醒</string>
+    <string name="update_now">立刻升级</string>
+    <string name="update_next">下次再说</string>
+
+    <!--首页-->
+    <string name="hometitle">一寻</string>
+    <string name="audit">稽查</string>
+    <string name="electronicticket">开电子罚单</string>
+    <string name="blacklist">黑名单</string>
+    <string name="historicalrecord">历史记录</string>
+    <string name="opened">(已开启)</string>
+    <string name="closed">(暂未开启)</string>
+    <string name="open_check">稽查已打开</string>
+    <string name="close_check">稽查已关闭</string>
+    <!--事故分析-->
+    <string name="accidentanalysis">事故分析</string>
+    <string name="accidentanalysis_toast">该功能未开发</string>
+    <!--稽查-->
+    <string name="fujin_car">附近车辆：</string>
+    <string name="item_chepaihao">湘A123456</string>
+    <string name="car_detail">车辆详情</string>
+    <string name="black_car_detail">黑名单车辆详情</string>
+    <string name="electronic_detail">电子罚单详情</string>
+
+    <!--电子罚单-->
+    <string name="violationtitle">电子罚单</string>
+    <string name="violationtype">违章类型</string>
+    <string name="violationlicense">违章车牌</string>
+    <string name="violationpoint">违章扣分</string>
+    <string name="violationmoney">违章金额</string>
+    <string name="violationposition">违章位置</string>
+    <string name="violationtime">违章时间</string>
+    <string name="commit">提交</string>
+    <string name="commitvictory">提交成功</string>
+    <string name="commitfail">提交失败</string>
+    <string name="violationerrorimfo">您输入的信息不全</string>
+    <string name="paizhao">拍照</string>
+    <string name="pop_choice">从手机相册选择</string>
+    <string name="pop_cancel">取消</string>
+    <string name="dzi">电子罚单开具成功</string>
+    <string name="contunue">继续开罚单</string>
+
+    <!--罚单详情-->
+    <string name="detail_car">违章车牌:</string>
+    <string name="detail_carnum">湘A88888</string>
+    <string name="detail_ad">违章位置:</string>
+    <string name="detail_adress">长沙市岳麓区麓谷大道</string>
+    <string name="detail_time">违章时间: </string>
+    <string name="detaildate">2016-08-12 23:12</string>
+    <string name="detail_yuanyin">违章原因: </string>
+    <string name="detail_why">违法停车</string>
+    <string name="detail_kou">扣                      分:</string>
+    <string name="detail_koufen">3分</string>
+    <string name="detail_money">罚        款:</string>
+    <string name="detail_pay">100元</string>
+    <string name="connet_success">连接成功，可以开罚单了</string>
+    <string name="connet_fail">连接失败，请选择车牌号重试</string>
+
+    <!--dialog-->
+    <string name="dialog_wtwz">违停位置</string>
+    <string name="dialog_et_hint">请输入违章地址</string>
+    <string name="dialog_text">确定</string>
+    <string name="dialog_b_text">确认</string>
+    <string name="dialog_b_chice">请选择下列选项</string>
+    <string name="exit_confirm">确认退出登录吗?</string>
+    <string name="delete_confirm">确认删除该图片吗？</string>
+    <string name="exit_cancel">取消</string>
+    <string name="send_success">发送成功</string>
+    <string name="send_fail">发送失败,原因:</string>
+    <string name="exit_edit">是否退出此处编辑?</string>
+    <string name="exit">退出</string>
+
+    <!--车辆详情页-->
+    <string name="detail_color">车身颜色</string>
+    <string name="color">黑色</string>
+    <string name="detail_type">车辆类型</string>
+    <string name="type">小型车</string>
+    <string name="detail_num">车架号</string>
+    <string name="num">123456789</string>
+    <string name="detail_date">年检期止</string>
+    <string name="date">2016-11-11</string>
+    <string name="yuanyin">违法原因：</string>
+    <string name="item_time">时间：</string>
+    <string name="item_didian">地点：</string>
+    <string name="item_yuanyin">原因：</string>
+    <string name="error_code">错误码-</string>
+    <string name="blacklist_cause">黑名单原因:</string>
+
+
+    <!--黑名单-->
+    <string name="bl_update">数据更新时间</string>
+    <string name="bl_enforcement">(已执法)</string>
+    <string name="bl_topic">黑名单车辆详情</string>
+
+    <!--修改密码-->
+    <string name="modify">修改密码</string>
+    <string name="old_pwd">旧密码：</string>
+    <string name="new_pwd">新密码：</string>
+    <string name="confirm_pwd">确认密码：</string>
+    <string name="hint">请再次输入新密码</string>
+    <string name="hintt">6-12个字符，区分大小写</string>
+
+    <string name="et_hint">日期/地点/类型</string>
+    <string name="et_hintt">车牌号</string>
+
+    <string name="ps_xiugai">修改密码</string>
+    <string name="ps_exit">退出登录</string>
+
+    <string name="item_address">违章地点:</string>
+    <string name="addre">五一路与车站北路交汇处</string>
+    <string name="police_num">000088</string>
+    <string name="police_name">张三李四</string>
+
+    <string name="fail_old_pwd">旧密码输入不正确</string>
+</resources>
+

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_select_car"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.soarsky.policeclient.ui.accident.selectCar.SelectCarActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_header_title_high"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/header_title_bg"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:id="@+id/listIconLay"
+            android:layout_width="@dimen/home_header_left_iconwidth"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true">
+            <ImageView
+                android:layout_marginLeft="@dimen/back_left"
+                android:id="@+id/blacklist_back"
+                android:layout_width="@dimen/iv"
+                android:layout_height="@dimen/iv"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/back"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/headerTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="附近车辆"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/check_text_size"
+            android:layout_centerInParent="true"/>
+        <TextView
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="@dimen/check_text_size"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_wai"
+        android:layout_width="@dimen/layout_width"
+        android:layout_height="@dimen/layout_height"
+        android:background="@drawable/select_car_bg"
+        android:layout_marginTop="18dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dialog_text_size"
+        android:layout_marginRight="@dimen/dialog_text_size">
+
+            <ImageView
+                android:id="@+id/img_search"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="14dp"
+                android:src="@mipmap/search"
+                />
+
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="@dimen/et_high"
+                android:layout_height="@dimen/tv_mtop"
+                android:background="@null"
+                android:layout_toRightOf="@+id/img_search"
+                android:layout_centerVertical="true"
+                android:paddingRight="@dimen/badp"
+                android:maxLength="20"
+                android:hint="事故车辆车牌号码"
+                android:imeOptions="actionSearch"
+                android:textColor="#dadada"
+                android:textSize="13sp"/>
+    </RelativeLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="18dp"
+        android:id="@+id/carListView" />
+</LinearLayout>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/detail_lay_high"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="@dimen/bottom"
+            android:layout_height="@dimen/detail_top_high"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_color"
+                android:layout_width="@dimen/detail_iv_high"
+                android:layout_height="@dimen/detail_iv_high"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/violation_btn_margin_top"
+                android:background="@drawable/car_color" />
+
+            <TextView
+                android:textSize="@dimen/dialog_et_padding"
+                android:textColor="@color/check_text"
+                android:id="@+id/tv1_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/iv_color"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="@dimen/detail_left"
+                android:layout_toRightOf="@+id/iv_color"
+                android:text="@string/detail_color" />
+
+            <TextView
+                android:id="@+id/tv_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv1_color"
+                android:layout_below="@+id/tv1_color"
+                android:layout_marginTop="8dp"
+                android:text="" />
+
+
+        </RelativeLayout>
+        <View
+            android:layout_width="@dimen/linewidth"
+            android:layout_height="@dimen/detail_top_high"
+            android:background="@color/grey"/>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="@dimen/bottom"
+            android:layout_height="@dimen/detail_top_high"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_color2"
+                android:layout_width="@dimen/detail_iv_high"
+                android:layout_height="@dimen/detail_iv_high"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/violation_btn_margin_top"
+                android:background="@drawable/car_type" />
+
+            <TextView
+                android:textSize="@dimen/dialog_et_padding"
+                android:textColor="@color/check_text"
+                android:id="@+id/tv1_color2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/iv_color2"
+                android:layout_marginLeft="@dimen/detail_left"
+                android:layout_toRightOf="@+id/iv_color2"
+                android:layout_marginTop="4dp"
+                android:text="@string/detail_type" />
+
+            <TextView
+                android:id="@+id/tv_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv1_color2"
+                android:layout_below="@+id/tv1_color2"
+                android:layout_marginTop="8dp"
+                android:text="" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/linewidth"
+        android:background="@color/grey"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="@dimen/bottom"
+            android:layout_height="@dimen/detail_top_high"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_color3"
+                android:layout_width="@dimen/detail_iv_high"
+                android:layout_height="@dimen/detail_iv_high"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/violation_btn_margin_top"
+                android:background="@drawable/car_chejiahao" />
+
+            <TextView
+                android:textSize="@dimen/dialog_et_padding"
+                android:textColor="@color/check_text"
+                android:id="@+id/tv1_color3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_alignTop="@+id/iv_color3"
+                android:layout_marginLeft="@dimen/detail_left"
+                android:layout_toRightOf="@+id/iv_color3"
+                android:text="@string/detail_num" />
+
+            <TextView
+                android:id="@+id/tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv1_color3"
+                android:layout_below="@+id/tv1_color3"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="5dp"
+                android:text="" />
+
+
+        </RelativeLayout>
+        <View
+            android:layout_width="@dimen/linewidth"
+            android:layout_height="@dimen/detail_top_high"
+            android:background="@color/grey"/>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="@dimen/bottom"
+            android:layout_height="@dimen/detail_top_high"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_color4"
+                android:layout_width="@dimen/detail_iv_high"
+                android:layout_height="@dimen/detail_iv_high"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/violation_btn_margin_top"
+                android:background="@drawable/car_nianjian" />
+
+            <TextView
+                android:textSize="@dimen/dialog_et_padding"
+                android:textColor="@color/check_text"
+                android:id="@+id/tv1_color4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/iv_color4"
+                android:layout_marginLeft="@dimen/detail_left"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@+id/iv_color4"
+                android:text="@string/detail_date" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv1_color4"
+                android:layout_below="@+id/tv1_color4"
+                android:layout_marginTop="8dp"
+                android:text="" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
