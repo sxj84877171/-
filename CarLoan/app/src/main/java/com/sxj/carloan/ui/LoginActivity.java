@@ -3,23 +3,13 @@ package com.sxj.carloan.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,9 +17,11 @@ import android.widget.TextView;
 
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
+import com.sxj.carloan.bean.LoginInfo;
+import com.sxj.carloan.net.ApiServiceModel;
+import com.sxj.carloan.net.LoginBack;
 
-import java.util.ArrayList;
-import java.util.List;
+import rx.Subscriber;
 
 /**
  * A login screen that offers login via email/password.
@@ -42,7 +34,7 @@ public class LoginActivity extends BaseActivity {
     private View mLoginFormView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
@@ -85,8 +77,8 @@ public class LoginActivity extends BaseActivity {
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        final String email = mEmailView.getText().toString();
+        final String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -104,15 +96,39 @@ public class LoginActivity extends BaseActivity {
             focusView = mEmailView;
             cancel = true;
         } else  {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
+
         }
 
         if (cancel) {
             focusView.requestFocus();
         } else {
             showProgress(true);
+
+            new ApiServiceModel().UserLogin(email,password).subscribe(new Subscriber<LoginBack>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(LoginBack loginBack) {
+                    if("YES".equals(loginBack.getSuccess())){
+                        LoginInfo info = new LoginInfo();
+                        info.setUsername(email);
+                        info.setPassword(password);
+                        info.setToken("");
+                        gotoHomepage();
+                        showProgress(false);
+                        finish();
+                    }
+                }
+            });
+
         }
     }
 
