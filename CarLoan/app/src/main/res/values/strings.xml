@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">CarLoan</string>
-    
+    <string name="app_name">车贷管理系统</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">用户名</string>
     <string name="prompt_password">密码</string>
@@ -10,5 +10,8 @@
     <string name="error_invalid_password">密码长度不符合要求</string>
     <string name="error_incorrect_password">密码不正确</string>
     <string name="error_field_required">必填字段</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>

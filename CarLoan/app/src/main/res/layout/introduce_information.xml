@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="贷前调查\n\n基本情况：主要是借款人的贷款主体资格，基本条件是否符合要求。\n经营状况：主要是借款人近年的生产、销售、效益情况和发展前景预测。\n
+财务状况：主要是借款人近年的资产负债、资金结构、资金周转、盈利能力、现金流量等现状及变化。\n信誉状况：主要是借款人有无拖欠金融机构的贷款本息和不良信用记录。\n
+经营者素质：主要是法定代表人和主要领导层的学识、经历、业绩、品德和经营管理能力。\n担保情况：主要是抵(质)押物的权属，价值和变现难易程度，保证人的保证资格和保证能力。\n
+…………\n\n\n\n贷中审查\n\n借款人的主体资格是否合法，有无承担民事责任能力。\n借款人是否符合贷款基本条件。\n借款人生产经营、财务状况、信誉状况、发展前景及内部管理是否良好。\n
+借款用途是否合规，金额、期限、利率是否合规。\n法人公章、法定代表人或授权代理人的印章、签字样本的真伪。\n抵(质)押物的可靠性或保证人资格、能力的审查。\n
+…………" />
+</LinearLayout>
