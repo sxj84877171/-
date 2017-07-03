@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sxj.carloan">
+          package="com.sxj.carloan">
 
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
 
     <application
         android:name=".App"
@@ -18,18 +18,40 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.LoginActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.InfomationActivity"></activity>
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.InfomationActivity"
+            android:label="业务详情"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.HomeInfoAcitivity"
+            android:label="@string/title_activity_home_info_acitivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.HomeInfoItemActivity"
+            android:label="详细信息"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.PersonCreditActivity"
+                  android:label="个人信用"
+                  android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.RepaymentActivity"
+                  android:label="偿还能力"
+                  android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

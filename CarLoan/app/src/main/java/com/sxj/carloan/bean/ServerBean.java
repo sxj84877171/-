@@ -1,5 +1,6 @@
 package com.sxj.carloan.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -43,7 +44,7 @@ public class ServerBean {
         this.rows = rows;
     }
 
-    public static class RowsBean {
+    public static class RowsBean implements Serializable{
         /**
          * zh_sh_card_iden : null
          * user_id_loan_cw : 0
@@ -277,7 +278,7 @@ public class ServerBean {
         private String date_yw_pf;
         private String date_baoxian_finished;
         private String date_zh_sh_sign3;
-        private int deal_price;
+        private double deal_price;
         private String advance_payment;
         private String baoxian_fee;
         private String cust_gtczr_relation;
@@ -319,7 +320,7 @@ public class ServerBean {
         private String date_dcy_yw;
         private int case_type_id;
         private String cust_iden;
-        private int loan_amount;
+        private double loan_amount;
         private String date_case;
         private String date_zh_lk;
         private String sh_info;
@@ -1000,11 +1001,11 @@ public class ServerBean {
             this.date_zh_sh_sign3 = date_zh_sh_sign3;
         }
 
-        public int getDeal_price() {
+        public double getDeal_price() {
             return deal_price;
         }
 
-        public void setDeal_price(int deal_price) {
+        public void setDeal_price(double deal_price) {
             this.deal_price = deal_price;
         }
 
@@ -1336,11 +1337,11 @@ public class ServerBean {
             this.cust_iden = cust_iden;
         }
 
-        public int getLoan_amount() {
+        public double getLoan_amount() {
             return loan_amount;
         }
 
-        public void setLoan_amount(int loan_amount) {
+        public void setLoan_amount(double loan_amount) {
             this.loan_amount = loan_amount;
         }
 

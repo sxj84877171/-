@@ -8,7 +8,8 @@ public class LoginInfo{
     private String username;
     private String password;
     private String token ;
-    private String role ;
+    private String user_id ;
+    private String user_name ;
 
 
     public String getUsername() {
@@ -33,5 +34,13 @@ public class LoginInfo{
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getUser_id() {
+        return user_id;
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">车贷管理系统</string>
+    <string name="app_name">融宜车贷管理系统</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">用户名</string>
@@ -10,8 +10,7 @@
     <string name="error_invalid_password">密码长度不符合要求</string>
     <string name="error_incorrect_password">密码不正确</string>
     <string name="error_field_required">必填字段</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_main">我的业务</string>
+    <string name="title_activity_home_info_acitivity">家庭情况</string>
 
 </resources>

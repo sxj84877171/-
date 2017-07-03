@@ -65,6 +65,14 @@ public class LoginActivity extends BaseActivity {
         mProgressView = findViewById(R.id.login_progress);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mEmailView.setFocusable(true);
+        mEmailView.setFocusableInTouchMode(true);
+        mEmailView.requestFocus();
+        mEmailView.requestFocusFromTouch();
+    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -122,6 +130,16 @@ public class LoginActivity extends BaseActivity {
                         info.setUsername(email);
                         info.setPassword(password);
                         info.setToken("");
+                        String message = loginBack.getMessage();
+                        if(message != null){
+                            String[] args = message.split(",");
+                            if(args.length >= 4){
+                                info.setUser_id(args[3]);
+                                info.setUsername(args[2]);
+                                //111111111111,1,李生,1
+                            }
+                        }
+                        saveUserInfo(info);
                         gotoHomepage();
                         showProgress(false);
                         finish();

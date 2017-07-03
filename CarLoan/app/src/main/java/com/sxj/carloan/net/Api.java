@@ -13,6 +13,10 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
+import okio.Buffer;
+import okio.BufferedSource;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -53,10 +57,17 @@ public class Api {
     Interceptor mInterceptor = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
-            LogUtil.i("url==" + chain.request().url());
-            return chain.proceed(chain.request().newBuilder()
+            String url = chain.request().url().toString();
+            LogUtil.i("url==" + url);
+            Response response = chain.proceed(chain.request().newBuilder()
                     .addHeader("Content-Type", "application/json")
                     .build());
+            ResponseBody responseBody = response.body();
+            BufferedSource source = responseBody.source();
+            source.request(Long.MAX_VALUE); // Buffer the entire body.
+            Buffer buffer = source.buffer();
+            LogUtil.i(url + " : " + buffer.clone().toString());
+            return response;
         }
 
 

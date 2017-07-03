@@ -46,7 +46,8 @@ public class LogUtil {
     private static void init() {
         File path = new File(LOG_PATH);
         if (!path.exists()) {
-            path.mkdirs();
+            boolean success = path.mkdirs();
+            System.out.println(success);
         }
         File logFile = new File(LOG_PATH + CUSTOM_TAG_PREFIX + ".log");
         if (!logFile.exists()) {
