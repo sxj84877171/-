@@ -12,6 +12,7 @@ import com.sxj.carloan.R;
 import com.sxj.carloan.bean.Loan;
 import com.sxj.carloan.bean.ServerBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,11 +29,13 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
     String title1 ;
     String title2 ;
 
-    List<ServerBean.RowsBean> mValues;
+    List<ServerBean.RowsBean> mValues = new ArrayList<>();
     private MainActivity activity;
 
     public ItemRecyclerViewAdapter(List<ServerBean.RowsBean> items, MainActivity activity) {
-        mValues = items;
+        if(items != null){
+            mValues = items;
+        }
         this.activity = activity;
     }
 
@@ -52,7 +55,9 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
                 holder.textView.setText("申请人");
             }
             if(title2 != null){
-                holder.fview.setText("申请人");
+                holder.fview.setText(title2);
+            }else{
+                holder.fview.setText("");
             }
             TextPaint paint = holder.textView.getPaint();
             paint.setFakeBoldText(true);
@@ -86,6 +91,22 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
 
     public void setValues(List<ServerBean.RowsBean> mValues) {
         this.mValues = mValues;
+        notifyDataSetChanged();
+    }
+
+    public void addValues(List<ServerBean.RowsBean> mValues) {
+        if(this.mValues == null){
+            this.mValues = new ArrayList<>();
+        }
+        this.mValues.addAll(mValues);
+        notifyDataSetChanged();
+    }
+
+    public void cleanValues(){
+        if(this.mValues == null){
+            this.mValues = new ArrayList<>();
+        }
+        this.mValues.clear();
         notifyDataSetChanged();
     }
 

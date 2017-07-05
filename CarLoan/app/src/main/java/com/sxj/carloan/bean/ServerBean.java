@@ -17,7 +17,7 @@ import java.util.List;
  * 该类为
  */
 
-public class ServerBean {
+public class ServerBean implements Serializable{
 
 
     /**

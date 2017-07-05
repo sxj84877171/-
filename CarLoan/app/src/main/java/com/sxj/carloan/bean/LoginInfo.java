@@ -1,10 +1,12 @@
 package com.sxj.carloan.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by admin on 2017/6/25.
  */
 
-public class LoginInfo{
+public class LoginInfo implements Serializable{
     private String username;
     private String password;
     private String token ;

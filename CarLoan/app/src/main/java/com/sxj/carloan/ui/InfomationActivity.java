@@ -19,7 +19,6 @@ import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
 import com.sxj.carloan.bean.FuncResponseBean;
 import com.sxj.carloan.bean.ServerBean;
-import com.sxj.carloan.net.ApiServiceModel;
 import com.sxj.carloan.util.FileUtil;
 import com.sxj.carloan.util.LogUtil;
 import com.tbruyelle.rxpermissions.RxPermissions;
@@ -48,6 +47,7 @@ public class InfomationActivity extends BaseActivity {
     private View staget_type_line;
     private View build_date_line;
     private View home_viste_date_line;
+    private View business_state_line;
     private EditText id_no;
     private TextView marry_state;
     private EditText phone_num;
@@ -62,7 +62,7 @@ public class InfomationActivity extends BaseActivity {
 
     private TextView person_id;
     private TextView build_date;
-    private EditText business_state;
+    private TextView business_state;
 
     private Button modify;
     private Button save;
@@ -131,6 +131,7 @@ public class InfomationActivity extends BaseActivity {
             staget_type_line.setOnClickListener(null);
             home_viste_date_line.setOnClickListener(null);
             build_date_line.setOnClickListener(null);
+            business_state_line.setOnClickListener(null);
         }else {
             business_type_line.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -193,6 +194,12 @@ public class InfomationActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     createVisitDatePickDialog();
+                }
+            });
+            business_state_line.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    createRoldDialog();
                 }
             });
         }
@@ -286,6 +293,7 @@ public class InfomationActivity extends BaseActivity {
         build_date = getViewById(R.id.build_date);
         business_state = getViewById(R.id.business_state);
         apply_name = getViewById(R.id.apply_name);
+        business_state_line = getViewById(R.id.business_state_line);
         modify = getViewById(R.id.add);
         save = getViewById(R.id.save);
     }
@@ -302,10 +310,14 @@ public class InfomationActivity extends BaseActivity {
             car_typeEditText.setText(loan.getCar_type());
             transaction_price.setText(loan.getDeal_price() + "");
             loan_time.setText(loan.getCredit_years() + "");
-            build_date.setText(loan.getDate_ywy() + "");
+            build_date.setText(getLoanString(loan.getDate_ywy()));
             business_state.setText(initCaseState(loan.getCase_state_id()));
 //            person_id.setText(getLoginInfo().getUser_id());
-            person_id.setText(loan.getUser_id_ywy() + "");
+            if(loan.getUser_id_ywy() != 0) {
+                person_id.setText(loan.getUser_id_ywy() + "");
+            }else{
+                person_id.setText(getLoginInfo().getUser_id());
+            }
         }
     }
 
@@ -361,9 +373,9 @@ public class InfomationActivity extends BaseActivity {
         staget_type.setFocusable(stateBoolean);
         staget_type.setFocusableInTouchMode(stateBoolean);
         staget_type.setEnabled(stateBoolean);
-        person_id.setFocusable(stateBoolean);
-        person_id.setEnabled(stateBoolean);
-        person_id.setFocusableInTouchMode(stateBoolean);
+//        person_id.setFocusable(stateBoolean);
+//        person_id.setEnabled(stateBoolean);
+//        person_id.setFocusableInTouchMode(stateBoolean);
         build_date.setFocusable(stateBoolean);
         build_date.setFocusableInTouchMode(stateBoolean);
         build_date.setEnabled(stateBoolean);
@@ -392,6 +404,7 @@ public class InfomationActivity extends BaseActivity {
     private AlertDialog rootTypeDialog;
     private AlertDialog stagetTypeDialog;
     private AlertDialog choosePhotoDialog;
+    private AlertDialog roleDialog ;
     private AlertDialog visitDatePickDialog ;
     private AlertDialog buildDatePickDialog ;
 
@@ -520,7 +533,7 @@ public class InfomationActivity extends BaseActivity {
 
             if (requestCode == 101) {
                 File file = new File(getFilePath(selectedImageUri));
-                new ApiServiceModel().uploadIdPhoto(loan, file).enqueue(new Callback<ResponseBody>() {
+                model.uploadIdPhoto(loan, file).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         success();
@@ -557,7 +570,7 @@ public class InfomationActivity extends BaseActivity {
             if (requestCode == 102) {
                 Uri origina = data.getData();
                 File file = new File(getFilePath(origina));
-                new ApiServiceModel().uploadIdPhoto(loan, file).enqueue(new Callback<ResponseBody>() {
+                model.uploadIdPhoto(loan, file).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         success();
@@ -773,7 +786,7 @@ public class InfomationActivity extends BaseActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 int year = datePicker.getYear();
-                int month = datePicker.getMonth();
+                int month = datePicker.getMonth()  +1 ;
                 int day = datePicker.getDayOfMonth();
                 String dateString = year + "-" + month + "-" + day ;
                 if(listener != null){
@@ -817,7 +830,7 @@ public class InfomationActivity extends BaseActivity {
         loan.setCase_type_id(0);
 
         if (isModify) {
-            new ApiServiceModel().update(loan).subscribe(new Subscriber<FuncResponseBean>() {
+            model.update(loan).subscribe(new Subscriber<FuncResponseBean>() {
                 @Override
                 public void onCompleted() {
 
@@ -837,7 +850,7 @@ public class InfomationActivity extends BaseActivity {
                 }
             });
         } else {
-            new ApiServiceModel().insert(loan).subscribe(new Subscriber<FuncResponseBean>() {
+            model.insert(loan).subscribe(new Subscriber<FuncResponseBean>() {
                 @Override
                 public void onCompleted() {
                 }
@@ -858,7 +871,23 @@ public class InfomationActivity extends BaseActivity {
         }
     }
 
+    final  String[] role_state = new String[]{"建档中", "信用体系待查", "保险待查", "待传照片", "待派单", "待调查", "待风控", "待审批",
+            "待请款", "待税费汇总", "待电审", "待税费确认", "待批复", "待放款", "待住行审核", "待住行送审", "待调额", "待刷卡", "已刷卡"};
 
+
+    void createRoldDialog(){
+        if(roleDialog == null) {
+            DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    business_state.setText(role_state[which]);
+                    loan.setCase_state_id(which);
+                }
+            };
+            roleDialog = createAlertDialog(role_state, listener);
+        }
+        roleDialog.show();
+    }
     String initCaseState(int id) {
         String[] args = new String[]{"建档中", "信用体系待查", "保险待查", "待传照片", "待派单", "待调查", "待风控", "待审批",
                 "待请款", "待税费汇总", "待电审", "待税费确认", "待批复", "待放款", "待住行审核", "待住行送审", "待调额", "待刷卡", "已刷卡"};
@@ -867,4 +896,6 @@ public class InfomationActivity extends BaseActivity {
         }
         return "";
     }
+
+
 }

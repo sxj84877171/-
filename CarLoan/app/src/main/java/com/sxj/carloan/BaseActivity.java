@@ -12,8 +12,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sxj.carloan.bean.LoginInfo;
+import com.sxj.carloan.net.ApiServiceModel;
 import com.sxj.carloan.ui.LoginActivity;
 import com.sxj.carloan.ui.MainActivity;
+import com.sxj.carloan.util.FileObject;
 
 /**
  * Created by admin on 2017/6/25.
@@ -21,7 +23,10 @@ import com.sxj.carloan.ui.MainActivity;
 
 public class BaseActivity extends AppCompatActivity {
 
+    public static String LOGIN_INFO = "logininfo";
+
     App app ;
+    public ApiServiceModel model =new ApiServiceModel();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +58,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void saveUserInfo(LoginInfo info){
         app.setLoginInfo(info);
+        FileObject.saveObject(LOGIN_INFO,info);
     }
 
     @Override

@@ -20,6 +20,7 @@ import com.sxj.carloan.R;
 import com.sxj.carloan.bean.LoginInfo;
 import com.sxj.carloan.net.ApiServiceModel;
 import com.sxj.carloan.net.LoginBack;
+import com.sxj.carloan.util.FileObject;
 
 import rx.Subscriber;
 
@@ -63,6 +64,8 @@ public class LoginActivity extends BaseActivity {
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+
     }
 
     @Override
@@ -72,6 +75,12 @@ public class LoginActivity extends BaseActivity {
         mEmailView.setFocusableInTouchMode(true);
         mEmailView.requestFocus();
         mEmailView.requestFocusFromTouch();
+        LoginInfo info = (LoginInfo) FileObject.getObject(LOGIN_INFO);
+        if(info != null){
+            saveUserInfo(info);
+            gotoHomepage();
+            finish();
+        }
     }
 
     /**
@@ -112,7 +121,7 @@ public class LoginActivity extends BaseActivity {
         } else {
             showProgress(true);
 
-            new ApiServiceModel().UserLogin(email, password).subscribe(new Subscriber<LoginBack>() {
+            model.UserLogin(email, password).subscribe(new Subscriber<LoginBack>() {
                 @Override
                 public void onCompleted() {
 

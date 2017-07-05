@@ -2,6 +2,7 @@ package com.sxj.carloan.net;
 
 import com.sxj.carloan.bean.FuncResponseBean;
 import com.sxj.carloan.bean.ServerBean;
+import com.sxj.carloan.util.FileObject;
 
 import java.io.File;
 
@@ -51,14 +52,27 @@ public class ApiServiceModel {
         });
     }
 
-    public Observable<ServerBean> PageWork(String pageSize, String offset, String desc) {
+    public Observable<ServerBean> PageWork(final String pageSize, final String offset, final String desc) {
         return Api.getInstance().getService().PageWork(pageSize, offset, desc).compose(ApiServiceModel.<ServerBean>io_main()).map(new Func1<ServerBean, ServerBean>() {
             @Override
             public ServerBean call(ServerBean o) {
-                // save
+                FileObject.saveObject("PageWork$" + pageSize + "$" + offset + "$" + desc, o);
                 return o;
             }
         });
+    }
+
+    public ServerBean PageWorkLocal(final String pageSize, final String offset, final String desc){
+        Object o = FileObject.getObject("PageWork$" + pageSize + "$" + offset + "$" + desc);
+        if(o != null){
+            try {
+                ServerBean serverBean = (ServerBean) o;
+                return serverBean;
+            }catch (Exception ex){
+
+            }
+        }
+        return null;
     }
 
     public Observable<FuncResponseBean> insert(ServerBean.RowsBean rowsBean) {
@@ -73,8 +87,8 @@ public class ApiServiceModel {
                 rowsBean.getDate_ywy(), rowsBean.getCase_state_id() + "").compose(ApiServiceModel.<FuncResponseBean>io_main());
     }
 
-    public Observable<FuncResponseBean> update(ServerBean.RowsBean rowsBean){
-        return Api.getInstance().getService().UpdateTable(rowsBean.getId()+"",rowsBean.getCase_type_id() + "",
+    public Observable<FuncResponseBean> update(ServerBean.RowsBean rowsBean) {
+        return Api.getInstance().getService().UpdateTable(rowsBean.getId() + "", rowsBean.getCase_type_id() + "",
                 rowsBean.getCust_name_tmp(), rowsBean.getCust_sex(),
                 rowsBean.getCust_iden(), rowsBean.getCust_marriage_id() + "",
                 rowsBean.getCust_mobile(), rowsBean.getIf_gcr_id() + "",
@@ -86,45 +100,45 @@ public class ApiServiceModel {
         ).compose(ApiServiceModel.<FuncResponseBean>io_main());
     }
 
-    public Call<ResponseBody> uploadIdPhoto(ServerBean.RowsBean rowsBean,File file){
+    public Call<ResponseBody> uploadIdPhoto(ServerBean.RowsBean rowsBean, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        String filename = "photo/ywy/{case_id}_1.jpg" ;
-        filename = filename.replace("{case_id}",rowsBean.getId()+"");
+        String filename = "photo/ywy/{case_id}_1.jpg";
+        filename = filename.replace("{case_id}", rowsBean.getId() + "");
         MultipartBody.Part body =
                 MultipartBody.Part.createFormData("image", file.getName(), requestFile);
 
 
-        return Api.getInstance().getService().updateLoadImageFile(filename,body);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
     }
 
-    public Observable<FuncResponseBean> uploadPhoto(ServerBean.RowsBean rowsBean,File file){
+    public Observable<FuncResponseBean> uploadPhoto(ServerBean.RowsBean rowsBean, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        String filename = "photo/ywy/{case_id}_1.jpg" ;
-        filename = filename.replace("{case_id}",rowsBean.getId()+"");
+        String filename = "photo/ywy/{case_id}_1.jpg";
+        filename = filename.replace("{case_id}", rowsBean.getId() + "");
         MultipartBody.Part body =
                 MultipartBody.Part.createFormData("image", file.getName(), requestFile);
-        return Api.getInstance().getService().uploadImageFile(filename,body);
+        return Api.getInstance().getService().uploadImageFile(filename, body);
     }
 
-    public Call<ResponseBody> uploadManagerPhoto(ServerBean.RowsBean rowsBean,File file){
+    public Call<ResponseBody> uploadManagerPhoto(ServerBean.RowsBean rowsBean, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        String filename = "photo/ywy/{case_id}_2.jpg" ;
-        filename = filename.replace("{case_id}",rowsBean.getId()+"");
+        String filename = "photo/ywy/{case_id}_2.jpg";
+        filename = filename.replace("{case_id}", rowsBean.getId() + "");
         MultipartBody.Part body =
                 MultipartBody.Part.createFormData("image", file.getName(), requestFile);
-        return Api.getInstance().getService().updateLoadImageFile(filename,body);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
     }
 
-    public Call<ResponseBody> uploadManager3Photo(ServerBean.RowsBean rowsBean,File file){
+    public Call<ResponseBody> uploadManager3Photo(ServerBean.RowsBean rowsBean, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        String filename = "photo/ywy/{case_id}_3.jpg" ;
-        filename = filename.replace("{case_id}",rowsBean.getId()+"");
+        String filename = "photo/ywy/{case_id}_3.jpg";
+        filename = filename.replace("{case_id}", rowsBean.getId() + "");
         MultipartBody.Part body =
                 MultipartBody.Part.createFormData("image", file.getName(), requestFile);
-        return Api.getInstance().getService().updateLoadImageFile(filename,body);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
     }
 }
