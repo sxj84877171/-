@@ -14,6 +14,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
@@ -26,6 +27,15 @@ import rx.Subscriber;
 
 /**
  * A login screen that offers login via email/password.
+ *
+ * username: admin
+ * password:456123
+ *
+ * username: ywy1
+ * password:123456
+ *
+ * username:
+ * password:
  */
 public class LoginActivity extends BaseActivity {
     // UI references.
@@ -145,13 +155,17 @@ public class LoginActivity extends BaseActivity {
                             if(args.length >= 4){
                                 info.setUser_id(args[3]);
                                 info.setUsername(args[2]);
+                                info.setRole(args[1]);
                                 //111111111111,1,李生,1
                             }
                         }
                         saveUserInfo(info);
-                        gotoHomepage();
+                        goMain();
                         showProgress(false);
                         finish();
+                    }else{
+                        Toast.makeText(LoginActivity.this,"用户名或密码不正确！",Toast.LENGTH_LONG).show();
+                        showProgress(false);
                     }
                 }
             });

@@ -13,9 +13,15 @@ import android.widget.Toast;
 
 import com.sxj.carloan.bean.LoginInfo;
 import com.sxj.carloan.net.ApiServiceModel;
+import com.sxj.carloan.ui.InfomationActivity;
 import com.sxj.carloan.ui.LoginActivity;
 import com.sxj.carloan.ui.MainActivity;
+import com.sxj.carloan.ui.investigation.InvestigationMainActivity;
 import com.sxj.carloan.util.FileObject;
+import com.sxj.carloan.util.LogUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by admin on 2017/6/25.
@@ -25,89 +31,129 @@ public class BaseActivity extends AppCompatActivity {
 
     public static String LOGIN_INFO = "logininfo";
 
-    App app ;
-    public ApiServiceModel model =new ApiServiceModel();
+    App app;
+    public ApiServiceModel model = new ApiServiceModel();
+
+    private static List<BaseActivity> activityList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        app = (App)getApplication();
+        app = (App) getApplication();
+        activityList.add(this);
     }
 
-    protected boolean isLogin(){
+    @Override
+    protected void onDestroy() {
+        activityList.remove(this);
+        super.onDestroy();
+    }
+
+    protected boolean isLogin() {
         LoginInfo info = app.getLoginInfo();
-        if(info != null){
+        if (info != null) {
 //            return info.getToken() != null;
             return info.getUsername() != null;
         }
         return false;
     }
 
-    protected String getUsername(){
+    protected String getUsername() {
         LoginInfo info = app.getLoginInfo();
-        if(info != null){
+        if (info != null) {
             return info.getUsername();
         }
         return null;
     }
 
-    protected LoginInfo getLoginInfo(){
-        return  app.getLoginInfo();
+    protected LoginInfo getLoginInfo() {
+        return app.getLoginInfo();
     }
 
-    protected void saveUserInfo(LoginInfo info){
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        if(! (this instanceof LoginActivity)){
+            menu.add(1, 200, 200, "退出登录");
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        LogUtil.i("item " + item.getItemId());
+        if (item.getItemId() == 200) {
+            FileObject.cleanFile(LOGIN_INFO);
+            for(BaseActivity activity : activityList){
+                if(activity != null) {
+                    activity.finish();
+                }
+            }
+            gotoLogin();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    protected void saveUserInfo(LoginInfo info) {
         app.setLoginInfo(info);
-        FileObject.saveObject(LOGIN_INFO,info);
+        FileObject.saveObject(LOGIN_INFO, info);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(!isLogin()){
-            if(!this.getClass().equals(LoginActivity.class)){
-//                gotoLogin();
-            }
+    }
+
+    protected void gotoLogin() {
+        Intent intent = new Intent();
+        intent.setClass(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    protected void goMain() {
+        if (getLoginInfo().isDcy()) {
+            gotoInverstigation();
+            return;
+        } else if (getLoginInfo().isYwy()) {
+            gotoHomepage();
+            return;
         }
+
+        gotoHomepage();
     }
 
-    protected void gotoLogin(){
+    protected void gotoHomepage() {
         Intent intent = new Intent();
-        intent.setClass(this,LoginActivity.class);
+        intent.setClass(this, MainActivity.class);
         startActivity(intent);
     }
 
-    protected void gotoHomepage(){
+    protected void gotoRole() {
+
+    }
+
+    protected void gotoInverstigation() {
         Intent intent = new Intent();
-        intent.setClass(this,MainActivity.class);
+        intent.setClass(this, InvestigationMainActivity.class);
         startActivity(intent);
     }
 
-    protected void gotoRole(){
 
+    public <T extends View> T getViewById(int id) {
+        return (T) findViewById(id);
+    }
+
+    public void success() {
+        Toast.makeText(this, "成功", Toast.LENGTH_LONG).show();
     }
 
 
-
-
-
-    public <T extends View> T getViewById(int id){
-        return (T)findViewById(id);
-    }
-
-    public void success(){
-        Toast.makeText(this,"成功",Toast.LENGTH_LONG).show();
-    }
-
-
-    public void getPermissionFail(){
-        Toast.makeText(this,"获取权限失败",Toast.LENGTH_LONG).show();
+    public void getPermissionFail() {
+        Toast.makeText(this, "获取权限失败", Toast.LENGTH_LONG).show();
     }
 
     private ProgressDialog progressDialog;
 
-    public void showProcess(){
-        if(progressDialog == null) {
+    public void showProcess() {
+        if (progressDialog == null) {
             progressDialog = new ProgressDialog(this);
             progressDialog.setIndeterminate(false);
             progressDialog.setMessage("正在加载...");
@@ -117,13 +163,13 @@ public class BaseActivity extends AppCompatActivity {
         progressDialog.show();
     }
 
-    public void dismiss(){
-        if(progressDialog != null){
+    public void dismiss() {
+        if (progressDialog != null) {
             progressDialog.dismiss();
         }
     }
 
-    public Activity getActivity(){
+    public Activity getActivity() {
         return this;
     }
 }

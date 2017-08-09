@@ -28,7 +28,7 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/title_activity_main"
+            android:label="@string/sales_man"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.InfomationActivity"
@@ -44,13 +44,19 @@
             android:label="详细信息"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.PersonCreditActivity"
-                  android:label="个人信用"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".ui.PersonCreditActivity"
+            android:label="个人信用"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.RepaymentActivity"
-                  android:label="偿还能力"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".ui.RepaymentActivity"
+            android:label="偿还能力"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.investigation.InvestigationMainActivity"
+            android:label="@string/investigator">
         </activity>
     </application>
 

@@ -7,12 +7,34 @@ import java.io.Serializable;
  */
 
 public class LoginInfo implements Serializable{
+
+    public static final String YWY = "2" ;
+    public static final String ADMIN = "1" ;
+    public static final String DCY = "7";
+
     private String username;
     private String password;
     private String token ;
     private String user_id ;
     private String user_name ;
+    private String role ;
 
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public boolean isDcy() {
+        return DCY.equals(role);
+    }
+
+    public boolean isYwy(){
+        return YWY.equals(role);
+    }
 
     public String getUsername() {
         return username;

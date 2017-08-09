@@ -4,10 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
 import com.sxj.carloan.util.LogUtil;
 
-public class HomeInfoItemActivity extends AppCompatActivity {
+public class HomeInfoItemActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

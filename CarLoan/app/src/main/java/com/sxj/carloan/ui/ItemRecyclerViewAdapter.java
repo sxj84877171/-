@@ -1,5 +1,6 @@
 package com.sxj.carloan.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextPaint;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
 import com.sxj.carloan.bean.Loan;
 import com.sxj.carloan.bean.ServerBean;
@@ -26,14 +28,14 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         this.title2 = title2;
     }
 
-    String title1 ;
-    String title2 ;
+    String title1;
+    String title2;
 
     List<ServerBean.RowsBean> mValues = new ArrayList<>();
-    private MainActivity activity;
+    private BaseActivity activity;
 
-    public ItemRecyclerViewAdapter(List<ServerBean.RowsBean> items, MainActivity activity) {
-        if(items != null){
+    public ItemRecyclerViewAdapter(List<ServerBean.RowsBean> items, BaseActivity activity) {
+        if (items != null) {
             mValues = items;
         }
         this.activity = activity;
@@ -41,38 +43,38 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.fragment_item,null);
+        View view = LayoutInflater.from(activity).inflate(R.layout.fragment_item, null);
 //        TextView view = new TextView(parent.getContext());
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        if(position == 0){
-            if(title1 != null){
+        if (position == 0) {
+            if (title1 != null) {
                 holder.textView.setText(title1);
-            }else {
+            } else {
                 holder.textView.setText("申请人");
             }
-            if(title2 != null){
+            if (title2 != null) {
                 holder.fview.setText(title2);
-            }else{
+            } else {
                 holder.fview.setText("");
             }
             TextPaint paint = holder.textView.getPaint();
             paint.setFakeBoldText(true);
             paint = holder.fview.getPaint();
             paint.setFakeBoldText(true);
-        }else{
-            holder.textView.setText(mValues.get(position-1).getCust_name_tmp());
-            holder.fview.setText(mValues.get(position-1).getCust_iden());
+        } else {
+            holder.textView.setText(mValues.get(position - 1).getCust_name_tmp());
+            holder.fview.setText(mValues.get(position - 1).getCust_iden());
         }
-        ((View)holder.textView.getParent()).setOnClickListener(new View.OnClickListener() {
+        ((View) holder.textView.getParent()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(position > 0) {
+                if (position > 0) {
                     Intent intent = new Intent();
-                    intent.setClass(activity,InfomationActivity.class);
+                    intent.setClass(activity, InfomationActivity.class);
                     intent.putExtra("data", mValues.get(position - 1));
                     intent.putExtra("state", 0);
                     activity.getActivity().startActivity(intent);
@@ -95,15 +97,15 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
     }
 
     public void addValues(List<ServerBean.RowsBean> mValues) {
-        if(this.mValues == null){
+        if (this.mValues == null) {
             this.mValues = new ArrayList<>();
         }
         this.mValues.addAll(mValues);
         notifyDataSetChanged();
     }
 
-    public void cleanValues(){
-        if(this.mValues == null){
+    public void cleanValues() {
+        if (this.mValues == null) {
             this.mValues = new ArrayList<>();
         }
         this.mValues.clear();
@@ -116,11 +118,11 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         public ViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.id);
-            fview = (TextView)itemView.findViewById(R.id.content);
+            fview = (TextView) itemView.findViewById(R.id.content);
         }
 
         TextView textView;
-        TextView fview ;
+        TextView fview;
     }
 
 }

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">融宜车贷管理系统</string>
+    <string name="sales_man">业务员</string>
+    <string name="investigator">调查员</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">用户名</string>

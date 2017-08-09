@@ -55,7 +55,6 @@ public class MainActivity extends BaseActivity {
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         menu.add(1, 1, 1, "业务建档");
-        menu.add(1, 2, 2, "退出登录");
         return super.onCreateOptionsMenu(menu);
     }
 
