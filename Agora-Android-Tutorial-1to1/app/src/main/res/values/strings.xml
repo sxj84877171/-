@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">融宜车贷管理系统</string>
+
+    <!-- PLEASE KEEP THIS App ID IN SAFE PLACE -->
+    <!-- Get your own App ID at https://dashboard.agora.io/ -->
+    <!-- After you entered the App ID, remove <##> outside of Your App ID -->
+    <!-- For formal released project, please use Dynamic Key
+        http://docs.agora.io/en/user_guide/Component_and_Others/Dynamic_Key_User_Guide.html -->
+    <!-- Tutorial Step 1 -->
+    <string name="agora_app_id">9590cf6cb56145edb3c3f2bd08a02f31</string>
+    <string name="title_activity_main">主页</string>
+</resources>
