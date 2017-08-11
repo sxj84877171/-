@@ -10,10 +10,7 @@ import android.view.View;
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
 import com.sxj.carloan.bean.ServerBean;
-import com.sxj.carloan.ui.InfomationActivity;
 import com.sxj.carloan.ui.ItemRecyclerViewAdapter;
-import com.sxj.carloan.ui.LoginActivity;
-import com.sxj.carloan.ui.MainActivity;
 import com.sxj.carloan.util.LogUtil;
 
 import rx.Subscriber;
