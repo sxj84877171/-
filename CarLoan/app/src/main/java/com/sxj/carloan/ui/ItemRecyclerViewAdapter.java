@@ -78,10 +78,6 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         ((View) holder.textView.getParent()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(onItemClickListener != null){
-                    onItemClickListener.onItemClick(v,mValues.get(position-1),position);
-                }
                 if (position > 0) {
                     if(onItemClickListener != null){
                         onItemClickListener.onItemClick(v,mValues.get(position-1),position);

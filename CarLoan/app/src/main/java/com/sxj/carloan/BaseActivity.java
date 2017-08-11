@@ -143,10 +143,6 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    protected void gotoRole() {
-
-    }
-
     protected void gotoInverstigation() {
         Intent intent = new Intent();
         intent.setClass(this, InvestigationMainActivity.class);
@@ -188,5 +184,9 @@ public class BaseActivity extends AppCompatActivity {
 
     public Activity getActivity() {
         return this;
+    }
+
+    protected void toast(String msg){
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 }

@@ -38,7 +38,7 @@ public class InvestigationMainActivity extends BaseActivity {
                 intent.setClass(InvestigationMainActivity.this, InvestigationFunctionChoose.class);
                 intent.putExtra("data", rowsBean);
                 intent.putExtra("state", 0);
-                getActivity().startActivity(intent);
+                startActivity(intent);
             }
         });
         itemRecyclerViewAdapter.setTitle1("被调查人");
@@ -68,6 +68,7 @@ public class InvestigationMainActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         menu.add(1, 1, 1, "未完成");
         menu.add(1, 2, 2, "已完成");
+        menu.add(1, 3, 3, "全部");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -78,7 +79,11 @@ public class InvestigationMainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
         LogUtil.i("item " + item.getItemId());
         if (item.getItemId() == 1) {
-
+            toast("功能在努力开发中……");
+        }else if(item.getItemId() == 2){
+            toast("功能在努力开发中……");
+        }else if(item.getItemId() == 3){
+            toast("功能在努力开发中……");
         }
         return super.onOptionsItemSelected(item);
     }
