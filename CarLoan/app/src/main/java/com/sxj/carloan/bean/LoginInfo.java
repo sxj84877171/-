@@ -36,6 +36,10 @@ public class LoginInfo implements Serializable{
         return YWY.equals(role);
     }
 
+    public boolean isAdmin(){
+        return ADMIN.equals(role);
+    }
+
     public String getUsername() {
         return username;
     }

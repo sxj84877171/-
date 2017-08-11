@@ -58,6 +58,20 @@
             android:name=".ui.investigation.InvestigationMainActivity"
             android:label="@string/investigator">
         </activity>
+        <activity
+            android:name=".ui.investigation.InvestigationFunctionChoose"
+            android:label="@string/title_activity_investigation_function_choose">
+        </activity>
+        <activity
+            android:name=".ui.OtherRoleActivity"
+            android:label="@string/title_activity_other_role"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ui.AdminActivity"
+            android:label="@string/title_activity_admin"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

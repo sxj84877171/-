@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
@@ -30,6 +31,16 @@ public class MainActivity extends BaseActivity {
         listView = getViewById(R.id.list);
         mSwipeLayout = getViewById(R.id.id_swipe_ly);
         itemRecyclerViewAdapter = new ItemRecyclerViewAdapter(null, this);
+        itemRecyclerViewAdapter.setOnItemClickListener(new ItemRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, ServerBean.RowsBean rowsBean, int position) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, InfomationActivity.class);
+                intent.putExtra("data",rowsBean);
+                intent.putExtra("state", 0);
+                getActivity().startActivity(intent);
+            }
+        });
         listView.setLayoutManager(new LinearLayoutManager(this));
         listView.setAdapter(itemRecyclerViewAdapter);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

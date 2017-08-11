@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
 import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.ui.InfomationActivity;
 import com.sxj.carloan.ui.ItemRecyclerViewAdapter;
+import com.sxj.carloan.ui.LoginActivity;
+import com.sxj.carloan.ui.MainActivity;
 import com.sxj.carloan.util.LogUtil;
 
 import rx.Subscriber;
@@ -31,6 +34,17 @@ public class InvestigationMainActivity extends BaseActivity {
         listView = getViewById(R.id.list);
         mSwipeLayout = getViewById(R.id.id_swipe_ly);
         itemRecyclerViewAdapter = new ItemRecyclerViewAdapter(null, this);
+        itemRecyclerViewAdapter.setOnItemClickListener(new ItemRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, ServerBean.RowsBean rowsBean, int position) {
+                Intent intent = new Intent();
+                intent.setClass(InvestigationMainActivity.this, InvestigationFunctionChoose.class);
+                intent.putExtra("data", rowsBean);
+                intent.putExtra("state", 0);
+                getActivity().startActivity(intent);
+            }
+        });
+        itemRecyclerViewAdapter.setTitle1("被调查人");
         listView.setLayoutManager(new LinearLayoutManager(this));
         listView.setAdapter(itemRecyclerViewAdapter);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -38,7 +52,7 @@ public class InvestigationMainActivity extends BaseActivity {
             public void onRefresh() {
                 if (index < max) {
                     fromServer();
-                }else{
+                } else {
                     mSwipeLayout.setRefreshing(false);
                 }
             }
@@ -49,13 +63,14 @@ public class InvestigationMainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        index = max = 0 ;
+        index = max = 0;
         itemRecyclerViewAdapter.cleanValues();
         fromServer();
     }
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
-
+        menu.add(1, 1, 1, "未完成");
+        menu.add(1, 2, 2, "已完成");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -66,10 +81,7 @@ public class InvestigationMainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
         LogUtil.i("item " + item.getItemId());
         if (item.getItemId() == 1) {
-            Intent intent = new Intent();
-            intent.putExtra("state", 1);
-            intent.setClass(getActivity(), InfomationActivity.class);
-            startActivity(intent);
+
         }
         return super.onOptionsItemSelected(item);
     }

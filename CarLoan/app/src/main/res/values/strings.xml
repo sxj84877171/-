@@ -14,5 +14,8 @@
     <string name="error_field_required">必填字段</string>
     <string name="title_activity_main">我的业务</string>
     <string name="title_activity_home_info_acitivity">家庭情况</string>
+    <string name="title_activity_investigation_function_choose">请选择要完成的功能</string>
+    <string name="title_activity_other_role">OtherRoleActivity</string>
+    <string name="title_activity_admin">AdminActivity</string>
 
 </resources>

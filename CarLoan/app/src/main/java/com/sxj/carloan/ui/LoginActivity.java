@@ -88,7 +88,7 @@ public class LoginActivity extends BaseActivity {
         LoginInfo info = (LoginInfo) FileObject.getObject(LOGIN_INFO);
         if(info != null){
             saveUserInfo(info);
-            gotoHomepage();
+            goMain();
             finish();
         }
     }

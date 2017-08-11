@@ -28,6 +28,12 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         this.title2 = title2;
     }
 
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     String title1;
     String title2;
 
@@ -72,12 +78,14 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         ((View) holder.textView.getParent()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(onItemClickListener != null){
+                    onItemClickListener.onItemClick(v,mValues.get(position-1),position);
+                }
                 if (position > 0) {
-                    Intent intent = new Intent();
-                    intent.setClass(activity, InfomationActivity.class);
-                    intent.putExtra("data", mValues.get(position - 1));
-                    intent.putExtra("state", 0);
-                    activity.getActivity().startActivity(intent);
+                    if(onItemClickListener != null){
+                        onItemClickListener.onItemClick(v,mValues.get(position-1),position);
+                    }
                 }
             }
         });
@@ -110,6 +118,10 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         }
         this.mValues.clear();
         notifyDataSetChanged();
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(View view , ServerBean.RowsBean rowsBean, int position);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

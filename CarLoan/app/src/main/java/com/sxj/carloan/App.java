@@ -19,4 +19,6 @@ public class App extends Application {
     public void setLoginInfo(LoginInfo loginInfo) {
         this.loginInfo = loginInfo;
     }
+
+
 }

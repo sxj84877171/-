@@ -13,9 +13,11 @@ import android.widget.Toast;
 
 import com.sxj.carloan.bean.LoginInfo;
 import com.sxj.carloan.net.ApiServiceModel;
+import com.sxj.carloan.ui.AdminActivity;
 import com.sxj.carloan.ui.InfomationActivity;
 import com.sxj.carloan.ui.LoginActivity;
 import com.sxj.carloan.ui.MainActivity;
+import com.sxj.carloan.ui.OtherRoleActivity;
 import com.sxj.carloan.ui.investigation.InvestigationMainActivity;
 import com.sxj.carloan.util.FileObject;
 import com.sxj.carloan.util.LogUtil;
@@ -115,14 +117,29 @@ public class BaseActivity extends AppCompatActivity {
         } else if (getLoginInfo().isYwy()) {
             gotoHomepage();
             return;
+        }else if(getLoginInfo().isAdmin()){
+            gotoAdminPage();
+        }else{
+            gotoOtherRolepage();
         }
 
-        gotoHomepage();
+    }
+
+    protected void gotoAdminPage() {
+        Intent intent = new Intent();
+        intent.setClass(this, AdminActivity.class);
+        startActivity(intent);
     }
 
     protected void gotoHomepage() {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    protected void gotoOtherRolepage() {
+        Intent intent = new Intent();
+        intent.setClass(this, OtherRoleActivity.class);
         startActivity(intent);
     }
 
