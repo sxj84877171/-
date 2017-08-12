@@ -1,12 +1,17 @@
 package com.sxj.carloan;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -31,6 +36,13 @@ import java.util.List;
 
 public class BaseActivity extends AppCompatActivity {
 
+    private static final int PERMISSION_REQ_ID_RECORD_AUDIO = 22;
+    private static final int PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1;
+    private static final int RECORD_REQUEST_CODE = 101;
+    private static final int STORAGE_REQUEST_CODE = 102;
+    private static final int AUDIO_REQUEST_CODE = 103;
+
+
     public static String LOGIN_INFO = "logininfo";
 
     App app;
@@ -41,7 +53,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        checkPermission();
         app = (App) getApplication();
         activityList.add(this);
     }
@@ -188,5 +200,29 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void toast(String msg){
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    }
+
+    public boolean checkSelfPermission(String permission, int requestCode) {
+        Log.i(getClass().getSimpleName(), "checkSelfPermission " + permission + " " + requestCode);
+        if (ContextCompat.checkSelfPermission(this,
+                permission)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{permission},
+                    requestCode);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 权限检查
+     */
+    private void checkPermission() {
+        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,STORAGE_REQUEST_CODE);
+        checkSelfPermission(Manifest.permission.RECORD_AUDIO,AUDIO_REQUEST_CODE);
+        checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) ;
+        checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA);
     }
 }

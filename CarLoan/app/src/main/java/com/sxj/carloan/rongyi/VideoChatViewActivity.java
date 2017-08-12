@@ -86,11 +86,6 @@ public class VideoChatViewActivity extends BaseActivity {
         projectionManager = (MediaProjectionManager) getSystemService(MEDIA_PROJECTION_SERVICE);
         setContentView(R.layout.activity_video_chat_view);
 
-        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) && checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA)) {
-//            initAgoraEngineAndJoinChannel();
-        }
-
-        checkPermission();
     }
 
     private void initAgoraEngineAndJoinChannel() {
@@ -187,17 +182,10 @@ public class VideoChatViewActivity extends BaseActivity {
      * 权限检查
      */
     private void checkPermission() {
-        if (ContextCompat.checkSelfPermission(VideoChatViewActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_REQUEST_CODE);
-        }
-
-        if (ContextCompat.checkSelfPermission(VideoChatViewActivity.this, Manifest.permission.RECORD_AUDIO)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.RECORD_AUDIO}, AUDIO_REQUEST_CODE);
-        }
+        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,STORAGE_REQUEST_CODE);
+        checkSelfPermission(Manifest.permission.RECORD_AUDIO,AUDIO_REQUEST_CODE);
+        checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) ;
+        checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA);
     }
 
     public void onLocalVideoMuteClicked1(View view) {
