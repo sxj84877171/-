@@ -39,6 +39,12 @@ public class VideoChatViewActivity extends BaseActivity {
     private static final int STORAGE_REQUEST_CODE = 102;
     private static final int AUDIO_REQUEST_CODE = 103;
 
+    private View local_video_view_container;
+    private View remote_video_view_container;
+
+    private View wait;
+    private View linearlayout;
+
 
     private RtcEngine mRtcEngine;// Tutorial Step 1
     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() { // Tutorial Step 1
@@ -71,6 +77,23 @@ public class VideoChatViewActivity extends BaseActivity {
                 }
             });
         }
+
+        @Override
+        public void onUserMuteAudio(int uid, final boolean muted) {
+            super.onUserMuteAudio(uid, muted);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (!muted) {
+                        linearlayout.setVisibility(View.VISIBLE);
+                        local_video_view_container.setVisibility(View.VISIBLE);
+                        remote_video_view_container.setVisibility(View.VISIBLE);
+                        wait.setVisibility(View.GONE);
+                    }
+                }
+            });
+
+        }
     };
 
     private MediaProjectionManager projectionManager;
@@ -83,7 +106,17 @@ public class VideoChatViewActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         projectionManager = (MediaProjectionManager) getSystemService(MEDIA_PROJECTION_SERVICE);
         setContentView(R.layout.activity_video_chat_view);
+        local_video_view_container = findViewById(R.id.local_video_view_container);
+        remote_video_view_container = findViewById(R.id.remote_video_view_container);
+        wait = findViewById(R.id.wait);
+        linearlayout = findViewById(R.id.linearlayout);
 
+//        linearlayout.setVisibility(View.GONE);
+//        local_video_view_container.setVisibility(View.GONE);
+//        remote_video_view_container.setVisibility(View.GONE);
+//        wait.setVisibility(View.VISIBLE);
+
+        wait.setVisibility(View.GONE);
     }
 
     private void initAgoraEngineAndJoinChannel() {
@@ -190,12 +223,14 @@ public class VideoChatViewActivity extends BaseActivity {
         ImageView iv = (ImageView) view;
         if (iv.isSelected()) {
             iv.setSelected(false);
-            iv.clearColorFilter();
-            startRecord();
+            finish();
         } else {
             iv.setSelected(true);
-            iv.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
-            recordFun();
+            initAgoraEngineAndJoinChannel();
+            linearlayout.setVisibility(View.GONE);
+            local_video_view_container.setVisibility(View.GONE);
+            remote_video_view_container.setVisibility(View.GONE);
+            wait.setVisibility(View.VISIBLE);
         }
     }
 
@@ -267,9 +302,9 @@ public class VideoChatViewActivity extends BaseActivity {
         mRtcEngine.setupRemoteVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
 
 
-        surfaceView.setTag(uid); // for mark purpose
-        View tipMsg = findViewById(R.id.quick_tips_when_use_agora_sdk); // optional UI
-        tipMsg.setVisibility(View.GONE);
+//        surfaceView.setTag(uid); // for mark purpose
+//        View tipMsg = findViewById(R.id.quick_tips_when_use_agora_sdk); // optional UI
+//        tipMsg.setVisibility(View.GONE);
     }
 
     // Tutorial Step 6
@@ -305,14 +340,14 @@ public class VideoChatViewActivity extends BaseActivity {
      * 录制按钮相关
      */
     private void recordFun() {
-        Intent intent = new Intent(this, RecordService.class);
-        bindService(intent, connection, BIND_AUTO_CREATE);
+//        Intent intent = new Intent(this, RecordService.class);
+//        bindService(intent, connection, BIND_AUTO_CREATE);
 
         if (recordService != null) {
 //            recordService.creatFloatView();
 //            recordService.updateFloatView("开始录制");
-            Intent captureIntent = projectionManager.createScreenCaptureIntent();
-            startActivityForResult(captureIntent, RECORD_REQUEST_CODE);
+//            Intent captureIntent = projectionManager.createScreenCaptureIntent();
+//            startActivityForResult(captureIntent, RECORD_REQUEST_CODE);
         }
     }
 
