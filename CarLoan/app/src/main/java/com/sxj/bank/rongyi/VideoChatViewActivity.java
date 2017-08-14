@@ -9,7 +9,9 @@ import android.graphics.PorterDuff;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
@@ -286,7 +288,36 @@ public class VideoChatViewActivity extends BaseActivity {
 
         remind_msg.setVisibility(View.GONE);
         receiver_call.setVisibility(View.VISIBLE);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRtcEngine.muteLocalAudioStream(true);
+            }
+        },100);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRtcEngine.muteLocalAudioStream(false);
+            }
+        },200);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRtcEngine.muteLocalAudioStream(true);
+            }
+        },300);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRtcEngine.muteLocalAudioStream(false);
+            }
+        },400);
     }
+
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     // Tutorial Step 6
     private void leaveChannel() {
@@ -307,6 +338,8 @@ public class VideoChatViewActivity extends BaseActivity {
         remind_msg.setVisibility(View.VISIBLE);
         local_video_view_container.setVisibility(View.GONE);
         remote_video_view_container.setVisibility(View.GONE);
+
+        onBackPressed();
     }
 
     // Tutorial Step 10
