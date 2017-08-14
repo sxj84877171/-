@@ -10,10 +10,8 @@ import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -111,7 +109,7 @@ public class VideoChatViewActivity extends BaseActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[], @NonNull int[] grantResults) {
+                                           String permissions[], int[] grantResults) {
         Log.i(LOG_TAG, "onRequestPermissionsResult " + grantResults[0] + " " + requestCode);
 
         switch (requestCode) {
@@ -153,7 +151,7 @@ public class VideoChatViewActivity extends BaseActivity {
 
         leaveChannel();
         RtcEngine.destroy();
-        if(recordService != null) {
+        if (recordService != null) {
             unbindService(connection);
         }
         mRtcEngine = null;
@@ -182,9 +180,9 @@ public class VideoChatViewActivity extends BaseActivity {
      * 权限检查
      */
     private void checkPermission() {
-        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,STORAGE_REQUEST_CODE);
-        checkSelfPermission(Manifest.permission.RECORD_AUDIO,AUDIO_REQUEST_CODE);
-        checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) ;
+        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_REQUEST_CODE);
+        checkSelfPermission(Manifest.permission.RECORD_AUDIO, AUDIO_REQUEST_CODE);
+        checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO);
         checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA);
     }
 
@@ -276,7 +274,7 @@ public class VideoChatViewActivity extends BaseActivity {
 
     // Tutorial Step 6
     private void leaveChannel() {
-        if(mRtcEngine != null) {
+        if (mRtcEngine != null) {
             mRtcEngine.leaveChannel();
         }
     }
@@ -320,7 +318,7 @@ public class VideoChatViewActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (recordService!= null && recordService.isRunning()) {
+        if (recordService != null && recordService.isRunning()) {
             recordService.stopRecord();
         }
         super.onBackPressed();
