@@ -84,17 +84,12 @@ public class VideoChatViewActivity extends BaseActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if(muted){
-                        local_video_view_container.setVisibility(View.GONE);
-                        remote_video_view_container.setVisibility(View.GONE);
-                        receiver_call.setVisibility(View.VISIBLE);
-                        remind_msg.setVisibility(View.GONE);
-                    }else{
-                        local_video_view_container.setVisibility(View.VISIBLE);
-                        remote_video_view_container.setVisibility(View.VISIBLE);
-                        receiver_call.setVisibility(View.VISIBLE);
-                        remind_msg.setVisibility(View.GONE);
-                    }
+//                    if (!muted) {
+//                        local_video_view_container.setVisibility(View.VISIBLE);
+//                        remote_video_view_container.setVisibility(View.VISIBLE);
+//                        receiver_call.setVisibility(View.VISIBLE);
+//                        remind_msg.setVisibility(View.GONE);
+//                    }
                 }
             });
 
@@ -125,8 +120,8 @@ public class VideoChatViewActivity extends BaseActivity {
         Intent intent = new Intent(this, RecordService.class);
         bindService(intent, connection, BIND_AUTO_CREATE);
 
-        Intent captureIntent = projectionManager.createScreenCaptureIntent();
-        startActivityForResult(captureIntent, RECORD_REQUEST_CODE);
+//        Intent captureIntent = projectionManager.createScreenCaptureIntent();
+//        startActivityForResult(captureIntent, RECORD_REQUEST_CODE);
 
     }
 
@@ -195,7 +190,7 @@ public class VideoChatViewActivity extends BaseActivity {
 
         leaveChannel();
         RtcEngine.destroy();
-        if(recordService != null) {
+        if (recordService != null) {
             unbindService(connection);
             recordService = null;
         }
@@ -225,29 +220,30 @@ public class VideoChatViewActivity extends BaseActivity {
      * 权限检查
      */
     private void checkPermission() {
-        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,STORAGE_REQUEST_CODE);
-        checkSelfPermission(Manifest.permission.RECORD_AUDIO,AUDIO_REQUEST_CODE);
-        checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) ;
+        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_REQUEST_CODE);
+        checkSelfPermission(Manifest.permission.RECORD_AUDIO, AUDIO_REQUEST_CODE);
+        checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO);
         checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA);
     }
 
     public void onLocalVideoMuteClicked1(View view) {
         ImageView iv = (ImageView) view;
-        if (iv.isSelected()) {
-            iv.setSelected(false);
+        if (!iv.isSelected()) {
+            iv.setSelected(true);
             iv.clearColorFilter();
-//            startRecord();
-            local_video_view_container.setVisibility(View.GONE);
-            remote_video_view_container.setVisibility(View.GONE);
+            local_video_view_container.setVisibility(View.VISIBLE);
+            remote_video_view_container.setVisibility(View.VISIBLE);
             receiver_call.setVisibility(View.VISIBLE);
             remind_msg.setVisibility(View.GONE);
-            mRtcEngine.muteLocalVideoStream(true);
+            mRtcEngine.muteLocalAudioStream(true);
             recordService.startRecord();
         } else {
-            iv.setSelected(true);
-            mRtcEngine.muteLocalVideoStream(false);
+            iv.setSelected(false);
             iv.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
-            recordFun();
+            if (recordService.isRunning()) {
+                isServiceInit = false;
+                recordService.stopRecord();
+            }
         }
     }
 
@@ -322,22 +318,32 @@ public class VideoChatViewActivity extends BaseActivity {
         surfaceView.setTag(uid); // for mark purpose
         View tipMsg = findViewById(R.id.quick_tips_when_use_agora_sdk); // optional UI
         tipMsg.setVisibility(View.GONE);
+
+        local_video_view_container.setVisibility(View.GONE);
+        remote_video_view_container.setVisibility(View.GONE);
+        receiver_call.setVisibility(View.VISIBLE);
+        remind_msg.setVisibility(View.GONE);
     }
 
     // Tutorial Step 6
     private void leaveChannel() {
-        if(mRtcEngine != null) {
+        if (mRtcEngine != null) {
             mRtcEngine.leaveChannel();
         }
     }
 
     // Tutorial Step 7
     private void onRemoteUserLeft() {
-        FrameLayout container = (FrameLayout) findViewById(R.id.remote_video_view_container);
+       /* FrameLayout container = (FrameLayout) findViewById(R.id.remote_video_view_container);
         container.removeAllViews();
 
         View tipMsg = findViewById(R.id.quick_tips_when_use_agora_sdk); // optional UI
-        tipMsg.setVisibility(View.VISIBLE);
+        tipMsg.setVisibility(View.VISIBLE);*/
+
+        local_video_view_container.setVisibility(View.GONE);
+        remote_video_view_container.setVisibility(View.GONE);
+        receiver_call.setVisibility(View.GONE);
+        remind_msg.setVisibility(View.VISIBLE);
     }
 
     // Tutorial Step 10
@@ -352,41 +358,13 @@ public class VideoChatViewActivity extends BaseActivity {
         }
     }
 
-
-    /**
-     * 录制按钮相关
-     */
-    private void recordFun() {
-        /*if (recordService != null) {
-            Intent captureIntent = projectionManager.createScreenCaptureIntent();
-            startActivityForResult(captureIntent, RECORD_REQUEST_CODE);
-        }*/
-        Intent intent = new Intent(this, RecordService.class);
-        bindService(intent, connection, BIND_AUTO_CREATE);
-    }
-
     @Override
     public void onBackPressed() {
-        if (recordService!= null && recordService.isRunning()) {
+        if (recordService != null && recordService.isRunning()) {
             recordService.stopRecord();
         }
         super.onBackPressed();
     }
-
-    private void startRecord() {
-        if (isServiceInit) {
-            if (recordService.isRunning()) {
-                isServiceInit = false;
-                recordService.stopRecord();
-            } else {
-                recordService.setMediaProject(mediaProjection);
-                recordService.startReady();
-            }
-        } else {
-            Toast.makeText(VideoChatViewActivity.this, "初始化中。。。", Toast.LENGTH_SHORT).show();
-        }
-    }
-
 
     private ServiceConnection connection = new ServiceConnection() {
         @Override
@@ -422,10 +400,11 @@ public class VideoChatViewActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == RECORD_REQUEST_CODE && resultCode == RESULT_OK) {
-            mediaProjection = projectionManager.getMediaProjection(resultCode, data);
+        if (requestCode == RECORD_REQUEST_CODE && resultCode == RESULT_OK && !isServiceInit) {
             isServiceInit = true;
-            startRecord();
+            mediaProjection = projectionManager.getMediaProjection(resultCode, data);
+            recordService.setMediaProject(mediaProjection);
+            recordService.startReady();
             initAgoraEngineAndJoinChannel();
         }
 

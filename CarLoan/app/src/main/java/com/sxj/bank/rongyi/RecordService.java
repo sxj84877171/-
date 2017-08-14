@@ -134,12 +134,18 @@ public class RecordService extends Service {
         }
         videoFile = getSaveDirectory() + System.currentTimeMillis() + ".mp4";
         initRecorder();
-        createVirtualDisplay();
         return true;
     }
 
     public boolean startRecord(){
-        mediaRecorder.start();
+        mediaRecorder.setOutputFile(videoFile);//设置输出文件路径
+        try {
+            mediaRecorder.prepare();
+            createVirtualDisplay();
+            mediaRecorder.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         running = true;
         return true;
     }
@@ -212,17 +218,12 @@ public class RecordService extends Service {
         mediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);//视频类型
 //    mediaRecorder.setAudioChannels();
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);//设置输出格式
-        mediaRecorder.setOutputFile(videoFile);//设置输出文件路径
         mediaRecorder.setVideoSize(width, height);//视频尺寸
         mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.MPEG_4_SP);//视频编码
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);//音频编码
         mediaRecorder.setVideoEncodingBitRate(1 * 1024 * 1024);//编码比特率
         mediaRecorder.setVideoFrameRate(25);//帧率   不能低于24
-        try {
-            mediaRecorder.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     public String getSaveDirectory() {
