@@ -21,7 +21,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             app:layoutManager="LinearLayoutManager"
-            tools:context="com.sxj.carloan.ui.ItemFragment"
+            tools:context="com.sxj.bank.ui.ItemFragment"
             tools:listitem="@layout/fragment_item"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 

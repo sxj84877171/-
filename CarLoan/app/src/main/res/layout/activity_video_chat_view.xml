@@ -24,6 +24,15 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="@android:color/darker_gray"/>
 
+    <TextView
+        android:id="@+id/remind_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="40dp"
+        android:textSize="20sp"
+        android:text="您已上线，如果有调查员调查，你将会收到提醒，为了确保您能接到调查员的申请面签，请不要关闭此页面，谢谢！"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,6 +57,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/receiver_call"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="20"
