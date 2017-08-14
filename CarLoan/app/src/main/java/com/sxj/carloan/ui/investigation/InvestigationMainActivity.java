@@ -58,11 +58,16 @@ public class InvestigationMainActivity extends BaseActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         index = max = 0;
         itemRecyclerViewAdapter.cleanValues();
         fromServer();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {

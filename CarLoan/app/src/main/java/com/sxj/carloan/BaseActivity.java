@@ -6,6 +6,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.MessageQueue;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -41,6 +44,7 @@ public class BaseActivity extends AppCompatActivity {
     private static final int RECORD_REQUEST_CODE = 101;
     private static final int STORAGE_REQUEST_CODE = 102;
     private static final int AUDIO_REQUEST_CODE = 103;
+    private static final int RECEIVE_BOOT_COMPLETED_CODE = 104 ;
 
 
     public static String LOGIN_INFO = "logininfo";
@@ -53,7 +57,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        checkPermission();
         app = (App) getApplication();
         activityList.add(this);
     }
@@ -86,7 +89,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        if(! (this instanceof LoginActivity)){
+        if (!(this instanceof LoginActivity)) {
             menu.add(1, 200, 200, "退出登录");
         }
         return super.onCreateOptionsMenu(menu);
@@ -96,8 +99,8 @@ public class BaseActivity extends AppCompatActivity {
         LogUtil.i("item " + item.getItemId());
         if (item.getItemId() == 200) {
             FileObject.cleanFile(LOGIN_INFO);
-            for(BaseActivity activity : activityList){
-                if(activity != null) {
+            for (BaseActivity activity : activityList) {
+                if (activity != null) {
                     activity.finish();
                 }
             }
@@ -114,6 +117,9 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (!(this instanceof LoginActivity)) {
+            checkPermission();
+        }
     }
 
     protected void gotoLogin() {
@@ -129,9 +135,9 @@ public class BaseActivity extends AppCompatActivity {
         } else if (getLoginInfo().isYwy()) {
             gotoHomepage();
             return;
-        }else if(getLoginInfo().isAdmin()){
+        } else if (getLoginInfo().isAdmin()) {
             gotoAdminPage();
-        }else{
+        } else {
             gotoOtherRolepage();
         }
 
@@ -198,8 +204,8 @@ public class BaseActivity extends AppCompatActivity {
         return this;
     }
 
-    protected void toast(String msg){
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    protected void toast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     public boolean checkSelfPermission(String permission, int requestCode) {
@@ -220,9 +226,10 @@ public class BaseActivity extends AppCompatActivity {
      * 权限检查
      */
     private void checkPermission() {
-        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,STORAGE_REQUEST_CODE);
-        checkSelfPermission(Manifest.permission.RECORD_AUDIO,AUDIO_REQUEST_CODE);
-        checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) ;
+        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_REQUEST_CODE);
+        checkSelfPermission(Manifest.permission.RECORD_AUDIO, AUDIO_REQUEST_CODE);
+        checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO);
         checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA);
+//        checkSelfPermission(Manifest.permission.RECEIVE_BOOT_COMPLETED,RECEIVE_BOOT_COMPLETED_CODE);
     }
 }

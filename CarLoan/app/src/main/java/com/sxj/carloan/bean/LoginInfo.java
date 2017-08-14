@@ -8,8 +8,8 @@ import java.io.Serializable;
 
 public class LoginInfo implements Serializable{
 
-    public static final String YWY = "2" ;
     public static final String ADMIN = "1" ;
+    public static final String YWY = "2" ;
     public static final String DCY = "7";
 
     private String username;

@@ -1,6 +1,5 @@
 package com.sxj.carloan.rongyi;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -72,7 +71,7 @@ public class VideoListActivity extends BaseActivity {
             public void onLongClick(View v, int position) {
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.putExtra(Intent.EXTRA_STREAM,
-                        Uri.parse(list.get(position).get("path")));
+                        Uri.fromFile(new File(list.get(position).get("path"))));
                 share.setType("*/*");//此处可发送多种文件
                 startActivity(Intent.createChooser(share, "Share"));
             }

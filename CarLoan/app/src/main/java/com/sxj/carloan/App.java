@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import com.sxj.carloan.bean.LoginInfo;
 import com.sxj.carloan.rongyi.RecordService;
+import com.sxj.carloan.util.CrashHandler;
 
 /**
  * Created by admin on 2017/6/25.
@@ -35,6 +36,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         // 启动 Marvel service
+        CrashHandler.getInstance().init();
         startService(new Intent(this, RecordService.class));
     }
 
