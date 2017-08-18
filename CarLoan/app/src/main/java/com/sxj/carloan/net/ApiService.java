@@ -9,6 +9,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -17,13 +18,8 @@ import retrofit2.http.QueryMap;
 import rx.Observable;
 
 /**
- * 车主APP<br>
  * 作者： 孙向锦<br>
  * 时间： 8/18/2016<br>
- * 公司：长沙硕铠电子科技有限公司<br>
- * Email：sunxiangjin@soarsky-e.com<br>
- * 公司网址：http://www.soarsky-e.com<br>
- * 公司地址（Add）  ：湖南省长沙市岳麓区麓谷信息港A座8楼<br>
  * 版本：1.0.0.0<br>
  * 邮编：410000<br>
  * 程序功能：后台服务接口声明<br>
@@ -42,7 +38,7 @@ public interface ApiService {
     public Observable<ServerBean> InsertTable(@QueryMap Map<String, String> map);
 
     @POST("AjaxService.ashx?method=InsertTable&table_name=t_case")
-    public Observable<ServerBean> InsertTable(@QueryMap ServerBean.RowsBean bean);
+    public Observable<FuncResponseBean> InsertTable(@Body ServerBean.RowsBean bean);
 
     @POST("AjaxService.ashx?method=InsertTableApp&table_name=t_case")
     public Observable<FuncResponseBean> InsertTable(@Query("case_type_id") String case_type_id
@@ -55,7 +51,6 @@ public interface ApiService {
             , @Query("installment_type_id") String installment_type_id, @Query("user_id_ywy") String user_id_ywy
             , @Query("date_ywy") String date_ywy, @Query("case_state_id ") String case_state_id
     );
-
 
     @POST("AjaxService.ashx?method=UpdateTable&table_name=t_case")
     public Observable<ServerBean> UpdateTable(@QueryMap Map<String, String> map);

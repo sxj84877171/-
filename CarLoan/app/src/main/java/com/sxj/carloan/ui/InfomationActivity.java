@@ -19,6 +19,9 @@ import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
 import com.sxj.carloan.bean.FuncResponseBean;
 import com.sxj.carloan.bean.ServerBean;
+import com.sxj.carloan.ui.HomeInfoAcitivity;
+import com.sxj.carloan.ui.PersonCreditActivity;
+import com.sxj.carloan.ui.RepaymentActivity;
 import com.sxj.carloan.util.FileUtil;
 import com.sxj.carloan.util.LogUtil;
 import com.tbruyelle.rxpermissions.RxPermissions;
@@ -44,10 +47,10 @@ public class InfomationActivity extends BaseActivity {
     private View marry_state_line;
     private View is_compension_line;
     private View house_type_line;
-    private View staget_type_line;
+    //    private View staget_type_line;
     private View build_date_line;
     private View home_viste_date_line;
-    private View business_state_line;
+    //    private View business_state_line;
     private EditText id_no;
     private TextView marry_state;
     private EditText phone_num;
@@ -58,11 +61,11 @@ public class InfomationActivity extends BaseActivity {
     private EditText car_typeEditText;
     private EditText transaction_price;
     private EditText loan_time;
-    private TextView staget_type;
+//    private TextView staget_type;
 
-    private TextView person_id;
-    private TextView build_date;
-    private TextView business_state;
+//    private TextView person_id;
+//    private TextView build_date;
+//    private TextView business_state;
 
     private Button modify;
     private Button save;
@@ -128,10 +131,10 @@ public class InfomationActivity extends BaseActivity {
             marry_state_line.setOnClickListener(null);
             is_compension_line.setOnClickListener(null);
             house_type_line.setOnClickListener(null);
-            staget_type_line.setOnClickListener(null);
+//            staget_type_line.setOnClickListener(null);
             home_viste_date_line.setOnClickListener(null);
             build_date_line.setOnClickListener(null);
-            business_state_line.setOnClickListener(null);
+//            business_state_line.setOnClickListener(null);
         }else {
             business_type_line.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -176,12 +179,12 @@ public class InfomationActivity extends BaseActivity {
                 }
             });
 
-            staget_type_line.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    createStagetTypeDialog();
-                }
-            });
+//            staget_type_line.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    createStagetTypeDialog();
+//                }
+//            });
 
             build_date_line.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -196,22 +199,22 @@ public class InfomationActivity extends BaseActivity {
                     createVisitDatePickDialog();
                 }
             });
-            business_state_line.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    createRoldDialog();
-                }
-            });
+//            business_state_line.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    createRoldDialog();
+//                }
+//            });
         }
     }
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        menu.add(1, 1, 1, "家庭情况");
-        menu.add(1, 2, 2, "个人信用");
-        menu.add(1, 3, 3, "偿还能力");
-        menu.add(1, 4, 4, "审核意见");
-        menu.add(1, 5, 5, "预览报告");
-        menu.add(1, 6, 6, "下载报告");
+//        menu.add(1, 1, 1, "家庭情况");
+//        menu.add(1, 2, 2, "个人信用");
+//        menu.add(1, 3, 3, "偿还能力");
+//        menu.add(1, 4, 4, "审核意见");
+//        menu.add(1, 5, 5, "预览报告");
+//        menu.add(1, 6, 6, "下载报告");
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -221,10 +224,10 @@ public class InfomationActivity extends BaseActivity {
 //        if (state != 0) {
 //            menu.add(1, 10, 10, "照片");
 //        }
-        if (loan.getId() > 0) {
-            menu.removeItem(7);
-            menu.add(1, 7, 7, "上传照片");
-        }
+//        if (loan.getId() > 0) {
+//            menu.removeItem(7);
+//            menu.add(1, 7, 7, "上传照片");
+//        }
         return super.onPrepareOptionsMenu(menu);
 
     }
@@ -281,19 +284,19 @@ public class InfomationActivity extends BaseActivity {
         marry_state_line = getViewById(R.id.marry_state_line);
         is_compension_line = getViewById(R.id.is_compension_line);
         house_type_line = getViewById(R.id.house_type_line);
-        staget_type_line = getViewById(R.id.staget_type_line);
+//        staget_type_line = getViewById(R.id.staget_type_line);
         home_viste_date_line = getViewById(R.id.home_viste_date_line);
-        build_date_line = getViewById(R.id.build_date_line);
+//        build_date_line = getViewById(R.id.build_date_line);
 
         car_typeEditText = getViewById(R.id.car_type);
         transaction_price = getViewById(R.id.transaction_price);
         loan_time = getViewById(R.id.loan_time);
-        staget_type = getViewById(R.id.staget_type);
-        person_id = getViewById(R.id.person_id);
-        build_date = getViewById(R.id.build_date);
-        business_state = getViewById(R.id.business_state);
+//        staget_type = getViewById(R.id.staget_type);
+//        person_id = getViewById(R.id.person_id);
+//        build_date = getViewById(R.id.build_date);
+//        business_state = getViewById(R.id.business_state);
         apply_name = getViewById(R.id.apply_name);
-        business_state_line = getViewById(R.id.business_state_line);
+//        business_state_line = getViewById(R.id.business_state_line);
         modify = getViewById(R.id.add);
         save = getViewById(R.id.save);
     }
@@ -310,14 +313,14 @@ public class InfomationActivity extends BaseActivity {
             car_typeEditText.setText(loan.getCar_type());
             transaction_price.setText(loan.getDeal_price() + "");
             loan_time.setText(loan.getCredit_years() + "");
-            build_date.setText(getLoanString(loan.getDate_ywy()));
-            business_state.setText(initCaseState(loan.getCase_state_id()));
+//            build_date.setText(getLoanString(loan.getDate_ywy()));
+//            business_state.setText(initCaseState(loan.getCase_state_id()));
 //            person_id.setText(getLoginInfo().getUser_id());
-            if(loan.getUser_id_ywy() != 0) {
-                person_id.setText(loan.getUser_id_ywy() + "");
-            }else{
-                person_id.setText(getLoginInfo().getUser_id());
-            }
+//            if(loan.getUser_id_ywy() != 0) {
+//                person_id.setText(loan.getUser_id_ywy() + "");
+//            }else{
+//                person_id.setText(getLoginInfo().getUser_id());
+//            }
         }
     }
 
@@ -370,18 +373,18 @@ public class InfomationActivity extends BaseActivity {
         loan_time.setFocusable(stateBoolean);
         loan_time.setFocusableInTouchMode(stateBoolean);
         loan_time.setEnabled(stateBoolean);
-        staget_type.setFocusable(stateBoolean);
-        staget_type.setFocusableInTouchMode(stateBoolean);
-        staget_type.setEnabled(stateBoolean);
+//        staget_type.setFocusable(stateBoolean);
+//        staget_type.setFocusableInTouchMode(stateBoolean);
+//        staget_type.setEnabled(stateBoolean);
 //        person_id.setFocusable(stateBoolean);
 //        person_id.setEnabled(stateBoolean);
 //        person_id.setFocusableInTouchMode(stateBoolean);
-        build_date.setFocusable(stateBoolean);
-        build_date.setFocusableInTouchMode(stateBoolean);
-        build_date.setEnabled(stateBoolean);
-        business_state.setFocusable(stateBoolean);
-        business_state.setFocusableInTouchMode(stateBoolean);
-        business_state.setEnabled(stateBoolean);
+//        build_date.setFocusable(stateBoolean);
+//        build_date.setFocusableInTouchMode(stateBoolean);
+//        build_date.setEnabled(stateBoolean);
+//        business_state.setFocusable(stateBoolean);
+//        business_state.setFocusableInTouchMode(stateBoolean);
+//        business_state.setEnabled(stateBoolean);
     }
 
 
@@ -413,7 +416,7 @@ public class InfomationActivity extends BaseActivity {
             IDateChooseListener listener = new IDateChooseListener() {
                 @Override
                 public void onDateChoose(String date, int year, int month, int day) {
-                    build_date.setText(date);
+//                    build_date.setText(date);
                     loan.setDate_ywy(date);
                 }
             };
@@ -443,7 +446,7 @@ public class InfomationActivity extends BaseActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     loan.setInstallment_type_id(which + 1);
-                    initStageType(which);
+//                    initStageType(which);
                     stagetTypeDialog.dismiss();
                 }
             };
@@ -453,7 +456,7 @@ public class InfomationActivity extends BaseActivity {
     }
 
     void initChoose() {
-        initStageType(loan.getInstallment_type_id() - 1);
+//        initStageType(loan.getInstallment_type_id() - 1);
         initHouseType(loan.getRoom_type_id() - 1);
         initCompension(loan.getIf_gcr_id());
         initMarrayState(loan.getCust_marriage_id() - 1);
@@ -461,16 +464,16 @@ public class InfomationActivity extends BaseActivity {
         initType(loan.getCase_type_id() - 1);
     }
 
-    private void initStageType(int which) {
-        switch (which) {
-            case 0:
-                staget_type.setText("半分");
-                break;
-            case 1:
-                staget_type.setText("全分");
-                break;
-        }
-    }
+//    private void initStageType(int which) {
+//        switch (which) {
+//            case 0:
+//                staget_type.setText("半分");
+//                break;
+//            case 1:
+//                staget_type.setText("全分");
+//                break;
+//        }
+//    }
 
     private Uri selectedImageUri;
 
@@ -799,7 +802,7 @@ public class InfomationActivity extends BaseActivity {
     }
 
     static interface IDateChooseListener{
-        void onDateChoose(String date, int year,int month,int day);
+        void onDateChoose(String date, int year, int month, int day);
     }
 
 
@@ -826,7 +829,7 @@ public class InfomationActivity extends BaseActivity {
             return;
         }
         loan.setCredit_years(creditYears);
-        loan.setDate_ywy(build_date.getText().toString());
+//        loan.setDate_ywy(build_date.getText().toString());
         loan.setCase_type_id(0);
 
         if (isModify) {
@@ -880,7 +883,7 @@ public class InfomationActivity extends BaseActivity {
             DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    business_state.setText(role_state[which]);
+//                    business_state.setText(role_state[which]);
                     loan.setCase_state_id(which);
                 }
             };

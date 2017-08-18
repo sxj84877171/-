@@ -2,29 +2,26 @@ package com.sxj.carloan;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.MessageQueue;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sxj.carloan.bean.LoginInfo;
+import com.sxj.carloan.ui.MainActivity;
+import com.sxj.carloan.yewuyuan.YeWuMainPage;
 import com.sxj.carloan.net.ApiServiceModel;
 import com.sxj.carloan.ui.AdminActivity;
-import com.sxj.carloan.ui.InfomationActivity;
 import com.sxj.carloan.ui.LoginActivity;
-import com.sxj.carloan.ui.MainActivity;
 import com.sxj.carloan.ui.OtherRoleActivity;
 import com.sxj.carloan.ui.investigation.InvestigationMainActivity;
 import com.sxj.carloan.util.FileObject;
@@ -151,6 +148,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void gotoHomepage() {
         Intent intent = new Intent();
+//        intent.setClass(this, YeWuMainPage.class);
         intent.setClass(this, MainActivity.class);
         startActivity(intent);
     }
@@ -231,5 +229,12 @@ public class BaseActivity extends AppCompatActivity {
         checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO);
         checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA);
 //        checkSelfPermission(Manifest.permission.RECEIVE_BOOT_COMPLETED,RECEIVE_BOOT_COMPLETED_CODE);
+    }
+
+    public AlertDialog createAlertDialog(String[] args, DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setItems(args, listener);
+        return builder.create();
     }
 }

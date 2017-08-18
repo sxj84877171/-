@@ -17,6 +17,12 @@
     <string name="title_activity_investigation_function_choose">请选择要完成的功能</string>
     <string name="title_activity_other_role">OtherRoleActivity</string>
     <string name="title_activity_admin">AdminActivity</string>
+    <string name="msg_unable_to_get_current_location">无法取得目前位置。</string>
+    <string name="latitude_longitude">纬度：%1$09f 经度：%2$09f</string>
+    <string name="can_not_open_file">打开文件出错</string>
+    <string name="can_not_find_a_suitable_program_to_open_this_file">没找到适合打开这个文件的程序</string>
+    <string name="initialization">正在刷新...</string>
+    <string name="makewater">正在处理水印,请稍等...</string>
 
     <string name="agora_app_id">5aaea978be234c46bc4a74518f6ea046</string>
 

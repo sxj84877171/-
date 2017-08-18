@@ -5,6 +5,7 @@ import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.util.FileObject;
 
 import java.io.File;
+import java.util.Random;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -87,6 +88,10 @@ public class ApiServiceModel {
                 rowsBean.getDate_ywy(), rowsBean.getCase_state_id() + "").compose(ApiServiceModel.<FuncResponseBean>io_main());
     }
 
+    public Observable<FuncResponseBean> insertBean(ServerBean.RowsBean rowsBean) {
+        return Api.getInstance().getService().InsertTable(rowsBean).compose(ApiServiceModel.<FuncResponseBean>io_main());
+    }
+
     public Observable<FuncResponseBean> update(ServerBean.RowsBean rowsBean) {
         return Api.getInstance().getService().UpdateTable(rowsBean.getId() + "", rowsBean.getCase_type_id() + "",
                 rowsBean.getCust_name_tmp(), rowsBean.getCust_sex(),
@@ -111,6 +116,171 @@ public class ApiServiceModel {
 
         return Api.getInstance().getService().updateLoadImageFile(filename, body);
     }
+
+    /**
+     * 申请正面照片：photo/ywy/{case_id}_1_1.jpg
+     * @param case_id
+     * @param file
+     * @return
+     */
+    public Call<ResponseBody> shangchuanShenFengzhengZhengmian(String case_id, File file) {
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String filename = "photo/ywy/{case_id}_1_1.jpg";
+        filename = filename.replace("{case_id}", case_id + "");
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
+    }
+
+    /**
+     * 申请背面照片：photo/ywy/{case_id}_1_2.jpg
+     * @param case_id
+     * @param file
+     * @return
+     */
+    public Call<ResponseBody> shangchuanShenFengzhengmian(String case_id, File file) {
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String filename = "photo/ywy/{case_id}_1_1.jpg";
+        filename = filename.replace("{case_id}", case_id + "");
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
+    }
+
+    /**
+     * 副总签名照：photo/ywy/{case_id}_2.jpg
+     * @param case_id
+     * @param file
+     * @return
+     */
+    public Call<ResponseBody> shangchuanFuzong(String case_id, File file) {
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String filename = "photo/ywy/{case_id}_2.jpg";
+        filename = filename.replace("{case_id}", case_id + "");
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
+    }
+
+    /**
+     * 总经理签名照：photo/ywy/{case_id}_3.jpg
+     * @param file
+     * @return
+     */
+    public Call<ResponseBody> shangchuanZongjingli(String case_id, File file) {
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String filename = "photo/ywy/{case_id}_2.jpg";
+        filename = filename.replace("{case_id}", case_id + "");
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
+    }
+
+    /**
+     * 车辆照片：photo/car/{case_id}_年月日时分秒{index}.jpg
+     * @param file
+     * @return
+     */
+    public Call<ResponseBody> shangchuanCheLiang(String case_id,String time, File file) {
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String filename = "photo/car/{case_id}_{time}_{rn}.jpg";
+        filename = filename.replace("{case_id}", case_id + "");
+        filename = filename.replace("{time}",time);
+        filename = filename.replace("{rn}","" + new Random().nextInt());
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
+    }
+
+    /**
+     * 调查员上传照片：photo/dcy/{ case_id }_{照片类别}d_年月日时分秒{index}.jpg
+     * 例如：1_1d_08171015220.jpg
+     * @param file
+     * @return
+     */
+    public Call<ResponseBody> shangchuanDiaoChayuan1(String case_id,String time, File file) {
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String filename = "photo/dcy/{case_id}_1d{time}_{rn}.jpg";
+        filename = filename.replace("{case_id}", case_id + "");
+        filename = filename.replace("{time}",time);
+        filename = filename.replace("{rn}","" + new Random().nextInt());
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
+    }
+
+    public Call<ResponseBody> shangchuanDiaoChayuan2(String case_id,String time, File file) {
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String filename = "photo/dcy/{case_id}_2d{time}_{rn}.jpg";
+        filename = filename.replace("{case_id}", case_id + "");
+        filename = filename.replace("{time}",time);
+        filename = filename.replace("{rn}","" + new Random().nextInt());
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
+    }
+
+    public Call<ResponseBody> shangchuanDiaoChayuan3(String case_id,String time, File file) {
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String filename = "photo/dcy/{case_id}_3d{time}_{rn}.jpg";
+        filename = filename.replace("{case_id}", case_id + "");
+        filename = filename.replace("{time}",time);
+        filename = filename.replace("{rn}","" + new Random().nextInt());
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
+    }
+
+    public Call<ResponseBody> shangchuanDiaoChayuan4(String case_id,String time, File file) {
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String filename = "photo/dcy/{case_id}_4d{time}_{rn}.jpg";
+        filename = filename.replace("{case_id}", case_id + "");
+        filename = filename.replace("{time}",time);
+        filename = filename.replace("{rn}","" + new Random().nextInt());
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
+    }
+
+    public Call<ResponseBody> shangchuanDiaoChayuan5(String case_id,String time, File file) {
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String filename = "photo/dcy/{case_id}_5d{time}_{rn}.jpg";
+        filename = filename.replace("{case_id}", case_id + "");
+        filename = filename.replace("{time}",time);
+        filename = filename.replace("{rn}","" + new Random().nextInt());
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
+    }
+
+    /**
+     * 调查员上传照片：photo/dcy/{ case_id }_{照片类别}d_年月日时分秒{index}.jpg
+     * 例如：1_1d_08171015220.jpg
+     * @param file
+     * @return
+     */
+    public Call<ResponseBody> shangchuanDiaoChayuan(String case_id,String time, File file) {
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String filename = "photo/dcy/{case_id}_1d{time}_{rn}.jpg";
+        filename = filename.replace("{case_id}", case_id + "");
+        filename = filename.replace("{time}",time);
+        filename = filename.replace("{rn}","" + new Random().nextInt());
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
+    }
+
 
     public Observable<FuncResponseBean> uploadPhoto(ServerBean.RowsBean rowsBean, File file) {
         RequestBody requestFile =
