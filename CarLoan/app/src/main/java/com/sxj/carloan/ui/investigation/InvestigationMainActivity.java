@@ -36,7 +36,7 @@ public class InvestigationMainActivity extends BaseActivity {
             public void onItemClick(View view, ServerBean.RowsBean rowsBean, int position) {
                 Intent intent = new Intent();
                 intent.setClass(InvestigationMainActivity.this, InvestigationFunctionChoose.class);
-                intent.putExtra("data", rowsBean);
+                intent.putExtra("loan", rowsBean);
                 intent.putExtra("state", 0);
                 startActivity(intent);
             }

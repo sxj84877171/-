@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -47,10 +48,7 @@ public class InfomationActivity extends BaseActivity {
     private View marry_state_line;
     private View is_compension_line;
     private View house_type_line;
-//    private View staget_type_line;
-//    private View build_date_line;
     private View home_viste_date_line;
-//    private View business_state_line;
     private EditText id_no;
     private TextView marry_state;
     private EditText phone_num;
@@ -60,19 +58,28 @@ public class InfomationActivity extends BaseActivity {
     private EditText house_address;
     private EditText car_typeEditText;
     private EditText transaction_price;
-    private EditText loan_time;
-//    private TextView staget_type;
-
-//    private TextView person_id;
-//    private TextView build_date;
-//    private TextView business_state;
+    private TextView loan_time;
+    private EditText car_name;
+    private EditText car_address;
+    private EditText fapiao_jine;
+    private EditText daikuan_jine;
+    private EditText yinhangshenbao_jine;
 
     private Button modify;
     private Button save;
-
     private ServerBean.RowsBean loan;
-
     private boolean isModify = false;
+
+
+    private static final String[] PRODUCT_TYPES = new String[]{
+        "工行-二手车全分期36个月24.48返4包干",
+                "工行-二手车半分期36个月18.8包干",
+                "工行-二手车12全分期36个月24.48返4包干",
+                "自有资金贷款产品",
+                "工行-二手车12全分期36个月24.48返4包干（部分贷款公司自有）",
+                "工行-新车全分期36个月18返3",
+                "工行-新车半分期36个月13.5",
+                "工行-新车半分期24个月10.5"};
 
 
     /**
@@ -94,7 +101,7 @@ public class InfomationActivity extends BaseActivity {
         setContentView(R.layout.activity_infomation);
         initViewById();
         Intent intent = getIntent();
-        loan = (ServerBean.RowsBean) intent.getSerializableExtra("data");
+        loan = (ServerBean.RowsBean) intent.getSerializableExtra("loan");
         if (loan == null) {
             loan = new ServerBean.RowsBean();
         }
@@ -131,10 +138,7 @@ public class InfomationActivity extends BaseActivity {
             marry_state_line.setOnClickListener(null);
             is_compension_line.setOnClickListener(null);
             house_type_line.setOnClickListener(null);
-//            staget_type_line.setOnClickListener(null);
             home_viste_date_line.setOnClickListener(null);
-//            build_date_line.setOnClickListener(null);
-//            business_state_line.setOnClickListener(null);
         }else {
             business_type_line.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -179,32 +183,13 @@ public class InfomationActivity extends BaseActivity {
                 }
             });
 
-//            staget_type_line.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    createStagetTypeDialog();
-//                }
-//            });
-
-//            build_date_line.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    createBuildDatePickDialog();
-//                }
-//            });
-
             home_viste_date_line.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     createVisitDatePickDialog();
                 }
             });
-//            business_state_line.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    createRoldDialog();
-//                }
-//            });
+
         }
     }
 
@@ -220,14 +205,6 @@ public class InfomationActivity extends BaseActivity {
     }
 
     public boolean onPrepareOptionsMenu(android.view.Menu menu) {
-//        menu.removeItem(10);
-//        if (state != 0) {
-//            menu.add(1, 10, 10, "照片");
-//        }
-//        if (loan.getId() > 0) {
-//            menu.removeItem(7);
-//            menu.add(1, 7, 7, "上传照片");
-//        }
         return super.onPrepareOptionsMenu(menu);
 
     }
@@ -284,45 +261,23 @@ public class InfomationActivity extends BaseActivity {
         marry_state_line = getViewById(R.id.marry_state_line);
         is_compension_line = getViewById(R.id.is_compension_line);
         house_type_line = getViewById(R.id.house_type_line);
-//        staget_type_line = getViewById(R.id.staget_type_line);
         home_viste_date_line = getViewById(R.id.home_viste_date_line);
-//        build_date_line = getViewById(R.id.build_date_line);
+
+        car_name = getViewById(R.id.car_name);
+        car_address = getViewById(R.id.car_address);
+        fapiao_jine = getViewById(R.id.fapiao_jine);
+        yinhangshenbao_jine = getViewById(R.id.yinhangshenbao_jine);
+        daikuan_jine = getViewById(R.id.daikuan_jine);
 
         car_typeEditText = getViewById(R.id.car_type);
         transaction_price = getViewById(R.id.transaction_price);
         loan_time = getViewById(R.id.loan_time);
-//        staget_type = getViewById(R.id.staget_type);
-//        person_id = getViewById(R.id.person_id);
-//        build_date = getViewById(R.id.build_date);
-//        business_state = getViewById(R.id.business_state);
         apply_name = getViewById(R.id.apply_name);
-//        business_state_line = getViewById(R.id.business_state_line);
         modify = getViewById(R.id.add);
         save = getViewById(R.id.save);
     }
 
-    void initData() {
 
-
-        if (loan != null) {
-            apply_name.setText(getLoanString(loan.getCust_name_tmp()));
-            sex.setText(getLoanString(loan.getCust_sex()));
-            id_no.setText(getLoanString(loan.getCust_iden()));
-            phone_num.setText(getLoanString(loan.getCust_mobile()));
-            home_viste_date.setText(loan.getHome_visit_date());
-            car_typeEditText.setText(loan.getCar_type());
-            transaction_price.setText(loan.getDeal_price() + "");
-            loan_time.setText(loan.getCredit_years() + "");
-//            build_date.setText(getLoanString(loan.getDate_ywy()));
-//            business_state.setText(initCaseState(loan.getCase_state_id()));
-//            person_id.setText(getLoginInfo().getUser_id());
-//            if(loan.getUser_id_ywy() != 0) {
-//                person_id.setText(loan.getUser_id_ywy() + "");
-//            }else{
-//                person_id.setText(getLoginInfo().getUser_id());
-//            }
-        }
-    }
 
 
     private void displayState() {
@@ -373,18 +328,6 @@ public class InfomationActivity extends BaseActivity {
         loan_time.setFocusable(stateBoolean);
         loan_time.setFocusableInTouchMode(stateBoolean);
         loan_time.setEnabled(stateBoolean);
-//        staget_type.setFocusable(stateBoolean);
-//        staget_type.setFocusableInTouchMode(stateBoolean);
-//        staget_type.setEnabled(stateBoolean);
-//        person_id.setFocusable(stateBoolean);
-//        person_id.setEnabled(stateBoolean);
-//        person_id.setFocusableInTouchMode(stateBoolean);
-//        build_date.setFocusable(stateBoolean);
-//        build_date.setFocusableInTouchMode(stateBoolean);
-//        build_date.setEnabled(stateBoolean);
-//        business_state.setFocusable(stateBoolean);
-//        business_state.setFocusableInTouchMode(stateBoolean);
-//        business_state.setEnabled(stateBoolean);
     }
 
 
@@ -445,7 +388,7 @@ public class InfomationActivity extends BaseActivity {
             DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    loan.setInstallment_type_id(which + 1);
+                    loan.setInstallment_type_id_1(which + 1);
 //                    initStageType(which);
                     stagetTypeDialog.dismiss();
                 }
@@ -461,19 +404,9 @@ public class InfomationActivity extends BaseActivity {
         initCompension(loan.getIf_gcr_id());
         initMarrayState(loan.getCust_marriage_id() - 1);
         sex.setText(loan.getCust_sex());
-        initType(loan.getCase_type_id() - 1);
+        initType(loan.getCase_type_id_1() - 1);
     }
 
-//    private void initStageType(int which) {
-//        switch (which) {
-//            case 0:
-//                staget_type.setText("半分");
-//                break;
-//            case 1:
-//                staget_type.setText("全分");
-//                break;
-//        }
-//    }
 
     private Uri selectedImageUri;
 
@@ -547,28 +480,6 @@ public class InfomationActivity extends BaseActivity {
                         LogUtil.e(t);
                     }
                 });
-/*
-               File file = new File(getFilePath(selectedImageUri));
-                new ApiServiceModel().uploadPhoto(loan,file).subscribe(new Subscriber<FuncResponseBean>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(FuncResponseBean funcResponseBean) {
-                        if("YES".equals(funcResponseBean.getSuccess())){
-                            success();
-                        }else{
-
-                        }
-                    }
-                });*/
             }
             if (requestCode == 102) {
                 Uri origina = data.getData();
@@ -748,36 +659,30 @@ public class InfomationActivity extends BaseActivity {
 
     void createAlertTypeDialog() {
         if (typeDialog == null) {
-            String[] args = new String[]{"二手车", "新车"};
+
             DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     initType(which);
-                    loan.setCase_type_id(which + 1);
+                    loan.setCase_type_id_1(which + 1);
                     typeDialog.dismiss();
+                    loan_time.setText("" + 3);
                 }
             };
 
-            typeDialog = createAlertDialog(args, listener);
+            typeDialog = createAlertDialog(PRODUCT_TYPES, listener);
         }
         typeDialog.show();
     }
 
     private void initType(int which) {
-        if (which == 0) {
-            business_type.setText("二手车");
-        } else {
-            business_type.setText("新车");
+        if(which < PRODUCT_TYPES.length && which >= 0){
+            business_type.setText(PRODUCT_TYPES[which]);
         }
     }
 
 
-    AlertDialog createAlertDialog(String[] args, DialogInterface.OnClickListener listener) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.mipmap.ic_launcher);
-        builder.setItems(args, listener);
-        return builder.create();
-    }
+
 
     AlertDialog createDataTimePick(final IDateChooseListener listener) {
         final DatePicker datePicker = new DatePicker(this);
@@ -804,33 +709,160 @@ public class InfomationActivity extends BaseActivity {
     static interface IDateChooseListener{
         void onDateChoose(String date, int year, int month, int day);
     }
+    void initData() {
+        if (loan != null) {
+            apply_name.setText(getLoanString(loan.getCust_name_tmp()));
+            sex.setText(getLoanString(loan.getCust_sex()));
+            id_no.setText(getLoanString(loan.getCust_iden()));
+            phone_num.setText(getLoanString(loan.getCust_mobile()));
+            home_viste_date.setText(loan.getHome_visit_date());
+            car_typeEditText.setText(loan.getCar_type());
+            house_address.setText(loan.getCust_address());
+            transaction_price.setText(loan.getDeal_price() + "");
+            loan_time.setText(loan.getCredit_years() + "");
+            car_name.setText(loan.getChehang_name());
+            car_address.setText(loan.getChehang_address());
+            fapiao_jine.setText(loan.getInvoice_price());
+            yinhangshenbao_jine.setText(loan.getLoan_amount_high());
+            daikuan_jine.setText(loan.getLoan_amount_ywy());
+        }
+    }
 
 
     public void save() {
+
+        if(TextUtils.isEmpty(business_type.getText().toString())){
+            toast("请选择产品");
+            return;
+        }
+
         // loan
+        if(TextUtils.isEmpty(apply_name.getText().toString())){
+            toast("请填写申请人名字！");
+            apply_name.findFocus();
+            return;
+        }
         loan.setCust_name_tmp(apply_name.getText().toString());
+        if(TextUtils.isEmpty(id_no.getText().toString())){
+            toast("请填写申请人身份证号码！");
+            id_no.findFocus();
+            return;
+        }
         loan.setCust_iden(id_no.getText().toString());
+
+
+        if(TextUtils.isEmpty(marry_state.getText())){
+            toast("请选择婚姻状况");
+            return;
+        }
+
+        if(TextUtils.isEmpty(phone_num.getText().toString())){
+            toast("请填写申请人手机号码！");
+            phone_num.findFocus();
+            return;
+        }
         loan.setCust_mobile(phone_num.getText().toString());
+
+        if(TextUtils.isEmpty(is_compension.getText().toString())){
+            toast("请选择是否共偿");
+            return;
+        }
+
+        if(TextUtils.isEmpty(home_viste_date.getText().toString())){
+            toast("请选择家访日期！");
+            return;
+        }
         loan.setHome_visit_date(home_viste_date.getText().toString());
+
+        if(TextUtils.isEmpty(house_address.getText().toString())){
+            toast("");
+            return;
+        }
+        loan.setCust_address(house_address.getText().toString());
+
+        if(TextUtils.isEmpty(car_typeEditText.getText().toString())){
+            toast("请填写车型！");
+            car_typeEditText.findFocus();
+            return;
+        }
         loan.setCar_type(car_typeEditText.getText().toString());
+
+        if(TextUtils.isEmpty(car_address.getText().toString())){
+            toast("请填写车行地址！");
+            car_address.findFocus();
+            return;
+        }
+        loan.setChehang_address(car_address.getText().toString());
+
+        if(TextUtils.isEmpty(house_type.getText().toString())){
+            toast("请选择房产类别");
+            return;
+        }
+
+        if(TextUtils.isEmpty(car_name.getText().toString())){
+            toast("请填写车行名称！");
+            car_name.findFocus();
+            return;
+        }
+        loan.setChehang_name(car_name.getText().toString());
+
+        if(TextUtils.isEmpty(car_address.getText().toString())){
+            toast("请填写车行地址");
+            return;
+        }
+        loan.setChehang_address(car_address.getText().toString());
+
+        if(TextUtils.isEmpty(car_typeEditText.getText())){
+            toast("请填写车型");
+            return;
+        }
+
         double price = 0;
         try {
             price = Double.parseDouble(transaction_price.getText().toString());
         } catch (Exception ex) {
             Toast.makeText(this, "成交价输入不正确", Toast.LENGTH_LONG).show();
+            transaction_price.findFocus();
             return;
         }
         loan.setDeal_price(price);
+        try {
+            price = Double.parseDouble(fapiao_jine.getText().toString());
+        } catch (Exception ex) {
+            Toast.makeText(this, "发票金额输入不正确", Toast.LENGTH_LONG).show();
+            fapiao_jine.findFocus();
+            return;
+        }
+        loan.setInvoice_price("" + price);
+
+        try {
+            price = Double.parseDouble(daikuan_jine.getText().toString());
+        } catch (Exception ex) {
+            Toast.makeText(this, "贷款金额输入不正确", Toast.LENGTH_LONG).show();
+            daikuan_jine.findFocus();
+            return;
+        }
+        loan.setLoan_amount_ywy("" + price);
+
+        try {
+            price = Double.parseDouble(yinhangshenbao_jine.getText().toString());
+        } catch (Exception ex) {
+            Toast.makeText(this, "银行申报金额输入不正确", Toast.LENGTH_LONG).show();
+            yinhangshenbao_jine.findFocus();
+            return;
+        }
+        loan.setLoan_amount_high(""+price);
+
         int creditYears = 0;
         try {
             creditYears = Integer.parseInt(loan_time.getText().toString());
         } catch (Exception ex) {
             Toast.makeText(this, "贷款年限输入不正确！", Toast.LENGTH_LONG).show();
+            loan_time.findFocus();
             return;
         }
+
         loan.setCredit_years(creditYears);
-//        loan.setDate_ywy(build_date.getText().toString());
-        loan.setCase_type_id(0);
 
         if (isModify) {
             model.update(loan).subscribe(new Subscriber<FuncResponseBean>() {
@@ -847,8 +879,10 @@ public class InfomationActivity extends BaseActivity {
                 @Override
                 public void onNext(FuncResponseBean serverBean) {
                     if ("YES".equals(serverBean.getSuccess())) {
+                        YeWuJianDangActivity.bean = loan;
                         Toast.makeText(InfomationActivity.this, "保存成功", Toast.LENGTH_LONG).show();
-                        finish();
+                        YeWuJianDangActivity.bean = loan;
+                        gotoCalcActivity(loan);
                     }
                 }
             });
@@ -867,7 +901,8 @@ public class InfomationActivity extends BaseActivity {
                 public void onNext(FuncResponseBean serverBean) {
                     if ("YES".equals(serverBean.getSuccess())) {
                         Toast.makeText(InfomationActivity.this, "保存成功", Toast.LENGTH_LONG).show();
-                        finish();
+                        YeWuJianDangActivity.bean = loan;
+                        gotoCalcActivity(loan);
                     }
                 }
             });

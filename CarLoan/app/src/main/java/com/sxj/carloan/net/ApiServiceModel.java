@@ -2,6 +2,7 @@ package com.sxj.carloan.net;
 
 import com.sxj.carloan.bean.FuncResponseBean;
 import com.sxj.carloan.bean.ServerBean;
+import com.sxj.carloan.util.DateUtil;
 import com.sxj.carloan.util.FileObject;
 
 import java.io.File;
@@ -77,14 +78,14 @@ public class ApiServiceModel {
     }
 
     public Observable<FuncResponseBean> insert(ServerBean.RowsBean rowsBean) {
-        return Api.getInstance().getService().InsertTable(rowsBean.getCase_type_id() + "",
+        return Api.getInstance().getService().InsertTable(rowsBean.getCase_type_id_1() + "",
                 rowsBean.getCust_name_tmp(), rowsBean.getCust_sex(),
                 rowsBean.getCust_iden(), rowsBean.getCust_marriage_id() + "",
                 rowsBean.getCust_mobile(), rowsBean.getIf_gcr_id() + "",
                 rowsBean.getRoom_type_id() + "", rowsBean.getCust_address(),
                 rowsBean.getHome_visit_date(), rowsBean.getCar_type() + "",
                 rowsBean.getDeal_price() + "", rowsBean.getCredit_years() + "",
-                rowsBean.getInstallment_type_id() + "", rowsBean.getUser_id_ywy() + "",
+                rowsBean.getInstallment_type_id_1() + "", rowsBean.getUser_id_ywy() + "",
                 rowsBean.getDate_ywy(), rowsBean.getCase_state_id() + "").compose(ApiServiceModel.<FuncResponseBean>io_main());
     }
 
@@ -93,14 +94,14 @@ public class ApiServiceModel {
     }
 
     public Observable<FuncResponseBean> update(ServerBean.RowsBean rowsBean) {
-        return Api.getInstance().getService().UpdateTable(rowsBean.getId() + "", rowsBean.getCase_type_id() + "",
+        return Api.getInstance().getService().UpdateTable(rowsBean.getId() + "", rowsBean.getCase_type_id_1() + "",
                 rowsBean.getCust_name_tmp(), rowsBean.getCust_sex(),
                 rowsBean.getCust_iden(), rowsBean.getCust_marriage_id() + "",
                 rowsBean.getCust_mobile(), rowsBean.getIf_gcr_id() + "",
                 rowsBean.getRoom_type_id() + "", rowsBean.getCust_address(),
                 rowsBean.getHome_visit_date(), rowsBean.getCar_type() + "",
                 rowsBean.getDeal_price() + "", rowsBean.getCredit_years() + "",
-                rowsBean.getInstallment_type_id() + "", rowsBean.getUser_id_ywy() + "",
+                rowsBean.getInstallment_type_id_1() + "", rowsBean.getUser_id_ywy() + "",
                 rowsBean.getDate_ywy(), rowsBean.getCase_state_id() + ""
         ).compose(ApiServiceModel.<FuncResponseBean>io_main());
     }
@@ -139,10 +140,10 @@ public class ApiServiceModel {
      * @param file
      * @return
      */
-    public Call<ResponseBody> shangchuanShenFengzhengmian(String case_id, File file) {
+    public Call<ResponseBody> shangchuanShenFengzhengFanmian(String case_id, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        String filename = "photo/ywy/{case_id}_1_1.jpg";
+        String filename = "photo/ywy/{case_id}_1_2.jpg";
         filename = filename.replace("{case_id}", case_id + "");
         MultipartBody.Part body =
                 MultipartBody.Part.createFormData("image", file.getName(), requestFile);
@@ -185,9 +186,10 @@ public class ApiServiceModel {
      * @param file
      * @return
      */
-    public Call<ResponseBody> shangchuanCheLiang(String case_id,String time, File file) {
+    public Call<ResponseBody> shangchuanCheLiang(String case_id, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String time = DateUtil.getImageDate();
         String filename = "photo/car/{case_id}_{time}_{rn}.jpg";
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}",time);
@@ -203,9 +205,10 @@ public class ApiServiceModel {
      * @param file
      * @return
      */
-    public Call<ResponseBody> shangchuanDiaoChayuan1(String case_id,String time, File file) {
+    public Call<ResponseBody> shangchuanDiaoChayuan1(String case_id, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String time = DateUtil.getImageDate();
         String filename = "photo/dcy/{case_id}_1d{time}_{rn}.jpg";
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}",time);
@@ -215,9 +218,10 @@ public class ApiServiceModel {
         return Api.getInstance().getService().updateLoadImageFile(filename, body);
     }
 
-    public Call<ResponseBody> shangchuanDiaoChayuan2(String case_id,String time, File file) {
+    public Call<ResponseBody> shangchuanDiaoChayuan2(String case_id, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String time = DateUtil.getImageDate();
         String filename = "photo/dcy/{case_id}_2d{time}_{rn}.jpg";
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}",time);
@@ -227,10 +231,11 @@ public class ApiServiceModel {
         return Api.getInstance().getService().updateLoadImageFile(filename, body);
     }
 
-    public Call<ResponseBody> shangchuanDiaoChayuan3(String case_id,String time, File file) {
+    public Call<ResponseBody> shangchuanDiaoChayuan3(String case_id, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
         String filename = "photo/dcy/{case_id}_3d{time}_{rn}.jpg";
+        String time = DateUtil.getImageDate();
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}",time);
         filename = filename.replace("{rn}","" + new Random().nextInt());
@@ -239,10 +244,11 @@ public class ApiServiceModel {
         return Api.getInstance().getService().updateLoadImageFile(filename, body);
     }
 
-    public Call<ResponseBody> shangchuanDiaoChayuan4(String case_id,String time, File file) {
+    public Call<ResponseBody> shangchuanDiaoChayuan4(String case_id, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
         String filename = "photo/dcy/{case_id}_4d{time}_{rn}.jpg";
+        String time = DateUtil.getImageDate();
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}",time);
         filename = filename.replace("{rn}","" + new Random().nextInt());
@@ -251,10 +257,11 @@ public class ApiServiceModel {
         return Api.getInstance().getService().updateLoadImageFile(filename, body);
     }
 
-    public Call<ResponseBody> shangchuanDiaoChayuan5(String case_id,String time, File file) {
+    public Call<ResponseBody> shangchuanDiaoChayuan5(String case_id, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
         String filename = "photo/dcy/{case_id}_5d{time}_{rn}.jpg";
+        String time = DateUtil.getImageDate();
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}",time);
         filename = filename.replace("{rn}","" + new Random().nextInt());
@@ -269,9 +276,10 @@ public class ApiServiceModel {
      * @param file
      * @return
      */
-    public Call<ResponseBody> shangchuanDiaoChayuan(String case_id,String time, File file) {
+    public Call<ResponseBody> shangchuanDiaoChayuan(String case_id, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String time = DateUtil.getImageDate();
         String filename = "photo/dcy/{case_id}_1d{time}_{rn}.jpg";
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}",time);

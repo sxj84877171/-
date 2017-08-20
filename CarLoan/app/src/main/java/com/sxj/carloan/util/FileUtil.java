@@ -21,6 +21,14 @@ import java.util.UUID;
 
 public class FileUtil {
 
+	public static File getFileFolder(){
+		File fileDir = new File("/sdcard/loan/temp/");
+		if (!fileDir.exists()) {
+			fileDir.mkdirs();
+		}
+		return fileDir;
+	}
+
 	/**
 	 * 根据用户是否有SD卡而创建文件
 	 * 

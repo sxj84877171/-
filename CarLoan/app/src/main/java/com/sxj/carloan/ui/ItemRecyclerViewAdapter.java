@@ -1,7 +1,5 @@
 package com.sxj.carloan.ui;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextPaint;
 import android.view.LayoutInflater;
@@ -11,7 +9,6 @@ import android.widget.TextView;
 
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
-import com.sxj.carloan.bean.Loan;
 import com.sxj.carloan.bean.ServerBean;
 
 import java.util.ArrayList;

@@ -41,10 +41,6 @@
             android:label="@string/sales_man"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.InfomationActivity"
-            android:label="业务详情"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".ui.HomeInfoAcitivity"
             android:label="@string/title_activity_home_info_acitivity"
             android:screenOrientation="portrait">
@@ -96,6 +92,9 @@
                   android:screenOrientation="portrait"/>
 
         <activity android:name=".yewuyuan.InfomationActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".yewuyuan.BaseInfotmaitionCalcActivity"
                   android:screenOrientation="portrait"/>
         <activity
             android:name=".rongyi.VideoListActivity"

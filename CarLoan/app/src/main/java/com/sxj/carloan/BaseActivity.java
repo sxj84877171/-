@@ -4,9 +4,16 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -17,7 +24,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.sxj.carloan.bean.LoginInfo;
+import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.ui.MainActivity;
+import com.sxj.carloan.util.DateUtil;
+import com.sxj.carloan.util.FileUtil;
+import com.sxj.carloan.yewuyuan.BaseInfotmaitionCalcActivity;
 import com.sxj.carloan.yewuyuan.YeWuMainPage;
 import com.sxj.carloan.net.ApiServiceModel;
 import com.sxj.carloan.ui.AdminActivity;
@@ -27,6 +38,9 @@ import com.sxj.carloan.ui.investigation.InvestigationMainActivity;
 import com.sxj.carloan.util.FileObject;
 import com.sxj.carloan.util.LogUtil;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +55,9 @@ public class BaseActivity extends AppCompatActivity {
     private static final int RECORD_REQUEST_CODE = 101;
     private static final int STORAGE_REQUEST_CODE = 102;
     private static final int AUDIO_REQUEST_CODE = 103;
-    private static final int RECEIVE_BOOT_COMPLETED_CODE = 104 ;
+    private static final int RECEIVE_BOOT_COMPLETED_CODE = 104;
+    private static final int ACCESS_FINE_LOCATION = 105;
+    private static final int ACCESS_COARSE_LOCATION = 106;
 
 
     public static String LOGIN_INFO = "logininfo";
@@ -228,6 +244,8 @@ public class BaseActivity extends AppCompatActivity {
         checkSelfPermission(Manifest.permission.RECORD_AUDIO, AUDIO_REQUEST_CODE);
         checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO);
         checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA);
+        checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION,ACCESS_FINE_LOCATION);
+        checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION,ACCESS_COARSE_LOCATION);
 //        checkSelfPermission(Manifest.permission.RECEIVE_BOOT_COMPLETED,RECEIVE_BOOT_COMPLETED_CODE);
     }
 
@@ -236,5 +254,84 @@ public class BaseActivity extends AppCompatActivity {
         builder.setIcon(R.mipmap.ic_launcher);
         builder.setItems(args, listener);
         return builder.create();
+    }
+
+    public Location getLastKnownLocation() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        String provider = LocationManager.GPS_PROVIDER;// 指定LocationManager的定位方法
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return null;
+        }
+        return locationManager.getLastKnownLocation(provider);// 调用getLastKnownLocation()方法获取当前的位置信息
+    }
+
+    public void gotoCalcActivity(ServerBean.RowsBean bean) {
+        Intent intent = new Intent(this, BaseInfotmaitionCalcActivity.class);
+        intent.putExtra("loan", bean);
+        startActivity(intent);
+    }
+
+    public void back(int index) {
+        for (int i = index; i > 0; i--) {
+            if (activityList.size() - 1 - index + i >= 0) {
+                activityList.get(activityList.size() - 1 - index + i).finish();
+            }
+        }
+    }
+
+    /**
+     * 文字水印
+     *
+     * @param pressText 水印文字
+     * @param targetImg 目标图片
+     * @param fontName  字体名称
+     * @param fontStyle 字体样式
+     * @param fontSize  字体大小
+     * @param x         修正值
+     * @param y         修正值
+     * @param alpha     透明度
+     */
+    public File pressText(String pressText, String locationText, String addr,
+                           Bitmap targetImg, String fontName, int fontStyle, int color,
+                           int fontSize, int x, int y, int alpha) {
+        if (null == targetImg) {
+            return null;
+        }
+        try {
+            Bitmap bmp = targetImg;
+            int width = bmp.getWidth();
+            int height = bmp.getHeight();
+            Bitmap mbmpTest = Bitmap
+                    .createBitmap(width, height, Bitmap.Config.RGB_565);
+            Canvas canvasTemp = new Canvas(mbmpTest);
+            Typeface font = Typeface.create(fontName, fontStyle);
+
+            Paint p = new Paint();
+            canvasTemp.drawBitmap(bmp, 0, 0, p);
+
+            p.setColor(color);
+            p.setTypeface(font);
+            p.setTextSize(fontSize);
+            // p.setAlpha(alpha);
+            canvasTemp.drawText(pressText, x, (height - fontSize * 3) + y, p);
+            canvasTemp
+                    .drawText(locationText, x, (height - fontSize * 2) + y, p);
+            canvasTemp.drawText(addr, x, (height - fontSize) + y, p);
+            File imageFileDir = FileUtil.getFileFolder();
+            if (!imageFileDir.exists()) {
+                imageFileDir.mkdirs();
+            }
+            OutputStream bos = new FileOutputStream(new File(imageFileDir,
+                    DateUtil.getImageDate() + ".jpg"));
+            File file = new File(imageFileDir, DateUtil.getImageDate() + ".jpg");
+            bmp.recycle();
+            mbmpTest.compress(Bitmap.CompressFormat.JPEG, 80, bos);
+            mbmpTest.recycle();
+            bos.close();
+            return file;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

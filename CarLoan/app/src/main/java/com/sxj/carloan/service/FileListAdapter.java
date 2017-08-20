@@ -22,13 +22,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sxj.carloan.R;
-import com.sxj.carloan.util.FileUtil;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Semaphore;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
     android:layout_width="match_parent"
@@ -8,26 +8,29 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/boottm_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="修改"
-            android:visibility="gone"/>
+            android:text="取消"
+            android:visibility="visible"/>
 
         <Button
             android:id="@+id/save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="保存"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
     </LinearLayout>
 
     <ScrollView
+        android:layout_above="@id/boottm_line"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -41,27 +44,29 @@
                 android:id="@+id/business_type_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
                     android:text="选择产品:"/>
 
                 <TextView
                     android:id="@+id/business_type"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="二手车"/>
+                    android:gravity="center_vertical"
+                    android:text=""/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
                     android:scaleType="centerCrop"
                     android:src="@drawable/arrow_right"/>
 
@@ -71,21 +76,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="申请人:"/>
 
                 <EditText
                     android:id="@+id/apply_name"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"/>
 
             </LinearLayout>
             <!-- 性别-->
@@ -93,25 +100,28 @@
                 android:id="@+id/sex_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="性别:"/>
 
                 <TextView
                     android:id="@+id/sex"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
+                    android:layout_gravity="center"
                     android:scaleType="centerCrop"
                     android:src="@drawable/arrow_right"/>
 
@@ -121,20 +131,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="身份证号:"/>
 
                 <EditText
                     android:id="@+id/id_no"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:maxLength="18"/>
             </LinearLayout>
 
@@ -143,24 +155,27 @@
                 android:id="@+id/marry_state_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="婚姻状况:"/>
 
                 <TextView
                     android:id="@+id/marry_state"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
                     android:scaleType="centerCrop"
                     android:src="@drawable/arrow_right"/>
             </LinearLayout>
@@ -169,20 +184,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="手机号码:"/>
 
                 <EditText
                     android:id="@+id/phone_num"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:maxLength="11"/>
             </LinearLayout>
             <!--  是否共偿 -->
@@ -190,24 +207,27 @@
                 android:id="@+id/is_compension_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="是否共偿:"/>
 
                 <TextView
                     android:id="@+id/is_compension"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
                     android:scaleType="centerCrop"
                     android:src="@drawable/arrow_right"/>
             </LinearLayout>
@@ -216,24 +236,27 @@
                 android:id="@+id/home_viste_date_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="家访日期:"/>
 
                 <TextView
                     android:id="@+id/home_viste_date"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
                     android:layout_weight="1"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
+                    android:layout_gravity="center"
                     android:scaleType="centerCrop"
                     android:src="@drawable/arrow_right"/>
             </LinearLayout>
@@ -242,19 +265,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="家访地址:"/>
 
                 <EditText
                     android:id="@+id/house_address"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -263,53 +288,58 @@
                 android:id="@+id/house_type_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="房产类别:"/>
 
                 <TextView
                     android:id="@+id/house_type"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
+                    android:layout_gravity="center"
                     android:scaleType="centerCrop"
                     android:src="@drawable/arrow_right"/>
             </LinearLayout>
 
             <View
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp"
                 android:background="#cccccc"/>
 
             <!-- 车行名称 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="车行名称:"/>
 
                 <EditText
                     android:id="@+id/car_name"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -318,19 +348,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="车行地址:"/>
 
                 <EditText
                     android:id="@+id/car_address"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -338,19 +370,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="车型:"/>
 
                 <EditText
                     android:id="@+id/car_type"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:layout_weight="1"/>
             </LinearLayout>
 
@@ -358,25 +392,28 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="成交价:"/>
 
                 <EditText
                     android:id="@+id/transaction_price"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:layout_weight="1"
                     android:digits="0123456789."/>
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="万元"/>
             </LinearLayout>
 
@@ -384,25 +421,28 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="发票金额:"/>
 
                 <EditText
                     android:id="@+id/fapiao_jine"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:digits="0123456789."/>
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="万元"/>
             </LinearLayout>
 
@@ -410,25 +450,28 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="贷款金额:"/>
 
                 <EditText
                     android:id="@+id/daikuan_jine"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:digits="0123456789."/>
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="万元"/>
             </LinearLayout>
 
@@ -436,25 +479,28 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:orientation="horizontal">
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="银行申报金额:"/>
 
                 <EditText
                     android:id="@+id/yinhangshenbao_jine"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:digits="0123456789."/>
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="万元"/>
             </LinearLayout>
 
@@ -462,28 +508,33 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
+                android:layout_marginBottom="80dp"
                 android:orientation="horizontal"
-                android:layout_marginBottom="50dp">
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="贷款期限:"/>
 
-                <EditText
+                <TextView
                     android:id="@+id/loan_time"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:digits="0123456789"/>
+                    android:gravity="center_vertical"
+                    android:digits="0123456789"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:text="年"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+</RelativeLayout>

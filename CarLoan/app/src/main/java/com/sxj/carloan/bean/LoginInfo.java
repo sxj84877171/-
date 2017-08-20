@@ -11,6 +11,8 @@ public class LoginInfo implements Serializable{
     public static final String ADMIN = "1" ;
     public static final String YWY = "2" ;
     public static final String DCY = "7";
+    //yhmq1	yhmq1	123456	银行面签
+    public static final String YH = "14" ;
 
     private String username;
     private String password;

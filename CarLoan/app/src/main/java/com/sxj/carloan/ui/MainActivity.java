@@ -12,6 +12,7 @@ import com.sxj.carloan.R;
 import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.util.FileObject;
 import com.sxj.carloan.util.LogUtil;
+import com.sxj.carloan.yewuyuan.YeWuJianDangActivity;
 
 import rx.Subscriber;
 
@@ -35,8 +36,8 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onItemClick(View view, ServerBean.RowsBean rowsBean, int position) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this, InfomationActivity.class);
-                intent.putExtra("data",rowsBean);
+                intent.setClass(MainActivity.this, YeWuJianDangActivity.class);
+                intent.putExtra("loan",rowsBean);
                 intent.putExtra("state", 0);
                 getActivity().startActivity(intent);
             }
@@ -78,7 +79,7 @@ public class MainActivity extends BaseActivity {
         if (item.getItemId() == 1) {
             Intent intent = new Intent();
             intent.putExtra("state", 1);
-            intent.setClass(getActivity(), InfomationActivity.class);
+            intent.setClass(getActivity(), YeWuJianDangActivity.class);
             startActivity(intent);
         }
         if (item.getItemId() == 2) {
