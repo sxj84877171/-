@@ -8,14 +8,19 @@ import com.sxj.carloan.bean.ServerBean;
  */
 
 public class ICBC36ProductCalc implements IProductCalc {
+    private double tiaoZhengXiang;
 
-    private ServerBean.RowsBean bean;
+//    private ServerBean.RowsBean bean;
 
     public ICBC36ProductCalc() {
     }
 
     public ICBC36ProductCalc(ServerBean.RowsBean bean) {
-        this.bean = bean;
+//        this.bean = bean;
+    }
+    private double loan_amount_ywy;
+    public ICBC36ProductCalc(double loan_amount_ywy ){
+        this.loan_amount_ywy = loan_amount_ywy;
     }
 
     /**
@@ -41,12 +46,17 @@ public class ICBC36ProductCalc implements IProductCalc {
     /**
      * 获取保证金
      *loan_amount_high*1.09/36*10000
+     *
+     * payback_month=loan_amount_ywy*1.09/36*10000
+     * payback_month_12=loan_amount_ywy*0.1548*10000/12+payback_month
+     *
      * @return
      */
     @Override
     public double getBaoZhengJin() {
-        double loan_amount_high = Double.parseDouble(bean.getLoan_amount_high());
-        return loan_amount_high*1.09/36*10000;
+        double payback_month=loan_amount_ywy*1.09/36*10000 ;
+        double payback_month_12=loan_amount_ywy*0.1548*10000/12+payback_month ;
+        return payback_month_12;
     }
 
     /**
@@ -56,7 +66,7 @@ public class ICBC36ProductCalc implements IProductCalc {
      */
     @Override
     public double getYueGong() {
-        return Double.parseDouble(bean.getLoan_amount_high()) * 1.09 * 10000 / 36;
+        return loan_amount_ywy*1.09/36*10000 ;
     }
 
     /**
@@ -66,7 +76,12 @@ public class ICBC36ProductCalc implements IProductCalc {
      */
     @Override
     public double getTiaoZhengXiang() {
-        return 0;
+        return tiaoZhengXiang;
+    }
+
+    @Override
+    public void setTiaoZhengXiang(double tiaoZhengXiang) {
+        this.tiaoZhengXiang = tiaoZhengXiang;
     }
 
     /**
@@ -76,7 +91,6 @@ public class ICBC36ProductCalc implements IProductCalc {
      */
     @Override
     public double getGpsFei() {
-        double loan_amount_ywy = getLoanAmountYwy();
         double gps_fee = 1980;
         if (loan_amount_ywy < 10) {
             gps_fee = 1980;
@@ -110,17 +124,23 @@ public class ICBC36ProductCalc implements IProductCalc {
 
     /**
      * 合计
-     *
+     * fee_return_agency=loan_amount_ywy*0.04*10000
+     *fee_total=deposit-fee_return_agency+extras_fee
      * @return
      */
     @Override
     public double getHeJi() {
-        Double loan_amount_high = Double.parseDouble(bean.getLoan_amount_high());
-        Double loan_amount_ywy = getLoanAmountYwy();
-        Double deposit = getYueGong();
-        Double extras_fee = getTiaoZhengXiang();
-        Double fee_return_agency = Double.parseDouble(getFeeReturnAgency());
-        return ((loan_amount_high - loan_amount_ywy) * 10000 + deposit + extras_fee - fee_return_agency);
+        double deposit = getYueGong();
+        double fee_return_agency=loan_amount_ywy*0.04*10000;
+        double extras_fee = getTiaoZhengXiang();
+        return deposit-fee_return_agency+extras_fee;
+
+//        Double loan_amount_high = Double.parseDouble(bean.getLoan_amount_high());
+//        Double loan_amount_ywy = getLoanAmountYwy();
+//        Double deposit = getYueGong();
+//        Double extras_fee = getTiaoZhengXiang();
+//        Double fee_return_agency = Double.parseDouble(getFeeReturnAgency());
+//        return ((loan_amount_high - loan_amount_ywy) * 10000 + deposit + extras_fee - fee_return_agency);
 
     }
 
@@ -228,9 +248,7 @@ public class ICBC36ProductCalc implements IProductCalc {
      */
     @Override
     public String getLoan_amount_high() {
-        Double doubule = Double.parseDouble(bean.getLoan_amount_ywy());
-        doubule = doubule * 1.1548;
-        return "" + doubule;
+        return null;
     }
 
     /**
@@ -263,9 +281,7 @@ public class ICBC36ProductCalc implements IProductCalc {
      */
     @Override
     public String getInterest_company() {
-        Double doubule = Double.parseDouble(bean.getLoan_amount_ywy());
-        doubule = doubule * 0.1548 * 10000;
-        return "" + doubule;
+        return null;
     }
 
     /**
@@ -281,7 +297,7 @@ public class ICBC36ProductCalc implements IProductCalc {
      */
     @Override
     public String getDeposit() {
-        return bean.getPayback_month();
+        return null;
     }
 
     /**
@@ -317,9 +333,7 @@ public class ICBC36ProductCalc implements IProductCalc {
      */
     @Override
     public String getPayBackMonth() {
-        // loan_amount_high*1.09/36*10000
-        Double d = Double.parseDouble(bean.getLoan_amount_high()) * 1.09 * 10000 / 36;
-        return "" + d;
+        return null;
     }
 
     /**
@@ -352,13 +366,14 @@ public class ICBC36ProductCalc implements IProductCalc {
      */
     @Override
     public String getServiceFee() {
-        Double loan_amount_high = Double.parseDouble(bean.getLoan_amount_high());
-        Double loan_amount_ywy = Double.parseDouble(bean.getLoan_amount_ywy());
-        Double gps_fee = Double.parseDouble(getGpsFee());
-        Double mortgage_fee = Double.parseDouble(getMortgageFee());
-        Double evaluation_fee = Double.parseDouble(getEvaluationFee());
-
-        return "" + ((loan_amount_high - loan_amount_ywy) * 10000 - gps_fee - mortgage_fee - evaluation_fee);
+        return null;
+//        Double loan_amount_high = Double.parseDouble(bean.getLoan_amount_high());
+//        Double loan_amount_ywy = Double.parseDouble(bean.getLoan_amount_ywy());
+//        Double gps_fee = Double.parseDouble(getGpsFee());
+//        Double mortgage_fee = Double.parseDouble(getMortgageFee());
+//        Double evaluation_fee = Double.parseDouble(getEvaluationFee());
+//
+//        return "" + ((loan_amount_high - loan_amount_ywy) * 10000 - gps_fee - mortgage_fee - evaluation_fee);
     }
 
     /**
@@ -387,7 +402,7 @@ public class ICBC36ProductCalc implements IProductCalc {
     }
 
     private double getLoanAmountYwy() {
-        return Double.parseDouble(bean.getLoan_amount_ywy());
+        return 0 ;//Double.parseDouble(bean.getLoan_amount_ywy());
     }
 
     /**
@@ -481,6 +496,8 @@ public class ICBC36ProductCalc implements IProductCalc {
     /**
      * 返经销商[fee_return_agency]
      * fee_return_agency=loan_amount_ywy*0.04*10000
+     * fee_return_agency=loan_amount_ywy*0.04*10000
+     *
      */
     @Override
     public String getFeeReturnAgency() {
@@ -501,12 +518,13 @@ public class ICBC36ProductCalc implements IProductCalc {
      */
     @Override
     public String getFeeTotal() {
-        Double loan_amount_high = Double.parseDouble(bean.getLoan_amount_high());
-        Double loan_amount_ywy = getLoanAmountYwy();
-        Double deposit = Double.parseDouble(getDeposit());
-        Double extras_fee = Double.parseDouble(getExtrasFee());
-        Double fee_return_agency = Double.parseDouble(getFeeReturnAgency());
-        return "" + ((loan_amount_high - loan_amount_ywy) * 10000 + deposit + extras_fee - fee_return_agency);
+        return null;
+//        Double loan_amount_high = Double.parseDouble(bean.getLoan_amount_high());
+//        Double loan_amount_ywy = getLoanAmountYwy();
+//        Double deposit = Double.parseDouble(getDeposit());
+//        Double extras_fee = Double.parseDouble(getExtrasFee());
+//        Double fee_return_agency = Double.parseDouble(getFeeReturnAgency());
+//        return "" + ((loan_amount_high - loan_amount_ywy) * 10000 + deposit + extras_fee - fee_return_agency);
     }
 
     /**

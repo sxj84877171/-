@@ -67,6 +67,11 @@ public class ICBCHalf36ProductCalc implements IProductCalc {
         return 0;
     }
 
+    @Override
+    public void setTiaoZhengXiang(double tiaoZhengXiang) {
+
+    }
+
     /**
      * 获取GPS费率
      *

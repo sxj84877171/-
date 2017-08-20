@@ -36,6 +36,8 @@ public interface IProductCalc {
      */
     double getTiaoZhengXiang();
 
+    void setTiaoZhengXiang(double tiaoZhengXiang);
+
     /**
      * 获取GPS费率
      * @return

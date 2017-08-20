@@ -8,10 +8,17 @@ import com.sxj.carloan.bean.ServerBean;
 
 public class ICBCHalf12Quan36Fan4ProductCalc implements IProductCalc {
 
-    ServerBean.RowsBean rowsBean;
+    //    ServerBean.RowsBean rowsBean;
+    private double tiaoZhengXiang;
+    private double loan_amount_ywy;
+
 
     public ICBCHalf12Quan36Fan4ProductCalc(ServerBean.RowsBean rowsBean) {
-        this.rowsBean = rowsBean;
+//        this.rowsBean = rowsBean;
+    }
+
+    public ICBCHalf12Quan36Fan4ProductCalc(double loan_amount_ywy) {
+        this.loan_amount_ywy = loan_amount_ywy;
     }
 
     /**
@@ -34,30 +41,37 @@ public class ICBCHalf12Quan36Fan4ProductCalc implements IProductCalc {
         return 24.48;
     }
 
+    public double getGongSiDaiKuan() {
+
+        return gongsiDaiKuan;
+    }
+
+    private double gongsiDaiKuan;
+
+    public void setGongsiDaiKuan(double gongsiDaiKuan) {
+        this.gongsiDaiKuan = gongsiDaiKuan;
+    }
+
     /**
      * 获取保证金
-     * payback_month=loan_amount_ywy * 1.09 / 36 * 10000
-     * payback_month+((loan_amount_ywy*0.1548+loan_amount_ywy_corp*1.2448)*10000)/12.0
+     * payback_month_12=payback_month+((loan_amount_ywy*0.1548+loan_amount_ywy_corp*1.2448)*10000)/12.0
      *
      * @return
      */
     @Override
     public double getBaoZhengJin() {
-        double loan_amount_ywy = Double.parseDouble(rowsBean.getLoan_amount_ywy());
-        double payback_month = loan_amount_ywy * 1.09 / 36 * 10000;
-        double loan_amount_ywy_corp = Double.parseDouble(rowsBean.getLoan_amount_ywy_corp());
-        return payback_month + ((loan_amount_ywy * 0.1548 + loan_amount_ywy_corp * 1.2448) * 10000) / 12.0;
+        return getYueGong() + ((loan_amount_ywy * 0.1548 + getGongSiDaiKuan() * 1.2448) * 10000) / 12.0;
     }
 
     /**
      * 获取月供
+     * payback_month=loan_amount_ywy * 1.09 / 36 * 10000
      * payback_month=loan_amount_ywy * 1.09 / 36 * 10000
      *
      * @return
      */
     @Override
     public double getYueGong() {
-        double loan_amount_ywy = Double.parseDouble(rowsBean.getLoan_amount_ywy());
         return loan_amount_ywy * 1.09 / 36 * 10000;
     }
 
@@ -68,7 +82,12 @@ public class ICBCHalf12Quan36Fan4ProductCalc implements IProductCalc {
      */
     @Override
     public double getTiaoZhengXiang() {
-        return 0;
+        return tiaoZhengXiang;
+    }
+
+    @Override
+    public void setTiaoZhengXiang(double tiaoZhengXiang) {
+        this.tiaoZhengXiang = tiaoZhengXiang;
     }
 
     /**
@@ -79,7 +98,6 @@ public class ICBCHalf12Quan36Fan4ProductCalc implements IProductCalc {
      */
     @Override
     public double getGpsFei() {
-        double loan_amount_ywy = Double.parseDouble(rowsBean.getLoan_amount_ywy());
         double gps_fee = 4980;
         if (loan_amount_ywy < 10) {
             gps_fee = 1980;
@@ -116,18 +134,18 @@ public class ICBCHalf12Quan36Fan4ProductCalc implements IProductCalc {
      * payback_month=loan_amount_ywy * 1.09 / 36 * 10000
      * payback_month_12=payback_month+((loan_amount_ywy*0.1548+loan_amount_ywy_corp*1.2448)*10000)/12.0
      * fee_return_agency=(loan_amount_ywy+loan_amount_ywy_corp)*0.04*10000
-     *fee_total=payback_month_12-fee_return_agency+extras_fee
+     * fee_total=payback_month_12-fee_return_agency+extras_fee
+     *
      * @return
      */
     @Override
     public double getHeJi() {
         double payback_month = getYueGong();
-        double loan_amount_ywy = Double.parseDouble(rowsBean.getLoan_amount_ywy());
-        double loan_amount_ywy_corp = Double.parseDouble(rowsBean.getLoan_amount_ywy_corp());
-        double payback_month_12 = payback_month+((loan_amount_ywy*0.1548+loan_amount_ywy_corp*1.2448)*10000)/12.0;
-        double fee_return_agency = (loan_amount_ywy+loan_amount_ywy_corp)*0.04*10000;
+        double loan_amount_ywy_corp = getGongSiDaiKuan();
+        double payback_month_12 = payback_month + ((loan_amount_ywy * 0.1548 + loan_amount_ywy_corp * 1.2448) * 10000) / 12.0;
+        double fee_return_agency = (loan_amount_ywy + loan_amount_ywy_corp) * 0.04 * 10000;
         double extras_fee = getTiaoZhengXiang();
-        return payback_month_12-fee_return_agency+extras_fee;
+        return payback_month_12 - fee_return_agency + extras_fee;
     }
 
     /***

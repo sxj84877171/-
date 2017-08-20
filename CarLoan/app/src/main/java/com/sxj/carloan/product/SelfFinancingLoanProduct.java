@@ -70,6 +70,11 @@ public class SelfFinancingLoanProduct implements IProductCalc {
         return 0;
     }
 
+    @Override
+    public void setTiaoZhengXiang(double tiaoZhengXiang) {
+
+    }
+
     /**
      * 获取GPS费率
      *if( loan_amount_ywy<10) gps_fee=2980; else gps_fee=4980;
