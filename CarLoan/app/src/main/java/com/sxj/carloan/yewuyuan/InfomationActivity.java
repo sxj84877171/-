@@ -23,12 +23,14 @@ import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.ui.HomeInfoAcitivity;
 import com.sxj.carloan.ui.PersonCreditActivity;
 import com.sxj.carloan.ui.RepaymentActivity;
+import com.sxj.carloan.util.BeanToMap;
 import com.sxj.carloan.util.FileUtil;
 import com.sxj.carloan.util.LogUtil;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Map;
 import java.util.UUID;
 
 import okhttp3.ResponseBody;
@@ -72,14 +74,14 @@ public class InfomationActivity extends BaseActivity {
 
 
     private static final String[] PRODUCT_TYPES = new String[]{
-        "工行-二手车全分期36个月24.48返4包干",
-                "工行-二手车半分期36个月18.8包干",
-                "工行-二手车12全分期36个月24.48返4包干",
-                "自有资金贷款产品",
-                "工行-二手车12全分期36个月24.48返4包干（部分贷款公司自有）",
-                "工行-新车全分期36个月18返3",
-                "工行-新车半分期36个月13.5",
-                "工行-新车半分期24个月10.5"};
+            "工行-二手车全分期36个月24.48返4包干",
+            "工行-二手车半分期36个月18.8包干",
+            "工行-二手车12全分期36个月24.48返4包干",
+            "自有资金贷款产品",
+            "工行-二手车12全分期36个月24.48返4包干（部分贷款公司自有）",
+            "工行-新车全分期36个月18返3",
+            "工行-新车半分期36个月13.5",
+            "工行-新车半分期24个月10.5"};
 
 
     /**
@@ -102,7 +104,9 @@ public class InfomationActivity extends BaseActivity {
         initViewById();
         Intent intent = getIntent();
         loan = (ServerBean.RowsBean) intent.getSerializableExtra("loan");
+        isModify = true;
         if (loan == null) {
+            isModify = false;
             loan = new ServerBean.RowsBean();
         }
         state = intent.getIntExtra("state", 0);
@@ -132,14 +136,14 @@ public class InfomationActivity extends BaseActivity {
             }
         });
         boolean stateBoolean = state != 0;
-        if(!stateBoolean){
+        if (!stateBoolean) {
             business_type_line.setOnClickListener(null);
             sex_line.setOnClickListener(null);
             marry_state_line.setOnClickListener(null);
             is_compension_line.setOnClickListener(null);
             house_type_line.setOnClickListener(null);
             home_viste_date_line.setOnClickListener(null);
-        }else {
+        } else {
             business_type_line.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -278,8 +282,6 @@ public class InfomationActivity extends BaseActivity {
     }
 
 
-
-
     private void displayState() {
         changeState();
         initListener();
@@ -350,12 +352,12 @@ public class InfomationActivity extends BaseActivity {
     private AlertDialog rootTypeDialog;
     private AlertDialog stagetTypeDialog;
     private AlertDialog choosePhotoDialog;
-    private AlertDialog roleDialog ;
-    private AlertDialog visitDatePickDialog ;
-    private AlertDialog buildDatePickDialog ;
+    private AlertDialog roleDialog;
+    private AlertDialog visitDatePickDialog;
+    private AlertDialog buildDatePickDialog;
 
-    void createBuildDatePickDialog(){
-        if(buildDatePickDialog == null){
+    void createBuildDatePickDialog() {
+        if (buildDatePickDialog == null) {
             IDateChooseListener listener = new IDateChooseListener() {
                 @Override
                 public void onDateChoose(String date, int year, int month, int day) {
@@ -368,8 +370,8 @@ public class InfomationActivity extends BaseActivity {
         buildDatePickDialog.show();
     }
 
-    void createVisitDatePickDialog(){
-        if(visitDatePickDialog == null){
+    void createVisitDatePickDialog() {
+        if (visitDatePickDialog == null) {
             IDateChooseListener listener = new IDateChooseListener() {
                 @Override
                 public void onDateChoose(String date, int year, int month, int day) {
@@ -664,7 +666,7 @@ public class InfomationActivity extends BaseActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     initType(which);
-                    loan.setCase_type_id_1(which + 1);
+                    loan.setProduct_id("" + which+1);
                     typeDialog.dismiss();
                     loan_time.setText("" + 3);
                 }
@@ -676,12 +678,11 @@ public class InfomationActivity extends BaseActivity {
     }
 
     private void initType(int which) {
-        if(which < PRODUCT_TYPES.length && which >= 0){
+        if (which < PRODUCT_TYPES.length && which >= 0) {
             business_type.setText(PRODUCT_TYPES[which]);
+            loan.setCase_type_id_1(which);
         }
     }
-
-
 
 
     AlertDialog createDataTimePick(final IDateChooseListener listener) {
@@ -694,11 +695,11 @@ public class InfomationActivity extends BaseActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 int year = datePicker.getYear();
-                int month = datePicker.getMonth()  +1 ;
+                int month = datePicker.getMonth() + 1;
                 int day = datePicker.getDayOfMonth();
-                String dateString = year + "-" + month + "-" + day ;
-                if(listener != null){
-                    listener.onDateChoose(dateString,year,month,day);
+                String dateString = year + "-" + month + "-" + day;
+                if (listener != null) {
+                    listener.onDateChoose(dateString, year, month, day);
                 }
             }
         });
@@ -706,11 +707,15 @@ public class InfomationActivity extends BaseActivity {
         return builder.create();
     }
 
-    static interface IDateChooseListener{
+    static interface IDateChooseListener {
         void onDateChoose(String date, int year, int month, int day);
     }
+
     void initData() {
         if (loan != null) {
+            if (loan.getCase_type_id_1() < PRODUCT_TYPES.length && (loan.getCase_type_id_1() >= 0)) {
+                business_type.setText(PRODUCT_TYPES[loan.getCase_type_id_1()]);
+            }
             apply_name.setText(getLoanString(loan.getCust_name_tmp()));
             sex.setText(getLoanString(loan.getCust_sex()));
             id_no.setText(getLoanString(loan.getCust_iden()));
@@ -731,19 +736,21 @@ public class InfomationActivity extends BaseActivity {
 
     public void save() {
 
-        if(TextUtils.isEmpty(business_type.getText().toString())){
+        loan.setUser_id_ywy(Integer.parseInt(getLoginInfo().getUser_id()));
+
+        if (TextUtils.isEmpty(business_type.getText().toString())) {
             toast("请选择产品");
             return;
         }
 
         // loan
-        if(TextUtils.isEmpty(apply_name.getText().toString())){
+        if (TextUtils.isEmpty(apply_name.getText().toString())) {
             toast("请填写申请人名字！");
             apply_name.findFocus();
             return;
         }
         loan.setCust_name_tmp(apply_name.getText().toString());
-        if(TextUtils.isEmpty(id_no.getText().toString())){
+        if (TextUtils.isEmpty(id_no.getText().toString())) {
             toast("请填写申请人身份证号码！");
             id_no.findFocus();
             return;
@@ -751,68 +758,68 @@ public class InfomationActivity extends BaseActivity {
         loan.setCust_iden(id_no.getText().toString());
 
 
-        if(TextUtils.isEmpty(marry_state.getText())){
+        if (TextUtils.isEmpty(marry_state.getText())) {
             toast("请选择婚姻状况");
             return;
         }
 
-        if(TextUtils.isEmpty(phone_num.getText().toString())){
+        if (TextUtils.isEmpty(phone_num.getText().toString())) {
             toast("请填写申请人手机号码！");
             phone_num.findFocus();
             return;
         }
         loan.setCust_mobile(phone_num.getText().toString());
 
-        if(TextUtils.isEmpty(is_compension.getText().toString())){
+        if (TextUtils.isEmpty(is_compension.getText().toString())) {
             toast("请选择是否共偿");
             return;
         }
 
-        if(TextUtils.isEmpty(home_viste_date.getText().toString())){
+        if (TextUtils.isEmpty(home_viste_date.getText().toString())) {
             toast("请选择家访日期！");
             return;
         }
         loan.setHome_visit_date(home_viste_date.getText().toString());
 
-        if(TextUtils.isEmpty(house_address.getText().toString())){
-            toast("");
+        if (TextUtils.isEmpty(house_address.getText().toString())) {
+            toast("ssssss");
             return;
         }
         loan.setCust_address(house_address.getText().toString());
 
-        if(TextUtils.isEmpty(car_typeEditText.getText().toString())){
+        if (TextUtils.isEmpty(car_typeEditText.getText().toString())) {
             toast("请填写车型！");
             car_typeEditText.findFocus();
             return;
         }
         loan.setCar_type(car_typeEditText.getText().toString());
 
-        if(TextUtils.isEmpty(car_address.getText().toString())){
+        if (TextUtils.isEmpty(car_address.getText().toString())) {
             toast("请填写车行地址！");
             car_address.findFocus();
             return;
         }
         loan.setChehang_address(car_address.getText().toString());
 
-        if(TextUtils.isEmpty(house_type.getText().toString())){
+        if (TextUtils.isEmpty(house_type.getText().toString())) {
             toast("请选择房产类别");
             return;
         }
 
-        if(TextUtils.isEmpty(car_name.getText().toString())){
+        if (TextUtils.isEmpty(car_name.getText().toString())) {
             toast("请填写车行名称！");
             car_name.findFocus();
             return;
         }
         loan.setChehang_name(car_name.getText().toString());
 
-        if(TextUtils.isEmpty(car_address.getText().toString())){
+        if (TextUtils.isEmpty(car_address.getText().toString())) {
             toast("请填写车行地址");
             return;
         }
         loan.setChehang_address(car_address.getText().toString());
 
-        if(TextUtils.isEmpty(car_typeEditText.getText())){
+        if (TextUtils.isEmpty(car_typeEditText.getText())) {
             toast("请填写车型");
             return;
         }
@@ -843,6 +850,8 @@ public class InfomationActivity extends BaseActivity {
             return;
         }
         loan.setLoan_amount_ywy("" + price);
+        loan.setLoan_amount("" + price);
+        //loan_amount_ywy
 
         try {
             price = Double.parseDouble(yinhangshenbao_jine.getText().toString());
@@ -851,7 +860,7 @@ public class InfomationActivity extends BaseActivity {
             yinhangshenbao_jine.findFocus();
             return;
         }
-        loan.setLoan_amount_high(""+price);
+        loan.setLoan_amount_high("" + price);
 
         int creditYears = 0;
         try {
@@ -865,7 +874,7 @@ public class InfomationActivity extends BaseActivity {
         loan.setCredit_years(creditYears);
 
         if (isModify) {
-            model.update(loan).subscribe(new Subscriber<FuncResponseBean>() {
+            model.update(BeanToMap.transRowsBean2Map(loan)).subscribe(new Subscriber<FuncResponseBean>() {
                 @Override
                 public void onCompleted() {
 
@@ -887,7 +896,9 @@ public class InfomationActivity extends BaseActivity {
                 }
             });
         } else {
-            model.insert(loan).subscribe(new Subscriber<FuncResponseBean>() {
+            Map map = BeanToMap.transRowsBean2Map(loan);
+            map.remove("id");
+            model.insertBean(map).subscribe(new Subscriber<FuncResponseBean>() {
                 @Override
                 public void onCompleted() {
                 }
@@ -909,12 +920,12 @@ public class InfomationActivity extends BaseActivity {
         }
     }
 
-    final  String[] role_state = new String[]{"建档中", "信用体系待查", "保险待查", "待传照片", "待派单", "待调查", "待风控", "待审批",
+    final String[] role_state = new String[]{"建档中", "信用体系待查", "保险待查", "待传照片", "待派单", "待调查", "待风控", "待审批",
             "待请款", "待税费汇总", "待电审", "待税费确认", "待批复", "待放款", "待住行审核", "待住行送审", "待调额", "待刷卡", "已刷卡"};
 
 
-    void createRoldDialog(){
-        if(roleDialog == null) {
+    void createRoldDialog() {
+        if (roleDialog == null) {
             DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -926,6 +937,7 @@ public class InfomationActivity extends BaseActivity {
         }
         roleDialog.show();
     }
+
     String initCaseState(int id) {
         String[] args = new String[]{"建档中", "信用体系待查", "保险待查", "待传照片", "待派单", "待调查", "待风控", "待审批",
                 "待请款", "待税费汇总", "待电审", "待税费确认", "待批复", "待放款", "待住行审核", "待住行送审", "待调额", "待刷卡", "已刷卡"};

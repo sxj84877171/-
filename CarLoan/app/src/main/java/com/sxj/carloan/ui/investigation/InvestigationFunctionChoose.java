@@ -84,7 +84,8 @@ public class InvestigationFunctionChoose extends BaseActivity {
     }
 
     public void addMoreInfo(View view) {
-        toast("功能在努力开发中……");
+//        toast("功能在努力开发中……");
+        gotoWeiFuXinXi(bean);
     }
 
     public void uploadFamilyPhoto(View view) {

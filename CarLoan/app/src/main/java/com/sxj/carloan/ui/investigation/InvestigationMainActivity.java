@@ -13,6 +13,9 @@ import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.ui.ItemRecyclerViewAdapter;
 import com.sxj.carloan.util.LogUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import rx.Subscriber;
 
 public class InvestigationMainActivity extends BaseActivity {
@@ -23,6 +26,7 @@ public class InvestigationMainActivity extends BaseActivity {
     private int count = 30;
     private int index = 0;
     private int max = 0;
+    private int type = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +38,15 @@ public class InvestigationMainActivity extends BaseActivity {
         itemRecyclerViewAdapter.setOnItemClickListener(new ItemRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, ServerBean.RowsBean rowsBean, int position) {
-                Intent intent = new Intent();
-                intent.setClass(InvestigationMainActivity.this, InvestigationFunctionChoose.class);
-                intent.putExtra("loan", rowsBean);
-                intent.putExtra("state", 0);
-                startActivity(intent);
+                if(rowsBean.getCase_state_id() == 5) {
+                    Intent intent = new Intent();
+                    intent.setClass(InvestigationMainActivity.this, InvestigationFunctionChoose.class);
+                    intent.putExtra("loan", rowsBean);
+                    intent.putExtra("state", 0);
+                    startActivity(intent);
+                }else{
+                    toast("已完成");
+                }
             }
         });
         itemRecyclerViewAdapter.setTitle1("被调查人");
@@ -71,9 +79,9 @@ public class InvestigationMainActivity extends BaseActivity {
     }
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        menu.add(1, 1, 1, "未完成");
-        menu.add(1, 2, 2, "已完成");
-        menu.add(1, 3, 3, "全部");
+        menu.add(1, 1, 1, "全部");
+        menu.add(1, 2, 2, "未完成");
+        menu.add(1, 3, 3, "已完成");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -84,11 +92,14 @@ public class InvestigationMainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
         LogUtil.i("item " + item.getItemId());
         if (item.getItemId() == 1) {
-            toast("功能在努力开发中……");
+           type = 0 ;
+            fromServer();
         }else if(item.getItemId() == 2){
-            toast("功能在努力开发中……");
+            type =1 ;
+            fromServer();
         }else if(item.getItemId() == 3){
-            toast("功能在努力开发中……");
+            type = 2;
+            fromServer();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -121,9 +132,27 @@ public class InvestigationMainActivity extends BaseActivity {
             public void onNext(ServerBean serverBean) {
 //                List<Loan> list = getLoanList(serverBean);
                 ((BaseActivity) getActivity()).dismiss();
-                max = serverBean.getTotal();
-                index = index + serverBean.getRows().size();
-                itemRecyclerViewAdapter.addValues(serverBean.getRows());
+//                max = serverBean.getTotal();
+//                index = index + serverBean.getRows().size();
+                List<ServerBean.RowsBean> rows =  serverBean.getRows();
+                List<ServerBean.RowsBean> newRows = new ArrayList<ServerBean.RowsBean>();
+                for(ServerBean.RowsBean bean:rows){
+                    if(getLoginInfo().getUser_id().equals("" + bean.getUser_id_dcy())){
+                        if(type == 0){
+                            newRows.add(bean);
+                        }else if(type == 1){
+                            if(bean.getCase_state_id() == 5){
+                                newRows.add(bean);
+                            }
+                        }else{
+                            if(bean.getCase_state_id() != 5){
+                                newRows.add(bean);
+                            }
+                        }
+                    }
+                }
+                itemRecyclerViewAdapter.cleanValues();
+                itemRecyclerViewAdapter.addValues(newRows);
             }
         });
     }

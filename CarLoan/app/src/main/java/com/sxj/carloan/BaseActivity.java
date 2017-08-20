@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.inputmethodservice.Keyboard;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 import com.sxj.carloan.bean.LoginInfo;
 import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.ui.MainActivity;
+import com.sxj.carloan.ui.investigation.DiaoChaYuanWeiFu;
 import com.sxj.carloan.util.DateUtil;
 import com.sxj.carloan.util.FileUtil;
 import com.sxj.carloan.yewuyuan.BaseInfotmaitionCalcActivity;
@@ -131,6 +133,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (!(this instanceof LoginActivity)) {
+            setTitle(getUsername() + ",欢迎您！");
             checkPermission();
         }
     }
@@ -333,5 +336,11 @@ public class BaseActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void gotoWeiFuXinXi(ServerBean.RowsBean bean){
+        Intent intent = new Intent(this, DiaoChaYuanWeiFu.class);
+        intent.putExtra("loan",bean);
+        startActivity(intent);
     }
 }

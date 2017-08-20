@@ -96,6 +96,9 @@
 
         <activity android:name=".yewuyuan.BaseInfotmaitionCalcActivity"
                   android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.investigation.DiaoChaYuanWeiFu"
+                  android:screenOrientation="portrait"/>
         <activity
             android:name=".rongyi.VideoListActivity"
             android:screenOrientation="portrait"/>

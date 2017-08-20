@@ -9,9 +9,14 @@ import android.widget.EditText;
 
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
+import com.sxj.carloan.bean.FuncResponseBean;
 import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.product.IProductCalc;
 import com.sxj.carloan.product.ProductFactroy;
+import com.sxj.carloan.util.BeanToMap;
+import com.sxj.carloan.util.DateUtil;
+
+import rx.Subscriber;
 
 /**
  * Created by admin on 2017/8/19.
@@ -31,9 +36,11 @@ public class BaseInfotmaitionCalcActivity extends BaseActivity {
     private EditText heji;
     private EditText kefulvyuetuikuan;
 
-    private Button cancel;
-    private Button save ;
-    private Button sumbit ;
+    private Button cancel_action;
+    private Button save_action ;
+    private Button submit_action ;
+
+    private ServerBean.RowsBean loan;
 
 
     @Override
@@ -42,6 +49,7 @@ public class BaseInfotmaitionCalcActivity extends BaseActivity {
         setContentView(R.layout.calc_result_baseinforamtion);
         initView();
         initData();
+        initListener();
     }
 
     void initView() {
@@ -55,14 +63,14 @@ public class BaseInfotmaitionCalcActivity extends BaseActivity {
         kefulvyuetuikuan = getViewById(R.id.kefulvyuehoutuikuan);
         tiaozhengxiang = getViewById(R.id.tiaozhengxiang);
 
-        save = getViewById(R.id.save_action);
-        sumbit = getViewById(R.id.submit_action);
-        cancel = getViewById(R.id.cancel_action);
+        save_action = getViewById(R.id.save_action);
+        submit_action = getViewById(R.id.submit_action);
+        cancel_action = getViewById(R.id.cancel_action);
     }
 
     void initData() {
         Intent intent = getIntent();
-        ServerBean.RowsBean loan = (ServerBean.RowsBean) intent.getSerializableExtra("loan");
+        loan = (ServerBean.RowsBean) intent.getSerializableExtra("loan");
         IProductCalc productCalc = null;
         if (loan != null) {
             productCalc = ProductFactroy.getInstance().getProductCale(loan.getCase_type_id_1(), loan);
@@ -148,24 +156,67 @@ public class BaseInfotmaitionCalcActivity extends BaseActivity {
 
 
     public void initListener(){
-        cancel.setOnClickListener(new View.OnClickListener() {
+        cancel_action.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
 
-        save.setOnClickListener(new View.OnClickListener() {
+        save_action.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                back(2);
+                model.update(BeanToMap.transRowsBean2Map(loan)).subscribe(new Subscriber<FuncResponseBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        toast("fail.");
+                    }
+
+                    @Override
+                    public void onNext(FuncResponseBean funcResponseBean) {
+                        toast("Success!");
+                        back(2);
+                    }
+                });
             }
         });
 
-        sumbit.setOnClickListener(new View.OnClickListener() {
+        submit_action.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                back(2);
+
+                if(loan.getCase_state_id() == 0 || loan.getCase_state_id() == 101){
+                    loan.setCase_state_id(1);
+                }else if(loan.getCase_state_id() == 8 ){
+                    loan.setCase_state_id(10);
+                }else{
+                    loan.setCase_state_id(loan.getCase_state_id() % 100);
+                }
+
+                loan.setDate_ywy(DateUtil.getWaterDate());
+                model.update(BeanToMap.transRowsBean2Map(loan)).subscribe(new Subscriber<FuncResponseBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        toast("fail.");
+                    }
+
+                    @Override
+                    public void onNext(FuncResponseBean funcResponseBean) {
+                        toast("Success!");
+                        back(2);
+                    }
+                });
+
             }
         });
     }

@@ -2,27 +2,32 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-    >
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
     <Button
         android:id="@+id/submit_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="提交"
-        android:visibility="gone"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="5dp"
-        android:layout_alignParentBottom="true"/>
+        android:text="提交"
+        android:visibility="gone"/>
 
     <LinearLayout
-        android:layout_above="@id/submit_action"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/submit_action"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/jibenxinxi"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginTop="20dp"
+            android:background="#cccccc"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -47,8 +52,11 @@
         <LinearLayout
             android:id="@+id/shangchuanshengfenzheng_zheng"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginTop="20dp"
+            android:background="#cccccc"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -74,8 +82,11 @@
         <LinearLayout
             android:id="@+id/shangchuanshengfenzheng_fan"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginTop="20dp"
+            android:background="#cccccc"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -100,8 +111,11 @@
         <LinearLayout
             android:id="@+id/shangchuanfuzong"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginTop="20dp"
+            android:background="#cccccc"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -127,8 +141,11 @@
         <LinearLayout
             android:id="@+id/shangchuanzongjingli"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginTop="20dp"
+            android:background="#cccccc"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -154,8 +171,11 @@
         <LinearLayout
             android:id="@+id/shangchuancheliangzhaopian"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginTop="20dp"
+            android:background="#cccccc"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView

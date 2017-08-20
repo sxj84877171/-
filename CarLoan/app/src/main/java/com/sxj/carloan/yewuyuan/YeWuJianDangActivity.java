@@ -17,7 +17,9 @@ import android.widget.Button;
 
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
+import com.sxj.carloan.bean.FuncResponseBean;
 import com.sxj.carloan.bean.ServerBean;
+import com.sxj.carloan.util.BeanToMap;
 import com.sxj.carloan.util.DateUtil;
 import com.sxj.carloan.util.FileUtil;
 import com.sxj.carloan.util.LogUtil;
@@ -177,7 +179,34 @@ public class YeWuJianDangActivity extends BaseActivity {
         submit_action.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // change state;
+
+                if(bean.getCase_state_id() == 0 || bean.getCase_state_id() == 101){
+                    bean.setCase_state_id(1);
+                }else if(bean.getCase_state_id() == 8 ){
+                    bean.setCase_state_id(10);
+                }else{
+                    bean.setCase_state_id(bean.getCase_state_id() % 100);
+                }
+
+                bean.setDate_ywy(DateUtil.getWaterDate());
+                model.update(BeanToMap.transRowsBean2Map(bean)).subscribe(new Subscriber<FuncResponseBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        toast("fail.");
+                    }
+
+                    @Override
+                    public void onNext(FuncResponseBean funcResponseBean) {
+                        toast("Success!");
+                        finish();
+                    }
+                });
+
             }
         });
 
@@ -274,23 +303,50 @@ public class YeWuJianDangActivity extends BaseActivity {
                     switch (functionChoose) {
                         case 1:
                             model.shangchuanShenFengzhengZhengmian("" + bean.getCase_type_id_1(), file).enqueue(responseBodyCallback);
-                            shangchuanshenfenzheng_zheng_ok.setVisibility(View.VISIBLE);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    shangchuanshenfenzheng_zheng_ok.setVisibility(View.VISIBLE);
+                                }
+                            });
+
                             break;
                         case 2:
                             model.shangchuanShenFengzhengFanmian("" + bean.getCase_type_id_1(), file).enqueue(responseBodyCallback);
-                            shangchuanshenfenzheng_fan_ok.setVisibility(View.VISIBLE);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    shangchuanshenfenzheng_fan_ok.setVisibility(View.VISIBLE);
+                                }
+                            });
+
                             break;
                         case 3:
                             model.shangchuanFuzong("" + bean.getCase_type_id_1(), file).enqueue(responseBodyCallback);
-                            shangchuanfuzong_ok.setVisibility(View.VISIBLE);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    shangchuanfuzong_ok.setVisibility(View.VISIBLE);
+                                }
+                            });
                             break;
                         case 4:
                             model.shangchuanZongjingli("" + bean.getCase_type_id_1(), file).enqueue(responseBodyCallback);
-                            shangchuanzongjingli_ok.setVisibility(View.VISIBLE);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    shangchuanzongjingli_ok.setVisibility(View.VISIBLE);
+                                }
+                            });
                             break;
                         case 5:
                             model.shangchuanCheLiang("" + bean.getCase_type_id_1(), file).enqueue(responseBodyCallback);
-                            shangchuancheliang_ok.setVisibility(View.VISIBLE);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    shangchuancheliang_ok.setVisibility(View.VISIBLE);
+                                }
+                            });
                             break;
                     }
                 }

@@ -10,6 +10,7 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -34,11 +35,14 @@ public interface ApiService {
     @POST("AjaxService.ashx?method=PageWork&sql=* from t_case")
     public Observable<ServerBean> PageWork(@Query("pageSize") String pageSize, @Query("offset") String offset, @Query("if_desc") String if_desc);
 
-    @POST("AjaxService.ashx?method=InsertTable&table_name=t_case")
-    public Observable<ServerBean> InsertTable(@QueryMap Map<String, String> map);
+    @POST("AjaxService.ashx?method=InsertTableApp&table_name=t_case")
+    public Observable<FuncResponseBean> InsertTable(@QueryMap Map<String, Object> map);
 
-    @POST("AjaxService.ashx?method=InsertTable&table_name=t_case")
+    @POST("AjaxService.ashx?method=InsertTableApp&table_name=t_case")
     public Observable<FuncResponseBean> InsertTable(@Body ServerBean.RowsBean bean);
+
+    @POST("AjaxService.ashx?method=UpdateTableApp&table_name=t_case")
+    public Observable<FuncResponseBean> UpdateTable(@Body ServerBean.RowsBean bean);
 
     @POST("AjaxService.ashx?method=InsertTableApp&table_name=t_case")
     public Observable<FuncResponseBean> InsertTable(@Query("case_type_id") String case_type_id
@@ -52,8 +56,8 @@ public interface ApiService {
             , @Query("date_ywy") String date_ywy, @Query("case_state_id ") String case_state_id
     );
 
-    @POST("AjaxService.ashx?method=UpdateTable&table_name=t_case")
-    public Observable<ServerBean> UpdateTable(@QueryMap Map<String, String> map);
+    @POST("AjaxService.ashx?method=UpdateTableApp&table_name=t_case")
+    public Observable<FuncResponseBean> UpdateTable(@QueryMap Map<String, Object> map);
 
     @POST("AjaxService.ashx?method=UpdateTableApp&table_name=t_case")
     public Observable<FuncResponseBean> UpdateTable(@Query("id") String id, @Query("case_type_id") String case_type_id

@@ -14,6 +14,9 @@ import com.sxj.carloan.util.FileObject;
 import com.sxj.carloan.util.LogUtil;
 import com.sxj.carloan.yewuyuan.YeWuJianDangActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import rx.Subscriber;
 
 public class MainActivity extends BaseActivity {
@@ -24,6 +27,7 @@ public class MainActivity extends BaseActivity {
     private int count = 30;
     private int index = 0;
     private int max = 0;
+    private int type = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +39,23 @@ public class MainActivity extends BaseActivity {
         itemRecyclerViewAdapter.setOnItemClickListener(new ItemRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, ServerBean.RowsBean rowsBean, int position) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, YeWuJianDangActivity.class);
-                intent.putExtra("loan",rowsBean);
-                intent.putExtra("state", 0);
-                getActivity().startActivity(intent);
+                if (rowsBean.getCase_state_id() == 0 ||
+                        rowsBean.getCase_state_id() == 8 ||
+                        rowsBean.getCase_state_id() == 101 ||
+                        rowsBean.getCase_state_id() == 105 ||
+                        rowsBean.getCase_state_id() == 106 ||
+                        rowsBean.getCase_state_id() == 107 ||
+                        rowsBean.getCase_state_id() == 110 ||
+                        rowsBean.getCase_state_id() == 112) {
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, YeWuJianDangActivity.class);
+                    intent.putExtra("loan", rowsBean);
+                    intent.putExtra("state", 0);
+                    getActivity().startActivity(intent);
+                }else{
+                    toast("已完成！");
+                }
+
             }
         });
         listView.setLayoutManager(new LinearLayoutManager(this));
@@ -49,7 +65,7 @@ public class MainActivity extends BaseActivity {
             public void onRefresh() {
                 if (index < max) {
                     fromServer();
-                }else{
+                } else {
                     mSwipeLayout.setRefreshing(false);
                 }
             }
@@ -60,13 +76,16 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        index = max = 0 ;
+        index = max = 0;
         itemRecyclerViewAdapter.cleanValues();
         fromServer();
     }
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         menu.add(1, 1, 1, "业务建档");
+        menu.add(2,2,2,"全部");
+        menu.add(3,3,3,"建档中");
+        menu.add(4,4,4,"已完成");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -82,10 +101,22 @@ public class MainActivity extends BaseActivity {
             intent.setClass(getActivity(), YeWuJianDangActivity.class);
             startActivity(intent);
         }
-        if (item.getItemId() == 2) {
-            FileObject.cleanFile(LOGIN_INFO);
-            finish();
+
+        if(item.getItemId() == 2){
+            type = 0 ;
+            fromServer();
         }
+
+        if(item.getItemId() == 3){
+            type = 1;
+            fromServer();
+        }
+
+        if(item.getItemId() == 4){
+            type = 2;
+            fromServer();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -117,9 +148,42 @@ public class MainActivity extends BaseActivity {
             public void onNext(ServerBean serverBean) {
 //                List<Loan> list = getLoanList(serverBean);
                 ((BaseActivity) getActivity()).dismiss();
-                max = serverBean.getTotal();
-                index = index + serverBean.getRows().size();
-                itemRecyclerViewAdapter.addValues(serverBean.getRows());
+//                max = serverBean.getTotal();
+//                index = index + serverBean.getRows().size();
+                itemRecyclerViewAdapter.cleanValues();
+                //tmp_role_id
+                List<ServerBean.RowsBean> rows = serverBean.getRows();
+                List<ServerBean.RowsBean> newRows = new ArrayList<ServerBean.RowsBean>();
+                for (ServerBean.RowsBean bean : rows) {
+                    if (getLoginInfo().getUser_id().equals("" + bean.getUser_id_ywy())) {
+                        if (type == 0) {
+                            newRows.add(bean);
+                        } else if (type == 1) {
+                            if (bean.getCase_state_id() == 0 ||
+                                    bean.getCase_state_id() == 8 ||
+                                    bean.getCase_state_id() == 101 ||
+                                    bean.getCase_state_id() == 105 ||
+                                    bean.getCase_state_id() == 106 ||
+                                    bean.getCase_state_id() == 107 ||
+                                    bean.getCase_state_id() == 110 ||
+                                    bean.getCase_state_id() == 112) {
+                                newRows.add(bean);
+                            }
+                        } else {
+                            if (!(bean.getCase_state_id() == 0 ||
+                                    bean.getCase_state_id() == 8 ||
+                                    bean.getCase_state_id() == 101 ||
+                                    bean.getCase_state_id() == 105 ||
+                                    bean.getCase_state_id() == 106 ||
+                                    bean.getCase_state_id() == 107 ||
+                                    bean.getCase_state_id() == 110 ||
+                                    bean.getCase_state_id() == 112)) {
+                                newRows.add(bean);
+                            }
+                        }
+                    }
+                }
+                itemRecyclerViewAdapter.addValues(newRows);
             }
         });
     }
