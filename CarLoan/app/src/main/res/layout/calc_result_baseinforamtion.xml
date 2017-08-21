@@ -15,8 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:visibility="gone"
-            android:text="取消"/>
+            android:text="取消"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/save_action1"
@@ -30,28 +30,78 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="提交"/>
+            android:text="保存"/>
     </LinearLayout>
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
         android:layout_above="@id/action"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:orientation="vertical">
-            <!-- 费率   -->
+
+            <!-- 产品名称   -->
+            <TextView
+                android:id="@+id/product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="工行-二手车全分期36个月24.48返4包干"
+                android:textSize="18sp"/>
+            <!-- 首付比例[loan_advance_percent] -->
             <LinearLayout
+                android:id="@+id/loan_advance_percent_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
+                android:visibility="gone"
+                android:paddingRight="20dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="首付比例:"/>
+
+                <EditText
+                    android:id="@+id/loan_advance_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType=""
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="%"/>
+
+            </LinearLayout>
+            <!-- 费率[fee_rate]   -->
+            <LinearLayout
+                android:id="@+id/fee_rate_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:visibility="gone"
                 android:paddingRight="20dp">
 
 
@@ -62,7 +112,7 @@
                     android:text="费率:"/>
 
                 <EditText
-                    android:id="@+id/feilv"
+                    android:id="@+id/fee_rate"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -80,14 +130,231 @@
 
             </LinearLayout>
 
-            <!-- 保证金   -->
+            <!-- 首付费率[fee_rate_advance]   -->
             <LinearLayout
+                android:id="@+id/fee_rate_advance_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
+                android:visibility="gone"
                 android:paddingRight="20dp">
 
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="首付费率:"/>
+
+                <EditText
+                    android:id="@+id/fee_rate_advance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType=""
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="%"/>
+
+            </LinearLayout>
+
+            <!-- 余额费率[fee_rate_balance]  -->
+            <LinearLayout
+                android:id="@+id/fee_rate_balance_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:visibility="gone"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="余额费率:"/>
+
+                <EditText
+                    android:id="@+id/fee_rate_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType=""
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="%"/>
+
+            </LinearLayout>
+
+            <!-- 公司贷款[loan_amount_ywy_corp]   -->
+            <LinearLayout
+                android:id="@+id/loan_amount_ywy_corp_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:visibility="gone"
+                android:paddingRight="20dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="公司贷款:"/>
+
+                <EditText
+                    android:id="@+id/loan_amount_ywy_corp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="万元"/>
+
+            </LinearLayout>
+
+            <!-- 银行申报金额[loan_amount_high]   -->
+            <LinearLayout
+                android:id="@+id/loan_amount_high_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:visibility="gone"
+                android:paddingRight="20dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="银行申报金额:"/>
+
+                <EditText
+                    android:id="@+id/loan_amount_high"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="万元"/>
+
+            </LinearLayout>
+
+            <!-- 银行利息[interest_bank]   -->
+            <LinearLayout
+                android:id="@+id/interest_bank_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:visibility="gone"
+                android:paddingRight="20dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="银行利息:"/>
+
+                <EditText
+                    android:id="@+id/interest_bank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="元"/>
+            </LinearLayout>
+
+            <!-- 前置利息[interest_company]   -->
+            <LinearLayout
+                android:id="@+id/interest_company_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:visibility="gone"
+                android:paddingRight="20dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="前置利息:"/>
+
+                <EditText
+                    android:id="@+id/interest_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="元"/>
+            </LinearLayout>
+
+            <!-- 保证金[deposit]   -->
+            <LinearLayout
+                android:id="@+id/deposit_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:visibility="gone"
+                android:paddingRight="20dp">
 
                 <TextView
                     android:layout_width="120dp"
@@ -96,7 +363,7 @@
                     android:text="保证金:"/>
 
                 <EditText
-                    android:id="@+id/baozhengjin"
+                    android:id="@+id/deposit"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -115,12 +382,51 @@
 
             </LinearLayout>
 
-            <!-- 月供   -->
+            <!-- 月供[前12月][payback_month_12]   -->
             <LinearLayout
+                android:id="@+id/payback_month_12_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
+                android:visibility="gone"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="保证金:"/>
+
+                <EditText
+                    android:id="@+id/payback_month_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="元"/>
+
+            </LinearLayout>
+
+
+            <!-- 月供[payback_month]   -->
+            <LinearLayout
+                android:id="@+id/payback_month_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:visibility="gone"
                 android:paddingRight="20dp">
 
 
@@ -131,7 +437,7 @@
                     android:text="月供:"/>
 
                 <EditText
-                    android:id="@+id/yuegong"
+                    android:id="@+id/payback_month"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -147,17 +453,17 @@
                     android:layout_marginRight="20dp"
                     android:gravity="center_vertical"
                     android:text="元"/>
-
             </LinearLayout>
 
-            <!-- 调整项   -->
+            <!-- 调整项[extras_fee]   -->
             <LinearLayout
+                android:id="@+id/extras_fee_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
+                android:visibility="gone"
                 android:paddingRight="20dp">
-
 
                 <TextView
                     android:layout_width="120dp"
@@ -166,7 +472,41 @@
                     android:text="调整项:"/>
 
                 <EditText
-                    android:id="@+id/tiaozhengxiang"
+                    android:id="@+id/extras_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="元"/>
+
+            </LinearLayout>
+
+            <!-- 流程保证金及服务费[service_fee]   -->
+            <LinearLayout
+                android:id="@+id/service_fee_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:visibility="gone"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="流程保证金及服务费:"/>
+
+                <EditText
+                    android:id="@+id/service_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -185,12 +525,14 @@
 
             </LinearLayout>
 
-            <!-- GPS费   -->
+            <!-- GPS费[gps_fee]   -->
             <LinearLayout
+                android:id="@+id/gps_fee_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
+                android:visibility="gone"
                 android:paddingRight="20dp">
 
 
@@ -201,7 +543,7 @@
                     android:text="GPS费:"/>
 
                 <EditText
-                    android:id="@+id/gpsfei"
+                    android:id="@+id/gps_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -220,12 +562,14 @@
 
             </LinearLayout>
 
-            <!-- 抵押费   -->
+            <!-- 抵押费[mortgage_fee]   -->
             <LinearLayout
+                android:id="@+id/mortgage_fee_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
+                android:visibility="gone"
                 android:paddingRight="20dp">
 
 
@@ -236,7 +580,7 @@
                     android:text="抵押费:"/>
 
                 <EditText
-                    android:id="@+id/diyanfei"
+                    android:id="@+id/mortgage_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -255,8 +599,120 @@
 
             </LinearLayout>
 
-            <!-- 家访费   -->
+            <!-- 家访费[home_visit_fee]   -->
             <LinearLayout
+                android:id="@+id/home_visit_fee_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:visibility="gone"
+                android:paddingRight="20dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="家访费:"/>
+
+                <EditText
+                    android:id="@+id/home_visit_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="元"/>
+
+            </LinearLayout>
+
+            <!-- 保险费[baoxian_fee]   -->
+            <LinearLayout
+                android:id="@+id/baoxian_fee_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:visibility="gone"
+                android:paddingRight="20dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="保险费:"/>
+
+                <EditText
+                    android:id="@+id/baoxian_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="元"/>
+
+            </LinearLayout>
+
+            <!-- 评估费[evaluation_fee]   -->
+            <LinearLayout
+                android:id="@+id/evaluation_fee_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:visibility="gone"
+                android:paddingRight="20dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="评估费:"/>
+
+                <EditText
+                    android:id="@+id/evaluation_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="元"/>
+
+            </LinearLayout>
+
+            <!-- 前期收取费[earlier_fee]   -->
+            <LinearLayout
+                android:id="@+id/earlier_fee_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
@@ -268,10 +724,10 @@
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="家访费:"/>
+                    android:text="前期收取费:"/>
 
                 <EditText
-                    android:id="@+id/jiafangfei"
+                    android:id="@+id/earlier_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -290,8 +746,46 @@
 
             </LinearLayout>
 
-            <!-- 合计   -->
+            <!-- 返经销商[fee_return_agency]  -->
             <LinearLayout
+                android:id="@+id/fee_return_agency_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="返经销商:"/>
+
+                <EditText
+                    android:id="@+id/fee_return_agency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="元"/>
+
+            </LinearLayout>
+
+
+            <!-- 合计[fee_total]   -->
+            <LinearLayout
+                android:id="@+id/fee_total_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
@@ -306,7 +800,7 @@
                     android:text="合计:"/>
 
                 <EditText
-                    android:id="@+id/heji"
+                    android:id="@+id/fee_total"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -325,8 +819,15 @@
 
             </LinearLayout>
 
-            <!-- 客户履约后退款   -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="#cccccc"/>
+            <!-- 客户履约后退款[fee_return_custom]   -->
             <LinearLayout
+                android:id="@+id/fee_return_custom_line"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
@@ -341,7 +842,112 @@
                     android:text="客户履约后退款:"/>
 
                 <EditText
-                    android:id="@+id/kefulvyuehoutuikuan"
+                    android:id="@+id/fee_return_custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="元"/>
+            </LinearLayout>
+
+            <!-- 商业险[commercial_insurance]   -->
+            <LinearLayout
+                android:id="@+id/commercial_insurance_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="商业险:"/>
+
+                <EditText
+                    android:id="@+id/commercial_insurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="元"/>
+            </LinearLayout>
+
+            <!-- 商业险返[commercial_insurance_return]  -->
+            <LinearLayout
+                android:id="@+id/commercial_insurance_return_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="商业险返:"/>
+
+                <EditText
+                    android:id="@+id/commercial_insurance_return"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="元"/>
+            </LinearLayout>
+
+            <!-- 付经销商合计[payment_for_agency]  -->
+            <LinearLayout
+                android:id="@+id/payment_for_agency_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="付经销商合计:"/>
+
+                <EditText
+                    android:id="@+id/payment_for_agency"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

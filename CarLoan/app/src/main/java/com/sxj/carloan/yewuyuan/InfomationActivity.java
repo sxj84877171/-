@@ -666,7 +666,7 @@ public class InfomationActivity extends BaseActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     initType(which);
-                    loan.setProduct_id("" + which+1);
+                    loan.setProduct_id("" + (which+1));
                     typeDialog.dismiss();
                     loan_time.setText("" + 3);
                 }
@@ -680,7 +680,7 @@ public class InfomationActivity extends BaseActivity {
     private void initType(int which) {
         if (which < PRODUCT_TYPES.length && which >= 0) {
             business_type.setText(PRODUCT_TYPES[which]);
-            loan.setCase_type_id_1(which);
+            loan.setProduct_id("" +(which+1));
         }
     }
 
@@ -713,8 +713,14 @@ public class InfomationActivity extends BaseActivity {
 
     void initData() {
         if (loan != null) {
-            if (loan.getCase_type_id_1() < PRODUCT_TYPES.length && (loan.getCase_type_id_1() >= 0)) {
-                business_type.setText(PRODUCT_TYPES[loan.getCase_type_id_1()]);
+            int productId = 1;
+            try{
+                productId = Integer.parseInt(loan.getProduct_id());
+            }catch (Exception ex){
+
+            }
+            if (productId <= PRODUCT_TYPES.length && (productId > 0)) {
+                business_type.setText(PRODUCT_TYPES[productId-1]);
             }
             apply_name.setText(getLoanString(loan.getCust_name_tmp()));
             sex.setText(getLoanString(loan.getCust_sex()));
