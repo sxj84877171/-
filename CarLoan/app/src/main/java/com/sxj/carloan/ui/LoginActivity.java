@@ -153,9 +153,9 @@ public class LoginActivity extends BaseActivity {
                         if(message != null){
                             String[] args = message.split(",");
                             if(args.length >= 4){
-                                info.setUser_id(args[3]);
+                                info.setUser_id(args[1]);
                                 info.setUsername(args[2]);
-                                info.setRole(args[1]);
+                                info.setRole(args[3]);
                                 //111111111111,1,李生,1
                             }
                         }
