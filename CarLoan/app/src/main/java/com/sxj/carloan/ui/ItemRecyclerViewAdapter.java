@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
+import com.sxj.carloan.bean.CaseStateFactroy;
 import com.sxj.carloan.bean.ServerBean;
 
 import java.util.ArrayList;
@@ -57,20 +58,20 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
             if (title1 != null) {
                 holder.textView.setText(title1);
             } else {
-                holder.textView.setText("申请人");
+                holder.textView.setText("状态");
             }
             if (title2 != null) {
                 holder.fview.setText(title2);
             } else {
-                holder.fview.setText("");
+                holder.fview.setText("申请人");
             }
             TextPaint paint = holder.textView.getPaint();
             paint.setFakeBoldText(true);
             paint = holder.fview.getPaint();
             paint.setFakeBoldText(true);
         } else {
-            holder.textView.setText(mValues.get(position - 1).getCust_name_tmp());
-            holder.fview.setText(mValues.get(position - 1).getCust_iden());
+            holder.fview.setText(mValues.get(position - 1).getCust_name_tmp());
+            holder.textView.setText(CaseStateFactroy.getInstance().getCaseState(mValues.get(position - 1).getCase_state_id()));
         }
         ((View) holder.textView.getParent()).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,5 +130,7 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         TextView textView;
         TextView fview;
     }
+
+
 
 }

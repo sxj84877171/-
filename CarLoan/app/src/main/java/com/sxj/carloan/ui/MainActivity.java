@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.sxj.carloan.ApplicationInfoManager;
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
 import com.sxj.carloan.bean.ServerBean;
@@ -49,7 +50,9 @@ public class MainActivity extends BaseActivity {
                         rowsBean.getCase_state_id() == 112) {
                     Intent intent = new Intent();
                     intent.setClass(MainActivity.this, YeWuJianDangActivity.class);
-                    intent.putExtra("loan", rowsBean);
+                    loan = rowsBean;
+                    ApplicationInfoManager.getInstance().setInfo(loan);
+                    intent.putExtra("loan", loan);
                     intent.putExtra("state", 0);
                     getActivity().startActivity(intent);
                 }else{
@@ -98,6 +101,8 @@ public class MainActivity extends BaseActivity {
         if (item.getItemId() == 1) {
             Intent intent = new Intent();
             intent.putExtra("state", 1);
+            loan = null;
+            ApplicationInfoManager.getInstance().setInfo(loan);
             intent.setClass(getActivity(), YeWuJianDangActivity.class);
             startActivity(intent);
         }

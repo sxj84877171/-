@@ -1,25 +1,18 @@
 package com.sxj.carloan.product;
 
 /**
- * Created by admin on 2017/8/21.
+ * Created by admin on 2017/8/22.
  */
 
-public class ICBCUsedCarWhole36M2448B extends ProductType {
-
-
-    public ICBCUsedCarWhole36M2448B(double loan_amount_ywy) {
-        super(loan_amount_ywy);
-    }
-
+public class SelfFinancingLoanProduct extends ProductType {
     /**
      * 获取产品名字
-     * 工行-二手车全分期36个月24.48返4包干
      *
      * @return
      */
     @Override
     public String getProductName() {
-        return "工行-二手车全分期36个月24.48返4包干";
+        return "自有资金贷款产品";
     }
 
     @Override
@@ -44,7 +37,7 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
      */
     @Override
     public boolean isLoanAdvancePercentVisible() {
-        return false;
+        return true;
     }
 
     /**
@@ -64,7 +57,7 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
      */
     @Override
     public double getFeeRate() {
-        return 24.48;
+        return 31.68;
     }
 
     /**
@@ -77,6 +70,11 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
         return 0;
     }
 
+    /**
+     * 首付费率
+     *
+     * @return
+     */
     @Override
     public boolean isFeeRateAdvanceVisible() {
         return false;
@@ -112,6 +110,11 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
         return 0;
     }
 
+    /**
+     * 公司贷款
+     *
+     * @return
+     */
     @Override
     public boolean isLoanAmountYwyCorpVisible() {
         return false;
@@ -139,19 +142,22 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
 
     /**
      * 银行申报金额
-     * loan_amount_high=loan_amount_ywy*1.1548
      *
      * @return
      */
     @Override
     public double getLoanAmountHigh() {
-        double loan_amount_high = getLoan_amount_ywy() * 1.1548;
-        return roundDouble1(loan_amount_high);
+        return 0;
     }
 
+    /**
+     * 银行申报金额
+     *
+     * @return
+     */
     @Override
     public boolean isLoanAmountHighVisible() {
-        return true;
+        return false;
     }
 
     /**
@@ -164,24 +170,38 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
         return false;
     }
 
+    /**
+     * 银行利息
+     *
+     * @return
+     */
     @Override
     public double getInterestBank() {
         return 0;
     }
 
+
+    public SelfFinancingLoanProduct(double loan_amount_ywy) {
+        super(loan_amount_ywy);
+    }
+
     /**
      * 前置利息
-     * interest_company=loan_amount_ywy*0.1548*10000
+     * interest_company=loan_amount_ywy*0.0792*10000- gps_fee - evaluation_fee
      *
      * @return
      */
     @Override
     public double getInterestCompany() {
-        double interest_company = getLoan_amount_ywy() * 0.1548 * 10000;
-
+        double interest_company = getLoan_amount_ywy() * 0.0792 * 10000 - getGpsFee() - getEvaluationFee();
         return roundDouble(interest_company);
     }
 
+    /**
+     * 前置利息
+     *
+     * @return
+     */
     @Override
     public boolean isInterestCompanyVisible() {
         return true;
@@ -189,38 +209,32 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
 
     /**
      * 保证金
-     * deposit=payback_month
      *
      * @return
      */
     @Override
     public double getDeposit() {
-        return getPaybackMonth();
+        return deposit;
     }
 
-    @Override
-    public boolean isDepositVisible() {
+    private double deposit;
+
+    public void setDeposit(double deposit) {
+        this.deposit = deposit;
+    }
+
+    public boolean isDepositEdit(){
         return true;
     }
 
     /**
      * 保证金
      *
-     * @param deposit
-     */
-    @Override
-    public void setDeposit(double deposit) {
-
-    }
-
-    /**
-     * 保证金是否可以编辑
-     *
      * @return
      */
     @Override
-    public boolean isDepositEdit() {
-        return false;
+    public boolean isDepositVisible() {
+        return true;
     }
 
     /**
@@ -233,6 +247,11 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
         return 0;
     }
 
+    /**
+     * 月供[前12月]
+     *
+     * @return
+     */
     @Override
     public boolean isPaybackMonth12Visible() {
         return false;
@@ -240,16 +259,21 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
 
     /**
      * 月供
-     * payback_month=loan_amount_high*1.09/36*10000
+     * payback_month=loan_amount_ywy*1.2376/36*10000
      *
      * @return
      */
     @Override
     public double getPaybackMonth() {
-        double payback_month = getLoanAmountHigh() * 1.09 / 36 * 10000;
+        double payback_month = getLoan_amount_ywy() * 1.2376 / 36 * 10000;
         return roundDouble(payback_month);
     }
 
+    /**
+     * 月供
+     *
+     * @return
+     */
     @Override
     public boolean isPaybackMonthVisible() {
         return true;
@@ -265,12 +289,23 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
         return extrasFee;
     }
 
-    private double extrasFee = 0;
+    private double extrasFee;
 
+    /**
+     * 调整项
+     *
+     * @param extrasFee
+     */
+    @Override
     public void setExtrasFee(double extrasFee) {
         this.extrasFee = extrasFee;
     }
 
+    /**
+     * 调整项
+     *
+     * @return
+     */
     @Override
     public boolean isExtrasFeeVisible() {
         return true;
@@ -278,19 +313,39 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
 
     /**
      * 流程保证金及服务费
-     * service_fee=(loan_amount_high - loan_amount_ywy)*10000 - gps_fee - mortgage_fee - evaluation_fee
      *
      * @return
      */
     @Override
     public double getServiceFee() {
-        double service_fee = (getLoanAmountHigh() - getLoan_amount_ywy()) * 10000 - getGpsFee() - getMortgageFee() - getEvaluationFee();
-        return roundDouble(service_fee);
+        return 0;
     }
 
+    /**
+     * 流程保证金及服务费
+     *
+     * @return
+     */
     @Override
     public boolean isServiceFee() {
-        return true;
+        return false;
+    }
+
+    /**
+     * GPS费
+     * if( loan_amount_ywy<10) gps_fee=2980; else gps_fee=4980;
+     *
+     * @return
+     */
+    @Override
+    public double getGpsFee() {
+        double gps_fee = 4980;
+        if (getLoan_amount_ywy() < 10) {
+            gps_fee = 2980;
+        } else {
+            gps_fee = 4980;
+        }
+        return gps_fee;
     }
 
     /**
@@ -299,31 +354,26 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
      * @return
      */
     @Override
-    public double getGpsFee() {
-        double gps_fee = 4980;
-        if (getLoan_amount_ywy() < 10) {
-            gps_fee = 1980;
-        } else if (getLoan_amount_ywy() < 20) {
-            gps_fee = 3980;
-        } else {
-            gps_fee = 4980;
-        }
-        return gps_fee;
-    }
-
-    @Override
     public boolean isGpsFeeVisible() {
         return true;
     }
 
+    /**
+     * 抵押费[mortgage_fee]
+     */
     @Override
     public boolean isMortagageFeeVisible() {
-        return true;
+        return false;
     }
 
+    /**
+     * 抵押费
+     *
+     * @return
+     */
     @Override
     public double getMortgageFee() {
-        return 500;
+        return 0;
     }
 
     /**
@@ -348,16 +398,20 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
 
     /**
      * 家访费[home_visit_fee]
-     * home_visit_fee=0
      */
     @Override
     public double getHomeVisitFee() {
         return 0;
     }
 
+    /**
+     * 家访费[home_visit_fee]
+     *
+     * @return
+     */
     @Override
     public boolean isHomeVisitFeeVisible() {
-        return true;
+        return false;
     }
 
     /**
@@ -385,32 +439,26 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
      */
     @Override
     public double getBaoXianFee() {
-        return 0;
+        return baoXianFee;
     }
 
-    @Override
-    public boolean isBaoXianFeeVisible() {
-        return false;
+    public double baoXianFee;
+
+    public void setBaoXianFee(double baoXianFee) {
+        this.baoXianFee = baoXianFee;
     }
 
-    /**
+    public boolean isBaoXianFeeEdit(){
+        return true;
+    }
+
+    /***
      * 保险费
-     *
      * @return
      */
     @Override
-    public boolean isBaoXianFeeEdit() {
-        return false;
-    }
-
-    /**
-     * 保险费 是否可以编辑
-     *
-     * @param baoXianFee
-     */
-    @Override
-    public void setBaoXianFee(double baoXianFee) {
-
+    public boolean isBaoXianFeeVisible() {
+        return true;
     }
 
     /**
@@ -418,9 +466,20 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
      */
     @Override
     public double getEvaluationFee() {
-        return 700;
+        return evaluationFee;
     }
 
+    private double evaluationFee;
+
+    public void setEvaluationFee(double evaluationFee) {
+        this.evaluationFee = evaluationFee;
+    }
+
+    /**
+     * 评估费
+     *
+     * @return
+     */
     @Override
     public boolean isEvaluationFeeVisible() {
         return true;
@@ -428,7 +487,6 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
 
     /**
      * 前期收取费[earlier_fee]
-     * earlier_fee=payback_month
      */
     @Override
     public boolean isEarlierFeeVisible() {
@@ -436,13 +494,15 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
     }
 
     /**
-     * earlier_fee=payback_month
+     * 前期收取费
+     * earlier_fee= loan_amount_ywy * loan_advance_percent * 100+baoxian_fee+deposit+gps_fee+interest_company+evaluation_fee+extras_fee
      *
      * @return
      */
     @Override
     public double getEarlierFee() {
-        return getPaybackMonth();
+        double earlier_fee = getLoan_amount_ywy() * getLoanAdvancePercent() * 100 + getBaoXianFee() + deposit + getGpsFee() + getInterestCompany() + getEvaluationFee() + getExtrasFee();
+        return roundDouble(earlier_fee);
     }
 
     /**
@@ -450,18 +510,17 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
      */
     @Override
     public boolean isFeeReturnAgency() {
-        return true;
+        return false;
     }
 
     /**
-     * fee_return_agency=loan_amount_ywy*0.04*10000
+     * 返经销商
      *
      * @return
      */
     @Override
     public double getFeeReturnAgency() {
-        double fee_return_agency = getLoan_amount_ywy() * 0.04 * 10000;
-        return roundDouble(fee_return_agency);
+        return 0;
     }
 
     /**
@@ -471,18 +530,17 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
      */
     @Override
     public boolean isFeeTotalVisible() {
-        return true;
+        return false;
     }
 
     /**
-     * fee_total= (loan_amount_high-loan_amount_ywy)*10000+ deposit  + extras_fee - fee_return_agency
+     * 合计
      *
      * @return
      */
     @Override
     public double getFeeTotal() {
-        double fee_total = (getLoanAmountHigh() - getLoan_amount_ywy()) * 10000 + getDeposit() + getExtrasFee() - getFeeReturnAgency();
-        return roundDouble(fee_total);
+        return 0;
     }
 
     /**
@@ -493,9 +551,15 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
         return false;
     }
 
+    /**
+     * 客户履约后退款fee_return_custom
+     *fee_return_custom=deposit*1.2376
+     * @return
+     */
     @Override
     public double getFeeReturnCustom() {
-        return 0;
+        double fee_return_custom=getDeposit()*1.2376;
+        return roundDouble(fee_return_custom);
     }
 
     /**
@@ -506,6 +570,11 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
         return false;
     }
 
+    /**
+     * 商业险[commercial_insurance]
+     *
+     * @return
+     */
     @Override
     public double getCommercialInsurance() {
         return 0;
@@ -519,6 +588,11 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
         return false;
     }
 
+    /**
+     * 商业险返[commercial_insurance_return]
+     *
+     * @return
+     */
     @Override
     public double getCommercialInsuranceReturn() {
         return 0;
@@ -532,6 +606,11 @@ public class ICBCUsedCarWhole36M2448B extends ProductType {
         return false;
     }
 
+    /**
+     * 付经销商合计[payment_for_agency]
+     *
+     * @return
+     */
     @Override
     public double getPaymentForAgency() {
         return 0;

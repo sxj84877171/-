@@ -21,9 +21,11 @@ import android.widget.Toast;
 
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
+import com.sxj.carloan.bean.FuncResponseBean;
 import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.rongyi.VideoChatViewActivity;
 import com.sxj.carloan.rongyi.VideoListActivity;
+import com.sxj.carloan.util.BeanToMap;
 import com.sxj.carloan.util.DateUtil;
 import com.sxj.carloan.util.FileUtil;
 import com.sxj.carloan.util.LogUtil;
@@ -51,18 +53,18 @@ public class InvestigationFunctionChoose extends BaseActivity {
     private int functionChoose;
     private AlertDialog choosePhotoDialog;
     private File photo;
-    private ServerBean.RowsBean bean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_function_investigation);
 
-        bean = (ServerBean.RowsBean) getIntent().getSerializableExtra("loan");
+        submit_action = getViewById(R.id.submit_action);
+
     }
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        menu.add(1, 1, 1, "查看面签视频");
+//        menu.add(1, 1, 1, "查看面签视频");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -85,7 +87,7 @@ public class InvestigationFunctionChoose extends BaseActivity {
 
     public void addMoreInfo(View view) {
 //        toast("功能在努力开发中……");
-        gotoWeiFuXinXi(bean);
+        gotoWeiFuXinXi(loan);
     }
 
     public void uploadFamilyPhoto(View view) {
@@ -122,8 +124,51 @@ public class InvestigationFunctionChoose extends BaseActivity {
     }
 
     public void calc(View view) {
-        toast("功能在努力开发中……");
+        double dcy = 0;
+        try {
+            dcy = Double.parseDouble(loan.getLoan_amount_dcy());
+        } catch (Exception ex) {
+        }
+        if (dcy > 0) {
+            gotoCalcActivity(loan, 2);
+        } else {
+            toast("请先进行评估后，再计算。");
+        }
 
+//
+    }
+
+    public void sumbitInfo(View view) {
+        if (loan.getDcy_result_id() == 1) {
+            loan.setCase_state_id(105);
+        } else {
+            if (Double.parseDouble(loan.getLoan_amount_dcy()) > 10) {
+                loan.setCase_state_id(6);
+            } else {
+                loan.setCase_state_id(8);
+            }
+        }
+        model.update(BeanToMap.transRowsBean2Map(loan)).subscribe(new Subscriber<FuncResponseBean>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                toast("保存出错");
+            }
+
+            @Override
+            public void onNext(FuncResponseBean funcResponseBean) {
+                if ("YES".equals(funcResponseBean.getSuccess())) {
+                    toast("提交成功");
+                    finish();
+                } else {
+                    toast("保存失败");
+                }
+            }
+        });
     }
 
     @Override
@@ -220,22 +265,22 @@ public class InvestigationFunctionChoose extends BaseActivity {
                     }
                 }
 
-                if (bean != null) {
+                if (loan != null) {
                     switch (functionChoose) {
                         case 1:
-                            model.shangchuanDiaoChayuan1("" + bean.getCase_type_id_1(), localFile).enqueue(responseBodyCallback);
+                            model.shangchuanDiaoChayuan1("" + loan.getId(), localFile).enqueue(responseBodyCallback);
                             break;
                         case 2:
-                            model.shangchuanDiaoChayuan2("" + bean.getCase_type_id_1(), localFile).enqueue(responseBodyCallback);
+                            model.shangchuanDiaoChayuan2("" + loan.getId(), localFile).enqueue(responseBodyCallback);
                             break;
                         case 3:
-                            model.shangchuanDiaoChayuan3("" + bean.getCase_type_id_1(), localFile).enqueue(responseBodyCallback);
+                            model.shangchuanDiaoChayuan3("" + loan.getId(), localFile).enqueue(responseBodyCallback);
                             break;
                         case 4:
-                            model.shangchuanDiaoChayuan4("" + bean.getCase_type_id_1(), localFile).enqueue(responseBodyCallback);
+                            model.shangchuanDiaoChayuan4("" + loan.getId(), localFile).enqueue(responseBodyCallback);
                             break;
                         case 5:
-                            model.shangchuanDiaoChayuan5("" + bean.getCase_type_id_1(), localFile).enqueue(responseBodyCallback);
+                            model.shangchuanDiaoChayuan5("" + loan.getId(), localFile).enqueue(responseBodyCallback);
                             break;
                     }
                 }
@@ -288,4 +333,16 @@ public class InvestigationFunctionChoose extends BaseActivity {
         return android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
     }
 
+    private View submit_action;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        double dcy = getDoubleByString(loan.getLoan_amount_dcy());
+        if (dcy > 0) {
+            submit_action.setVisibility(View.VISIBLE);
+        } else {
+            submit_action.setVisibility(View.GONE);
+        }
+    }
 }

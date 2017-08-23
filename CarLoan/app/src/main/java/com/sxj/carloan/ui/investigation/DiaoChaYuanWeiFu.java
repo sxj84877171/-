@@ -37,8 +37,6 @@ public class DiaoChaYuanWeiFu extends BaseActivity {
     private TextView diaocha_riqi;
     private TextView daikuan_beizhu;
 
-    private ServerBean.RowsBean loan;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +60,6 @@ public class DiaoChaYuanWeiFu extends BaseActivity {
     }
 
     void initData() {
-        loan = (ServerBean.RowsBean) getIntent().getSerializableExtra("loan");
         if (loan != null) {
             daikuan_yewuyuan.setText(loan.getLoan_amount_ywy());//loan_amount_ywy
             daikuan_diaochayuan.setText(loan.getLoan_amount_dcy());
@@ -153,15 +150,7 @@ public class DiaoChaYuanWeiFu extends BaseActivity {
         }
 
 
-        if (loan.getDcy_result_id() == 1) {
-            loan.setCase_state_id(105);
-        } else {
-            if (Double.parseDouble(loan.getLoan_amount_dcy()) > 10) {
-                loan.setCase_state_id(6);
-            }else{
-                loan.setCase_state_id(8);
-            }
-        }
+
 
         model.update(BeanToMap.transRowsBean2Map(loan)).subscribe(new Subscriber<FuncResponseBean>() {
             @Override
@@ -177,7 +166,7 @@ public class DiaoChaYuanWeiFu extends BaseActivity {
             @Override
             public void onNext(FuncResponseBean funcResponseBean) {
                 if("YES".equals(funcResponseBean.getSuccess())){
-                    finish();
+                    toast("保存成功");
                 }
             }
         });

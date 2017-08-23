@@ -69,10 +69,13 @@ public class BaseActivity extends AppCompatActivity {
 
     private static List<BaseActivity> activityList = new ArrayList<>();
 
+    public ServerBean.RowsBean loan;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         app = (App) getApplication();
+        loan = ApplicationInfoManager.getInstance().getInfo();
         activityList.add(this);
     }
 
@@ -132,6 +135,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        loan = ApplicationInfoManager.getInstance().getInfo();
         if (!(this instanceof LoginActivity)) {
             setTitle(getUsername() + ",欢迎您！");
             checkPermission();
@@ -190,7 +194,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void success() {
-        Toast.makeText(this, "成功", Toast.LENGTH_LONG).show();
+       toast("成功");
     }
 
 
@@ -247,8 +251,8 @@ public class BaseActivity extends AppCompatActivity {
         checkSelfPermission(Manifest.permission.RECORD_AUDIO, AUDIO_REQUEST_CODE);
         checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO);
         checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA);
-        checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION,ACCESS_FINE_LOCATION);
-        checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION,ACCESS_COARSE_LOCATION);
+        checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION, ACCESS_FINE_LOCATION);
+        checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION, ACCESS_COARSE_LOCATION);
 //        checkSelfPermission(Manifest.permission.RECEIVE_BOOT_COMPLETED,RECEIVE_BOOT_COMPLETED_CODE);
     }
 
@@ -268,9 +272,10 @@ public class BaseActivity extends AppCompatActivity {
         return locationManager.getLastKnownLocation(provider);// 调用getLastKnownLocation()方法获取当前的位置信息
     }
 
-    public void gotoCalcActivity(ServerBean.RowsBean bean) {
+    public void gotoCalcActivity(ServerBean.RowsBean bean, int from) {
         Intent intent = new Intent(this, BaseInfotmaitionCalcActivity.class);
         intent.putExtra("loan", bean);
+        intent.putExtra("ywy", from);
         startActivity(intent);
     }
 
@@ -295,8 +300,8 @@ public class BaseActivity extends AppCompatActivity {
      * @param alpha     透明度
      */
     public File pressText(String pressText, String locationText, String addr,
-                           Bitmap targetImg, String fontName, int fontStyle, int color,
-                           int fontSize, int x, int y, int alpha) {
+                          Bitmap targetImg, String fontName, int fontStyle, int color,
+                          int fontSize, int x, int y, int alpha) {
         if (null == targetImg) {
             return null;
         }
@@ -324,9 +329,9 @@ public class BaseActivity extends AppCompatActivity {
             if (!imageFileDir.exists()) {
                 imageFileDir.mkdirs();
             }
-            OutputStream bos = new FileOutputStream(new File(imageFileDir,
-                    DateUtil.getImageDate() + ".jpg"));
-            File file = new File(imageFileDir, DateUtil.getImageDate() + ".jpg");
+            String filename = DateUtil.getImageDate() + ".jpg";
+            File file = new File(imageFileDir, filename);
+            OutputStream bos = new FileOutputStream(file);
             bmp.recycle();
             mbmpTest.compress(Bitmap.CompressFormat.JPEG, 80, bos);
             mbmpTest.recycle();
@@ -338,9 +343,28 @@ public class BaseActivity extends AppCompatActivity {
         return null;
     }
 
-    public void gotoWeiFuXinXi(ServerBean.RowsBean bean){
+    public void gotoWeiFuXinXi(ServerBean.RowsBean bean) {
         Intent intent = new Intent(this, DiaoChaYuanWeiFu.class);
-        intent.putExtra("loan",bean);
+        intent.putExtra("loan", bean);
         startActivity(intent);
     }
+
+    public double getDoubleByString(String str) {
+        double ret = 0;
+        if (str != null) {
+            try {
+                ret = Double.parseDouble(str);
+            } catch (Exception ex) {
+            }
+        }
+        return ret;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ApplicationInfoManager.getInstance().setInfo(loan);
+    }
+
+
 }

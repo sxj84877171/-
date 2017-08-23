@@ -21,7 +21,7 @@ public class BeanToMap {
                 String proName = field.getName();
                 Object proValue = field.get(bean);
                 if(proValue != null){
-                    if(!"-1".equals(proValue.toString()) &&!"0".equals(proValue.toString()) &&(!"".equals(proValue.toString().trim()))){
+                    if(!"-1".equals(proValue.toString()) &&(!"".equals(proValue.toString().trim()))){
                         if(!"serialVersionUID".equals(proName)){
                             map.put(proName, proValue);
                         }

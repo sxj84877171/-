@@ -12,13 +12,18 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.sxj.carloan.ApplicationInfoManager;
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
 import com.sxj.carloan.bean.FuncResponseBean;
 import com.sxj.carloan.bean.ServerBean;
+import com.sxj.carloan.product.ProductFactroy;
+import com.sxj.carloan.ui.LoanSubscriber;
 import com.sxj.carloan.util.BeanToMap;
 import com.sxj.carloan.util.DateUtil;
 import com.sxj.carloan.util.FileUtil;
@@ -54,23 +59,25 @@ public class YeWuJianDangActivity extends BaseActivity {
     private View shangchuanshenfenzheng_fan_ok;
     private View shangchuanfuzong_ok;
     private View shangchuanzongjingli_ok;
-    private View shangchuancheliang_ok;
+    private TextView shangchuancheliang_ok;
 
     private Button submit_action;
-
-    public static ServerBean.RowsBean bean = null;
-
     private int functionChoose;
     private AlertDialog choosePhotoDialog;
     private File photo;
     private Callback<ResponseBody> responseBodyCallback = new Callback<ResponseBody>() {
         @Override
         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-            success();
+            if (response.isSuccessful()) {
+                success();
+            } else {
+                toast("上传失败，请重新上传");
+            }
         }
 
         @Override
         public void onFailure(Call<ResponseBody> call, Throwable t) {
+            toast("上传出错，请重新上传");
             LogUtil.e(t);
         }
     };
@@ -81,8 +88,6 @@ public class YeWuJianDangActivity extends BaseActivity {
         setContentView(R.layout.ye_wu_jian_dang);
         initView();
         initListenser();
-
-        bean = (ServerBean.RowsBean) getIntent().getSerializableExtra("loan");
     }
 
     private void initView() {
@@ -99,14 +104,14 @@ public class YeWuJianDangActivity extends BaseActivity {
         shangchuanfuzong_ok = getViewById(R.id.shangchuanfuzong_ok);
         shangchuanzongjingli_ok = getViewById(R.id.shangchuanzongjingli_ok);
         shangchuancheliang_ok = getViewById(R.id.shangchuancheliangzhaopian_ok);
-
         submit_action = getViewById(R.id.submit_action);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (bean == null) {
+        if (loan == null || loan.getId() < 1) {
+            loan = null;
             jibenxinxi_ok.setVisibility(View.GONE);
             shangchuanshenfenzheng_zheng.setClickable(false);
             shangchuanshenfenzheng_fan.setClickable(false);
@@ -120,8 +125,57 @@ public class YeWuJianDangActivity extends BaseActivity {
             shangchuanfuzong.setClickable(true);
             shangchuanzongjingli.setClickable(true);
             shangchuancheliang.setClickable(true);
+            refeashButton();
+
+            if (loan.getId() > 0) {
+                model.FileExisted("photo/ywy/" + loan.getId() + "_1_1.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
+                    @Override
+                    public void onNext(FuncResponseBean funcResponseBean) {
+                        if ("YES".equals(funcResponseBean.getSuccess())) {
+                            shangchuanshenfenzheng_zheng_ok.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+                model.FileExisted("photo/ywy/" + loan.getId() + "_1_2.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
+                    @Override
+                    public void onNext(FuncResponseBean funcResponseBean) {
+                        if ("YES".equals(funcResponseBean.getSuccess())) {
+                            shangchuanshenfenzheng_fan_ok.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+                model.FileExisted("photo/ywy/" + loan.getId() + "_2.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
+                    @Override
+                    public void onNext(FuncResponseBean funcResponseBean) {
+                        if ("YES".equals(funcResponseBean.getSuccess())) {
+                            shangchuanfuzong_ok.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+                model.FileExisted("photo/ywy/" + loan.getId() + "_1_1.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
+                    @Override
+                    public void onNext(FuncResponseBean funcResponseBean) {
+                        if ("YES".equals(funcResponseBean.getSuccess())) {
+                            shangchuanzongjingli_ok.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+                model.getCarPhotoName(loan.getId()).subscribe(new LoanSubscriber<FuncResponseBean>() {
+                    @Override
+                    public void onNext(FuncResponseBean funcResponseBean) {
+                        if ("YES".equals(funcResponseBean.getSuccess())) {
+                            if(!TextUtils.isEmpty(funcResponseBean.getMessage())) {
+                                cheliangNum = funcResponseBean.getMessage().split(",").length;
+                                if (cheliangNum > 0) {
+                                    shangchuancheliang_ok.setVisibility(View.VISIBLE);
+                                    shangchuancheliang_ok.setText("+" + cheliangNum);
+                                }
+                            }
+                        }
+                    }
+                });
+            }
         }
-        refeashButton();
     }
 
     private void initListenser() {
@@ -130,8 +184,8 @@ public class YeWuJianDangActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.putExtra("state", 1);
+                ApplicationInfoManager.getInstance().setInfo(loan);
                 intent.setClass(getActivity(), InfomationActivity.class);
-                intent.putExtra("loan", bean);
                 startActivity(intent);
             }
         });
@@ -139,40 +193,60 @@ public class YeWuJianDangActivity extends BaseActivity {
         shangchuanshenfenzheng_zheng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                functionChoose = 1;
-                takePhoto();
+                if (loan != null && loan.getId() > 0) {
+                    functionChoose = 1;
+                    takePhoto();
+                } else {
+                    toast("请录入基本信息再上传照片");
+                }
             }
         });
 
         shangchuanshenfenzheng_fan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                functionChoose = 2;
-                takePhoto();
+                if (loan != null && loan.getId() > 0) {
+                    functionChoose = 2;
+                    takePhoto();
+                } else {
+                    toast("请录入基本信息再上传照片");
+                }
             }
         });
 
         shangchuancheliang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                functionChoose = 5;
-                takePhoto();
+                if (loan != null && loan.getId() > 0) {
+                    functionChoose = 5;
+                    takePhoto();
+                } else {
+                    toast("请录入基本信息再上传照片");
+                }
             }
         });
 
         shangchuanfuzong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                functionChoose = 3;
-                takePhoto();
+                if (loan != null && loan.getId() > 0) {
+                    functionChoose = 3;
+                    takePhoto();
+                } else {
+                    toast("请录入基本信息再上传照片");
+                }
             }
         });
 
         shangchuanzongjingli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                functionChoose = 4;
-                takePhoto();
+                if (loan != null && loan.getId() > 0) {
+                    functionChoose = 4;
+                    takePhoto();
+                } else {
+                    toast("请录入基本信息再上传照片");
+                }
             }
         });
 
@@ -180,36 +254,44 @@ public class YeWuJianDangActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                if(bean.getCase_state_id() == 0 || bean.getCase_state_id() == 101){
-                    bean.setCase_state_id(1);
-                }else if(bean.getCase_state_id() == 8 ){
-                    bean.setCase_state_id(10);
-                }else{
-                    bean.setCase_state_id(bean.getCase_state_id() % 100);
+                if (loan != null && loan.getId() > 0) {
+                    String cast_type_id = ProductFactroy.getInstance().processProductType(Integer.parseInt(loan.getProduct_id()),0).getCarType();
+                    model.YwyPhotoOk(loan.getId(), cast_type_id).subscribe(new LoanSubscriber<FuncResponseBean>() {
+                        @Override
+                        public void onNext(FuncResponseBean funcResponseBean) {
+                            if("YES".equals(funcResponseBean.getSuccess())){
+                                if (loan.getCase_state_id() == 0 || loan.getCase_state_id() == 101) {
+                                    loan.setCase_state_id(1);
+                                } else if (loan.getCase_state_id() == 8) {
+                                    loan.setCase_state_id(10);
+                                } else {
+                                    loan.setCase_state_id(loan.getCase_state_id() % 100);
+                                }
+
+                                loan.setDate_ywy(DateUtil.getWaterDate());
+                                model.update(BeanToMap.transRowsBean2Map(loan)).subscribe(new LoanSubscriber<FuncResponseBean>() {
+                                    @Override
+                                    public void onNext(FuncResponseBean funcResponseBean) {
+                                        toast("Success!");
+                                        finish();
+                                    }
+                                });
+                            }else{
+                                toast("请把工作做完再提交！");
+                            }
+                        }
+                    });
+                } else {
+                    toast("请录入基本信息再上传照片");
                 }
-
-                bean.setDate_ywy(DateUtil.getWaterDate());
-                model.update(BeanToMap.transRowsBean2Map(bean)).subscribe(new Subscriber<FuncResponseBean>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        toast("fail.");
-                    }
-
-                    @Override
-                    public void onNext(FuncResponseBean funcResponseBean) {
-                        toast("Success!");
-                        finish();
-                    }
-                });
 
             }
         });
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     private void takePhoto() {
@@ -291,7 +373,7 @@ public class YeWuJianDangActivity extends BaseActivity {
                         File file1 = pressText(DateUtil.getWaterDate(), String.format(
                                 getString(R.string.latitude_longitude),
                                 location.getLatitude(), location.getLongitude()), address, myBitmap,
-                                "宋体", 36, Color.YELLOW, 25, 20, 0, 0x88);
+                                "宋体", 50, Color.YELLOW, 25, 20, 0, 0x88);
                         if (file1 != null) {
                             localFile = file1;
                         }
@@ -299,10 +381,10 @@ public class YeWuJianDangActivity extends BaseActivity {
                         ex.printStackTrace();
                     }
                 }
-                if (bean != null) {
+                if (loan != null && loan.getId() > 0) {
                     switch (functionChoose) {
                         case 1:
-                            model.shangchuanShenFengzhengZhengmian("" + bean.getCase_type_id_1(), file).enqueue(responseBodyCallback);
+                            model.shangchuanShenFengzhengZhengmian("" + loan.getId(), localFile).enqueue(responseBodyCallback);
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -312,7 +394,7 @@ public class YeWuJianDangActivity extends BaseActivity {
 
                             break;
                         case 2:
-                            model.shangchuanShenFengzhengFanmian("" + bean.getCase_type_id_1(), file).enqueue(responseBodyCallback);
+                            model.shangchuanShenFengzhengFanmian("" + loan.getId(), localFile).enqueue(responseBodyCallback);
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -322,7 +404,7 @@ public class YeWuJianDangActivity extends BaseActivity {
 
                             break;
                         case 3:
-                            model.shangchuanFuzong("" + bean.getCase_type_id_1(), file).enqueue(responseBodyCallback);
+                            model.shangchuanFuzong("" + loan.getId(), localFile).enqueue(responseBodyCallback);
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -331,7 +413,7 @@ public class YeWuJianDangActivity extends BaseActivity {
                             });
                             break;
                         case 4:
-                            model.shangchuanZongjingli("" + bean.getCase_type_id_1(), file).enqueue(responseBodyCallback);
+                            model.shangchuanZongjingli("" + loan.getId(), localFile).enqueue(responseBodyCallback);
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -340,11 +422,12 @@ public class YeWuJianDangActivity extends BaseActivity {
                             });
                             break;
                         case 5:
-                            model.shangchuanCheLiang("" + bean.getCase_type_id_1(), file).enqueue(responseBodyCallback);
+                            model.shangchuanCheLiang("" + loan.getId(), localFile).enqueue(responseBodyCallback);
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     shangchuancheliang_ok.setVisibility(View.VISIBLE);
+                                    shangchuancheliang_ok.setText("+" + (++cheliangNum));
                                 }
                             });
                             break;
@@ -353,6 +436,8 @@ public class YeWuJianDangActivity extends BaseActivity {
             }
         }.start();
     }
+
+    private int cheliangNum = 0;
 
     /**
      * 根据Uri返回文件路径
@@ -388,8 +473,27 @@ public class YeWuJianDangActivity extends BaseActivity {
 
 
     public void refeashButton() {
-        if (jibenxinxi_ok.getVisibility() == View.VISIBLE) {
+
+        double ywy = 0;
+        if (loan != null && loan.getId() > 0) {
+            ywy = getDoubleByString(loan.getLoan_amount_ywy());
+        }
+        if (ywy > 0) {
             submit_action.setVisibility(View.VISIBLE);
+        } else {
+            submit_action.setVisibility(View.GONE);
+        }
+    }
+
+    public void calc(View view) {
+        double ywy = 0;
+        if (loan != null && loan.getId() > 0) {
+            ywy = getDoubleByString(loan.getLoan_amount_ywy());
+        }
+        if (ywy > 0) {
+            gotoCalcActivity(loan, 1);
+        } else {
+            toast("请先填写完贷款信息");
         }
     }
 }

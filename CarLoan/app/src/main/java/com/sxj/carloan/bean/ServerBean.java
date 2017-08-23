@@ -291,6 +291,7 @@ GPS费gps_fee
         private String commercial_insurance_return;
         private double deal_price;
         private String home_visit_fee;
+        private String baoxian_fee;
         private int room_type_id = -1;
         private String cust_name_tmp;
         private String gps_fee;
@@ -334,6 +335,14 @@ GPS费gps_fee
         private String interest_bank;
         private int user_id_ywy = -1;
         private String fee_return_custom;
+
+        public String getBaoxian_fee() {
+            return baoxian_fee;
+        }
+
+        public void setBaoxian_fee(String baoxian_fee) {
+            this.baoxian_fee = baoxian_fee;
+        }
 
         public void setFee_return_custom(String fee_return_custom) {
             this.fee_return_custom = fee_return_custom;

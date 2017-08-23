@@ -94,6 +94,32 @@ public class ApiServiceModel {
         return Api.getInstance().getService().InsertTable(rowsBean).compose(ApiServiceModel.<FuncResponseBean>io_main());
     }
 
+    /**
+     * 业务员上传的车辆图片
+     * @param id
+     * @return
+     */
+    public Observable<FuncResponseBean> getCarPhotoName(int id){
+        return Api.getInstance().getService().GetCarPhotoName(id).compose(ApiServiceModel.<FuncResponseBean>io_main());
+    }
+
+    public Observable<FuncResponseBean> FileExisted(String filename){
+        return Api.getInstance().getService().FileExisted(filename).compose(ApiServiceModel.<FuncResponseBean>io_main());
+    }
+
+    public Observable<FuncResponseBean> YwyPhotoOk(int id,String caseID){
+        return Api.getInstance().getService().YwyPhotoOk(id,caseID).compose(ApiServiceModel.<FuncResponseBean>io_main());
+    }
+
+    /**
+     * 调查员上传的图片
+     * @param id
+     * @return
+     */
+    public Observable<FuncResponseBean> GetDcyPhotoName(int id){
+        return Api.getInstance().getService().GetCarPhotoName(id).compose(ApiServiceModel.<FuncResponseBean>io_main());
+    }
+
     public Observable<FuncResponseBean> insertBean(Map rowsBean) {
         return Api.getInstance().getService().InsertTable(rowsBean).compose(ApiServiceModel.<FuncResponseBean>io_main());
     }
@@ -208,7 +234,7 @@ public class ApiServiceModel {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
         String time = DateUtil.getImageDate();
-        String filename = "photo/car/{case_id}_{time}_{rn}.jpg";
+        String filename = "photo/car/{case_id}_{time}{rn}.jpg";
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}", time);
         filename = filename.replace("{rn}", "" + getRandom());
@@ -232,7 +258,7 @@ public class ApiServiceModel {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
         String time = DateUtil.getImageDate();
-        String filename = "photo/dcy/{case_id}_1d{time}_{rn}.jpg";
+        String filename = "photo/dcy/{case_id}_1d{time}{rn}.jpg";
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}", time);
         filename = filename.replace("{rn}", "" + getRandom());
@@ -245,7 +271,7 @@ public class ApiServiceModel {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
         String time = DateUtil.getImageDate();
-        String filename = "photo/dcy/{case_id}_2d{time}_{rn}.jpg";
+        String filename = "photo/dcy/{case_id}_2d{time}{rn}.jpg";
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}", time);
         filename = filename.replace("{rn}", "" + getRandom());
@@ -257,7 +283,7 @@ public class ApiServiceModel {
     public Call<ResponseBody> shangchuanDiaoChayuan3(String case_id, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        String filename = "photo/dcy/{case_id}_3d{time}_{rn}.jpg";
+        String filename = "photo/dcy/{case_id}_3d{time}{rn}.jpg";
         String time = DateUtil.getImageDate();
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}", time);
@@ -270,7 +296,7 @@ public class ApiServiceModel {
     public Call<ResponseBody> shangchuanDiaoChayuan4(String case_id, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        String filename = "photo/dcy/{case_id}_4d{time}_{rn}.jpg";
+        String filename = "photo/dcy/{case_id}_4d{time}{rn}.jpg";
         String time = DateUtil.getImageDate();
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}", time);
@@ -283,7 +309,7 @@ public class ApiServiceModel {
     public Call<ResponseBody> shangchuanDiaoChayuan5(String case_id, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        String filename = "photo/dcy/{case_id}_5d{time}_{rn}.jpg";
+        String filename = "photo/dcy/{case_id}_5d{time}{rn}.jpg";
         String time = DateUtil.getImageDate();
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}", time);
@@ -292,6 +318,8 @@ public class ApiServiceModel {
                 MultipartBody.Part.createFormData("image", file.getName(), requestFile);
         return Api.getInstance().getService().updateLoadImageFile(filename, body);
     }
+
+
 
     /**
      * 调查员上传照片：photo/dcy/{ case_id }_{照片类别}d_年月日时分秒{index}.jpg
@@ -304,7 +332,7 @@ public class ApiServiceModel {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
         String time = DateUtil.getImageDate();
-        String filename = "photo/dcy/{case_id}_1d{time}_{rn}.jpg";
+        String filename = "photo/dcy/{case_id}_1d{time}{rn}.jpg";
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}", time);
         filename = filename.replace("{rn}", "" + getRandom());

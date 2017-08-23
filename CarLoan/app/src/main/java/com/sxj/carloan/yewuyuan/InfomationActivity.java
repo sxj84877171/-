@@ -16,10 +16,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sxj.carloan.ApplicationInfoManager;
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
 import com.sxj.carloan.bean.FuncResponseBean;
 import com.sxj.carloan.bean.ServerBean;
+import com.sxj.carloan.product.ProductFactroy;
 import com.sxj.carloan.ui.HomeInfoAcitivity;
 import com.sxj.carloan.ui.PersonCreditActivity;
 import com.sxj.carloan.ui.RepaymentActivity;
@@ -69,7 +71,6 @@ public class InfomationActivity extends BaseActivity {
 
     private Button modify;
     private Button save;
-    private ServerBean.RowsBean loan;
     private boolean isModify = false;
 
 
@@ -103,11 +104,11 @@ public class InfomationActivity extends BaseActivity {
         setContentView(R.layout.activity_infomation);
         initViewById();
         Intent intent = getIntent();
-        loan = (ServerBean.RowsBean) intent.getSerializableExtra("loan");
         isModify = true;
         if (loan == null) {
             isModify = false;
             loan = new ServerBean.RowsBean();
+            ApplicationInfoManager.getInstance().setInfo(loan);
         }
         state = intent.getIntExtra("state", 0);
 
@@ -666,9 +667,12 @@ public class InfomationActivity extends BaseActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     initType(which);
-                    loan.setProduct_id("" + (which+1));
+                    loan.setProduct_id("" + (which + 1));
                     typeDialog.dismiss();
                     loan_time.setText("" + 3);
+                    if (which + 1 == 8) {
+                        loan_time.setText("" + 2);
+                    }
                 }
             };
 
@@ -680,7 +684,7 @@ public class InfomationActivity extends BaseActivity {
     private void initType(int which) {
         if (which < PRODUCT_TYPES.length && which >= 0) {
             business_type.setText(PRODUCT_TYPES[which]);
-            loan.setProduct_id("" +(which+1));
+            loan.setProduct_id("" + (which + 1));
         }
     }
 
@@ -714,13 +718,14 @@ public class InfomationActivity extends BaseActivity {
     void initData() {
         if (loan != null) {
             int productId = 1;
-            try{
+            try {
                 productId = Integer.parseInt(loan.getProduct_id());
-            }catch (Exception ex){
+            } catch (Exception ex) {
 
             }
             if (productId <= PRODUCT_TYPES.length && (productId > 0)) {
-                business_type.setText(PRODUCT_TYPES[productId-1]);
+                business_type.setText(PRODUCT_TYPES[productId - 1]);
+                loan_time.setText(ProductFactroy.getInstance().processProductType(productId, 0).getCreditYears() + "");
             }
             apply_name.setText(getLoanString(loan.getCust_name_tmp()));
             sex.setText(getLoanString(loan.getCust_sex()));
@@ -859,14 +864,14 @@ public class InfomationActivity extends BaseActivity {
         loan.setLoan_amount("" + price);
         //loan_amount_ywy
 
-        try {
-            price = Double.parseDouble(yinhangshenbao_jine.getText().toString());
-        } catch (Exception ex) {
-            Toast.makeText(this, "银行申报金额输入不正确", Toast.LENGTH_LONG).show();
-            yinhangshenbao_jine.findFocus();
-            return;
-        }
-        loan.setLoan_amount_high("" + price);
+//        try {
+//            price = Double.parseDouble(yinhangshenbao_jine.getText().toString());
+//        } catch (Exception ex) {
+//            Toast.makeText(this, "银行申报金额输入不正确", Toast.LENGTH_LONG).show();
+//            yinhangshenbao_jine.findFocus();
+//            return;
+//        }
+//        loan.setLoan_amount_high("" + price);
 
         int creditYears = 0;
         try {
@@ -894,10 +899,8 @@ public class InfomationActivity extends BaseActivity {
                 @Override
                 public void onNext(FuncResponseBean serverBean) {
                     if ("YES".equals(serverBean.getSuccess())) {
-                        YeWuJianDangActivity.bean = loan;
                         Toast.makeText(InfomationActivity.this, "保存成功", Toast.LENGTH_LONG).show();
-                        YeWuJianDangActivity.bean = loan;
-                        gotoCalcActivity(loan);
+                        gotoCalcActivity(loan,1);
                     }
                 }
             });
@@ -911,15 +914,18 @@ public class InfomationActivity extends BaseActivity {
 
                 @Override
                 public void onError(Throwable e) {
-                    Toast.makeText(InfomationActivity.this, "保存失败", Toast.LENGTH_LONG).show();
+                    toast("保存出错");
                 }
 
                 @Override
                 public void onNext(FuncResponseBean serverBean) {
                     if ("YES".equals(serverBean.getSuccess())) {
-                        Toast.makeText(InfomationActivity.this, "保存成功", Toast.LENGTH_LONG).show();
-                        YeWuJianDangActivity.bean = loan;
-                        gotoCalcActivity(loan);
+                        toast("保存成功");
+                        loan.setId(Integer.parseInt(serverBean.getMessage()));
+                        ApplicationInfoManager.getInstance().setInfo(loan);
+                        finish();
+                    }else{
+                        toast("保存失败");
                     }
                 }
             });
@@ -952,6 +958,4 @@ public class InfomationActivity extends BaseActivity {
         }
         return "";
     }
-
-
 }

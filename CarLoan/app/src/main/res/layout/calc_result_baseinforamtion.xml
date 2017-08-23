@@ -225,7 +225,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -262,7 +262,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -299,7 +299,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -335,7 +335,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -370,7 +370,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -406,7 +406,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -444,7 +444,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -477,7 +477,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -513,7 +513,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -550,7 +550,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -587,7 +587,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -624,7 +624,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -661,7 +661,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -698,7 +698,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -734,7 +734,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -770,7 +770,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -807,7 +807,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -849,7 +849,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -884,7 +884,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -919,7 +919,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView
@@ -954,7 +954,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
 
                 <TextView

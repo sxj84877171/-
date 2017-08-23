@@ -13,6 +13,8 @@ public interface IProductType {
      */
     public String getProductName();
 
+    public String getCarType();
+
     /**
      * 获取贷款年限
      *
@@ -84,6 +86,21 @@ public interface IProductType {
     public boolean isLoanAmountYwyCorpVisible();
 
     /**
+     * 公司贷款
+     *
+     * @param loanAmountYwyCory
+     */
+    public void setLoanAmountYwyCory(double loanAmountYwyCory);
+
+    /**
+     * 是否可以编辑
+     *
+     * @return
+     */
+    public boolean isLoanAmountYwyCorpEdit();
+
+
+    /**
      * 银行申报金额
      *
      * @return
@@ -91,11 +108,12 @@ public interface IProductType {
     public double getLoanAmountHigh();
 
     /**
-     * 银行利息
+     * 银行申报金额
      *
      * @return
      */
     public boolean isLoanAmountHighVisible();
+
 
     /**
      * 银行利息
@@ -139,6 +157,20 @@ public interface IProductType {
      * @return
      */
     boolean isDepositVisible();
+
+    /**
+     * 保证金
+     *
+     * @param deposit
+     */
+    public void setDeposit(double deposit);
+
+    /**
+     * 保证金是否可以编辑
+     *
+     * @return
+     */
+    public boolean isDepositEdit();
 
     /**
      * 月供[前12月]
@@ -230,6 +262,20 @@ public interface IProductType {
     double getMortgageFee();
 
     /**
+     * 抵押费 是否可以编辑
+     *
+     * @return
+     */
+    public boolean isMorgageFeeEdit();
+
+    /**
+     * 抵押费
+     *
+     * @param mortgageFee
+     */
+    public void setMortgageFee(double mortgageFee);
+
+    /**
      * 家访费[home_visit_fee]
      */
     double getHomeVisitFee();
@@ -242,6 +288,21 @@ public interface IProductType {
     boolean isHomeVisitFeeVisible();
 
     /**
+     * 家访费
+     *
+     * @param homeVisitFee
+     */
+    public void setHomeVisitFee(double homeVisitFee);
+
+
+    /**
+     * 家访费
+     *
+     * @return
+     */
+    public boolean isHomeVisitFeeEdit();
+
+    /**
      * 保险费
      */
     double getBaoXianFee();
@@ -251,6 +312,20 @@ public interface IProductType {
      * @return
      */
     boolean isBaoXianFeeVisible();
+
+    /**
+     * 保险费
+     *
+     * @return
+     */
+    public boolean isBaoXianFeeEdit();
+
+    /**
+     * 保险费 是否可以编辑
+     *
+     * @param baoXianFee
+     */
+    public void setBaoXianFee(double baoXianFee);
 
     /**
      * 评估费

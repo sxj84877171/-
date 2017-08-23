@@ -41,6 +41,20 @@ public interface ApiService {
     @POST("AjaxService.ashx?method=InsertTableApp&table_name=t_case")
     public Observable<FuncResponseBean> InsertTable(@Body ServerBean.RowsBean bean);
 
+    @POST("AjaxService.ashx?method=GetCarPhotoName")
+    public Observable<FuncResponseBean> GetCarPhotoName(@Query("case_id") int id);
+
+    //http://carmis.timesly.cn/AjaxService.ashx?method=FileExisted&file_name=photo/ywy/6_1_1.jpg
+    @POST("AjaxService.ashx?method=FileExisted")
+    public Observable<FuncResponseBean> FileExisted(@Query("file_name") String filename);
+
+    // http://carmis.timesly.cn/AjaxService.ashx?method=YwyPhotoOk&case_id=6&case_type_id=1
+    @POST("AjaxService.ashx?method=YwyPhotoOk")
+    public Observable<FuncResponseBean> YwyPhotoOk(@Query("case_id") int caseId,@Query("case_type_id") String case_type_id);
+
+    @POST("AjaxService.ashx?method=GetDcyPhotoName")
+    public Observable<FuncResponseBean> GetDcyPhotoName(@Query("case_id") int id);
+
     @POST("AjaxService.ashx?method=UpdateTableApp&table_name=t_case")
     public Observable<FuncResponseBean> UpdateTable(@Body ServerBean.RowsBean bean);
 

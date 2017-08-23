@@ -14,14 +14,11 @@ public class HomeInfoAcitivity extends BaseActivity {
 
     private ListView listView;
     private HomeInfoAdapter adapter;
-    private ServerBean.RowsBean loan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_info_acitivity);
-        Intent intent = getIntent();
-        loan = (ServerBean.RowsBean) intent.getSerializableExtra("data");
         if (loan == null) {
             loan = new ServerBean.RowsBean();
         }

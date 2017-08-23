@@ -14,189 +14,224 @@
         android:text="提交"
         android:visibility="gone"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/submit_action"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+
 
         <LinearLayout
-            android:id="@+id/jibenxinxi"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="20dp"
-            android:background="#cccccc"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_above="@id/submit_action"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:text="基本信息"
-                android:textSize="16sp"/>
+            <LinearLayout
+                android:id="@+id/jibenxinxi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:background="#cccccc"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/jibenxinxi_ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:text="OK"
-                android:textColor="@color/green"
-                android:textSize="16sp"
-                android:visibility="gone"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="基本信息"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/jibenxinxi_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="OK"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/shangchuanshengfenzheng_zheng"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:background="#cccccc"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="上传身份正面证照片"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/shangchuanshengfenzheng_zheng_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="OK"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/shangchuanshengfenzheng_fan"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:background="#cccccc"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="上传身份证反面照片"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/shangchuanshengfenzheng_fan_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="OK"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/shangchuanfuzong"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:background="#cccccc"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="上传副总签名照"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/shangchuanfuzong_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="OK"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/shangchuanzongjingli"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:background="#cccccc"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="上传总经理签名照"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/shangchuanzongjingli_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="OK"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/shangchuancheliangzhaopian"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:background="#cccccc"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="上传汽车照片"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/shangchuancheliangzhaopian_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="OK"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/jisuandaikuan"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:background="#cccccc"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="80dp"
+                android:onClick="calc"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="计算"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/jisuandaikuan_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="OK"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/shangchuanshengfenzheng_zheng"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="20dp"
-            android:background="#cccccc"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:text="上传身份正面证照片"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:id="@+id/shangchuanshengfenzheng_zheng_ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:text="OK"
-                android:textColor="@color/green"
-                android:textSize="16sp"
-                android:visibility="gone"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/shangchuanshengfenzheng_fan"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="20dp"
-            android:background="#cccccc"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:text="上传身份证反面照片"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:id="@+id/shangchuanshengfenzheng_fan_ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:text="OK"
-                android:textColor="@color/green"
-                android:textSize="16sp"
-                android:visibility="gone"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/shangchuanfuzong"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="20dp"
-            android:background="#cccccc"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:text="上传副总签名照"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:id="@+id/shangchuanfuzong_ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:text="OK"
-                android:textColor="@color/green"
-                android:textSize="16sp"
-                android:visibility="gone"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/shangchuanzongjingli"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="20dp"
-            android:background="#cccccc"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:text="上传总经理签名照"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:id="@+id/shangchuanzongjingli_ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:text="OK"
-                android:textColor="@color/green"
-                android:textSize="16sp"
-                android:visibility="gone"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/shangchuancheliangzhaopian"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="20dp"
-            android:background="#cccccc"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:text="上传汽车照片"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:id="@+id/shangchuancheliangzhaopian_ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:text="OK"
-                android:textColor="@color/green"
-                android:textSize="16sp"
-                android:visibility="gone"/>
-        </LinearLayout>
-    </LinearLayout>
-
-
+    </ScrollView>
 </RelativeLayout>

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.sxj.carloan.ApplicationInfoManager;
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
 import com.sxj.carloan.bean.ServerBean;
@@ -41,6 +42,8 @@ public class InvestigationMainActivity extends BaseActivity {
                 if(rowsBean.getCase_state_id() == 5) {
                     Intent intent = new Intent();
                     intent.setClass(InvestigationMainActivity.this, InvestigationFunctionChoose.class);
+                    loan = rowsBean;
+                    ApplicationInfoManager.getInstance().setInfo(loan);
                     intent.putExtra("loan", rowsBean);
                     intent.putExtra("state", 0);
                     startActivity(intent);
@@ -49,7 +52,7 @@ public class InvestigationMainActivity extends BaseActivity {
                 }
             }
         });
-        itemRecyclerViewAdapter.setTitle1("被调查人");
+        itemRecyclerViewAdapter.setTitle2("被调查人");
         listView.setLayoutManager(new LinearLayoutManager(this));
         listView.setAdapter(itemRecyclerViewAdapter);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

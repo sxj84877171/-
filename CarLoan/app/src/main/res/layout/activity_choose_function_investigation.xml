@@ -12,17 +12,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="#cccccc"
-        android:visibility="gone"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
+            android:onClick="modifyInfo"
             android:paddingLeft="10dp"
-            android:text="维护信息"
-            android:onClick="modifyInfo"/>
+            android:text="维护信息"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -111,8 +111,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/red"
-        android:orientation="horizontal"
-        android:onClick="rongYiMianQian">
+        android:onClick="rongYiMianQian"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
@@ -136,8 +136,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/sky_blue"
-        android:orientation="horizontal"
-        android:onClick="uploadChanPhoto">
+        android:onClick="uploadChanPhoto"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
@@ -179,30 +179,6 @@
             android:src="@drawable/arrow_right"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/sky_blue"
-        android:onClick="calc"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:text="计算"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:scaleType="centerCrop"
-            android:src="@drawable/arrow_right"/>
-    </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -228,5 +204,35 @@
             android:src="@drawable/arrow_right"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/sky_blue"
+        android:onClick="calc"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="计算"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerCrop"
+            android:src="@drawable/arrow_right"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="sumbitInfo"
+        android:text="保存"/>
 </LinearLayout>
