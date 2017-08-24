@@ -49,6 +49,12 @@
             android:paddingLeft="10dp"
             android:text="录入家庭住址照片"/>
 
+        <TextView
+            android:id="@+id/lujia"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/green"/>
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="20dp"
@@ -74,6 +80,12 @@
             android:paddingLeft="10dp"
             android:text="录入工作单位照"/>
 
+        <TextView
+            android:id="@+id/lugong"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/green"/>
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="20dp"
@@ -97,6 +109,13 @@
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
             android:text="录入银行流水照"/>
+
+        <TextView
+            android:id="@+id/luyin"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/green"
+            />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -122,6 +141,13 @@
             android:paddingLeft="10dp"
             android:text="融宜面签"/>
 
+        <TextView
+            android:id="@+id/mianqian"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/green"
+            />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="20dp"
@@ -140,12 +166,21 @@
         android:orientation="horizontal">
 
         <TextView
+
+
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
             android:text="录入产调照"/>
+
+        <TextView
+            android:id="@+id/luchan"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/green"
+            />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -169,7 +204,15 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
+
             android:text="录入证件照片"/>
+
+        <TextView
+            android:id="@+id/luzheng"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/green"
+            />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -195,6 +238,13 @@
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
             android:text="添加更多信息"/>
+
+        <TextView
+            android:id="@+id/lumore"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/green"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -234,5 +284,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:onClick="sumbitInfo"
-        android:text="保存"/>
+        android:text="提交"/>
 </LinearLayout>

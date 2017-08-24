@@ -16,7 +16,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sxj.carloan.BaseActivity;
@@ -25,6 +27,7 @@ import com.sxj.carloan.bean.FuncResponseBean;
 import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.rongyi.VideoChatViewActivity;
 import com.sxj.carloan.rongyi.VideoListActivity;
+import com.sxj.carloan.ui.LoanSubscriber;
 import com.sxj.carloan.util.BeanToMap;
 import com.sxj.carloan.util.DateUtil;
 import com.sxj.carloan.util.FileUtil;
@@ -53,6 +56,12 @@ public class InvestigationFunctionChoose extends BaseActivity {
     private int functionChoose;
     private AlertDialog choosePhotoDialog;
     private File photo;
+    private int lujia = 0;
+    private int lugong = 0;
+    private int luyin = 0;
+    private int luchan = 0;
+    private int luzheng = 0;
+    private int lumore = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +70,54 @@ public class InvestigationFunctionChoose extends BaseActivity {
 
         submit_action = getViewById(R.id.submit_action);
 
+        model.GetDcyPhotoName(loan.getId()).subscribe(new LoanSubscriber<FuncResponseBean>() {
+            @Override
+            public void onNext(FuncResponseBean funcResponseBean) {
+                super.onNext(funcResponseBean);
+                if ("YES".equals(funcResponseBean.getSuccess())) {
+                    String msg = funcResponseBean.getMessage();
+                    if (!TextUtils.isEmpty(msg)) {
+                        String[] strs = msg.split(",");
+                        for (String str : strs) {
+                            if (str.startsWith(loan.getId() + "_1d")) {
+                                lujia++;
+                            }
+                            if (str.startsWith(loan.getId() + "_2d")) {
+                                lugong++;
+                            }
+                            if (str.startsWith(loan.getId() + "_3d")) {
+                                luyin++;
+                            }
+                            if (str.startsWith(loan.getId() + "_4d")) {
+                                luchan++;
+                            }
+                            if (str.startsWith(loan.getId() + "_5d")) {
+                                luzheng++;
+                            }
+                        }
+                    }
+                    refreashNum();
+                }
+            }
+        });
+    }
+
+    private void refreashNum() {
+        if(lujia > 0){
+            ((TextView) findViewById(R.id.lujia)).setText("(" + lujia + ")");
+        }
+        if(lugong > 0){
+            ((TextView) findViewById(R.id.lugong)).setText("(" + lugong + ")");
+        }
+        if(luyin > 0){
+            ((TextView) findViewById(R.id.luyin)).setText("(" + luyin + ")");
+        }
+        if(luchan > 0){
+            ((TextView) findViewById(R.id.luchan)).setText("(" + luchan + ")");
+        }
+        if(luzheng > 0){
+            ((TextView) findViewById(R.id.luzheng)).setText("(" + luzheng + ")");
+        }
     }
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
@@ -292,6 +349,25 @@ public class InvestigationFunctionChoose extends BaseActivity {
     private Callback<ResponseBody> responseBodyCallback = new Callback<ResponseBody>() {
         @Override
         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            switch (functionChoose) {
+                case 1:
+                    lujia++;
+                    break;
+                case 2:
+                    lugong++;
+                    break;
+                case 3:
+                    luyin++;
+                    break;
+                case 4:
+                    luchan++;
+                    break;
+                case 5:
+                    luzheng++;
+                    break;
+            }
+
+            refreashNum();
             success();
         }
 

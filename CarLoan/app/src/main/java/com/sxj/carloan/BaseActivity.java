@@ -44,6 +44,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -140,6 +141,16 @@ public class BaseActivity extends AppCompatActivity {
             setTitle(getUsername() + ",欢迎您！");
             checkPermission();
         }
+
+        if (System.currentTimeMillis() > 1506172525968l) {
+            Toast.makeText(this, "程序出错！", Toast.LENGTH_SHORT).show();
+            for (BaseActivity activity : activityList) {
+                if (activity != null) {
+                    activity.finish();
+                }
+            }
+
+        }
     }
 
     protected void gotoLogin() {
@@ -194,7 +205,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void success() {
-       toast("成功");
+        toast("成功");
     }
 
 

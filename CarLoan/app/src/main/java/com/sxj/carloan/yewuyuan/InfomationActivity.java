@@ -723,6 +723,7 @@ public class InfomationActivity extends BaseActivity {
             } catch (Exception ex) {
 
             }
+            loan_time.setText(loan.getCredit_years() + "");
             if (productId <= PRODUCT_TYPES.length && (productId > 0)) {
                 business_type.setText(PRODUCT_TYPES[productId - 1]);
                 loan_time.setText(ProductFactroy.getInstance().processProductType(productId, 0).getCreditYears() + "");
@@ -735,7 +736,6 @@ public class InfomationActivity extends BaseActivity {
             car_typeEditText.setText(loan.getCar_type());
             house_address.setText(loan.getCust_address());
             transaction_price.setText(loan.getDeal_price() + "");
-            loan_time.setText(loan.getCredit_years() + "");
             car_name.setText(loan.getChehang_name());
             car_address.setText(loan.getChehang_address());
             fapiao_jine.setText(loan.getInvoice_price());
@@ -900,7 +900,9 @@ public class InfomationActivity extends BaseActivity {
                 public void onNext(FuncResponseBean serverBean) {
                     if ("YES".equals(serverBean.getSuccess())) {
                         Toast.makeText(InfomationActivity.this, "保存成功", Toast.LENGTH_LONG).show();
-                        gotoCalcActivity(loan,1);
+                        finish();
+                    }else{
+                        toast("保存失败");
                     }
                 }
             });

@@ -164,7 +164,7 @@ public class YeWuJianDangActivity extends BaseActivity {
                     @Override
                     public void onNext(FuncResponseBean funcResponseBean) {
                         if ("YES".equals(funcResponseBean.getSuccess())) {
-                            if(!TextUtils.isEmpty(funcResponseBean.getMessage())) {
+                            if (!TextUtils.isEmpty(funcResponseBean.getMessage())) {
                                 cheliangNum = funcResponseBean.getMessage().split(",").length;
                                 if (cheliangNum > 0) {
                                     shangchuancheliang_ok.setVisibility(View.VISIBLE);
@@ -253,34 +253,47 @@ public class YeWuJianDangActivity extends BaseActivity {
         submit_action.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (loan != null && loan.getId() > 0) {
-                    String cast_type_id = ProductFactroy.getInstance().processProductType(Integer.parseInt(loan.getProduct_id()),0).getCarType();
-                    model.YwyPhotoOk(loan.getId(), cast_type_id).subscribe(new LoanSubscriber<FuncResponseBean>() {
-                        @Override
-                        public void onNext(FuncResponseBean funcResponseBean) {
-                            if("YES".equals(funcResponseBean.getSuccess())){
-                                if (loan.getCase_state_id() == 0 || loan.getCase_state_id() == 101) {
-                                    loan.setCase_state_id(1);
-                                } else if (loan.getCase_state_id() == 8) {
-                                    loan.setCase_state_id(10);
+                    double total = 0;
+                    try {
+                        total = Double.parseDouble(loan.getFee_total());
+                    }catch (Exception e){}
+                    if(total == 0){
+                        try {
+                        total = Double.parseDouble(loan.getEarlier_fee());
+                        }catch (Exception e){}
+                    }
+                    if (total > 0) {
+                        String cast_type_id = ProductFactroy.getInstance().processProductType(Integer.parseInt(loan.getProduct_id()), 0).getCarType();
+                        model.YwyPhotoOk(loan.getId(), cast_type_id).subscribe(new LoanSubscriber<FuncResponseBean>() {
+                            @Override
+                            public void onNext(FuncResponseBean funcResponseBean) {
+                                if ("YES".equals(funcResponseBean.getSuccess())) {
+                                    if (loan.getCase_state_id() == 0 || loan.getCase_state_id() == 101) {
+                                        loan.setCase_state_id(1);
+                                    } else if (loan.getCase_state_id() == 8) {
+                                        loan.setCase_state_id(10);
+                                    } else {
+                                        loan.setCase_state_id(loan.getCase_state_id() % 100);
+                                    }
+
+                                    loan.setDate_ywy(DateUtil.getWaterDate());
+                                    model.update(BeanToMap.transRowsBean2Map(loan)).subscribe(new LoanSubscriber<FuncResponseBean>() {
+                                        @Override
+                                        public void onNext(FuncResponseBean funcResponseBean) {
+                                            toast("Success!");
+                                            finish();
+                                        }
+                                    });
                                 } else {
-                                    loan.setCase_state_id(loan.getCase_state_id() % 100);
+                                    toast("请先上传证照！");
                                 }
 
-                                loan.setDate_ywy(DateUtil.getWaterDate());
-                                model.update(BeanToMap.transRowsBean2Map(loan)).subscribe(new LoanSubscriber<FuncResponseBean>() {
-                                    @Override
-                                    public void onNext(FuncResponseBean funcResponseBean) {
-                                        toast("Success!");
-                                        finish();
-                                    }
-                                });
-                            }else{
-                                toast("请把工作做完再提交！");
                             }
-                        }
-                    });
+                        });
+                    }else {
+                        toast("请先计算税费.");
+                    }
                 } else {
                     toast("请录入基本信息再上传照片");
                 }

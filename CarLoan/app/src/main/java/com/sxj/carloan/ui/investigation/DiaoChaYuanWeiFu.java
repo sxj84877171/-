@@ -167,6 +167,9 @@ public class DiaoChaYuanWeiFu extends BaseActivity {
             public void onNext(FuncResponseBean funcResponseBean) {
                 if("YES".equals(funcResponseBean.getSuccess())){
                     toast("保存成功");
+                    finish();
+                }else{
+                    toast("保存失败");
                 }
             }
         });

@@ -91,9 +91,15 @@ public class BaseInfotmaitionCalcActivity extends BaseActivity {
         ywy = intent.getIntExtra("ywy", 1);
         if (loan != null) {
             if (ywy != 1) {
-                productType = ProductFactroy.getInstance().processProductType(Integer.parseInt(loan.getProduct_id()), Double.parseDouble(loan.getLoan_amount_dcy()));
+                try {
+                    productType = ProductFactroy.getInstance().processProductType(Integer.parseInt(loan.getProduct_id()), Double.parseDouble(loan.getLoan_amount_dcy()));
+                } catch (Exception ex) {
+                }
             } else {
-                productType = ProductFactroy.getInstance().processProductType(Integer.parseInt(loan.getProduct_id()), Double.parseDouble(loan.getLoan_amount_ywy()));
+                try {
+                    productType = ProductFactroy.getInstance().processProductType(Integer.parseInt(loan.getProduct_id()), Double.parseDouble(loan.getLoan_amount_ywy()));
+                } catch (Exception ex) {
+                }
             }
         }
         initView();
@@ -105,24 +111,26 @@ public class BaseInfotmaitionCalcActivity extends BaseActivity {
     }
 
     private void initFirstData() {
-        if (productType.isDepositEdit()) {
-            deposit.setText(loan.getDeposit());
-        }
+        if(productType != null) {
+            if (productType.isDepositEdit()) {
+                deposit.setText(loan.getDeposit());
+            }
 
-        if (productType.isMorgageFeeEdit()) {
-            mortgage_fee.setText(loan.getMortgage_fee());
-        }
-        if (productType.isHomeVisitFeeEdit()) {
-            home_visit_fee.setText(loan.getHome_visit_fee());
-        }
-        if (productType.isBaoXianFeeEdit()) {
-            baoxian_fee.setText(loan.getBaoxian_fee());
-        }
-        if (productType.isLoanAmountYwyCorpEdit()) {
-            loan_amount_ywy_corp.setText(loan.getLoan_amount_ywy_corp());
-        }
+            if (productType.isMorgageFeeEdit()) {
+                mortgage_fee.setText(loan.getMortgage_fee());
+            }
+            if (productType.isHomeVisitFeeEdit()) {
+                home_visit_fee.setText(loan.getHome_visit_fee());
+            }
+            if (productType.isBaoXianFeeEdit()) {
+                baoxian_fee.setText(loan.getBaoxian_fee());
+            }
+            if (productType.isLoanAmountYwyCorpEdit()) {
+                loan_amount_ywy_corp.setText(loan.getLoan_amount_ywy_corp());
+            }
 
-        extras_fee.setText(loan.getExtras_fee());
+            extras_fee.setText(loan.getExtras_fee());
+        }
     }
 
     void initView() {

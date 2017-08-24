@@ -117,7 +117,7 @@ public class ApiServiceModel {
      * @return
      */
     public Observable<FuncResponseBean> GetDcyPhotoName(int id){
-        return Api.getInstance().getService().GetCarPhotoName(id).compose(ApiServiceModel.<FuncResponseBean>io_main());
+        return Api.getInstance().getService().GetDcyPhotoName(id).compose(ApiServiceModel.<FuncResponseBean>io_main());
     }
 
     public Observable<FuncResponseBean> insertBean(Map rowsBean) {

@@ -113,6 +113,68 @@
                     android:visibility="gone"/>
             </LinearLayout>
 
+
+            <LinearLayout
+                android:id="@+id/shangchuancheliangzhaopian"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:background="#cccccc"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="上传汽车照片"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/shangchuancheliangzhaopian_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="OK"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/jisuandaikuan"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:background="#cccccc"
+                android:gravity="center_vertical"
+                android:onClick="calc"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="计算"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/jisuandaikuan_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="OK"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/shangchuanfuzong"
                 android:layout_width="match_parent"
@@ -150,6 +212,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="20dp"
                 android:background="#cccccc"
+                android:layout_marginBottom="80dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -173,65 +236,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/shangchuancheliangzhaopian"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="20dp"
-                android:background="#cccccc"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="上传汽车照片"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/shangchuancheliangzhaopian_ok"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:text="OK"
-                    android:textColor="@color/green"
-                    android:textSize="16sp"
-                    android:visibility="gone"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/jisuandaikuan"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="20dp"
-                android:background="#cccccc"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="80dp"
-                android:onClick="calc"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="计算"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/jisuandaikuan_ok"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:text="OK"
-                    android:textColor="@color/green"
-                    android:textSize="16sp"
-                    android:visibility="gone"/>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
