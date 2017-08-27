@@ -17,7 +17,7 @@ public class SelfFinancingLoanProduct extends ProductType {
 
     @Override
     public String getCarType() {
-        return "2";
+        return "1";
     }
 
     /**

@@ -94,13 +94,18 @@ public class BaseInfotmaitionCalcActivity extends BaseActivity {
                 try {
                     productType = ProductFactroy.getInstance().processProductType(Integer.parseInt(loan.getProduct_id()), Double.parseDouble(loan.getLoan_amount_dcy()));
                 } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             } else {
                 try {
                     productType = ProductFactroy.getInstance().processProductType(Integer.parseInt(loan.getProduct_id()), Double.parseDouble(loan.getLoan_amount_ywy()));
                 } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
+        } else {
+            finish();
+            return;
         }
         initView();
         initViewVisible();
@@ -111,7 +116,7 @@ public class BaseInfotmaitionCalcActivity extends BaseActivity {
     }
 
     private void initFirstData() {
-        if(productType != null) {
+        if (productType != null) {
             if (productType.isDepositEdit()) {
                 deposit.setText(loan.getDeposit());
             }
@@ -203,31 +208,33 @@ public class BaseInfotmaitionCalcActivity extends BaseActivity {
 
     private void initViewVisible() {
         try {
-            loan_advance_percent_line.setVisibility(productType.isLoanAdvancePercentVisible() ? View.VISIBLE : View.GONE);
-            fee_rate_line.setVisibility(View.VISIBLE);
-            fee_rate_advance_line.setVisibility(productType.isFeeRateAdvanceVisible() ? View.VISIBLE : View.GONE);
-            fee_rate_balance_line.setVisibility(productType.isFeeRateBalanceVisible() ? View.VISIBLE : View.GONE);
-            loan_amount_ywy_corp_line.setVisibility(productType.isLoanAmountYwyCorpVisible() ? View.VISIBLE : View.GONE);
-            loan_amount_high_line.setVisibility(productType.isLoanAmountHighVisible() ? View.VISIBLE : View.GONE);
-            interest_bank_line.setVisibility(productType.isInterestBankVisible() ? View.VISIBLE : View.GONE);
-            interest_company_line.setVisibility(productType.isInterestCompanyVisible() ? View.VISIBLE : View.GONE);
-            deposit_line.setVisibility(productType.isDepositVisible() ? View.VISIBLE : View.GONE);
-            payback_month_12_line.setVisibility(productType.isPaybackMonth12Visible() ? View.VISIBLE : View.GONE);
-            payback_month_line.setVisibility(productType.isPaybackMonthVisible() ? View.VISIBLE : View.GONE);
-            extras_fee_line.setVisibility(productType.isExtrasFeeVisible() ? View.VISIBLE : View.GONE);
-            service_fee_line.setVisibility(productType.isServiceFee() ? View.VISIBLE : View.GONE);
-            gps_fee_line.setVisibility(productType.isGpsFeeVisible() ? View.VISIBLE : View.GONE);
-            mortgage_fee_line.setVisibility(productType.isMortagageFeeVisible() ? View.VISIBLE : View.GONE);
-            home_visit_fee_line.setVisibility(productType.isHomeVisitFeeVisible() ? View.VISIBLE : View.GONE);
-            baoxian_fee_line.setVisibility(productType.isBaoXianFeeVisible() ? View.VISIBLE : View.GONE);
-            evaluation_fee_line.setVisibility(productType.isEvaluationFeeVisible() ? View.VISIBLE : View.GONE);
-            earlier_fee_line.setVisibility(productType.isEarlierFeeVisible() ? View.VISIBLE : View.GONE);
-            fee_return_agency_line.setVisibility(productType.isFeeReturnAgency() ? View.VISIBLE : View.GONE);
-            fee_total_line.setVisibility(productType.isFeeTotalVisible() ? View.VISIBLE : View.GONE);
-            fee_return_custom_line.setVisibility(productType.isFeeReturnCustomVisible() ? View.VISIBLE : View.GONE);
-            commercial_insurance_line.setVisibility(productType.isCommercialInsuranceVisible() ? View.VISIBLE : View.GONE);
-            commercial_insurance_return_line.setVisibility(productType.isCommercialInsuranceReturnVisible() ? View.VISIBLE : View.GONE);
-            payment_for_agency_line.setVisibility(productType.isPaymentForAgencyVisible() ? View.VISIBLE : View.GONE);
+            if (productType != null) {
+                loan_advance_percent_line.setVisibility(productType.isLoanAdvancePercentVisible() ? View.VISIBLE : View.GONE);
+                fee_rate_line.setVisibility(View.VISIBLE);
+                fee_rate_advance_line.setVisibility(productType.isFeeRateAdvanceVisible() ? View.VISIBLE : View.GONE);
+                fee_rate_balance_line.setVisibility(productType.isFeeRateBalanceVisible() ? View.VISIBLE : View.GONE);
+                loan_amount_ywy_corp_line.setVisibility(productType.isLoanAmountYwyCorpVisible() ? View.VISIBLE : View.GONE);
+                loan_amount_high_line.setVisibility(productType.isLoanAmountHighVisible() ? View.VISIBLE : View.GONE);
+                interest_bank_line.setVisibility(productType.isInterestBankVisible() ? View.VISIBLE : View.GONE);
+                interest_company_line.setVisibility(productType.isInterestCompanyVisible() ? View.VISIBLE : View.GONE);
+                deposit_line.setVisibility(productType.isDepositVisible() ? View.VISIBLE : View.GONE);
+                payback_month_12_line.setVisibility(productType.isPaybackMonth12Visible() ? View.VISIBLE : View.GONE);
+                payback_month_line.setVisibility(productType.isPaybackMonthVisible() ? View.VISIBLE : View.GONE);
+                extras_fee_line.setVisibility(productType.isExtrasFeeVisible() ? View.VISIBLE : View.GONE);
+                service_fee_line.setVisibility(productType.isServiceFee() ? View.VISIBLE : View.GONE);
+                gps_fee_line.setVisibility(productType.isGpsFeeVisible() ? View.VISIBLE : View.GONE);
+                mortgage_fee_line.setVisibility(productType.isMortagageFeeVisible() ? View.VISIBLE : View.GONE);
+                home_visit_fee_line.setVisibility(productType.isHomeVisitFeeVisible() ? View.VISIBLE : View.GONE);
+                baoxian_fee_line.setVisibility(productType.isBaoXianFeeVisible() ? View.VISIBLE : View.GONE);
+                evaluation_fee_line.setVisibility(productType.isEvaluationFeeVisible() ? View.VISIBLE : View.GONE);
+                earlier_fee_line.setVisibility(productType.isEarlierFeeVisible() ? View.VISIBLE : View.GONE);
+                fee_return_agency_line.setVisibility(productType.isFeeReturnAgency() ? View.VISIBLE : View.GONE);
+                fee_total_line.setVisibility(productType.isFeeTotalVisible() ? View.VISIBLE : View.GONE);
+                fee_return_custom_line.setVisibility(productType.isFeeReturnCustomVisible() ? View.VISIBLE : View.GONE);
+                commercial_insurance_line.setVisibility(productType.isCommercialInsuranceVisible() ? View.VISIBLE : View.GONE);
+                commercial_insurance_return_line.setVisibility(productType.isCommercialInsuranceReturnVisible() ? View.VISIBLE : View.GONE);
+                payment_for_agency_line.setVisibility(productType.isPaymentForAgencyVisible() ? View.VISIBLE : View.GONE);
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -235,32 +242,34 @@ public class BaseInfotmaitionCalcActivity extends BaseActivity {
 
     private void initEditTextContent() {
         try {
-            product_name.setText(productType.getProductName());
-            loan_advance_percent.setText(double2String(productType.getLoanAdvancePercent()));
-            fee_rate.setText("" + productType.getFeeRate());
-            fee_rate_advance.setText(double2String(productType.getFeeRateAdvance()));
-            fee_rate_balance.setText(double2String(productType.getFeeRateBalance()));
-            loan_amount_ywy_corp.setText(double2String(productType.getLoanAmountYwyCorp()));
-            loan_amount_high.setText(double2String(productType.getLoanAmountHigh(), true));
-            interest_bank.setText(double2String(productType.getInterestBank()));
-            interest_company.setText(double2String(productType.getInterestCompany()));
-            deposit.setText(double2String(productType.getDeposit()));
-            payback_month_12.setText(double2String(productType.getPaybackMonth12()));
-            payback_month.setText(double2String(productType.getPaybackMonth()));
-            extras_fee.setText(double2String(productType.getExtrasFee()));
-            service_fee.setText(double2String(productType.getServiceFee()));
-            gps_fee.setText(double2String(productType.getGpsFee()));
-            mortgage_fee.setText(double2String(productType.getMortgageFee()));
-            home_visit_fee.setText(double2String(productType.getHomeVisitFee()));
-            baoxian_fee.setText(double2String(productType.getBaoXianFee()));
-            evaluation_fee.setText(double2String(productType.getEvaluationFee()));
-            earlier_fee.setText(double2String(productType.getEarlierFee()));
-            fee_return_agency.setText(double2String(productType.getFeeReturnAgency()));
-            fee_total.setText(double2String(productType.getFeeTotal()));
-            fee_return_custom.setText(double2String(productType.getFeeReturnCustom()));
-            commercial_insurance.setText(double2String(productType.getCommercialInsurance()));
-            commercial_insurance_return.setText(double2String(productType.getCommercialInsuranceReturn()));
-            payment_for_agency.setText(double2String(productType.getPaymentForAgency()));
+            if (productType != null) {
+                product_name.setText(productType.getProductName());
+                loan_advance_percent.setText(double2String(productType.getLoanAdvancePercent()));
+                fee_rate.setText("" + productType.getFeeRate());
+                fee_rate_advance.setText(double2String(productType.getFeeRateAdvance()));
+                fee_rate_balance.setText(double2String(productType.getFeeRateBalance()));
+                loan_amount_ywy_corp.setText(double2String(productType.getLoanAmountYwyCorp()));
+                loan_amount_high.setText(double2String(productType.getLoanAmountHigh(), true));
+                interest_bank.setText(double2String(productType.getInterestBank()));
+                interest_company.setText(double2String(productType.getInterestCompany()));
+                deposit.setText(double2String(productType.getDeposit()));
+                payback_month_12.setText(double2String(productType.getPaybackMonth12()));
+                payback_month.setText(double2String(productType.getPaybackMonth()));
+                extras_fee.setText(double2String(productType.getExtrasFee()));
+                service_fee.setText(double2String(productType.getServiceFee()));
+                gps_fee.setText(double2String(productType.getGpsFee()));
+                mortgage_fee.setText(double2String(productType.getMortgageFee()));
+                home_visit_fee.setText(double2String(productType.getHomeVisitFee()));
+                baoxian_fee.setText(double2String(productType.getBaoXianFee()));
+                evaluation_fee.setText(double2String(productType.getEvaluationFee()));
+                earlier_fee.setText(double2String(productType.getEarlierFee()));
+                fee_return_agency.setText(double2String(productType.getFeeReturnAgency()));
+                fee_total.setText(double2String(productType.getFeeTotal()));
+                fee_return_custom.setText(double2String(productType.getFeeReturnCustom()));
+                commercial_insurance.setText(double2String(productType.getCommercialInsurance()));
+                commercial_insurance_return.setText(double2String(productType.getCommercialInsuranceReturn()));
+                payment_for_agency.setText(double2String(productType.getPaymentForAgency()));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -421,30 +430,34 @@ public class BaseInfotmaitionCalcActivity extends BaseActivity {
     }
 
     public void initEdit() {
-        if (productType.isDepositEdit()) {
-            deposit.setFocusable(true);
-            deposit.setEnabled(true);
-            deposit.setFocusableInTouchMode(true);
-        }
-        if (productType.isMorgageFeeEdit()) {
-            mortgage_fee.setFocusable(true);
-            mortgage_fee.setEnabled(true);
-            mortgage_fee.setFocusableInTouchMode(true);
-        }
-        if (productType.isHomeVisitFeeEdit()) {
-            home_visit_fee.setFocusable(true);
-            home_visit_fee.setEnabled(true);
-            home_visit_fee.setFocusableInTouchMode(true);
-        }
-        if (productType.isBaoXianFeeEdit()) {
-            baoxian_fee.setFocusable(true);
-            baoxian_fee.setEnabled(true);
-            baoxian_fee.setFocusableInTouchMode(true);
-        }
-        if (productType.isLoanAmountYwyCorpEdit()) {
-            loan_amount_ywy_corp.setFocusable(true);
-            loan_amount_ywy_corp.setEnabled(true);
-            loan_amount_ywy_corp.setFocusableInTouchMode(true);
+        if(productType != null) {
+            if (productType.isDepositEdit()) {
+                deposit.setFocusable(true);
+                deposit.setEnabled(true);
+                deposit.setFocusableInTouchMode(true);
+            }
+            if (productType.isMorgageFeeEdit()) {
+                mortgage_fee.setFocusable(true);
+                mortgage_fee.setEnabled(true);
+                mortgage_fee.setFocusableInTouchMode(true);
+            }
+            if (productType.isHomeVisitFeeEdit()) {
+                home_visit_fee.setFocusable(true);
+                home_visit_fee.setEnabled(true);
+                home_visit_fee.setFocusableInTouchMode(true);
+            }
+            if (productType.isBaoXianFeeEdit()) {
+                baoxian_fee.setFocusable(true);
+                baoxian_fee.setEnabled(true);
+                baoxian_fee.setFocusableInTouchMode(true);
+            }
+            if (productType.isLoanAmountYwyCorpEdit()) {
+                loan_amount_ywy_corp.setFocusable(true);
+                loan_amount_ywy_corp.setEnabled(true);
+                loan_amount_ywy_corp.setFocusableInTouchMode(true);
+            }
+        }else{
+            finish();
         }
     }
 }

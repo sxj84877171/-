@@ -11,7 +11,6 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -405,7 +404,7 @@ public class InfomationActivity extends BaseActivity {
 //        initStageType(loan.getInstallment_type_id() - 1);
         initHouseType(loan.getRoom_type_id() - 1);
         initCompension(loan.getIf_gcr_id());
-        initMarrayState(loan.getCust_marriage_id() - 1);
+        initMarrayState(loan.getCust_marriage_id());
         sex.setText(loan.getCust_sex());
         initType(loan.getCase_type_id_1() - 1);
     }
@@ -668,6 +667,11 @@ public class InfomationActivity extends BaseActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     initType(which);
                     loan.setProduct_id("" + (which + 1));
+                    if(which <= 4){
+                        loan.setCase_type_id_1(1);
+                    }else{
+                        loan.setCase_type_id_1(2);
+                    }
                     typeDialog.dismiss();
                     loan_time.setText("" + 3);
                     if (which + 1 == 8) {
@@ -689,31 +693,6 @@ public class InfomationActivity extends BaseActivity {
     }
 
 
-    AlertDialog createDataTimePick(final IDateChooseListener listener) {
-        final DatePicker datePicker = new DatePicker(this);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.mipmap.ic_launcher);
-        builder.setTitle("选择日期");
-        builder.setView(datePicker);
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                int year = datePicker.getYear();
-                int month = datePicker.getMonth() + 1;
-                int day = datePicker.getDayOfMonth();
-                String dateString = year + "-" + month + "-" + day;
-                if (listener != null) {
-                    listener.onDateChoose(dateString, year, month, day);
-                }
-            }
-        });
-        builder.setNegativeButton("取消", null);
-        return builder.create();
-    }
-
-    static interface IDateChooseListener {
-        void onDateChoose(String date, int year, int month, int day);
-    }
 
     void initData() {
         if (loan != null) {
@@ -721,7 +700,8 @@ public class InfomationActivity extends BaseActivity {
             try {
                 productId = Integer.parseInt(loan.getProduct_id());
             } catch (Exception ex) {
-
+                loan.setProduct_id("1");
+                loan.setCase_type_id_1(1);
             }
             loan_time.setText(loan.getCredit_years() + "");
             if (productId <= PRODUCT_TYPES.length && (productId > 0)) {

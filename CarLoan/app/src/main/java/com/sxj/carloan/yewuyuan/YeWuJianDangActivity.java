@@ -24,8 +24,11 @@ import com.sxj.carloan.bean.FuncResponseBean;
 import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.product.ProductFactroy;
 import com.sxj.carloan.ui.LoanSubscriber;
+import com.sxj.carloan.ui.LoginActivity;
+import com.sxj.carloan.ui.ViewInformation;
 import com.sxj.carloan.util.BeanToMap;
 import com.sxj.carloan.util.DateUtil;
+import com.sxj.carloan.util.FileObject;
 import com.sxj.carloan.util.FileUtil;
 import com.sxj.carloan.util.LogUtil;
 import com.sxj.carloan.util.SearchGoogleUtil;
@@ -70,6 +73,25 @@ public class YeWuJianDangActivity extends BaseActivity {
         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
             if (response.isSuccessful()) {
                 success();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        switch (functionChoose){
+                            case 1:
+                                shangchuanshenfenzheng_zheng_ok.setVisibility(View.VISIBLE);
+                                break;
+                            case 2:
+                                shangchuanshenfenzheng_fan_ok.setVisibility(View.VISIBLE);
+                            case 3:
+                                shangchuancheliang.setVisibility(View.VISIBLE);
+                            case 4:
+                                shangchuanfuzong_ok.setVisibility(View.VISIBLE);
+                            case 5:
+                                shangchuanzongjingli_ok.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+                });
             } else {
                 toast("上传失败，请重新上传");
             }
@@ -152,7 +174,7 @@ public class YeWuJianDangActivity extends BaseActivity {
                         }
                     }
                 });
-                model.FileExisted("photo/ywy/" + loan.getId() + "_1_1.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
+                model.FileExisted("photo/ywy/" + loan.getId() + "_3.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
                     @Override
                     public void onNext(FuncResponseBean funcResponseBean) {
                         if ("YES".equals(funcResponseBean.getSuccess())) {
@@ -398,12 +420,7 @@ public class YeWuJianDangActivity extends BaseActivity {
                     switch (functionChoose) {
                         case 1:
                             model.shangchuanShenFengzhengZhengmian("" + loan.getId(), localFile).enqueue(responseBodyCallback);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    shangchuanshenfenzheng_zheng_ok.setVisibility(View.VISIBLE);
-                                }
-                            });
+
 
                             break;
                         case 2:
@@ -508,5 +525,18 @@ public class YeWuJianDangActivity extends BaseActivity {
         } else {
             toast("请先填写完贷款信息");
         }
+    }
+
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+            menu.add(2, 2, 2, "查看详情");
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        LogUtil.i("item " + item.getItemId());
+        if (item.getItemId() == 2) {
+            gotoViewInfo(1);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -89,7 +89,7 @@ public class DiaoChaYuanWeiFu extends BaseActivity {
             @Override
             public void onClick(View v) {
                 chooseLine = 1;
-                AlertDialog dialog = createDataTimePick();
+                AlertDialog dialog = createDataTimePick(listener);
                 dialog.show();
             }
         });
@@ -98,16 +98,27 @@ public class DiaoChaYuanWeiFu extends BaseActivity {
             @Override
             public void onClick(View v) {
                 chooseLine = 2;
-                AlertDialog dialog = createDataTimePick();
+                AlertDialog dialog = createDataTimePick(listener);
                 dialog.show();
             }
         });
     }
 
     private int chooseLine = 0;
+    IDateChooseListener listener = new IDateChooseListener() {
+        @Override
+        public void onDateChoose(String date, int year, int month, int day) {
+            if (chooseLine == 1) {
+                diaocha_riqi.setText(date);
+            } else if (chooseLine == 2) {
+                daikuan_riqi.setText(date);
+            }
+        }
+    };
 
     private void save() {
         loan.setDate_dcy_yw(DateUtil.getWaterDate());
+        loan.setDate_case(DateUtil.getWaterDate());
         loan.setUser_id_dcy_info(Integer.parseInt(getLoginInfo().getUser_id()));
         loan.setLoan_amount(loan.getLoan_amount_dcy());
 
@@ -194,27 +205,5 @@ public class DiaoChaYuanWeiFu extends BaseActivity {
         jielunDialog.show();
     }
 
-    AlertDialog createDataTimePick() {
-        final DatePicker datePicker = new DatePicker(this);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.mipmap.ic_launcher);
-        builder.setTitle("选择日期");
-        builder.setView(datePicker);
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                int year = datePicker.getYear();
-                int month = datePicker.getMonth() + 1;
-                int day = datePicker.getDayOfMonth();
-                String dateString = year + "-" + month + "-" + day;
-                if (chooseLine == 1) {
-                    diaocha_riqi.setText(dateString);
-                } else if (chooseLine == 2) {
-                    daikuan_riqi.setText(dateString);
-                }
-            }
-        });
-        builder.setNegativeButton("取消", null);
-        return builder.create();
-    }
+
 }

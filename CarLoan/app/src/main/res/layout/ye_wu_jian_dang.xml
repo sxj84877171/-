@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:layout_above="@id/submit_action"
             android:orientation="vertical">
-
+            <!--基本信息-->
             <LinearLayout
                 android:id="@+id/jibenxinxi"
                 android:layout_width="match_parent"
@@ -53,7 +53,7 @@
                     android:textSize="16sp"
                     android:visibility="gone"/>
             </LinearLayout>
-
+            <!--上传身份正面证照片-->
             <LinearLayout
                 android:id="@+id/shangchuanshengfenzheng_zheng"
                 android:layout_width="match_parent"
@@ -83,7 +83,7 @@
                     android:visibility="gone"/>
 
             </LinearLayout>
-
+            <!--上传身份证反面照片-->
             <LinearLayout
                 android:id="@+id/shangchuanshengfenzheng_fan"
                 android:layout_width="match_parent"
@@ -112,8 +112,7 @@
                     android:textSize="16sp"
                     android:visibility="gone"/>
             </LinearLayout>
-
-
+            <!--上传汽车照片-->
             <LinearLayout
                 android:id="@+id/shangchuancheliangzhaopian"
                 android:layout_width="match_parent"
@@ -142,9 +141,7 @@
                     android:textSize="16sp"
                     android:visibility="gone"/>
             </LinearLayout>
-
-
-
+            <!--计算-->
             <LinearLayout
                 android:id="@+id/jisuandaikuan"
                 android:layout_width="match_parent"
@@ -174,7 +171,7 @@
                     android:textSize="16sp"
                     android:visibility="gone"/>
             </LinearLayout>
-
+            <!--上传副总签名照-->
             <LinearLayout
                 android:id="@+id/shangchuanfuzong"
                 android:layout_width="match_parent"
@@ -204,15 +201,15 @@
                     android:visibility="gone"/>
 
             </LinearLayout>
-
+            <!--上传总经理签名照-->
             <LinearLayout
                 android:id="@+id/shangchuanzongjingli"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
+                android:layout_marginBottom="80dp"
                 android:layout_marginTop="20dp"
                 android:background="#cccccc"
-                android:layout_marginBottom="80dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -235,7 +232,6 @@
                     android:visibility="gone"/>
 
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

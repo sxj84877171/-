@@ -244,7 +244,11 @@ public class ApiServiceModel {
     }
 
     public String getRandom() {
-        return new Random().nextInt() % 10 + "";
+        int index = new Random().nextInt() % 10;
+        if(index < 0){
+            index = -index;
+        }
+        return "" + index ;
     }
 
     /**
@@ -293,6 +297,17 @@ public class ApiServiceModel {
         return Api.getInstance().getService().updateLoadImageFile(filename, body);
     }
 
+    /**
+     <option value='1'>家庭住址照</option>
+     <option value='2'>工作单位照</option>
+     <option value='3'>银行流水照</option>
+     <option value='4'>面签照</option>
+     <option value='5'>产调照</option>
+     <option value='6'>证件照</option>
+     * @param case_id
+     * @param file
+     * @return
+     */
     public Call<ResponseBody> shangchuanDiaoChayuan4(String case_id, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
@@ -310,6 +325,19 @@ public class ApiServiceModel {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
         String filename = "photo/dcy/{case_id}_5d{time}{rn}.jpg";
+        String time = DateUtil.getImageDate();
+        filename = filename.replace("{case_id}", case_id + "");
+        filename = filename.replace("{time}", time);
+        filename = filename.replace("{rn}", "" + getRandom());
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        return Api.getInstance().getService().updateLoadImageFile(filename, body);
+    }
+
+    public Call<ResponseBody> shangchuanDiaoChayuan6(String case_id, File file) {
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        String filename = "photo/dcy/{case_id}_6d{time}{rn}.jpg";
         String time = DateUtil.getImageDate();
         filename = filename.replace("{case_id}", case_id + "");
         filename = filename.replace("{time}", time);

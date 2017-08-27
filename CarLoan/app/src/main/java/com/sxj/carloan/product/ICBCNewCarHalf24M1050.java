@@ -22,7 +22,7 @@ public class ICBCNewCarHalf24M1050 extends ProductType {
 
     @Override
     public String getCarType() {
-        return "1";
+        return "2";
     }
 
     /**

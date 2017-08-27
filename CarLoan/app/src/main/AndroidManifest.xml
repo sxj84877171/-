@@ -86,19 +86,24 @@
 
         </activity>
 
-        <activity android:name=".yewuyuan.YeWuMainPage"
-                  android:screenOrientation="portrait"/>
-        <activity android:name=".yewuyuan.YeWuJianDangActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".yewuyuan.YeWuMainPage"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".yewuyuan.YeWuJianDangActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".yewuyuan.InfomationActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".yewuyuan.InfomationActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".yewuyuan.BaseInfotmaitionCalcActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".yewuyuan.BaseInfotmaitionCalcActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.investigation.DiaoChaYuanWeiFu"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.investigation.DiaoChaYuanWeiFu"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".rongyi.VideoListActivity"
             android:screenOrientation="portrait"/>
@@ -106,6 +111,15 @@
             android:name=".rongyi.VideoPlay2Activity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".ui.ViewInformation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.ViewPagerActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+
         <service android:name=".rongyi.RecordService"/>
+
     </application>
 </manifest>

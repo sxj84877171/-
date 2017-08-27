@@ -51,6 +51,7 @@ dependencies {
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'
     testCompile 'junit:junit:4.12'
     compile project(':androidffmpeglibrary')
+    compile 'com.github.bumptech.glide:glide:4.0.0'
 }
 repositories {
     mavenCentral()

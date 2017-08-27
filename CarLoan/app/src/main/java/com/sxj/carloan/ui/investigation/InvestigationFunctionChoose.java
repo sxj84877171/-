@@ -28,8 +28,10 @@ import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.rongyi.VideoChatViewActivity;
 import com.sxj.carloan.rongyi.VideoListActivity;
 import com.sxj.carloan.ui.LoanSubscriber;
+import com.sxj.carloan.ui.LoginActivity;
 import com.sxj.carloan.util.BeanToMap;
 import com.sxj.carloan.util.DateUtil;
+import com.sxj.carloan.util.FileObject;
 import com.sxj.carloan.util.FileUtil;
 import com.sxj.carloan.util.LogUtil;
 import com.sxj.carloan.util.SearchGoogleUtil;
@@ -59,6 +61,7 @@ public class InvestigationFunctionChoose extends BaseActivity {
     private int lujia = 0;
     private int lugong = 0;
     private int luyin = 0;
+    private int lumian = 0;
     private int luchan = 0;
     private int luzheng = 0;
     private int lumore = 0;
@@ -89,9 +92,12 @@ public class InvestigationFunctionChoose extends BaseActivity {
                                 luyin++;
                             }
                             if (str.startsWith(loan.getId() + "_4d")) {
-                                luchan++;
+                                lumian++;
                             }
                             if (str.startsWith(loan.getId() + "_5d")) {
+                                luchan++;
+                            }
+                            if (str.startsWith(loan.getId() + "_6d")) {
                                 luzheng++;
                             }
                         }
@@ -102,33 +108,36 @@ public class InvestigationFunctionChoose extends BaseActivity {
         });
     }
 
+
     private void refreashNum() {
-        if(lujia > 0){
+        if (lujia > 0) {
             ((TextView) findViewById(R.id.lujia)).setText("(" + lujia + ")");
         }
-        if(lugong > 0){
+        if (lugong > 0) {
             ((TextView) findViewById(R.id.lugong)).setText("(" + lugong + ")");
         }
-        if(luyin > 0){
+        if (luyin > 0) {
             ((TextView) findViewById(R.id.luyin)).setText("(" + luyin + ")");
         }
-        if(luchan > 0){
+        if (lumian > 0) {
+            ((TextView) findViewById(R.id.lumian)).setText("(" + lumian + ")");
+        }
+        if (luchan > 0) {
             ((TextView) findViewById(R.id.luchan)).setText("(" + luchan + ")");
         }
-        if(luzheng > 0){
+        if (luzheng > 0) {
             ((TextView) findViewById(R.id.luzheng)).setText("(" + luzheng + ")");
         }
     }
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
-//        menu.add(1, 1, 1, "查看面签视频");
+        menu.add(1, 1, 1, "查看详情");
         return super.onCreateOptionsMenu(menu);
     }
 
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
         if (item.getItemId() == 1) {
-            Intent intent = new Intent(this, VideoListActivity.class);
-            startActivity(intent);
+            gotoViewInfo(2);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -166,17 +175,21 @@ public class InvestigationFunctionChoose extends BaseActivity {
         takePhoto();
     }
 
+    public void lurumianqian(View view) {
+        functionChoose = 4;
+        takePhoto();
+    }
 
     public void uploadChanPhoto(View view) {
 //        toast("功能在努力开发中……");
-        functionChoose = 4;
+        functionChoose = 5;
         takePhoto();
     }
 
 
     public void uploadIdPhoto(View view) {
 //        toast("功能在努力开发中……");
-        functionChoose = 5;
+        functionChoose = 6;
         takePhoto();
     }
 
@@ -338,6 +351,8 @@ public class InvestigationFunctionChoose extends BaseActivity {
                             break;
                         case 5:
                             model.shangchuanDiaoChayuan5("" + loan.getId(), localFile).enqueue(responseBodyCallback);
+                        case 6:
+                            model.shangchuanDiaoChayuan6("" + loan.getId(), localFile).enqueue(responseBodyCallback);
                             break;
                     }
                 }
@@ -360,9 +375,12 @@ public class InvestigationFunctionChoose extends BaseActivity {
                     luyin++;
                     break;
                 case 4:
-                    luchan++;
+                    lumian++;
                     break;
                 case 5:
+                    luchan++;
+                    break;
+                case 6:
                     luzheng++;
                     break;
             }

@@ -12,7 +12,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.inputmethodservice.Keyboard;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -22,29 +21,34 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.sxj.carloan.bean.LoginInfo;
 import com.sxj.carloan.bean.ServerBean;
-import com.sxj.carloan.ui.MainActivity;
-import com.sxj.carloan.ui.investigation.DiaoChaYuanWeiFu;
-import com.sxj.carloan.util.DateUtil;
-import com.sxj.carloan.util.FileUtil;
-import com.sxj.carloan.yewuyuan.BaseInfotmaitionCalcActivity;
-import com.sxj.carloan.yewuyuan.YeWuMainPage;
 import com.sxj.carloan.net.ApiServiceModel;
 import com.sxj.carloan.ui.AdminActivity;
 import com.sxj.carloan.ui.LoginActivity;
+import com.sxj.carloan.ui.MainActivity;
 import com.sxj.carloan.ui.OtherRoleActivity;
+import com.sxj.carloan.ui.ViewInformation;
+import com.sxj.carloan.ui.ViewPagerActivity;
+import com.sxj.carloan.ui.investigation.DiaoChaYuanWeiFu;
 import com.sxj.carloan.ui.investigation.InvestigationMainActivity;
+import com.sxj.carloan.util.DateUtil;
 import com.sxj.carloan.util.FileObject;
+import com.sxj.carloan.util.FileUtil;
 import com.sxj.carloan.util.LogUtil;
+import com.sxj.carloan.yewuyuan.BaseInfotmaitionCalcActivity;
+import com.sxj.carloan.yewuyuan.InfomationActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,6 +73,13 @@ public class BaseActivity extends AppCompatActivity {
     public ApiServiceModel model = new ApiServiceModel();
 
     private static List<BaseActivity> activityList = new ArrayList<>();
+
+    private RequestOptions options = new RequestOptions()
+            .centerCrop()
+            .placeholder(R.drawable.ic_launcher)
+            .error(R.drawable.ic_launcher)
+            .priority(Priority.HIGH)
+            .diskCacheStrategy(DiskCacheStrategy.ALL);
 
     public ServerBean.RowsBean loan;
 
@@ -153,6 +164,44 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    public interface IDateChooseListener {
+        void onDateChoose(String date, int year, int month, int day);
+    }
+
+    public AlertDialog createDataTimePick(final IDateChooseListener listener) {
+        final DatePicker datePicker = new DatePicker(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setTitle("选择日期");
+        builder.setView(datePicker);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int year = datePicker.getYear();
+                int month = datePicker.getMonth() + 1;
+                int day = datePicker.getDayOfMonth();
+                String dateString = year + "-";
+                if(month < 10){
+                    dateString += "0" + month;
+                }else{
+                    dateString += month;
+                }
+                dateString += "-" ;
+                if(day < 10){
+                    dateString +=  "0" + day;
+                }else{
+                    dateString += day;
+                }
+
+                if (listener != null) {
+                    listener.onDateChoose(dateString, year, month, day);
+                }
+            }
+        });
+        builder.setNegativeButton("取消", null);
+        return builder.create();
+    }
+
     protected void gotoLogin() {
         Intent intent = new Intent();
         intent.setClass(this, LoginActivity.class);
@@ -187,6 +236,12 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    protected void gotoViewInfo(int role){
+        Intent intent = new Intent(this, ViewInformation.class);
+        intent.putExtra("role",role);
+        startActivity(intent);
+    }
+
     protected void gotoOtherRolepage() {
         Intent intent = new Intent();
         intent.setClass(this, OtherRoleActivity.class);
@@ -196,6 +251,12 @@ public class BaseActivity extends AppCompatActivity {
     protected void gotoInverstigation() {
         Intent intent = new Intent();
         intent.setClass(this, InvestigationMainActivity.class);
+        startActivity(intent);
+    }
+
+    protected void gotoViewPhoto(ArrayList<CharSequence> list){
+        Intent intent = new Intent(getActivity(),ViewPagerActivity.class);
+        intent.putCharSequenceArrayListExtra("path",list);
         startActivity(intent);
     }
 

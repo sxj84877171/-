@@ -13,6 +13,7 @@ import com.sxj.carloan.R;
 import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.util.FileObject;
 import com.sxj.carloan.util.LogUtil;
+import com.sxj.carloan.yewuyuan.InfomationActivity;
 import com.sxj.carloan.yewuyuan.YeWuJianDangActivity;
 
 import java.util.ArrayList;
@@ -56,7 +57,9 @@ public class MainActivity extends BaseActivity {
                     intent.putExtra("state", 0);
                     getActivity().startActivity(intent);
                 }else{
-                    toast("已完成！");
+                    loan = rowsBean;
+                    ApplicationInfoManager.getInstance().setInfo(loan);
+                    gotoViewInfo(1);
                 }
 
             }

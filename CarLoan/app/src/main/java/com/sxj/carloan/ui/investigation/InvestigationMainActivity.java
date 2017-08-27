@@ -48,7 +48,9 @@ public class InvestigationMainActivity extends BaseActivity {
                     intent.putExtra("state", 0);
                     startActivity(intent);
                 }else{
-                    toast("已完成");
+                    loan = rowsBean;
+                    ApplicationInfoManager.getInstance().setInfo(loan);
+                    gotoViewInfo(2);
                 }
             }
         });

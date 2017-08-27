@@ -311,6 +311,7 @@ GPS费gps_fee
         private String cust_mobile;
         private String car_type;
         private String date_dcy_yw;
+        private String date_case;
         private int cust_marriage_id = -1;
         private int dcy_result_id = -1;
         private String fee_rate_balance;
@@ -396,6 +397,13 @@ GPS费gps_fee
             this.case_state_id = case_state_id;
         }
 
+        public void setDate_case(String date_case) {
+            this.date_case = date_case;
+        }
+
+        public String getDate_case() {
+            return date_case;
+        }
 
         public String getDcy_info() {
             return dcy_info;

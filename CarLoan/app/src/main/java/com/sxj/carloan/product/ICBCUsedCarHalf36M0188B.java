@@ -17,7 +17,7 @@ public class ICBCUsedCarHalf36M0188B extends ProductType {
 
     @Override
     public String getCarType() {
-        return "2";
+        return "1";
     }
 
     /**

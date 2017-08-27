@@ -36,12 +36,11 @@ public class CrashHandler  implements Thread.UncaughtExceptionHandler {
         if(uncaughtExceptionHandler != null){
             uncaughtExceptionHandler.uncaughtException(arg0,arg1);
         }
+        Log.e("CRASH","error:" , arg1);
         String logdir ;
         if(Environment.getExternalStorageDirectory()!=null){
             logdir = Environment.getExternalStorageDirectory().getAbsolutePath()
                     + File.separator + "Loan"+File.separator+"loan_crash.log" ;
-
-
             File file = new File(logdir);
             boolean mkSuccess;
             if (!file.isDirectory()) {
@@ -68,6 +67,7 @@ public class CrashHandler  implements Thread.UncaughtExceptionHandler {
         }
         arg1.printStackTrace();
         android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(0);
     }
 
 }

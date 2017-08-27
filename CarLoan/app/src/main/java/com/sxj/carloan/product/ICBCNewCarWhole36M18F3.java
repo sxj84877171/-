@@ -17,7 +17,7 @@ public class ICBCNewCarWhole36M18F3 extends ProductType {
 
     @Override
     public String getCarType() {
-        return "1";
+        return "2";
     }
 
     /**
