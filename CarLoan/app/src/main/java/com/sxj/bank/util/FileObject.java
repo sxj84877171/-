@@ -14,7 +14,7 @@ import java.io.ObjectOutputStream;
 
 public class FileObject {
 
-    public final static String CACHE_PATH = "/sdcard/loan/cache/" ;
+    public final static String CACHE_PATH = "/sdcard/bank/cache/" ;
 
     public static void saveObject(String filename , Object o){
         File path = new File(CACHE_PATH);

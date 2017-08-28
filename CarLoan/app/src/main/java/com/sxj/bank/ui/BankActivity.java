@@ -3,6 +3,7 @@ package com.sxj.bank.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.sxj.bank.BaseActivity;
 import com.sxj.bank.R;
@@ -12,10 +13,15 @@ import com.sxj.bank.util.LogUtil;
 
 public class BankActivity extends BaseActivity {
 
+    private TextView welcome_msg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank);
+
+        welcome_msg = getViewById(R.id.welcome_msg);
+        welcome_msg.setText(getUsername() + ", 欢迎您！\r\n     " + "欢迎来到银行融宜面签管理系统，如果进入工作时间，点击页面进入工作。");
     }
 
     public void entryRonyimianQian(View view) {

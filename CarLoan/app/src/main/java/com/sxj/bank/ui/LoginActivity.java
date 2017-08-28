@@ -144,28 +144,29 @@ public class LoginActivity extends BaseActivity {
                 @Override
                 public void onNext(LoginBack loginBack) {
                     if ("YES".equals(loginBack.getSuccess())) {
-                        LoginInfo info = new LoginInfo();
-                        info.setUsername(email);
-                        info.setPassword(password);
-                        info.setToken("");
                         String message = loginBack.getMessage();
                         if(message != null){
                             String[] args = message.split(",");
                             if(args.length >= 4){
-                                info.setUser_id(args[3]);
-                                info.setUsername(args[2]);
-                                info.setRole(args[1]);
-                                //111111111111,1,李生,1
+                                if("20".equals(args[3])) {
+                                    LoginInfo info = new LoginInfo();
+                                    info.setUsername(email);
+                                    info.setPassword(password);
+                                    info.setToken("");
+                                    info.setUser_id(args[1]);
+                                    info.setUsername(args[2]);
+                                    info.setRole(args[3]);
+                                    saveUserInfo(info);
+                                    goMain();
+                                    showProgress(false);
+                                    finish();
+                                    return;
+                                }
                             }
                         }
-                        saveUserInfo(info);
-                        goMain();
-                        showProgress(false);
-                        finish();
-                    }else{
-                        Toast.makeText(LoginActivity.this,"用户名或密码不正确！",Toast.LENGTH_LONG).show();
-                        showProgress(false);
                     }
+                    Toast.makeText(LoginActivity.this,"用户名或密码不正确！",Toast.LENGTH_LONG).show();
+                    showProgress(false);
                 }
             });
 

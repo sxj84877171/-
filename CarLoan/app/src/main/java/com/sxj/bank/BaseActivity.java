@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.sxj.bank.bean.LoginInfo;
 import com.sxj.bank.net.ApiServiceModel;
 import com.sxj.bank.ui.AdminActivity;
+import com.sxj.bank.ui.BankActivity;
 import com.sxj.bank.ui.LoginActivity;
 import com.sxj.bank.ui.MainActivity;
 import com.sxj.bank.ui.OtherRoleActivity;
@@ -65,7 +66,6 @@ public class BaseActivity extends AppCompatActivity {
     protected boolean isLogin() {
         LoginInfo info = app.getLoginInfo();
         if (info != null) {
-//            return info.getToken() != null;
             return info.getUsername() != null;
         }
         return false;
@@ -85,7 +85,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         if (!(this instanceof LoginActivity)) {
-//            menu.add(1, 200, 200, "退出登录");
+            menu.add(1, 200, 200, "退出登录");
         }
         return super.onCreateOptionsMenu(menu);
     }
@@ -134,18 +134,26 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void goMain() {
-        if (getLoginInfo().isDcy()) {
-            gotoInverstigation();
-            return;
-        } else if (getLoginInfo().isYwy()) {
-            gotoHomepage();
-            return;
-        } else if (getLoginInfo().isAdmin()) {
-            gotoAdminPage();
-        } else {
-            gotoOtherRolepage();
-        }
+//        if (getLoginInfo().isDcy()) {
+//            gotoInverstigation();
+//            return;
+//        } else if (getLoginInfo().isYwy()) {
+//            gotoHomepage();
+//            return;
+//        } else if (getLoginInfo().isAdmin()) {
+//            gotoAdminPage();
+//        } else {
+//            gotoOtherRolepage();
+//        }
 
+        goBankActivity();
+
+    }
+
+    private void goBankActivity() {
+        Intent intent = new Intent();
+        intent.setClass(this, BankActivity.class);
+        startActivity(intent);
     }
 
     protected void gotoAdminPage() {
