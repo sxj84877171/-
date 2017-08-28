@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class DateUtil {
 	private static  SimpleDateFormat imageSdf = new SimpleDateFormat("yyyyMMddHHmmss");  
-	private static  SimpleDateFormat waterSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+	private static  SimpleDateFormat waterSdf = new SimpleDateFormat("yyyy-MM-dd");  // HH:mm:ss
 	
 	
 	public static String getImageDate(){

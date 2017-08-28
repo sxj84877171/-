@@ -117,7 +117,6 @@ public class DiaoChaYuanWeiFu extends BaseActivity {
     };
 
     private void save() {
-        loan.setDate_dcy_yw(DateUtil.getWaterDate());
         loan.setDate_case(DateUtil.getWaterDate());
         loan.setUser_id_dcy_info(Integer.parseInt(getLoginInfo().getUser_id()));
         loan.setLoan_amount(loan.getLoan_amount_dcy());

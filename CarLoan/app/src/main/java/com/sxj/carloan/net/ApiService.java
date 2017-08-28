@@ -11,6 +11,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -70,6 +71,7 @@ public interface ApiService {
             , @Query("date_ywy") String date_ywy, @Query("case_state_id ") String case_state_id
     );
 
+//    @FormUrlEncoded
     @POST("AjaxService.ashx?method=UpdateTableApp&table_name=t_case")
     public Observable<FuncResponseBean> UpdateTable(@QueryMap Map<String, Object> map);
 
