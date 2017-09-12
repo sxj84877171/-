@@ -524,39 +524,39 @@ public class ViewInformation extends BaseActivity {
 
     void loadData(){
         if (loan.getId() > 0) {
-            model.FileExisted("photo/ywy/" + loan.getId() + "_1_1.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
+            model.FileExisted("photo/" + loan.getId() + "/1_1.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
                 @Override
                 public void onNext(FuncResponseBean funcResponseBean) {
                     if ("YES".equals(funcResponseBean.getSuccess())) {
                         sfzzList.clear();
-                        sfzzList.add("http://carmis.timesly.cn/photo/ywy/{case_id}_1_1.jpg".replace("{case_id}",loan.getId()+""));
+                        sfzzList.add("http://carmis.timesly.cn/photo/{case_id}/1_1.jpg".replace("{case_id}",loan.getId()+""));
                     }
                 }
             });
-            model.FileExisted("photo/ywy/" + loan.getId() + "_1_2.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
+            model.FileExisted("photo/" + loan.getId() + "/1_2.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
                 @Override
                 public void onNext(FuncResponseBean funcResponseBean) {
                     if ("YES".equals(funcResponseBean.getSuccess())) {
                         sfzfList.clear();
-                        sfzfList.add("http://carmis.timesly.cn/photo/ywy/{case_id}_1_2.jpg".replace("{case_id}",loan.getId()+""));
+                        sfzfList.add("http://carmis.timesly.cn/photo/{case_id}/1_2.jpg".replace("{case_id}",loan.getId()+""));
                     }
                 }
             });
-            model.FileExisted("photo/ywy/" + loan.getId() + "_2.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
+            model.FileExisted("photo/" + loan.getId() + "/1_3.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
                 @Override
                 public void onNext(FuncResponseBean funcResponseBean) {
                     if ("YES".equals(funcResponseBean.getSuccess())) {
                         fzList.clear();
-                        fzList.add("http://carmis.timesly.cn/photo/ywy/{case_id}_2.jpg".replace("{case_id}",loan.getId()+""));
+                        fzList.add("http://carmis.timesly.cn/photo/{case_id}/1_3.jpg".replace("{case_id}",loan.getId()+""));
                     }
                 }
             });
-            model.FileExisted("photo/ywy/" + loan.getId() + "_3.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
+            model.FileExisted("photo/" + loan.getId() + "/1_4.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
                 @Override
                 public void onNext(FuncResponseBean funcResponseBean) {
                     if ("YES".equals(funcResponseBean.getSuccess())) {
                         zjlList.clear();
-                        zjlList.add("http://carmis.timesly.cn/photo/ywy/{case_id}_3.jpg".replace("{case_id}",loan.getId()+""));
+                        zjlList.add("http://carmis.timesly.cn/photo/{case_id}/1_4.jpg".replace("{case_id}",loan.getId()+""));
                     }
                 }
             });
@@ -568,8 +568,8 @@ public class ViewInformation extends BaseActivity {
                             cheliangList.clear();
                             String[] files = funcResponseBean.getMessage().split(",");
                             for(String file: files){
-                                if(!TextUtils.isEmpty(file)){
-                                    cheliangList.add("http://carmis.timesly.cn/photo/car/" + file);
+                                if(!TextUtils.isEmpty(file) && file.startsWith("2_")){
+                                    cheliangList.add("http://carmis.timesly.cn/photo/" + loan.getId() + "/" + file);
                                 }
                             }
                         }
@@ -586,23 +586,23 @@ public class ViewInformation extends BaseActivity {
                         if (!TextUtils.isEmpty(msg)) {
                             String[] strs = msg.split(",");
                             for (String str : strs) {
-                                if (str.startsWith(loan.getId() + "_1d")) {
-                                    lujiaList.add("http://carmis.timesly.cn/photo/dcy/" + str);
+                                if (str.startsWith("3_1d")) {
+                                    lujiaList.add("http://carmis.timesly.cn/photo/" + loan.getId() + "/" + str);
                                 }
-                                if (str.startsWith(loan.getId() + "_2d")) {
-                                    lugongList.add("http://carmis.timesly.cn/photo/dcy/" + str);
+                                if (str.startsWith("3_2d")) {
+                                    lugongList.add("http://carmis.timesly.cn/photo/" + loan.getId() + "/" + str);
                                 }
-                                if (str.startsWith(loan.getId() + "_3d")) {
-                                    luyinList.add("http://carmis.timesly.cn/photo/dcy/" + str);
+                                if (str.startsWith("3_3d")) {
+                                    luyinList.add("http://carmis.timesly.cn/photo/" + loan.getId() + "/" + str);
                                 }
-                                if (str.startsWith(loan.getId() + "_4d")) {
-                                    lumianList.add("http://carmis.timesly.cn/photo/dcy/" + str);
+                                if (str.startsWith("3_4d")) {
+                                    lumianList.add("http://carmis.timesly.cn/photo/" + loan.getId() + "/"+ str);
                                 }
-                                if (str.startsWith(loan.getId() + "_5d")) {
-                                    luchanList.add("http://carmis.timesly.cn/photo/dcy/" + str);
+                                if (str.startsWith("3_5d")) {
+                                    luchanList.add("http://carmis.timesly.cn/photo/" + loan.getId() + "/" + str);
                                 }
-                                if (str.startsWith(loan.getId() + "_6d")) {
-                                    luzhengList.add("http://carmis.timesly.cn/photo/dcy/" + str);
+                                if (str.startsWith("3_6d")) {
+                                    luzhengList.add("http://carmis.timesly.cn/photo/" + loan.getId() + "/" + str);
                                 }
                             }
                         }

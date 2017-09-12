@@ -19,9 +19,12 @@ import com.sxj.carloan.ApplicationInfoManager;
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
 import com.sxj.carloan.bean.FuncResponseBean;
+import com.sxj.carloan.bean.ProductBean;
+import com.sxj.carloan.bean.ResultListBean;
 import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.product.ProductFactroy;
 import com.sxj.carloan.ui.HomeInfoAcitivity;
+import com.sxj.carloan.ui.LoanSubscriber;
 import com.sxj.carloan.ui.PersonCreditActivity;
 import com.sxj.carloan.ui.RepaymentActivity;
 import com.sxj.carloan.util.BeanToMap;
@@ -31,6 +34,7 @@ import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -73,15 +77,8 @@ public class InfomationActivity extends BaseActivity {
     private boolean isModify = false;
 
 
-    private static final String[] PRODUCT_TYPES = new String[]{
-            "工行-二手车全分期36个月24.48返4包干",
-            "工行-二手车半分期36个月18.8包干",
-            "工行-二手车12全分期36个月24.48返4包干",
-            "自有资金贷款产品",
-            "工行-二手车12全分期36个月24.48返4包干（部分贷款公司自有）",
-            "工行-新车全分期36个月18返3",
-            "工行-新车半分期36个月13.5",
-            "工行-新车半分期24个月10.5"};
+    private static String[] PRODUCT_TYPES = new String[]{};
+    private List<ProductBean> productBeanList;
 
 
     /**
@@ -666,17 +663,10 @@ public class InfomationActivity extends BaseActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     initType(which);
-                    loan.setProduct_id("" + (which + 1));
-                    if(which <= 4){
-                        loan.setCase_type_id_1(1);
-                    }else{
-                        loan.setCase_type_id_1(2);
-                    }
+                    loan.setProduct_id("" + productBeanList.get(which).getId());
+                    loan.setCase_type_id_1(productBeanList.get(which).getCase_type_id());
                     typeDialog.dismiss();
-                    loan_time.setText("" + 3);
-                    if (which + 1 == 8) {
-                        loan_time.setText("" + 2);
-                    }
+                    loan_time.setText("" + productBeanList.get(which).getCredit_years());
                 }
             };
 
@@ -686,27 +676,36 @@ public class InfomationActivity extends BaseActivity {
     }
 
     private void initType(int which) {
-        if (which < PRODUCT_TYPES.length && which >= 0) {
-            business_type.setText(PRODUCT_TYPES[which]);
-            loan.setProduct_id("" + (which + 1));
+        if (which < PRODUCT_TYPES.length && which >= 0 && productBeanList != null) {
+            business_type.setText(productBeanList.get(which).getProduct_name());
+            loan.setProduct_id("" + productBeanList.get(which).getId());
         }
     }
 
 
-
     void initData() {
+        if (ProductFactroy.getInstance().getProductBeanList() != null) {
+            PRODUCT_TYPES = new String[ProductFactroy.getInstance().getProductBeanList().size()];
+            productBeanList = ProductFactroy.getInstance().getProductBeanList();
+            for (int i = 0; i < productBeanList.size(); i++) {
+                PRODUCT_TYPES[i] = productBeanList.get(i).getProduct_name();
+            }
+        }
         if (loan != null) {
             int productId = 1;
+            ProductBean productBean;
             try {
                 productId = Integer.parseInt(loan.getProduct_id());
+                productBean = findProduct(productId);
             } catch (Exception ex) {
                 loan.setProduct_id("1");
                 loan.setCase_type_id_1(1);
+                productBean = null;
             }
             loan_time.setText(loan.getCredit_years() + "");
-            if (productId <= PRODUCT_TYPES.length && (productId > 0)) {
-                business_type.setText(PRODUCT_TYPES[productId - 1]);
-                loan_time.setText(ProductFactroy.getInstance().processProductType(productId, 0).getCreditYears() + "");
+            if (productBean != null) {
+                business_type.setText(productBean.getProduct_name());
+                loan_time.setText("" + productBean.getCredit_years());
             }
             apply_name.setText(getLoanString(loan.getCust_name_tmp()));
             sex.setText(getLoanString(loan.getCust_sex()));
@@ -722,6 +721,18 @@ public class InfomationActivity extends BaseActivity {
             yinhangshenbao_jine.setText(loan.getLoan_amount_high());
             daikuan_jine.setText(loan.getLoan_amount_ywy());
         }
+    }
+
+
+    ProductBean findProduct(int id) {
+        if (productBeanList != null) {
+            for (ProductBean productBean : productBeanList) {
+                if (productBean.getId() == id) {
+                    return productBean;
+                }
+            }
+        }
+        return null;
     }
 
 
@@ -881,7 +892,7 @@ public class InfomationActivity extends BaseActivity {
                     if ("YES".equals(serverBean.getSuccess())) {
                         Toast.makeText(InfomationActivity.this, "保存成功", Toast.LENGTH_LONG).show();
                         finish();
-                    }else{
+                    } else {
                         toast("保存失败");
                     }
                 }
@@ -906,7 +917,7 @@ public class InfomationActivity extends BaseActivity {
                         loan.setId(Integer.parseInt(serverBean.getMessage()));
                         ApplicationInfoManager.getInstance().setInfo(loan);
                         finish();
-                    }else{
+                    } else {
                         toast("保存失败");
                     }
                 }

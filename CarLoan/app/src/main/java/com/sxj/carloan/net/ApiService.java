@@ -1,6 +1,8 @@
 package com.sxj.carloan.net;
 
 import com.sxj.carloan.bean.FuncResponseBean;
+import com.sxj.carloan.bean.ProductBean;
+import com.sxj.carloan.bean.ResultListBean;
 import com.sxj.carloan.bean.ServerBean;
 
 import java.util.Map;
@@ -35,6 +37,11 @@ public interface ApiService {
     //PageWork
     @POST("AjaxService.ashx?method=PageWork&sql=* from t_case")
     public Observable<ServerBean> PageWork(@Query("pageSize") String pageSize, @Query("offset") String offset, @Query("if_desc") String if_desc);
+
+    //Product
+    @POST("AjaxService.ashx?method=PageWork&sql=* from t_product")
+    public Observable<ResultListBean<ProductBean>> queryProduct(@Query("pageSize") String pageSize, @Query("offset") String offset, @Query("if_desc") String if_desc);
+
 
     @POST("AjaxService.ashx?method=InsertTableApp&table_name=t_case")
     public Observable<FuncResponseBean> InsertTable(@QueryMap Map<String, Object> map);

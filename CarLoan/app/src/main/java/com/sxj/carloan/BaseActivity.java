@@ -28,9 +28,13 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.sxj.carloan.bean.LoginInfo;
+import com.sxj.carloan.bean.ProductBean;
+import com.sxj.carloan.bean.ResultListBean;
 import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.net.ApiServiceModel;
+import com.sxj.carloan.product.ProductFactroy;
 import com.sxj.carloan.ui.AdminActivity;
+import com.sxj.carloan.ui.LoanSubscriber;
 import com.sxj.carloan.ui.LoginActivity;
 import com.sxj.carloan.ui.MainActivity;
 import com.sxj.carloan.ui.OtherRoleActivity;
@@ -89,6 +93,26 @@ public class BaseActivity extends AppCompatActivity {
         app = (App) getApplication();
         loan = ApplicationInfoManager.getInstance().getInfo();
         activityList.add(this);
+        initData();
+    }
+
+    private void initData() {
+        if(ProductFactroy.getInstance().getProductBeanList() == null) {
+            model.queryProduct("100", "0", "1").subscribe(new LoanSubscriber<ResultListBean<ProductBean>>() {
+                @Override
+                public void onNext(ResultListBean<ProductBean> productBeanResultListBean) {
+                    super.onNext(productBeanResultListBean);
+                    if (productBeanResultListBean.getTotal() > 0) {
+                        ProductFactroy.getInstance().setProductBeanList(productBeanResultListBean.getRows());
+                    }
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    super.onError(e);
+                }
+            });
+        }
     }
 
     @Override

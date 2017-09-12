@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:visibility="gone"
             android:text="计算"/>
 
         <Button
@@ -37,9 +38,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/action"
+        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_above="@id/action">
 
 
         <LinearLayout
@@ -81,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:enabled="false"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType=""
                     android:text=""/>
@@ -116,7 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:enabled="false"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType=""
                     android:text=""/>
@@ -151,7 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:enabled="false"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType=""
                     android:text=""/>
@@ -186,7 +187,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:enabled="false"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType=""
                     android:text=""/>
@@ -222,8 +223,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -259,8 +260,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -296,8 +297,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -332,8 +333,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -367,8 +368,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -403,8 +404,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -441,8 +442,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -510,8 +511,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -547,8 +548,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -584,8 +585,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -621,8 +622,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -658,8 +659,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -695,8 +696,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -731,8 +732,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -767,8 +768,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -804,8 +805,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -846,8 +847,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -881,8 +882,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -916,8 +917,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>
@@ -951,8 +952,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center_vertical"
                     android:inputType="numberDecimal|numberSigned"
                     android:text=""/>

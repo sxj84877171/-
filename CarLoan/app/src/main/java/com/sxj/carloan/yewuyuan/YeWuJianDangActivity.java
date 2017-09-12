@@ -82,12 +82,16 @@ public class YeWuJianDangActivity extends BaseActivity {
                                 break;
                             case 2:
                                 shangchuanshenfenzheng_fan_ok.setVisibility(View.VISIBLE);
+                                break;
                             case 3:
-                                shangchuancheliang.setVisibility(View.VISIBLE);
+                                shangchuanzongjingli_ok.setVisibility(View.VISIBLE);
+                                break;
                             case 4:
                                 shangchuanfuzong_ok.setVisibility(View.VISIBLE);
+                                break;
                             case 5:
-                                shangchuanzongjingli_ok.setVisibility(View.VISIBLE);
+                                shangchuancheliang.setVisibility(View.VISIBLE);
+                                break;
                         }
 
                     }
@@ -150,7 +154,7 @@ public class YeWuJianDangActivity extends BaseActivity {
             refeashButton();
 
             if (loan.getId() > 0) {
-                model.FileExisted("photo/ywy/" + loan.getId() + "_1_1.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
+                model.FileExisted("photo/" + loan.getId() + "/1_1.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
                     @Override
                     public void onNext(FuncResponseBean funcResponseBean) {
                         if ("YES".equals(funcResponseBean.getSuccess())) {
@@ -158,7 +162,7 @@ public class YeWuJianDangActivity extends BaseActivity {
                         }
                     }
                 });
-                model.FileExisted("photo/ywy/" + loan.getId() + "_1_2.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
+                model.FileExisted("photo/" + loan.getId() + "/1_2.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
                     @Override
                     public void onNext(FuncResponseBean funcResponseBean) {
                         if ("YES".equals(funcResponseBean.getSuccess())) {
@@ -166,19 +170,23 @@ public class YeWuJianDangActivity extends BaseActivity {
                         }
                     }
                 });
-                model.FileExisted("photo/ywy/" + loan.getId() + "_2.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
+                model.FileExisted("photo/" + loan.getId() + "/1_3.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
                     @Override
                     public void onNext(FuncResponseBean funcResponseBean) {
                         if ("YES".equals(funcResponseBean.getSuccess())) {
                             shangchuanfuzong_ok.setVisibility(View.VISIBLE);
+                        }else{
+                            shangchuanfuzong_ok.setVisibility(View.GONE);
                         }
                     }
                 });
-                model.FileExisted("photo/ywy/" + loan.getId() + "_3.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
+                model.FileExisted("photo/" + loan.getId() + "/1_4.jpg").subscribe(new LoanSubscriber<FuncResponseBean>() {
                     @Override
                     public void onNext(FuncResponseBean funcResponseBean) {
                         if ("YES".equals(funcResponseBean.getSuccess())) {
                             shangchuanzongjingli_ok.setVisibility(View.VISIBLE);
+                        }else{
+                            shangchuanzongjingli_ok.setVisibility(View.GONE);
                         }
                     }
                 });

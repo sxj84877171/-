@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity {
     private ItemRecyclerViewAdapter itemRecyclerViewAdapter;
     private RecyclerView listView;
     private SwipeRefreshLayout mSwipeLayout;
-    private int count = 30;
+    private int count = 1000;
     private int index = 0;
     private int max = 0;
     private int type = 1;
@@ -167,6 +167,7 @@ public class MainActivity extends BaseActivity {
                         if (type == 0) {
                             newRows.add(bean);
                         } else if (type == 1) {
+                            //0,8,101,105,106,107,110,111,112,113,119
                             if (bean.getCase_state_id() == 0 ||
                                     bean.getCase_state_id() == 8 ||
                                     bean.getCase_state_id() == 101 ||
@@ -174,7 +175,10 @@ public class MainActivity extends BaseActivity {
                                     bean.getCase_state_id() == 106 ||
                                     bean.getCase_state_id() == 107 ||
                                     bean.getCase_state_id() == 110 ||
-                                    bean.getCase_state_id() == 112) {
+                                    bean.getCase_state_id() == 111 ||
+                                    bean.getCase_state_id() == 112 ||
+                                    bean.getCase_state_id() == 113 ||
+                                    bean.getCase_state_id() == 119) {
                                 newRows.add(bean);
                             }
                         } else {
@@ -185,7 +189,10 @@ public class MainActivity extends BaseActivity {
                                     bean.getCase_state_id() == 106 ||
                                     bean.getCase_state_id() == 107 ||
                                     bean.getCase_state_id() == 110 ||
-                                    bean.getCase_state_id() == 112)) {
+                                    bean.getCase_state_id() == 111 ||
+                                    bean.getCase_state_id() == 112 ||
+                                    bean.getCase_state_id() == 113 ||
+                                    bean.getCase_state_id() == 119)) {
                                 newRows.add(bean);
                             }
                         }
