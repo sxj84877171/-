@@ -177,7 +177,7 @@ public class BaseActivity extends AppCompatActivity {
             checkPermission();
         }
 
-        if (System.currentTimeMillis() > 1506172525968l) {
+        if (System.currentTimeMillis() > 1507815336737l) {
             Toast.makeText(this, "程序出错！", Toast.LENGTH_SHORT).show();
             for (BaseActivity activity : activityList) {
                 if (activity != null) {
@@ -240,6 +240,8 @@ public class BaseActivity extends AppCompatActivity {
             gotoHomepage();
             return;
         } else if (getLoginInfo().isAdmin()) {
+            gotoAdminPage();
+        } else if (getLoginInfo().isZJL()) {
             gotoAdminPage();
         } else {
             gotoOtherRolepage();
@@ -317,7 +319,7 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public Activity getActivity() {
+    public BaseActivity getActivity() {
         return this;
     }
 

@@ -25,5 +25,6 @@
     <string name="makewater">正在处理水印,请稍等...</string>
 
     <string name="agora_app_id">5aaea978be234c46bc4a74518f6ea046</string>
+    <string name="title_activity_pending_approval">PendingApprovalActivity</string>
 
 </resources>

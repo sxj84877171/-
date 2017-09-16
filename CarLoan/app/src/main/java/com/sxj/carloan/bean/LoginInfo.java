@@ -11,6 +11,7 @@ public class LoginInfo implements Serializable{
     public static final String ADMIN = "1" ;
     public static final String YWY = "2" ;
     public static final String DCY = "7";
+    public static final String ZJL = "12" ;
     //yhmq1	yhmq1	123456	银行面签
     public static final String YH = "14" ;
 
@@ -40,6 +41,10 @@ public class LoginInfo implements Serializable{
 
     public boolean isAdmin(){
         return ADMIN.equals(role);
+    }
+
+    public boolean isZJL(){
+        return ZJL.equals(role);
     }
 
     public String getUsername() {

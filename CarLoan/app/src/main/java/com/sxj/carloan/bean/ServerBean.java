@@ -336,6 +336,19 @@ GPS费gps_fee
         private String interest_bank;
         private int user_id_ywy = -1;
         private String fee_return_custom;
+        private int user_id_yw_pf;
+
+        public void setUser_id_dcy(int user_id_dcy) {
+            this.user_id_dcy = user_id_dcy;
+        }
+
+        public void setUser_id_yw_pf(int user_id_yw_pf) {
+            this.user_id_yw_pf = user_id_yw_pf;
+        }
+
+        public int getUser_id_yw_pf() {
+            return user_id_yw_pf;
+        }
 
         public String getBaoxian_fee() {
             return baoxian_fee;
