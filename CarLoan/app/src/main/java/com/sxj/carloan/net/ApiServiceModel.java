@@ -1,13 +1,16 @@
 package com.sxj.carloan.net;
 
 import com.sxj.carloan.bean.FuncResponseBean;
+import com.sxj.carloan.bean.LoanQuery;
 import com.sxj.carloan.bean.ProductBean;
 import com.sxj.carloan.bean.ResultListBean;
 import com.sxj.carloan.bean.ServerBean;
+import com.sxj.carloan.bean.VersionInfo;
 import com.sxj.carloan.util.DateUtil;
 import com.sxj.carloan.util.FileObject;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -416,4 +419,22 @@ public class ApiServiceModel {
         });
     }
 
+    public Observable<ResultListBean<LoanQuery>> s(String bgn_date,String end_date){
+        String sql = "select count(case when date_ywy between '" + bgn_date + "' and '" + end_date + "' then 1 end) as ywy_case_num," +
+                " count(case when date_ywy_qk between '" + bgn_date + "' and '" + end_date + "' then 1 end) as ywy_qk_num," +
+                " count(case when date_zhengxin_finished between '" + bgn_date + "' and '" + end_date + "' then 1 end) as zhengxin_num," +
+                " count(case when date_baoxian_finished between '" + bgn_date + "' and '" + end_date + "' then 1 end) as baoxian_num," +
+                " count(case when date_dispatch_finished between '" + bgn_date + "' and '" + end_date + "' then 1 end) as dispatch_num," +
+                " count(case when date_dcy_yw between '" + bgn_date + "' and '" + end_date + "' then 1 end) as dcy_num," +
+                " count(case when date_ds_finished between '" + bgn_date + "' and '" + end_date + "' then 1 end) as ds_num," +
+                " count(case when date_fk between '" + bgn_date + "' and '" + end_date + "' then 1 end) as fk_num," +
+                " count(case when date_loan_cw_finished between '" + bgn_date + "' and '" + end_date + "' then 1 end) as loan_cw_num " +
+                " from t_case" ;
+        return Api.getInstance().getService().searchTableBySQL(sql).compose(ApiServiceModel.<ResultListBean<LoanQuery>>io_main());
+    }
+
+
+    public Observable<ResultListBean<VersionInfo>> getNewVersionInfo(){
+        return Api.getInstance().getService().getNewVersionInfo().compose(ApiServiceModel.<ResultListBean<VersionInfo>>io_main());
+    }
 }

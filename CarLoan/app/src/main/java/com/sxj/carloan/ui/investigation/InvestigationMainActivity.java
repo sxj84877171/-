@@ -67,7 +67,7 @@ public class InvestigationMainActivity extends BaseActivity {
                 }
             }
         });
-
+        checkVersion();
     }
 
     @Override

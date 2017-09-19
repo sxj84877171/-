@@ -1,10 +1,13 @@
 package com.sxj.carloan.net;
 
 import com.sxj.carloan.bean.FuncResponseBean;
+import com.sxj.carloan.bean.LoanQuery;
 import com.sxj.carloan.bean.ProductBean;
 import com.sxj.carloan.bean.ResultListBean;
 import com.sxj.carloan.bean.ServerBean;
+import com.sxj.carloan.bean.VersionInfo;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -42,6 +45,11 @@ public interface ApiService {
     @POST("AjaxService.ashx?method=PageWork&sql=* from t_product")
     public Observable<ResultListBean<ProductBean>> queryProduct(@Query("pageSize") String pageSize, @Query("offset") String offset, @Query("if_desc") String if_desc);
 
+    @POST("AjaxService.ashx?method=SearchTableBySQL")
+    Observable<ResultListBean<LoanQuery>> searchTableBySQL(@Query("sql")String sql);
+
+    @POST("AjaxService.ashx?method=SearchTableBySQL&sql=select * from t_param")
+    Observable<ResultListBean<VersionInfo>> getNewVersionInfo();
 
     @POST("AjaxService.ashx?method=InsertTableApp&table_name=t_case")
     public Observable<FuncResponseBean> InsertTable(@QueryMap Map<String, Object> map);
@@ -93,6 +101,13 @@ public interface ApiService {
             , @Query("installment_type_id") String installment_type_id, @Query("user_id_ywy") String user_id_ywy
             , @Query("date_ywy") String date_ywy, @Query("case_state_id ") String case_state_id);
 
+    /**
+     * http://carmis.timesly.cn/AjaxService.ashx?method=SearchTableBySQL&sql=select count(case when date_ywy between '2017-03' and '2017-09' then 1 end) as ywy_case_num , count(case when date_ywy_qk between '2017-03' and '2017-09' then 1 end) as ywy_qk_num, count(case when date_zhengxin_finished between '2017-03' and '2017-09' then 1 end) as zhengxin_num , count(case when date_baoxian_finished between '2017-03' and '2017-09' then 1 end) as baoxian_num ,count(case when date_dispatch_finished between '2017-03' and '2017-09' then 1 end) as dispatch_num , count(case when date_dcy_yw between '2017-03' and '2017-09' then 1 end) as dcy_num,count(case when date_ds_finished between '2017-03' and '2017-09' then 1 end) as ds_num , count(case when date_fk between  '2017-03' and '2017-09' then 1 end) as fk_num,count(case when date_loan_cw_finished between '2017-03' and '2017-09' then 1 end) as loan_cw_num from t_case
+
+     * @param filename
+     * @param file
+     * @return
+     */
 
     @Multipart
     @POST("AjaxService.ashx?method=bUpLoadImage")
@@ -101,4 +116,6 @@ public interface ApiService {
     @Multipart
     @POST("AjaxService.ashx?method=bUpLoadImage")
     Observable<FuncResponseBean> uploadImageFile(@Query("file_name") String filename, @Part() MultipartBody.Part file);
+
+
 }

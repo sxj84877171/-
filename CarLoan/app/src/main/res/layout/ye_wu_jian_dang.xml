@@ -5,24 +5,40 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
-    <Button
-        android:id="@+id/submit_action"
+    <LinearLayout
+        android:id="@+id/action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="5dp"
-        android:text="提交"
-        android:visibility="gone"/>
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/submit_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="提交"
+            />
+
+        <Button
+            android:id="@+id/ret_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="拒贷"
+            />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:layout_above="@id/action">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/submit_action"
             android:orientation="vertical">
             <!--基本信息-->
             <LinearLayout

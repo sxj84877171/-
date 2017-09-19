@@ -102,6 +102,8 @@ public class CaseStateFactroy {
                 return "驻行审核退";
             case 115:
                 return "驻行送审退";
+            case 199:
+                return "拒绝贷款";
             default:
                 return "未知";
 

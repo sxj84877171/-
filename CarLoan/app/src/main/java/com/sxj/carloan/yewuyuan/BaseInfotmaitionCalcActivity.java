@@ -243,32 +243,32 @@ public class BaseInfotmaitionCalcActivity extends BaseActivity {
     private void initEditTextContent() {
         try {
             if (productType != null) {
-                product_name.setText(productType.getProductName());
-                loan_advance_percent.setText(double2String(productType.getLoanAdvancePercent()));
-                fee_rate.setText("" + productType.getFeeRate());
-                fee_rate_advance.setText(double2String(productType.getFeeRateAdvance()));
-                fee_rate_balance.setText(double2String(productType.getFeeRateBalance()));
-                loan_amount_ywy_corp.setText(double2String(productType.getLoanAmountYwyCorp()));
-                loan_amount_high.setText(double2String(productType.getLoanAmountHigh(), true));
-                interest_bank.setText(double2String(productType.getInterestBank()));
-                interest_company.setText(double2String(productType.getInterestCompany()));
-                deposit.setText(double2String(productType.getDeposit()));
-                payback_month_12.setText(double2String(productType.getPaybackMonth12()));
-                payback_month.setText(double2String(productType.getPaybackMonth()));
-                extras_fee.setText(double2String(productType.getExtrasFee()));
-                service_fee.setText(double2String(productType.getServiceFee()));
-                gps_fee.setText(double2String(productType.getGpsFee()));
-                mortgage_fee.setText(double2String(productType.getMortgageFee()));
-                home_visit_fee.setText(double2String(productType.getHomeVisitFee()));
-                baoxian_fee.setText(double2String(productType.getBaoXianFee()));
-                evaluation_fee.setText(double2String(productType.getEvaluationFee()));
-                earlier_fee.setText(double2String(productType.getEarlierFee()));
-                fee_return_agency.setText(double2String(productType.getFeeReturnAgency()));
-                fee_total.setText(double2String(productType.getFeeTotal()));
-                fee_return_custom.setText(double2String(productType.getFeeReturnCustom()));
-                commercial_insurance.setText(double2String(productType.getCommercialInsurance()));
-                commercial_insurance_return.setText(double2String(productType.getCommercialInsuranceReturn()));
-                payment_for_agency.setText(double2String(productType.getPaymentForAgency()));
+//                product_name.setText(productType.getProductName());
+                loan_advance_percent.setText(loan.getLoan_advance_percent());
+                fee_rate.setText(loan.getFee_rate());
+                fee_rate_advance.setText(loan.getFee_rate_advance());
+                fee_rate_balance.setText(loan.getFee_rate_balance());
+                loan_amount_ywy_corp.setText(loan.getLoan_amount_ywy_corp());
+                loan_amount_high.setText(loan.getLoan_amount_high());
+                interest_bank.setText(loan.getInterest_bank());
+                interest_company.setText(loan.getInterest_company());
+                deposit.setText(loan.getDeposit());
+                payback_month_12.setText(loan.getPayback_month_12());
+                payback_month.setText(loan.getPayback_month());
+                extras_fee.setText(loan.getExtras_fee());
+                service_fee.setText(loan.getService_fee());
+                gps_fee.setText(loan.getGps_fee());
+                mortgage_fee.setText(loan.getMortgage_fee());
+                home_visit_fee.setText(loan.getHome_visit_fee());
+                baoxian_fee.setText(loan.getBaoxian_fee());
+                evaluation_fee.setText(loan.getEvaluation_fee());
+                earlier_fee.setText(loan.getEarlier_fee());
+                fee_return_agency.setText(loan.getFee_return_agency());
+                fee_total.setText(loan.getFee_total());
+                fee_return_custom.setText(loan.getFee_return_custom());
+                commercial_insurance.setText(loan.getCommercial_insurance());
+                commercial_insurance_return.setText(loan.getCommercial_insurance_return());
+                payment_for_agency.setText(loan.getPayment_for_agency());
             }
         } catch (Exception e) {
             e.printStackTrace();

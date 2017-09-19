@@ -65,6 +65,8 @@ public class YeWuJianDangActivity extends BaseActivity {
     private TextView shangchuancheliang_ok;
 
     private Button submit_action;
+    private Button ret_action;
+    private View action;
     private int functionChoose;
     private AlertDialog choosePhotoDialog;
     private File photo;
@@ -131,6 +133,8 @@ public class YeWuJianDangActivity extends BaseActivity {
         shangchuanzongjingli_ok = getViewById(R.id.shangchuanzongjingli_ok);
         shangchuancheliang_ok = getViewById(R.id.shangchuancheliangzhaopian_ok);
         submit_action = getViewById(R.id.submit_action);
+        action = getViewById(R.id.action);
+        ret_action = getViewById(R.id.ret_action);
     }
 
     @Override
@@ -330,6 +334,20 @@ public class YeWuJianDangActivity extends BaseActivity {
 
             }
         });
+
+        ret_action.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loan.setCase_state_id(199);
+                model.update(BeanToMap.transRowsBean2Map(loan)).subscribe(new LoanSubscriber<FuncResponseBean>() {
+                    @Override
+                    public void onNext(FuncResponseBean funcResponseBean) {
+                        toast("Success!");
+                        finish();
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -517,9 +535,9 @@ public class YeWuJianDangActivity extends BaseActivity {
             ywy = getDoubleByString(loan.getLoan_amount_ywy());
         }
         if (ywy > 0) {
-            submit_action.setVisibility(View.VISIBLE);
+            action.setVisibility(View.VISIBLE);
         } else {
-            submit_action.setVisibility(View.GONE);
+            action.setVisibility(View.GONE);
         }
     }
 

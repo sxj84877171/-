@@ -119,6 +119,11 @@
             android:label="@string/title_activity_pending_approval"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity android:name=".ui.AdminPromote" android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.admin.ShenPiActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.BarChartActivity" android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

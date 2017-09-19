@@ -77,6 +77,8 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        checkVersion();
+
     }
 
     @Override

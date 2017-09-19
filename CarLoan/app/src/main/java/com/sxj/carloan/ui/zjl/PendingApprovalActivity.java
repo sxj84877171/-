@@ -1,14 +1,17 @@
 package com.sxj.carloan.ui.zjl;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.sxj.carloan.ApplicationInfoManager;
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
 import com.sxj.carloan.bean.ServerBean;
+import com.sxj.carloan.ui.HomeInfoItemActivity;
 import com.sxj.carloan.ui.ItemRecyclerViewAdapter;
 import com.sxj.carloan.util.LogUtil;
 
@@ -36,7 +39,8 @@ public class PendingApprovalActivity extends BaseActivity {
         itemRecyclerViewAdapter.setOnItemClickListener(new ItemRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, ServerBean.RowsBean rowsBean, int position) {
-
+                ApplicationInfoManager.getInstance().setInfo(rowsBean);
+                gotoShenPiPage();
             }
         });
         listView.setLayoutManager(new LinearLayoutManager(this));
@@ -63,12 +67,11 @@ public class PendingApprovalActivity extends BaseActivity {
 
     }
 
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    public boolean onPrepareOptionsMenu(android.view.Menu menu) {
-        return super.onPrepareOptionsMenu(menu);
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+//        menu.add(1, 1, 1, "业务月统计");
+//        menu.add(2, 2, 2, "角色分类统计");
+        return super.onCreateOptionsMenu(menu);
     }
 
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
@@ -76,6 +79,11 @@ public class PendingApprovalActivity extends BaseActivity {
         if (item.getItemId() == 1) {
 
         }
+
+        if (item.getItemId() == 2) {
+
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

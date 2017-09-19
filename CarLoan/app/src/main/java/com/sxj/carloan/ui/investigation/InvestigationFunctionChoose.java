@@ -321,6 +321,7 @@ public class InvestigationFunctionChoose extends BaseActivity {
                 Location location = getLastKnownLocation();
                 if (location != null) {
                     try {
+                        compressBitmap(file.getAbsolutePath(),500,file.getAbsolutePath());
                         Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
                         String address = SearchGoogleUtil.getAddr(location.getLatitude(), location.getLongitude());
                         File file1 = pressText(DateUtil.getWaterDate(), String.format(

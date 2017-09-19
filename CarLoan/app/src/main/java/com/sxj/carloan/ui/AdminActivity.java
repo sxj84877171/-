@@ -12,6 +12,7 @@ import com.sxj.carloan.ApplicationInfoManager;
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
 import com.sxj.carloan.bean.ServerBean;
+import com.sxj.carloan.ui.admin.ShenPiActivity;
 import com.sxj.carloan.ui.zjl.PendingApprovalActivity;
 import com.sxj.carloan.util.LogUtil;
 import com.sxj.carloan.yewuyuan.YeWuJianDangActivity;
@@ -67,6 +68,7 @@ public class AdminActivity extends BaseActivity {
         index = max = 0;
         itemRecyclerViewAdapter.cleanValues();
         fromServer();
+        checkVersion();
     }
 
     @Override
@@ -78,6 +80,7 @@ public class AdminActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         menu.add(1, 1, 1, "待批复");
         menu.add(2,2,2,"已处理");
+        menu.add(3,3,3,"统计查询");
 //        menu.add(3,3,3,"建档中");
 //        menu.add(4,4,4,"已完成");
         return super.onCreateOptionsMenu(menu);
@@ -99,21 +102,17 @@ public class AdminActivity extends BaseActivity {
             fromServer();
         }
 
+        if(item.getItemId() == 3){
+            Intent intent = new Intent(getActivity(), ShenPiActivity.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
 
     public void fromServer() {
-        ((BaseActivity) getActivity()).showProcess();
-     /*   ServerBean serverBean = model.PageWorkLocal("" + count, "" + index, "1");
-        boolean isAdd = false;
-        if (serverBean != null) {
-            ((BaseActivity) getActivity()).dismiss();
-            itemRecyclerViewAdapter.addValues(serverBean.getRows());
-            isAdd =  true;
-        }
-        final boolean isA = isAdd;*/
+         getActivity().showProcess();
         model.PageWork("" + count, "" + index, "1").subscribe(new Subscriber<ServerBean>() {
             @Override
             public void onCompleted() {

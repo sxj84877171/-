@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
@@ -170,9 +171,13 @@ public class ViewInformation extends BaseActivity {
         setContentView(R.layout.view_inforatmion);
         initViewById();
         initData();
-        loadData();
-        initViewVisible();
-        chooseRole();
+        try {
+            loadData();
+            initViewVisible();
+            chooseRole();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     private void chooseRole() {
@@ -444,6 +449,10 @@ public class ViewInformation extends BaseActivity {
             daikuan_jielun.setText(JUDGE[loan.getDcy_result_id()]);
             daikuan_beizhu.setText(loan.getDcy_info());
             diaocha_riqi.setText(loan.getDate_dcy_info());
+        }else{
+            toast("请先添加信息后，再查看！");
+            finish();
+            return;
         }
         initChoose();
     }

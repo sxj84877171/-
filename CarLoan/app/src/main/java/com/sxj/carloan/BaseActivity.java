@@ -7,14 +7,18 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -31,9 +35,12 @@ import com.sxj.carloan.bean.LoginInfo;
 import com.sxj.carloan.bean.ProductBean;
 import com.sxj.carloan.bean.ResultListBean;
 import com.sxj.carloan.bean.ServerBean;
+import com.sxj.carloan.bean.VersionInfo;
+import com.sxj.carloan.net.Api;
 import com.sxj.carloan.net.ApiServiceModel;
 import com.sxj.carloan.product.ProductFactroy;
 import com.sxj.carloan.ui.AdminActivity;
+import com.sxj.carloan.ui.AdminPromote;
 import com.sxj.carloan.ui.LoanSubscriber;
 import com.sxj.carloan.ui.LoginActivity;
 import com.sxj.carloan.ui.MainActivity;
@@ -49,11 +56,20 @@ import com.sxj.carloan.util.LogUtil;
 import com.sxj.carloan.yewuyuan.BaseInfotmaitionCalcActivity;
 import com.sxj.carloan.yewuyuan.InfomationActivity;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import rx.Subscriber;
 
 /**
  * Created by admin on 2017/6/25.
@@ -76,6 +92,9 @@ public class BaseActivity extends AppCompatActivity {
     App app;
     public ApiServiceModel model = new ApiServiceModel();
 
+    private boolean frist = true;
+
+
     private static List<BaseActivity> activityList = new ArrayList<>();
 
     private RequestOptions options = new RequestOptions()
@@ -97,7 +116,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        if(ProductFactroy.getInstance().getProductBeanList() == null) {
+        if (ProductFactroy.getInstance().getProductBeanList() == null) {
             model.queryProduct("100", "0", "1").subscribe(new LoanSubscriber<ResultListBean<ProductBean>>() {
                 @Override
                 public void onNext(ResultListBean<ProductBean> productBeanResultListBean) {
@@ -205,15 +224,15 @@ public class BaseActivity extends AppCompatActivity {
                 int month = datePicker.getMonth() + 1;
                 int day = datePicker.getDayOfMonth();
                 String dateString = year + "-";
-                if(month < 10){
+                if (month < 10) {
                     dateString += "0" + month;
-                }else{
+                } else {
                     dateString += month;
                 }
-                dateString += "-" ;
-                if(day < 10){
-                    dateString +=  "0" + day;
-                }else{
+                dateString += "-";
+                if (day < 10) {
+                    dateString += "0" + day;
+                } else {
                     dateString += day;
                 }
 
@@ -239,10 +258,10 @@ public class BaseActivity extends AppCompatActivity {
         } else if (getLoginInfo().isYwy()) {
             gotoHomepage();
             return;
-        } else if (getLoginInfo().isAdmin()) {
-            gotoAdminPage();
-        } else if (getLoginInfo().isZJL()) {
-            gotoAdminPage();
+//        } else if (getLoginInfo().isAdmin()) {
+//            gotoAdminPage();
+//        } else if (getLoginInfo().isZJL()) {
+//            gotoAdminPage();
         } else {
             gotoOtherRolepage();
         }
@@ -255,6 +274,12 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    protected void gotoShenPiPage() {
+        Intent intent = new Intent();
+        intent.setClass(this, AdminPromote.class);
+        startActivity(intent);
+    }
+
     protected void gotoHomepage() {
         Intent intent = new Intent();
 //        intent.setClass(this, YeWuMainPage.class);
@@ -262,9 +287,9 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    protected void gotoViewInfo(int role){
+    protected void gotoViewInfo(int role) {
         Intent intent = new Intent(this, ViewInformation.class);
-        intent.putExtra("role",role);
+        intent.putExtra("role", role);
         startActivity(intent);
     }
 
@@ -280,9 +305,9 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    protected void gotoViewPhoto(ArrayList<CharSequence> list){
-        Intent intent = new Intent(getActivity(),ViewPagerActivity.class);
-        intent.putCharSequenceArrayListExtra("path",list);
+    protected void gotoViewPhoto(ArrayList<CharSequence> list) {
+        Intent intent = new Intent(getActivity(), ViewPagerActivity.class);
+        intent.putCharSequenceArrayListExtra("path", list);
         startActivity(intent);
     }
 
@@ -405,6 +430,7 @@ public class BaseActivity extends AppCompatActivity {
         }
         try {
             Bitmap bmp = targetImg;
+
             int width = bmp.getWidth();
             int height = bmp.getHeight();
             Bitmap mbmpTest = Bitmap
@@ -465,4 +491,196 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
+    public void checkVersion() {
+        if(frist) {
+            new ApiServiceModel().getNewVersionInfo().subscribe(new Subscriber<ResultListBean<VersionInfo>>() {
+                @Override
+                public void onCompleted() {
+                    frist = false;
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(ResultListBean<VersionInfo> listResultListBean) {
+                    VersionInfo versionInfo = listResultListBean.getRows().get(0);
+                    if (versionInfo.getApp_versionCode() > getVersionCode()) {
+                        toast("发现新版本，正在下载APP，请稍候...");
+                        showProcess();
+                        downloadFile(versionInfo.getApp_versionName());
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * get App versionCode
+     *
+     * @return
+     */
+    public int getVersionCode() {
+        PackageManager packageManager = getPackageManager();
+        PackageInfo packageInfo;
+        int versionCode = 0;
+        try {
+            packageInfo = packageManager.getPackageInfo(getPackageName(), 0);
+            versionCode = packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return versionCode;
+    }
+
+
+    public void downloadFile(final String versionName) {
+        final String urlStr = "http://carmis.timesly.cn/doc/app" + versionName + ".apk" ;
+        new Thread() {
+            public void run() {
+                String path = "loan";
+                String fileName = "loan" +  versionName + ".apk";
+                OutputStream output = null;
+                String SDCard = Environment.getExternalStorageDirectory() + "";
+                String pathName = SDCard + "/" + path + "/" + fileName;//文件存储路径
+                try {
+                    URL url = new URL(urlStr);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    File file = new File(pathName);
+                    if(!file.exists() || file.length() != conn.getContentLength()) {
+                        InputStream input = conn.getInputStream();
+                        String dir = SDCard + "/" + path;
+                        new File(dir).mkdirs();//新建文件夹
+                        file.createNewFile();//新建文件
+                        output = new FileOutputStream(file);
+                        //读取大文件
+                        byte[] buffer = new byte[4 * 1024];
+                        int len = -1 ;
+                        while ((len = input.read(buffer)) != -1) {
+                            output.write(buffer,0,len);
+                        }
+                        output.flush();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                dismiss();
+                            }
+                        });
+                    }
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(Uri.fromFile(new File(pathName)),
+                            "application/vnd.android.package-archive");
+                    startActivity(intent);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        output.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        }.start();
+
+    }
+
+
+    public static boolean compressBitmap(String srcPath, int ImageSize, String savePath) {
+        int subtract;
+        String TAG = "compressBitmap";
+        Bitmap bitmap = compressByResolution(srcPath, 1024, 720); //分辨率压缩
+        if (bitmap == null) {
+            Log.i(TAG, "bitmap 为空");
+            return false;
+        }
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        int options = 100;
+        bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        Log.i(TAG, "图片分辨率压缩后：" + baos.toByteArray().length / 1024 + "KB");
+
+
+        while (baos.toByteArray().length > ImageSize * 1024) { //循环判断如果压缩后图片是否大于ImageSize kb,大于继续压缩
+            subtract = setSubstractSize(baos.toByteArray().length / 1024);
+            baos.reset();//重置baos即清空baos
+            options -= subtract;//每次都减少10
+            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
+            Log.i(TAG, "图片压缩后：" + baos.toByteArray().length / 1024 + "KB");
+        }
+        Log.i(TAG, "图片处理完成!" + baos.toByteArray().length / 1024 + "KB");
+        try {
+            FileOutputStream fos = new FileOutputStream(new File(savePath));//将压缩后的图片保存的本地上指定路径中
+            fos.write(baos.toByteArray());
+            fos.flush();
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (bitmap != null) {
+            bitmap.recycle();
+        }
+
+        return true; //压缩成功返回ture
+    }
+
+
+    private static int setSubstractSize(int imageMB) {
+
+        if (imageMB > 1000) {
+            return 60;
+        } else if (imageMB > 750) {
+            return 40;
+        } else if (imageMB > 500) {
+            return 20;
+        } else {
+            return 10;
+        }
+
+    }
+
+    /**
+     * 根据分辨率压缩图片比例
+     *
+     * @param imgPath
+     * @param w
+     * @param h
+     * @return
+     */
+    private static Bitmap compressByResolution(String imgPath, int w, int h) {
+        BitmapFactory.Options opts = new BitmapFactory.Options();
+        opts.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(imgPath, opts);
+
+        int width = opts.outWidth;
+        int height = opts.outHeight;
+        int widthScale = width / w;
+        int heightScale = height / h;
+
+        int scale;
+        if (widthScale < heightScale) { //保留压缩比例小的
+            scale = widthScale;
+        } else {
+            scale = heightScale;
+        }
+
+        if (scale < 1) {
+            scale = 1;
+        }
+
+        opts.inSampleSize = scale;
+
+        opts.inJustDecodeBounds = false;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(imgPath, opts);
+
+        return bitmap;
+    }
 }
