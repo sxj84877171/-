@@ -258,10 +258,10 @@ public class BaseActivity extends AppCompatActivity {
         } else if (getLoginInfo().isYwy()) {
             gotoHomepage();
             return;
-//        } else if (getLoginInfo().isAdmin()) {
-//            gotoAdminPage();
-//        } else if (getLoginInfo().isZJL()) {
-//            gotoAdminPage();
+        } else if (getLoginInfo().isAdmin()) {
+            gotoAdminPage();
+        } else if (getLoginInfo().isZJL()) {
+            gotoAdminPage();
         } else {
             gotoOtherRolepage();
         }

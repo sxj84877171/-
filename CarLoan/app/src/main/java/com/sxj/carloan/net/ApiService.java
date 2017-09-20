@@ -3,6 +3,7 @@ package com.sxj.carloan.net;
 import com.sxj.carloan.bean.FuncResponseBean;
 import com.sxj.carloan.bean.LoanQuery;
 import com.sxj.carloan.bean.ProductBean;
+import com.sxj.carloan.bean.QueryMonth;
 import com.sxj.carloan.bean.ResultListBean;
 import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.bean.VersionInfo;
@@ -47,6 +48,10 @@ public interface ApiService {
 
     @POST("AjaxService.ashx?method=SearchTableBySQL")
     Observable<ResultListBean<LoanQuery>> searchTableBySQL(@Query("sql")String sql);
+
+    @POST("AjaxService.ashx?method=SearchTableBySQL")
+    Observable<ResultListBean<QueryMonth>> searchTableBySQLByMonth(@Query("sql")String sql);
+
 
     @POST("AjaxService.ashx?method=SearchTableBySQL&sql=select * from t_param")
     Observable<ResultListBean<VersionInfo>> getNewVersionInfo();

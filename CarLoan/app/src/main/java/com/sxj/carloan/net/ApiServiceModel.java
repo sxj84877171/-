@@ -3,6 +3,7 @@ package com.sxj.carloan.net;
 import com.sxj.carloan.bean.FuncResponseBean;
 import com.sxj.carloan.bean.LoanQuery;
 import com.sxj.carloan.bean.ProductBean;
+import com.sxj.carloan.bean.QueryMonth;
 import com.sxj.carloan.bean.ResultListBean;
 import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.bean.VersionInfo;
@@ -436,5 +437,13 @@ public class ApiServiceModel {
 
     public Observable<ResultListBean<VersionInfo>> getNewVersionInfo(){
         return Api.getInstance().getService().getNewVersionInfo().compose(ApiServiceModel.<ResultListBean<VersionInfo>>io_main());
+    }
+
+    public Observable<ResultListBean<LoanQuery>> searchTableBySQL(String sql){
+        return Api.getInstance().getService().searchTableBySQL(sql).compose(ApiServiceModel.<ResultListBean<LoanQuery>>io_main());
+    }
+
+    public Observable<ResultListBean<QueryMonth>> searchTableBySQLByMonth(String sql){
+        return Api.getInstance().getService().searchTableBySQLByMonth(sql).compose(ApiServiceModel.<ResultListBean<QueryMonth>>io_main());
     }
 }

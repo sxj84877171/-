@@ -1,12 +1,13 @@
 package com.sxj.carloan.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by admin on 2017/9/11.
  */
 
-public class ResultListBean<T> {
+public class ResultListBean<T> implements Serializable{
 
     private  int total ;
 
