@@ -759,7 +759,6 @@ public class InfomationActivity extends BaseActivity {
         }
         loan.setCust_iden(id_no.getText().toString());
 
-
         if (TextUtils.isEmpty(marry_state.getText())) {
             toast("请选择婚姻状况");
             return;

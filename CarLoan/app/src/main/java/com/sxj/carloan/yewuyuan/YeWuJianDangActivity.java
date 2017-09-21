@@ -446,8 +446,6 @@ public class YeWuJianDangActivity extends BaseActivity {
                     switch (functionChoose) {
                         case 1:
                             model.shangchuanShenFengzhengZhengmian("" + loan.getId(), localFile).enqueue(responseBodyCallback);
-
-
                             break;
                         case 2:
                             model.shangchuanShenFengzhengFanmian("" + loan.getId(), localFile).enqueue(responseBodyCallback);

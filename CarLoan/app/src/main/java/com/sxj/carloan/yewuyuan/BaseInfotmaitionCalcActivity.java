@@ -370,12 +370,12 @@ public class BaseInfotmaitionCalcActivity extends BaseActivity {
         submit_action.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    initData();
-                } catch (Exception ex) {
-                    toast("请正确输入调整项");
-                    return;
-                }
+//                try {
+//                    initData();
+//                } catch (Exception ex) {
+//                    toast("请正确输入调整项");
+//                    return;
+//                }
                 saveData2Memory();
                 model.update(BeanToMap.transRowsBean2Map(loan)).subscribe(new Subscriber<FuncResponseBean>() {
                     @Override

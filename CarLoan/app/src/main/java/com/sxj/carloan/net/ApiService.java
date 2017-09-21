@@ -79,6 +79,9 @@ public interface ApiService {
     @POST("AjaxService.ashx?method=UpdateTableApp&table_name=t_case")
     public Observable<FuncResponseBean> UpdateTable(@Body ServerBean.RowsBean bean);
 
+    @POST("AjaxService.ashx?method=UpdateTableApp&table_name=t_case")
+    public Observable<FuncResponseBean> UpdateTableZongJingLi(@Query("id")String id,@Query("yw_pf_info")String text,@Query("case_state_id")String case_state_id,@Query("date_yw_pf")String time);
+
     @POST("AjaxService.ashx?method=InsertTableApp&table_name=t_case")
     public Observable<FuncResponseBean> InsertTable(@Query("case_type_id") String case_type_id
             , @Query("cust_name_tmp") String cust_name_tmp, @Query("cust_sex") String cust_sex

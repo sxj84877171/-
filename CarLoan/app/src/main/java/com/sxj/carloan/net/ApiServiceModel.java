@@ -20,6 +20,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Query;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -446,4 +447,9 @@ public class ApiServiceModel {
     public Observable<ResultListBean<QueryMonth>> searchTableBySQLByMonth(String sql){
         return Api.getInstance().getService().searchTableBySQLByMonth(sql).compose(ApiServiceModel.<ResultListBean<QueryMonth>>io_main());
     }
+
+    public Observable<FuncResponseBean> UpdateTableZongJingLi(String id, String text, String case_state_id,String time){
+        return Api.getInstance().getService().UpdateTableZongJingLi(id,text,case_state_id,time).compose(ApiServiceModel.<FuncResponseBean>io_main());
+    }
+
 }

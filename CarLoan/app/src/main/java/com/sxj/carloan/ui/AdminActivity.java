@@ -48,7 +48,12 @@ public class AdminActivity extends BaseActivity {
             public void onItemClick(View view, ServerBean.RowsBean rowsBean, int position) {
                 loan = rowsBean;
                 ApplicationInfoManager.getInstance().setInfo(loan);
-                gotoViewInfo(1);
+                if(rowsBean.getCase_state_id() == 12){
+                    Intent intent = new Intent(getActivity(), PendingApprovalActivity.class);
+                    startActivity(intent);
+                }else{
+                    gotoViewInfo(2);
+                }
 
             }
         });
@@ -67,22 +72,19 @@ public class AdminActivity extends BaseActivity {
 
         index = max = 0;
         itemRecyclerViewAdapter.cleanValues();
-        fromServer();
         checkVersion();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
+        fromServer();
     }
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         menu.add(1, 1, 1, "待批复");
         menu.add(2,2,2,"已处理");
         menu.add(3,3,3,"统计查询");
-//        menu.add(3,3,3,"建档中");
-//        menu.add(4,4,4,"已完成");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -93,8 +95,8 @@ public class AdminActivity extends BaseActivity {
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
         LogUtil.i("item " + item.getItemId());
         if (item.getItemId() == 1) {
-            Intent intent = new Intent(getActivity(), PendingApprovalActivity.class);
-            startActivity(intent);
+            type = 3;
+            fromServer();
         }
 
         if(item.getItemId() == 2){
@@ -122,7 +124,7 @@ public class AdminActivity extends BaseActivity {
             @Override
             public void onError(Throwable e) {
                 mSwipeLayout.setRefreshing(false);
-                ((BaseActivity) getActivity()).dismiss();
+                getActivity().dismiss();
                 LogUtil.e(e);
             }
 
@@ -137,8 +139,12 @@ public class AdminActivity extends BaseActivity {
                         if (getLoginInfo().getUser_id().equals("" + bean.getUser_id_yw_pf())){
                             newRows.add(bean);
                         }
-                    }else {
-                        newRows.add(bean);
+                    }else if(type == 3) {
+                        if(bean.getCase_state_id() == 12){
+                            newRows.add(bean);
+                        }
+                    }else{
+                            newRows.add(bean);
                     }
                 }
                 itemRecyclerViewAdapter.addValues(newRows);

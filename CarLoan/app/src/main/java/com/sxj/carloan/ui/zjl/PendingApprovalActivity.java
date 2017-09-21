@@ -1,122 +1,150 @@
 package com.sxj.carloan.ui.zjl;
 
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-import com.sxj.carloan.ApplicationInfoManager;
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
-import com.sxj.carloan.bean.ServerBean;
-import com.sxj.carloan.ui.HomeInfoItemActivity;
-import com.sxj.carloan.ui.ItemRecyclerViewAdapter;
-import com.sxj.carloan.util.LogUtil;
+import com.sxj.carloan.bean.FuncResponseBean;
+import com.sxj.carloan.ui.admin.ShenPiActivity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import rx.Subscriber;
 
 public class PendingApprovalActivity extends BaseActivity {
-    private ItemRecyclerViewAdapter itemRecyclerViewAdapter;
-    private RecyclerView listView;
-    private SwipeRefreshLayout mSwipeLayout;
-    private int count = 1000;
-    private int index = 0;
-    private int max = 0;
-    private int type = 1;
+
+    private View pifujiegou;
+    private TextView pifujiegouText;
+    private View pifuriqi;
+    private TextView pifuriqiText;
+    private EditText pifuyijian;
+    private Button queren ;
+
+    private AlertDialog pifu ;
+
+    private int pifuId = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_item_list);
-        listView = getViewById(R.id.list);
-        mSwipeLayout = getViewById(R.id.id_swipe_ly);
-        itemRecyclerViewAdapter = new ItemRecyclerViewAdapter(null, this);
-        itemRecyclerViewAdapter.setOnItemClickListener(new ItemRecyclerViewAdapter.OnItemClickListener() {
+        setContentView(R.layout.activity_shenpi);
+
+        pifujiegou = getViewById(R.id.pifujiegou);
+        pifujiegouText = getViewById(R.id.pifujiegou_text);
+        pifuriqi = getViewById(R.id.pifuriqi);
+        pifuriqiText = getViewById(R.id.pifuriqi_text);
+
+        pifuyijian = getViewById(R.id.pifuyijian_text);
+        queren = getViewById(R.id.queren);
+
+        pifujiegouText.setText("通过");
+        Date date = new Date();
+        pifuriqiText.setText((1900 + date.getYear()) + "-" + roundMonth(date.getMonth() + 1) + "-" + date.getDate());
+
+        pifujiegou.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(View view, ServerBean.RowsBean rowsBean, int position) {
-                ApplicationInfoManager.getInstance().setInfo(rowsBean);
-                gotoShenPiPage();
+            public void onClick(View v) {
+                showDialog();
             }
         });
-        listView.setLayoutManager(new LinearLayoutManager(this));
-        listView.setAdapter(itemRecyclerViewAdapter);
-        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+        pifuriqi.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onRefresh() {
-                if (index < max) {
-                    fromServer();
-                } else {
-                    mSwipeLayout.setRefreshing(false);
+            public void onClick(View v) {
+                createStartPickDialog();
+            }
+        });
+
+        queren.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String time = pifuriqiText.getText().toString();
+                loan.getId();
+                String caseId = "13" ;
+                if(pifuId == 1){
+                    caseId = "112" ;
+                }
+                if(pifuId != 0) {
+                    model.UpdateTableZongJingLi("" + loan.getId(), pifuyijian.getText().toString(), caseId, time).subscribe(new Subscriber<FuncResponseBean>() {
+                        @Override
+                        public void onCompleted() {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+
+                        }
+
+                        @Override
+                        public void onNext(FuncResponseBean funcResponseBean) {
+                            toast("提交成功");
+                            finish();
+                        }
+                    });
+                }else {
+                    finish();
                 }
             }
         });
-
-        index = max = 0;
-        itemRecyclerViewAdapter.cleanValues();
-        fromServer();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
     }
 
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
-//        menu.add(1, 1, 1, "业务月统计");
-//        menu.add(2, 2, 2, "角色分类统计");
+        menu.add(1, 1, 1, "查看详情");
         return super.onCreateOptionsMenu(menu);
     }
 
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
-        LogUtil.i("item " + item.getItemId());
-        if (item.getItemId() == 1) {
-
+        if(item.getItemId() == 1){
+            gotoViewInfo(2);
         }
-
-        if (item.getItemId() == 2) {
-
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
 
-    public void fromServer() {
-        (getActivity()).showProcess();
-        model.PageWork("" + count, "" + index, "1").subscribe(new Subscriber<ServerBean>() {
-            @Override
-            public void onCompleted() {
-                mSwipeLayout.setRefreshing(false);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                mSwipeLayout.setRefreshing(false);
-                ( getActivity()).dismiss();
-                LogUtil.e(e);
-            }
-
-            @Override
-            public void onNext(ServerBean serverBean) {
-                getActivity().dismiss();
-                itemRecyclerViewAdapter.cleanValues();
-                List<ServerBean.RowsBean> rows = serverBean.getRows();
-                List<ServerBean.RowsBean> newRows = new ArrayList<ServerBean.RowsBean>();
-                for (ServerBean.RowsBean bean : rows) {
-                    if(bean.getCase_state_id() == 12){
-                        newRows.add(bean);
-                    }
+    public void showDialog(){
+        if (pifu == null) {
+            final String[] args = new String[]{"尚未批复", "未通过", "通过"};
+            DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    pifuId = which;
+                    pifujiegouText.setText(args[which]);
+                    pifu.dismiss();
                 }
-                itemRecyclerViewAdapter.addValues(newRows);
-            }
-        });
+            };
+            pifu = createAlertDialog(args, listener);
+        }
+        pifu.show();
     }
 
+    private AlertDialog datePickDialog;
+
+    void createStartPickDialog() {
+        DataChooseListener listener = new DataChooseListener();
+        datePickDialog = createDataTimePick(listener);
+        datePickDialog.show();
+    }
+
+    private class DataChooseListener implements IDateChooseListener{
+
+        @Override
+        public void onDateChoose(String date, int year, int month, int day) {
+            pifuriqiText.setText(date);
+        }
+    }
+
+    public String roundMonth(int month){
+        if(month > 9){
+            return "" + month ;
+        }
+        return  "0" + month;
+    }
 }
