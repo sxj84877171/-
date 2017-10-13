@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,16 +27,23 @@ import com.sxj.carloan.product.ProductFactroy;
 import com.sxj.carloan.ui.LoanSubscriber;
 import com.sxj.carloan.ui.LoginActivity;
 import com.sxj.carloan.ui.ViewInformation;
+import com.sxj.carloan.ui.investigation.InvestigationFunctionChoose;
 import com.sxj.carloan.util.BeanToMap;
 import com.sxj.carloan.util.DateUtil;
 import com.sxj.carloan.util.FileObject;
 import com.sxj.carloan.util.FileUtil;
+import com.sxj.carloan.util.GlideImageLoader;
 import com.sxj.carloan.util.LogUtil;
 import com.sxj.carloan.util.SearchGoogleUtil;
 import com.tbruyelle.rxpermissions.RxPermissions;
+import com.yancy.gallerypick.config.GalleryConfig;
+import com.yancy.gallerypick.config.GalleryPick;
+import com.yancy.gallerypick.inter.IHandlerCallBack;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import okhttp3.ResponseBody;
@@ -49,6 +57,8 @@ import rx.Subscriber;
  */
 
 public class YeWuJianDangActivity extends BaseActivity {
+
+    private String TAG = YeWuJianDangActivity.class.getSimpleName();
 
     private View jibenxinxi;
     private View shangchuanshenfenzheng_zheng;
@@ -70,11 +80,24 @@ public class YeWuJianDangActivity extends BaseActivity {
     private int functionChoose;
     private AlertDialog choosePhotoDialog;
     private File photo;
-    private Callback<ResponseBody> responseBodyCallback = new Callback<ResponseBody>() {
+
+    private GalleryConfig galleryConfig;
+    protected IHandlerCallBack iHandlerCallBack;
+    protected List<String> path = new ArrayList<>();
+    private final int PERMISSIONS_REQUEST_READ_CONTACTS = 8;
+
+    private ResponseBodyCallback responseBodyCallback = new ResponseBodyCallback();
+    private class ResponseBodyCallback implements Callback<ResponseBody> {
+
+        private String path ;
+
+        public void setPath(String path) {
+            this.path = path;
+        }
+
         @Override
-        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+        public synchronized void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
             if (response.isSuccessful()) {
-                success();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -93,11 +116,14 @@ public class YeWuJianDangActivity extends BaseActivity {
                                 break;
                             case 5:
                                 shangchuancheliang.setVisibility(View.VISIBLE);
+                                shangchuancheliang_ok.setVisibility(View.VISIBLE);
+                                shangchuancheliang_ok.setText("+" + (++cheliangNum));
                                 break;
                         }
 
                     }
                 });
+//                toast(path + " 上传成功!");
             } else {
                 toast("上传失败，请重新上传");
             }
@@ -105,10 +131,64 @@ public class YeWuJianDangActivity extends BaseActivity {
 
         @Override
         public void onFailure(Call<ResponseBody> call, Throwable t) {
-            toast("上传出错，请重新上传");
-            LogUtil.e(t);
+            toast(path + "上传出错，请重新上传");
+            LogUtil.e(path ,t);
         }
     };
+
+    private void initImageLoad() {
+        galleryConfig = new GalleryConfig.Builder()
+                .imageLoader(new GlideImageLoader())    // ImageLoader 加载框架（必填）
+                .iHandlerCallBack(iHandlerCallBack)     // 监听接口（必填）
+                .provider("com.yancy.gallerypickdemo.fileprovider")   // provider(必填)
+                .pathList(path)                         // 记录已选的图片
+                .multiSelect(true)                      // 是否多选   默认：false
+                .multiSelect(true, 9)                   // 配置是否多选的同时 配置多选数量   默认：false ， 9
+                .maxSize(9)                             // 配置多选时 的多选数量。    默认：9
+                .crop(false)                             // 快捷开启裁剪功能，仅当单选 或直接开启相机时有效
+                .crop(false, 1, 1, 500, 500)             // 配置裁剪功能的参数，   默认裁剪比例 1:1
+                .isShowCamera(true)                     // 是否现实相机按钮  默认：false
+                .filePath("/Gallery/Pictures")          // 图片存放路径
+                .isOpenCamera(false)
+                .build();
+    }
+
+    private void initGallery() {
+        iHandlerCallBack = new IHandlerCallBack() {
+            @Override
+            public void onStart() {
+                Log.i(TAG, "onStart: 开启");
+            }
+
+            @Override
+            public void onSuccess(List<String> photoList) {
+                LogUtil.i(TAG, "onSuccess: 返回数据");
+                path.clear();
+                for (String s : photoList) {
+//                    LogUtil.i(TAG, s);
+//                    path.add(s);
+                    uploadImage(new File(s));
+                }
+                photoList.clear();
+            }
+
+            @Override
+            public void onCancel() {
+                LogUtil.i(TAG, "onCancel: 取消");
+            }
+
+            @Override
+            public void onFinish() {
+                LogUtil.i(TAG, "onFinish: 结束");
+            }
+
+            @Override
+            public void onError() {
+                Log.i(TAG, "onError: 出错");
+            }
+        };
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +196,8 @@ public class YeWuJianDangActivity extends BaseActivity {
         setContentView(R.layout.ye_wu_jian_dang);
         initView();
         initListenser();
+        initGallery();
+        initImageLoad();
     }
 
     private void initView() {
@@ -229,6 +311,7 @@ public class YeWuJianDangActivity extends BaseActivity {
             public void onClick(View v) {
                 if (loan != null && loan.getId() > 0) {
                     functionChoose = 1;
+                    galleryConfig.getBuilder().maxSize(1).build();
                     takePhoto();
                 } else {
                     toast("请录入基本信息再上传照片");
@@ -241,6 +324,7 @@ public class YeWuJianDangActivity extends BaseActivity {
             public void onClick(View v) {
                 if (loan != null && loan.getId() > 0) {
                     functionChoose = 2;
+                    galleryConfig.getBuilder().maxSize(1).build();
                     takePhoto();
                 } else {
                     toast("请录入基本信息再上传照片");
@@ -253,6 +337,7 @@ public class YeWuJianDangActivity extends BaseActivity {
             public void onClick(View v) {
                 if (loan != null && loan.getId() > 0) {
                     functionChoose = 5;
+                    galleryConfig.getBuilder().maxSize(9).build();
                     takePhoto();
                 } else {
                     toast("请录入基本信息再上传照片");
@@ -265,6 +350,7 @@ public class YeWuJianDangActivity extends BaseActivity {
             public void onClick(View v) {
                 if (loan != null && loan.getId() > 0) {
                     functionChoose = 3;
+                    galleryConfig.getBuilder().maxSize(1).build();
                     takePhoto();
                 } else {
                     toast("请录入基本信息再上传照片");
@@ -277,6 +363,7 @@ public class YeWuJianDangActivity extends BaseActivity {
             public void onClick(View v) {
                 if (loan != null && loan.getId() > 0) {
                     functionChoose = 4;
+                    galleryConfig.getBuilder().maxSize(1).build();
                     takePhoto();
                 } else {
                     toast("请录入基本信息再上传照片");
@@ -304,7 +391,7 @@ public class YeWuJianDangActivity extends BaseActivity {
                             public void onNext(FuncResponseBean funcResponseBean) {
                                 if ("YES".equals(funcResponseBean.getSuccess())) {
                                     if (loan.getCase_state_id() == 0 || loan.getCase_state_id() == 101) {
-                                        loan.setCase_state_id(1);
+                                        loan.setCase_state_id(4);
                                     } else if (loan.getCase_state_id() == 8) {
                                         loan.setCase_state_id(10);
                                     } else {
@@ -356,7 +443,7 @@ public class YeWuJianDangActivity extends BaseActivity {
     }
 
     private void takePhoto() {
-        if (choosePhotoDialog == null) {
+       /* if (choosePhotoDialog == null) {
             String[] args = new String[]{"拍照", "我的相册"};
             DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
                 @Override
@@ -399,7 +486,8 @@ public class YeWuJianDangActivity extends BaseActivity {
             };
             choosePhotoDialog = createAlertDialog(args, listener);
         }
-        choosePhotoDialog.show();
+        choosePhotoDialog.show();*/
+        GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(this);
     }
 
     @Override
@@ -425,7 +513,8 @@ public class YeWuJianDangActivity extends BaseActivity {
         new Thread() {
             public void run() {
                 File localFile = file;
-
+                responseBodyCallback = new ResponseBodyCallback();
+                responseBodyCallback.setPath(file.getName());
                 Location location = getLastKnownLocation();
                 if (location != null) {
                     try {
@@ -449,41 +538,17 @@ public class YeWuJianDangActivity extends BaseActivity {
                             break;
                         case 2:
                             model.shangchuanShenFengzhengFanmian("" + loan.getId(), localFile).enqueue(responseBodyCallback);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    shangchuanshenfenzheng_fan_ok.setVisibility(View.VISIBLE);
-                                }
-                            });
+
 
                             break;
                         case 3:
                             model.shangchuanFuzong("" + loan.getId(), localFile).enqueue(responseBodyCallback);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    shangchuanfuzong_ok.setVisibility(View.VISIBLE);
-                                }
-                            });
                             break;
                         case 4:
                             model.shangchuanZongjingli("" + loan.getId(), localFile).enqueue(responseBodyCallback);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    shangchuanzongjingli_ok.setVisibility(View.VISIBLE);
-                                }
-                            });
                             break;
                         case 5:
                             model.shangchuanCheLiang("" + loan.getId(), localFile).enqueue(responseBodyCallback);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    shangchuancheliang_ok.setVisibility(View.VISIBLE);
-                                    shangchuancheliang_ok.setText("+" + (++cheliangNum));
-                                }
-                            });
                             break;
                     }
                 }

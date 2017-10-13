@@ -36,6 +36,8 @@ public class DiaoChaYuanWeiFu extends BaseActivity {
     private View diaocha_line;
     private TextView diaocha_riqi;
     private TextView daikuan_beizhu;
+    private TextView peiou_phone;
+    private TextView other_phone;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class DiaoChaYuanWeiFu extends BaseActivity {
         diaocha_line = getViewById(R.id.diaocha_line);
         diaocha_riqi = getViewById(R.id.diaocha_riqi);
         daikuan_beizhu = getViewById(R.id.daikuan_beizhu);
+        peiou_phone = getViewById(R.id.peiou_phonenum);
+        other_phone = getViewById(R.id.other_phone);
     }
 
     void initData() {
@@ -67,6 +71,8 @@ public class DiaoChaYuanWeiFu extends BaseActivity {
             daikuan_jielun.setText(args[loan.getDcy_result_id()]);
             daikuan_beizhu.setText(loan.getDcy_info());
             diaocha_riqi.setText(loan.getDate_dcy_info());
+            peiou_phone.setText(loan.getPartner_mobile());
+            other_phone.setText(loan.getThird_mobile());
         }
     }
 
@@ -120,6 +126,8 @@ public class DiaoChaYuanWeiFu extends BaseActivity {
         loan.setDate_case(DateUtil.getWaterDate());
         loan.setUser_id_dcy_info(Integer.parseInt(getLoginInfo().getUser_id()));
         loan.setLoan_amount(loan.getLoan_amount_dcy());
+        loan.setPartner_mobile(peiou_phone.getText().toString());
+        loan.setThird_mobile(other_phone.getText().toString());
 
         if (TextUtils.isEmpty(daikuan_diaochayuan.getText().toString())) {
             toast("请输入贷款金额");

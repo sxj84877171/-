@@ -280,11 +280,13 @@ GPS费gps_fee
     }
 
     public static class RowsBean implements Serializable {
-        private int case_type_id_1 = -1;
         private String date_dcy_info;
         private int installment_type_id_1 = -1;
         private String extras_fee;
         private int case_state_id = -1;
+        private int zhengxin_result_id;
+        private int user_id_baoxian;
+        private int case_type_id;
         private String dcy_info;
         private String product_id;
         private int id = -1;
@@ -300,6 +302,8 @@ GPS费gps_fee
         private String fee_return_agency;
         private String evaluation_fee;
         private String chehang_name;
+        private String  partner_mobile;
+        private String  third_mobile;
         private String cust_iden;
         private String cust_sex;
         private String loan_amount_ywy_corp;
@@ -366,12 +370,12 @@ GPS费gps_fee
             return fee_return_custom;
         }
 
-        public int getCase_type_id_1() {
-            return case_type_id_1;
+        public int getCase_type_id() {
+            return case_type_id;
         }
 
-        public void setCase_type_id_1(int case_type_id_1) {
-            this.case_type_id_1 = case_type_id_1;
+        public void setCase_type_id(int case_type_id) {
+            this.case_type_id = case_type_id;
         }
 
 
@@ -826,6 +830,38 @@ GPS费gps_fee
 
         public void setUser_id_ywy(int user_id_ywy) {
             this.user_id_ywy = user_id_ywy;
+        }
+
+        public int getUser_id_baoxian() {
+            return user_id_baoxian;
+        }
+
+        public int getZhengxin_result_id() {
+            return zhengxin_result_id;
+        }
+
+        public void setUser_id_baoxian(int user_id_baoxian) {
+            this.user_id_baoxian = user_id_baoxian;
+        }
+
+        public void setZhengxin_result_id(int zhengxin_result_id) {
+            this.zhengxin_result_id = zhengxin_result_id;
+        }
+
+        public String getPartner_mobile() {
+            return partner_mobile;
+        }
+
+        public String getThird_mobile() {
+            return third_mobile;
+        }
+
+        public void setPartner_mobile(String partner_mobile) {
+            this.partner_mobile = partner_mobile;
+        }
+
+        public void setThird_mobile(String third_mobile) {
+            this.third_mobile = third_mobile;
         }
     }
 }

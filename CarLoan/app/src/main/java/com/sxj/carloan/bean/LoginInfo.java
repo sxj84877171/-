@@ -13,7 +13,7 @@ public class LoginInfo implements Serializable{
     public static final String DCY = "7";
     public static final String ZJL = "12" ;
     //yhmq1	yhmq1	123456	银行面签
-    public static final String YH = "14" ;
+    public static final String YHMQ = "20" ;
 
     private String username;
     private String password;
@@ -45,6 +45,10 @@ public class LoginInfo implements Serializable{
 
     public boolean isZJL(){
         return ZJL.equals(role);
+    }
+
+    public boolean isYHMQ(){
+        return YHMQ.equals(role);
     }
 
     public String getUsername() {

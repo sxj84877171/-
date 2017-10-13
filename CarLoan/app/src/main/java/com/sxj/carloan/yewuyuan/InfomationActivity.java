@@ -403,7 +403,7 @@ public class InfomationActivity extends BaseActivity {
         initCompension(loan.getIf_gcr_id());
         initMarrayState(loan.getCust_marriage_id());
         sex.setText(loan.getCust_sex());
-        initType(loan.getCase_type_id_1() - 1);
+        initType(loan.getCase_type_id() - 1);
     }
 
 
@@ -664,7 +664,7 @@ public class InfomationActivity extends BaseActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     initType(which);
                     loan.setProduct_id("" + productBeanList.get(which).getId());
-                    loan.setCase_type_id_1(productBeanList.get(which).getCase_type_id());
+                    loan.setCase_type_id(productBeanList.get(which).getCase_type_id());
                     typeDialog.dismiss();
                     loan_time.setText("" + productBeanList.get(which).getCredit_years());
                 }
@@ -699,7 +699,7 @@ public class InfomationActivity extends BaseActivity {
                 productBean = findProduct(productId);
             } catch (Exception ex) {
                 loan.setProduct_id("1");
-                loan.setCase_type_id_1(1);
+                loan.setCase_type_id(1);
                 productBean = null;
             }
             loan_time.setText(loan.getCredit_years() + "");

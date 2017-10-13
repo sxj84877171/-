@@ -395,7 +395,7 @@ public class ViewInformation extends BaseActivity {
                 productId = Integer.parseInt(loan.getProduct_id());
             } catch (Exception ex) {
                 loan.setProduct_id("1");
-                loan.setCase_type_id_1(1);
+                loan.setCase_type_id(1);
             }
             loan_time.setText(loan.getCredit_years() + "");
             if (productId <= PRODUCT_TYPES.length && (productId > 0)) {
@@ -470,7 +470,7 @@ public class ViewInformation extends BaseActivity {
         initCompension(loan.getIf_gcr_id());
         initMarrayState(loan.getCust_marriage_id());
         sex.setText(loan.getCust_sex());
-        initType(loan.getCase_type_id_1() - 1);
+        initType(loan.getCase_type_id() - 1);
     }
 
     private void initHouseType(int which) {

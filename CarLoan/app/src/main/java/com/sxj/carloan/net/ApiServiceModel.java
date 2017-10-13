@@ -86,7 +86,7 @@ public class ApiServiceModel {
     }
 
     public Observable<FuncResponseBean> insert(ServerBean.RowsBean rowsBean) {
-        return Api.getInstance().getService().InsertTable(rowsBean.getCase_type_id_1() + "",
+        return Api.getInstance().getService().InsertTable(rowsBean.getCase_type_id() + "",
                 rowsBean.getCust_name_tmp(), rowsBean.getCust_sex(),
                 rowsBean.getCust_iden(), rowsBean.getCust_marriage_id() + "",
                 rowsBean.getCust_mobile(), rowsBean.getIf_gcr_id() + "",

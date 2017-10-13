@@ -65,6 +65,54 @@
             android:text="万元"/>
     </LinearLayout>
 
+    <!-- 配偶联系电话   -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="配偶联系电话:"/>
+
+        <EditText
+            android:id="@+id/peiou_phonenum"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <!-- 第三人联系电话   -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="第三人联系电话:"/>
+
+        <EditText
+            android:id="@+id/other_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
     <!-- 贷款【调查员】   -->
     <LinearLayout
         android:layout_width="match_parent"

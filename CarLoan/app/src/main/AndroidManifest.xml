@@ -124,6 +124,16 @@
 
         <activity android:name=".ui.admin.ShenPiActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.BarChartActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".YHMQActivity" android:screenOrientation="portrait"/>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.yancy.gallerypickdemo.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
     </application>
 
 </manifest>

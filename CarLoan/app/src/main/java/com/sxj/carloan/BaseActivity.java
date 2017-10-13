@@ -1,7 +1,6 @@
 package com.sxj.carloan;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -36,7 +35,6 @@ import com.sxj.carloan.bean.ProductBean;
 import com.sxj.carloan.bean.ResultListBean;
 import com.sxj.carloan.bean.ServerBean;
 import com.sxj.carloan.bean.VersionInfo;
-import com.sxj.carloan.net.Api;
 import com.sxj.carloan.net.ApiServiceModel;
 import com.sxj.carloan.product.ProductFactroy;
 import com.sxj.carloan.ui.AdminActivity;
@@ -52,13 +50,14 @@ import com.sxj.carloan.ui.investigation.InvestigationMainActivity;
 import com.sxj.carloan.util.DateUtil;
 import com.sxj.carloan.util.FileObject;
 import com.sxj.carloan.util.FileUtil;
+import com.sxj.carloan.util.GlideImageLoader;
 import com.sxj.carloan.util.LogUtil;
 import com.sxj.carloan.yewuyuan.BaseInfotmaitionCalcActivity;
-import com.sxj.carloan.yewuyuan.InfomationActivity;
+import com.yancy.gallerypick.config.GalleryConfig;
+import com.yancy.gallerypick.inter.IHandlerCallBack;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -70,6 +69,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rx.Subscriber;
+
+import static android.R.attr.path;
 
 /**
  * Created by admin on 2017/6/25.
@@ -93,8 +94,6 @@ public class BaseActivity extends AppCompatActivity {
     public ApiServiceModel model = new ApiServiceModel();
 
     private boolean frist = true;
-
-
     private static List<BaseActivity> activityList = new ArrayList<>();
 
     private RequestOptions options = new RequestOptions()
@@ -196,15 +195,6 @@ public class BaseActivity extends AppCompatActivity {
             checkPermission();
         }
 
-        if (System.currentTimeMillis() > 1507815336737l) {
-            Toast.makeText(this, "程序出错！", Toast.LENGTH_SHORT).show();
-            for (BaseActivity activity : activityList) {
-                if (activity != null) {
-                    activity.finish();
-                }
-            }
-
-        }
     }
 
     public interface IDateChooseListener {
@@ -262,10 +252,18 @@ public class BaseActivity extends AppCompatActivity {
             gotoAdminPage();
         } else if (getLoginInfo().isZJL()) {
             gotoAdminPage();
+        } else if (getLoginInfo().isYHMQ()) {
+            gotoYHMQ();
         } else {
             gotoOtherRolepage();
         }
 
+    }
+
+    private void gotoYHMQ() {
+        Intent intent = new Intent();
+        intent.setClass(this,YHMQActivity.class);
+        startActivity(intent);
     }
 
     protected void gotoAdminPage() {
@@ -581,8 +579,10 @@ public class BaseActivity extends AppCompatActivity {
                     e.printStackTrace();
                 } finally {
                     try {
-                        output.close();
-                    } catch (IOException e) {
+                        if(output != null){
+                            output.close();
+                        }
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 

@@ -9,7 +9,9 @@ import android.graphics.PorterDuff;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
@@ -20,6 +22,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 
 import com.sxj.carloan.BaseActivity;
 import com.sxj.carloan.R;
@@ -41,9 +44,8 @@ public class VideoChatViewActivity extends BaseActivity {
 
     private View local_video_view_container;
     private View remote_video_view_container;
-
-    private View wait;
-    private View linearlayout;
+    private View remind_msg;
+    private View receiver_call;
 
 
     private RtcEngine mRtcEngine;// Tutorial Step 1
@@ -77,23 +79,6 @@ public class VideoChatViewActivity extends BaseActivity {
                 }
             });
         }
-
-        @Override
-        public void onUserMuteAudio(int uid, final boolean muted) {
-            super.onUserMuteAudio(uid, muted);
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (!muted) {
-                        linearlayout.setVisibility(View.VISIBLE);
-                        local_video_view_container.setVisibility(View.VISIBLE);
-                        remote_video_view_container.setVisibility(View.VISIBLE);
-                        wait.setVisibility(View.GONE);
-                    }
-                }
-            });
-
-        }
     };
 
     private MediaProjectionManager projectionManager;
@@ -108,15 +93,14 @@ public class VideoChatViewActivity extends BaseActivity {
         setContentView(R.layout.activity_video_chat_view);
         local_video_view_container = findViewById(R.id.local_video_view_container);
         remote_video_view_container = findViewById(R.id.remote_video_view_container);
-        wait = findViewById(R.id.wait);
-        linearlayout = findViewById(R.id.linearlayout);
+        remind_msg = findViewById(R.id.remind_msg);
+        receiver_call = findViewById(R.id.receiver_call);
 
-//        linearlayout.setVisibility(View.GONE);
-//        local_video_view_container.setVisibility(View.GONE);
-//        remote_video_view_container.setVisibility(View.GONE);
-//        wait.setVisibility(View.VISIBLE);
-
-        wait.setVisibility(View.GONE);
+        local_video_view_container.setVisibility(View.GONE);
+        remote_video_view_container.setVisibility(View.GONE);
+        remind_msg.setVisibility(View.VISIBLE);
+        receiver_call.setVisibility(View.GONE);
+        recordFun();
     }
 
     private void initAgoraEngineAndJoinChannel() {
@@ -222,15 +206,12 @@ public class VideoChatViewActivity extends BaseActivity {
     public void onLocalVideoMuteClicked1(View view) {
         ImageView iv = (ImageView) view;
         if (iv.isSelected()) {
-            iv.setSelected(false);
-            finish();
-        } else {
+            onBackPressed();
+        }else{
             iv.setSelected(true);
-            initAgoraEngineAndJoinChannel();
-            linearlayout.setVisibility(View.GONE);
-            local_video_view_container.setVisibility(View.GONE);
-            remote_video_view_container.setVisibility(View.GONE);
-            wait.setVisibility(View.VISIBLE);
+            iv.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
+            local_video_view_container.setVisibility(View.VISIBLE);
+            remote_video_view_container.setVisibility(View.VISIBLE);
         }
     }
 
@@ -302,10 +283,42 @@ public class VideoChatViewActivity extends BaseActivity {
         mRtcEngine.setupRemoteVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
 
 
-//        surfaceView.setTag(uid); // for mark purpose
-//        View tipMsg = findViewById(R.id.quick_tips_when_use_agora_sdk); // optional UI
-//        tipMsg.setVisibility(View.GONE);
+        surfaceView.setTag(uid); // for mark purpose
+        View tipMsg = findViewById(R.id.quick_tips_when_use_agora_sdk); // optional UI
+        tipMsg.setVisibility(View.GONE);
+
+        remind_msg.setVisibility(View.GONE);
+        receiver_call.setVisibility(View.VISIBLE);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRtcEngine.muteLocalAudioStream(true);
+            }
+        },100);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRtcEngine.muteLocalAudioStream(false);
+            }
+        },200);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRtcEngine.muteLocalAudioStream(true);
+            }
+        },300);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRtcEngine.muteLocalAudioStream(false);
+            }
+        },400);
     }
+
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     // Tutorial Step 6
     private void leaveChannel() {
@@ -319,8 +332,15 @@ public class VideoChatViewActivity extends BaseActivity {
         FrameLayout container = (FrameLayout) findViewById(R.id.remote_video_view_container);
         container.removeAllViews();
 
-        View tipMsg = findViewById(R.id.quick_tips_when_use_agora_sdk); // optional UI
-        tipMsg.setVisibility(View.VISIBLE);
+//        View tipMsg = findViewById(R.id.quick_tips_when_use_agora_sdk); // optional UI
+//        tipMsg.setVisibility(View.VISIBLE);
+
+        receiver_call.setVisibility(View.GONE);
+        remind_msg.setVisibility(View.VISIBLE);
+        local_video_view_container.setVisibility(View.GONE);
+        remote_video_view_container.setVisibility(View.GONE);
+
+        onBackPressed();
     }
 
     // Tutorial Step 10
@@ -340,14 +360,14 @@ public class VideoChatViewActivity extends BaseActivity {
      * 录制按钮相关
      */
     private void recordFun() {
-//        Intent intent = new Intent(this, RecordService.class);
-//        bindService(intent, connection, BIND_AUTO_CREATE);
+        Intent intent = new Intent(this, RecordService.class);
+        bindService(intent, connection, BIND_AUTO_CREATE);
 
         if (recordService != null) {
 //            recordService.creatFloatView();
 //            recordService.updateFloatView("开始录制");
-//            Intent captureIntent = projectionManager.createScreenCaptureIntent();
-//            startActivityForResult(captureIntent, RECORD_REQUEST_CODE);
+            Intent captureIntent = projectionManager.createScreenCaptureIntent();
+            startActivityForResult(captureIntent, RECORD_REQUEST_CODE);
         }
     }
 

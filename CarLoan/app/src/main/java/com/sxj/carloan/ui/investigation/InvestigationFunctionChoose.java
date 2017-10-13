@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,7 +17,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,14 +37,20 @@ import com.sxj.carloan.util.BeanToMap;
 import com.sxj.carloan.util.DateUtil;
 import com.sxj.carloan.util.FileObject;
 import com.sxj.carloan.util.FileUtil;
+import com.sxj.carloan.util.GlideImageLoader;
 import com.sxj.carloan.util.LogUtil;
 import com.sxj.carloan.util.SearchGoogleUtil;
 import com.tbruyelle.rxpermissions.RxPermissions;
+import com.yancy.gallerypick.config.GalleryConfig;
+import com.yancy.gallerypick.config.GalleryPick;
+import com.yancy.gallerypick.inter.IHandlerCallBack;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import okhttp3.ResponseBody;
@@ -66,12 +76,21 @@ public class InvestigationFunctionChoose extends BaseActivity {
     private int luzheng = 0;
     private int lumore = 0;
 
+    private String TAG = "FunctionChoose";
+    private GalleryConfig galleryConfig;
+    protected IHandlerCallBack iHandlerCallBack;
+    protected List<String> path = new ArrayList<>();
+    private final int PERMISSIONS_REQUEST_READ_CONTACTS = 8;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_function_investigation);
 
         submit_action = getViewById(R.id.submit_action);
+        initPermissions();
+        initGallery();
+        initImageLoad();
 
         model.GetDcyPhotoName(loan.getId()).subscribe(new LoanSubscriber<FuncResponseBean>() {
             @Override
@@ -106,6 +125,23 @@ public class InvestigationFunctionChoose extends BaseActivity {
                 }
             }
         });
+    }
+
+    private void initImageLoad() {
+        galleryConfig = new GalleryConfig.Builder()
+                .imageLoader(new GlideImageLoader())    // ImageLoader 加载框架（必填）
+                .iHandlerCallBack(iHandlerCallBack)     // 监听接口（必填）
+                .provider("com.yancy.gallerypickdemo.fileprovider")   // provider(必填)
+                .pathList(path)                         // 记录已选的图片
+                .multiSelect(true)                      // 是否多选   默认：false
+                .multiSelect(true, 9)                   // 配置是否多选的同时 配置多选数量   默认：false ， 9
+                .maxSize(9)                             // 配置多选时 的多选数量。    默认：9
+                .crop(false)                             // 快捷开启裁剪功能，仅当单选 或直接开启相机时有效
+                .crop(false, 1, 1, 500, 500)             // 配置裁剪功能的参数，   默认裁剪比例 1:1
+                .isShowCamera(true)                     // 是否现实相机按钮  默认：false
+                .filePath("/Gallery/Pictures")          // 图片存放路径
+                .isOpenCamera(false)
+                .build();
     }
 
 
@@ -209,6 +245,21 @@ public class InvestigationFunctionChoose extends BaseActivity {
     }
 
     public void sumbitInfo(View view) {
+        if(loan.getZhengxin_result_id() == 0){
+            toast("征信未查，请先通过征信！");
+            return;
+        }
+
+        if(loan.getZhengxin_result_id() == 1){
+            toast("征信未通过，请先通过征信！");
+            return;
+        }
+
+        if(loan.getUser_id_baoxian() == 0 && loan.getCase_type_id() == 1){
+            toast("未做评估,请先做评估");
+            return;
+        }
+
         if (loan.getDcy_result_id() == 1) {
             loan.setCase_state_id(105);
         } else {
@@ -248,7 +299,7 @@ public class InvestigationFunctionChoose extends BaseActivity {
 
 
     private void takePhoto() {
-        if (choosePhotoDialog == null) {
+       /* if (choosePhotoDialog == null) {
             String[] args = new String[]{"拍照", "我的相册"};
             DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
                 @Override
@@ -291,7 +342,8 @@ public class InvestigationFunctionChoose extends BaseActivity {
             };
             choosePhotoDialog = createAlertDialog(args, listener);
         }
-        choosePhotoDialog.show();
+        choosePhotoDialog.show();*/
+        GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(this);
     }
 
     @Override
@@ -315,7 +367,7 @@ public class InvestigationFunctionChoose extends BaseActivity {
 
     private void uploadImage(final File file) {
         new Thread() {
-            public void run() {
+            public synchronized void run() {
                 File localFile = file;
 
                 Location location = getLastKnownLocation();
@@ -339,6 +391,8 @@ public class InvestigationFunctionChoose extends BaseActivity {
                 if (loan != null) {
                     switch (functionChoose) {
                         case 1:
+                            responseBodyCallback = new ResponseBodyCallback();
+                            responseBodyCallback.setPath(file.getName());
                             model.shangchuanDiaoChayuan1("" + loan.getId(), localFile).enqueue(responseBodyCallback);
                             break;
                         case 2:
@@ -361,10 +415,17 @@ public class InvestigationFunctionChoose extends BaseActivity {
         }.start();
     }
 
+    private ResponseBodyCallback responseBodyCallback = new ResponseBodyCallback();
+    private class ResponseBodyCallback implements Callback<ResponseBody> {
 
-    private Callback<ResponseBody> responseBodyCallback = new Callback<ResponseBody>() {
+        private String path ;
+
+        public void setPath(String path) {
+            this.path = path;
+        }
+
         @Override
-        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+        public synchronized void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
             switch (functionChoose) {
                 case 1:
                     lujia++;
@@ -387,12 +448,13 @@ public class InvestigationFunctionChoose extends BaseActivity {
             }
 
             refreashNum();
-            success();
+            toast(path + " 上传成功！");
         }
 
         @Override
         public void onFailure(Call<ResponseBody> call, Throwable t) {
             LogUtil.e(t);
+            toast(path + " 上传失败，请重试！");
         }
     };
 
@@ -438,6 +500,59 @@ public class InvestigationFunctionChoose extends BaseActivity {
             submit_action.setVisibility(View.VISIBLE);
         } else {
             submit_action.setVisibility(View.GONE);
+        }
+    }
+
+    private void initGallery() {
+        iHandlerCallBack = new IHandlerCallBack() {
+            @Override
+            public void onStart() {
+                Log.i(TAG, "onStart: 开启");
+            }
+
+            @Override
+            public void onSuccess(List<String> photoList) {
+                LogUtil.i(TAG, "onSuccess: 返回数据");
+                path.clear();
+                for (String s : photoList) {
+//                    LogUtil.i(TAG, s);
+//                    path.add(s);
+                    uploadImage(new File(s));
+                }
+            }
+
+            @Override
+            public void onCancel() {
+                LogUtil.i(TAG, "onCancel: 取消");
+            }
+
+            @Override
+            public void onFinish() {
+                LogUtil.i(TAG, "onFinish: 结束");
+            }
+
+            @Override
+            public void onError() {
+                Log.i(TAG, "onError: 出错");
+            }
+        };
+
+    }
+
+    // 授权管理
+    private void initPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            Log.i(TAG, "需要授权 ");
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                Log.i(TAG, "拒绝过了");
+                Toast.makeText(this, "请在 设置-应用管理 中开启此应用的储存授权。", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.i(TAG, "进行授权");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_READ_CONTACTS);
+            }
+        } else {
+            Log.i(TAG, "不需要授权 ");
+            GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(this);
         }
     }
 }
