@@ -141,7 +141,7 @@ public class YeWuJianDangActivity extends BaseActivity {
                 .imageLoader(new GlideImageLoader())    // ImageLoader 加载框架（必填）
                 .iHandlerCallBack(iHandlerCallBack)     // 监听接口（必填）
                 .provider("com.yancy.gallerypickdemo.fileprovider")   // provider(必填)
-                .pathList(path)                         // 记录已选的图片
+//                .pathList(path)                         // 记录已选的图片
                 .multiSelect(true)                      // 是否多选   默认：false
                 .multiSelect(true, 9)                   // 配置是否多选的同时 配置多选数量   默认：false ， 9
                 .maxSize(9)                             // 配置多选时 的多选数量。    默认：9
@@ -538,8 +538,6 @@ public class YeWuJianDangActivity extends BaseActivity {
                             break;
                         case 2:
                             model.shangchuanShenFengzhengFanmian("" + loan.getId(), localFile).enqueue(responseBodyCallback);
-
-
                             break;
                         case 3:
                             model.shangchuanFuzong("" + loan.getId(), localFile).enqueue(responseBodyCallback);

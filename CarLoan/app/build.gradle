@@ -8,8 +8,8 @@ android {
         applicationId "com.sxj.carloan"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 3
-        versionName "1.0.0.3"
+        versionCode 5
+        versionName "1.0.0.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }

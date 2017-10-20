@@ -366,53 +366,50 @@ public class InvestigationFunctionChoose extends BaseActivity {
     }
 
     private void uploadImage(final File file) {
-        new Thread() {
-            public synchronized void run() {
-                File localFile = file;
 
-                Location location = getLastKnownLocation();
-                if (location != null) {
-                    try {
-                        compressBitmap(file.getAbsolutePath(),500,file.getAbsolutePath());
-                        Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                        String address = SearchGoogleUtil.getAddr(location.getLatitude(), location.getLongitude());
-                        File file1 = pressText(DateUtil.getWaterDate(), String.format(
-                                getString(R.string.latitude_longitude),
-                                location.getLatitude(), location.getLongitude()), address, myBitmap,
-                                "宋体", 36, Color.YELLOW, 25, 20, 0, 0x88);
-                        if (file1 != null) {
-                            localFile = file1;
-                        }
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
+        File localFile = file;
 
-                if (loan != null) {
-                    switch (functionChoose) {
-                        case 1:
-                            responseBodyCallback = new ResponseBodyCallback();
-                            responseBodyCallback.setPath(file.getName());
-                            model.shangchuanDiaoChayuan1("" + loan.getId(), localFile).enqueue(responseBodyCallback);
-                            break;
-                        case 2:
-                            model.shangchuanDiaoChayuan2("" + loan.getId(), localFile).enqueue(responseBodyCallback);
-                            break;
-                        case 3:
-                            model.shangchuanDiaoChayuan3("" + loan.getId(), localFile).enqueue(responseBodyCallback);
-                            break;
-                        case 4:
-                            model.shangchuanDiaoChayuan4("" + loan.getId(), localFile).enqueue(responseBodyCallback);
-                            break;
-                        case 5:
-                            model.shangchuanDiaoChayuan5("" + loan.getId(), localFile).enqueue(responseBodyCallback);
-                        case 6:
-                            model.shangchuanDiaoChayuan6("" + loan.getId(), localFile).enqueue(responseBodyCallback);
-                            break;
-                    }
+        Location location = getLastKnownLocation();
+        if (location != null) {
+            try {
+                compressBitmap(file.getAbsolutePath(),500,file.getAbsolutePath());
+                Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                String address = SearchGoogleUtil.getAddr(location.getLatitude(), location.getLongitude());
+                File file1 = pressText(DateUtil.getWaterDate(), String.format(
+                        getString(R.string.latitude_longitude),
+                        location.getLatitude(), location.getLongitude()), address, myBitmap,
+                        "宋体", 36, Color.YELLOW, 25, 20, 0, 0x88);
+                if (file1 != null) {
+                    localFile = file1;
                 }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        }.start();
+        }
+
+        if (loan != null) {
+            switch (functionChoose) {
+                case 1:
+                    responseBodyCallback = new ResponseBodyCallback();
+                    responseBodyCallback.setPath(file.getName());
+                    model.shangchuanDiaoChayuan1("" + loan.getId(), localFile).enqueue(responseBodyCallback);
+                    break;
+                case 2:
+                    model.shangchuanDiaoChayuan2("" + loan.getId(), localFile).enqueue(responseBodyCallback);
+                    break;
+                case 3:
+                    model.shangchuanDiaoChayuan3("" + loan.getId(), localFile).enqueue(responseBodyCallback);
+                    break;
+                case 4:
+                    model.shangchuanDiaoChayuan4("" + loan.getId(), localFile).enqueue(responseBodyCallback);
+                    break;
+                case 5:
+                    model.shangchuanDiaoChayuan5("" + loan.getId(), localFile).enqueue(responseBodyCallback);
+                case 6:
+                    model.shangchuanDiaoChayuan6("" + loan.getId(), localFile).enqueue(responseBodyCallback);
+                    break;
+            }
+        }
     }
 
     private ResponseBodyCallback responseBodyCallback = new ResponseBodyCallback();
@@ -511,14 +508,16 @@ public class InvestigationFunctionChoose extends BaseActivity {
             }
 
             @Override
-            public void onSuccess(List<String> photoList) {
+            public void onSuccess(final List<String> photoList) {
                 LogUtil.i(TAG, "onSuccess: 返回数据");
                 path.clear();
-                for (String s : photoList) {
-//                    LogUtil.i(TAG, s);
-//                    path.add(s);
-                    uploadImage(new File(s));
-                }
+                new Thread() {
+                    public synchronized void run() {
+                        for (String s : photoList) {
+                            uploadImage(new File(s));
+                        }
+                    }
+                }.start();
             }
 
             @Override

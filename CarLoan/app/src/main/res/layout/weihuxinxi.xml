@@ -1,242 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <!-- 调查日期   -->
     <LinearLayout
-        android:id="@+id/diaocha_line"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+
+        <!-- 调查日期   -->
+        <LinearLayout
+            android:id="@+id/diaocha_line"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
 
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="调查日期:"/>
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="调查日期:"/>
 
-        <TextView
-            android:id="@+id/diaocha_riqi"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:scaleType="centerCrop"
-            android:src="@drawable/arrow_right"/>
+            <TextView
+                android:id="@+id/diaocha_riqi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                />
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_right"/>
 
-    <!-- 贷款【业务员】   -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        </LinearLayout>
 
-
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="贷款【业务员】:"/>
-
-        <EditText
-            android:id="@+id/daikuan_yewuyuan"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="万元"/>
-    </LinearLayout>
-
-    <!-- 配偶联系电话   -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        <!-- 贷款【业务员】   -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
 
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="配偶联系电话:"/>
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="贷款【业务员】:"/>
 
-        <EditText
-            android:id="@+id/peiou_phonenum"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"/>
+            <EditText
+                android:id="@+id/daikuan_yewuyuan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"/>
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="万元"/>
+        </LinearLayout>
 
-    <!-- 第三人联系电话   -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
-
-
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="第三人联系电话:"/>
-
-        <EditText
-            android:id="@+id/other_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"/>
-
-    </LinearLayout>
-
-    <!-- 贷款【调查员】   -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        <!-- 配偶联系电话   -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
 
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="贷款【调查员】:"/>
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="配偶联系电话:"/>
 
-        <EditText
-            android:id="@+id/daikuan_diaochayuan"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"/>
+            <EditText
+                android:id="@+id/peiou_phonenum"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="万元"/>
-    </LinearLayout>
+        </LinearLayout>
 
-    <!-- 调查结论   -->
-    <LinearLayout
-        android:id="@+id/daikuan_jielun_line"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        <!-- 第三人联系电话   -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
 
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="调查结论:"/>
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="第三人联系电话:"/>
 
-        <TextView
-            android:id="@+id/daikuan_jielun"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="B级"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:scaleType="centerCrop"
-            android:src="@drawable/arrow_right"/>
+            <EditText
+                android:id="@+id/other_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"/>
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <!-- 判定日期   -->
-    <LinearLayout
-        android:id="@+id/time_line"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        <!-- 贷款【调查员】   -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
 
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="判定日期:"/>
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="贷款【调查员】:"/>
 
-        <TextView
-            android:id="@+id/daikuan_riqi"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:scaleType="centerCrop"
-            android:src="@drawable/arrow_right"/>
+            <EditText
+                android:id="@+id/daikuan_diaochayuan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"/>
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="万元"/>
+        </LinearLayout>
 
-    <!-- 调查员备注   -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        <!-- 调查结论   -->
+        <LinearLayout
+            android:id="@+id/daikuan_jielun_line"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
 
-        <TextView
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="调查结论:"/>
+
+            <TextView
+                android:id="@+id/daikuan_jielun"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="B级"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_right"/>
+
+        </LinearLayout>
+
+        <!-- 判定日期   -->
+        <LinearLayout
+            android:id="@+id/time_line"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="判定日期:"/>
+
+            <TextView
+                android:id="@+id/daikuan_riqi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_right"/>
+
+        </LinearLayout>
+
+        <!-- 调查员备注   -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="调查员备注:"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/daikuan_beizhu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:hint="请在这里输入备注信息"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit_action"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:textSize="20sp"
-            android:text="调查员备注:"/>
-
-        <EditText
-            android:id="@+id/daikuan_beizhu"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:hint="请在这里输入备注信息"/>
+            android:layout_marginTop="20dp"
+            android:text="保存"/>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/submit_action"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="保存"/>
-
-</LinearLayout>
+</ScrollView>
