@@ -20,6 +20,11 @@ public class ICBCNewCarWhole36M18F3 extends ProductType {
         return "2";
     }
 
+    @Override
+    public String getCase_type_id() {
+        return null;
+    }
+
     /**
      * 获取贷款年限
      *

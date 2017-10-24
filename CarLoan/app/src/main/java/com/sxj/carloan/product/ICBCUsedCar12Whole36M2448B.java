@@ -20,6 +20,11 @@ public class ICBCUsedCar12Whole36M2448B extends ProductType {
         return "1";
     }
 
+    @Override
+    public String getCase_type_id() {
+        return null;
+    }
+
     /**
      * 获取贷款年限
      *

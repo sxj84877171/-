@@ -385,7 +385,7 @@ public class YeWuJianDangActivity extends BaseActivity {
                         }catch (Exception e){}
                     }
                     if (total > 0) {
-                        String cast_type_id = ProductFactroy.getInstance().processProductType(Integer.parseInt(loan.getProduct_id()), 0).getCarType();
+                        String cast_type_id = ProductFactroy.getInstance().processProductType(Integer.parseInt(loan.getProduct_id()), 0).getCase_type_id();
                         model.YwyPhotoOk(loan.getId(), cast_type_id).subscribe(new LoanSubscriber<FuncResponseBean>() {
                             @Override
                             public void onNext(FuncResponseBean funcResponseBean) {
@@ -518,6 +518,7 @@ public class YeWuJianDangActivity extends BaseActivity {
                 Location location = getLastKnownLocation();
                 if (location != null) {
                     try {
+                        compressBitmap(file.getAbsolutePath(),500,file.getAbsolutePath());
                         Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
                         String address = SearchGoogleUtil.getAddr(location.getLatitude(), location.getLongitude());
                         File file1 = pressText(DateUtil.getWaterDate(), String.format(

@@ -15,6 +15,8 @@ public interface IProductType {
 
     public String getCarType();
 
+    public String getCase_type_id();
+
     /**
      * 获取贷款年限
      *

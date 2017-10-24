@@ -506,19 +506,19 @@ public class ViewInformation extends BaseActivity {
 
     private void initMarrayState(int which) {
         switch (which) {
-            case 0:
+            case 1:
                 marry_state.setText("已婚");
                 break;
-            case 1:
+            case 2:
                 marry_state.setText("未婚");
                 break;
-            case 2:
+            case 3:
                 marry_state.setText("离异");
                 break;
-            case 3:
+            case 4:
                 marry_state.setText("丧偶");
                 break;
-            case 4:
+            case 5:
                 marry_state.setText("离异再婚");
                 break;
         }

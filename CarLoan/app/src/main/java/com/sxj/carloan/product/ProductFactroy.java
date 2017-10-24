@@ -70,6 +70,11 @@ public class ProductFactroy {
                 }
 
                 @Override
+                public String getCase_type_id() {
+                    return productBean.getCase_type_id() + "" ;
+                }
+
+                @Override
                 public int getCreditYears() {
                     return productBean.getCredit_years();
                 }

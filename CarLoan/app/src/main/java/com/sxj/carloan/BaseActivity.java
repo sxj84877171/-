@@ -324,6 +324,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     private ProgressDialog progressDialog;
+    private ProgressDialog updateProgressDialog;
 
     public void showProcess() {
         if (progressDialog == null) {
@@ -336,9 +337,26 @@ public class BaseActivity extends AppCompatActivity {
         progressDialog.show();
     }
 
+    public void showUpdateProcess() {
+        if (updateProgressDialog == null) {
+            updateProgressDialog = new ProgressDialog(this);
+            updateProgressDialog.setIndeterminate(false);
+            updateProgressDialog.setMessage("正在下载升级文件...");
+            updateProgressDialog.setCanceledOnTouchOutside(false);
+            updateProgressDialog.setCancelable(false);
+        }
+        updateProgressDialog.show();
+    }
+
     public void dismiss() {
         if (progressDialog != null) {
             progressDialog.dismiss();
+        }
+    }
+
+    public void dismissUpdate(){
+        if(updateProgressDialog != null){
+            updateProgressDialog.dismiss();
         }
     }
 
@@ -507,7 +525,7 @@ public class BaseActivity extends AppCompatActivity {
                     VersionInfo versionInfo = listResultListBean.getRows().get(0);
                     if (versionInfo.getApp_versionCode() > getVersionCode()) {
                         toast("发现新版本，正在下载APP，请稍候...");
-                        showProcess();
+                        showUpdateProcess();
                         downloadFile(versionInfo.getApp_versionName());
                     }
                 }
@@ -547,6 +565,7 @@ public class BaseActivity extends AppCompatActivity {
                     URL url = new URL(urlStr);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     File file = new File(pathName);
+                    final int fileLen = conn.getContentLength();
                     if(!file.exists() || file.length() != conn.getContentLength()) {
                         InputStream input = conn.getInputStream();
                         String dir = SDCard + "/" + path;
@@ -556,14 +575,25 @@ public class BaseActivity extends AppCompatActivity {
                         //读取大文件
                         byte[] buffer = new byte[4 * 1024];
                         int len = -1 ;
+                        long cur = System.currentTimeMillis();
                         while ((len = input.read(buffer)) != -1) {
                             output.write(buffer,0,len);
+                            final int process = len ;
+                            if(System.currentTimeMillis() - cur > 2000) {
+                                cur = System.currentTimeMillis();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        toast(process * 100 / fileLen + "%");
+                                    }
+                                });
+                            }
                         }
                         output.flush();
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                dismiss();
+                                dismissUpdate();
                             }
                         });
                     }
