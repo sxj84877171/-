@@ -341,6 +341,7 @@ GPS费gps_fee
         private int user_id_ywy = -1;
         private String fee_return_custom;
         private int user_id_yw_pf;
+        private String date_ywy_qk;
 
         public void setUser_id_dcy(int user_id_dcy) {
             this.user_id_dcy = user_id_dcy;
@@ -862,6 +863,14 @@ GPS费gps_fee
 
         public void setThird_mobile(String third_mobile) {
             this.third_mobile = third_mobile;
+        }
+
+        public void setDate_ywy_qk(String date_ywy_qk) {
+            this.date_ywy_qk = date_ywy_qk;
+        }
+
+        public String getDate_ywy_qk() {
+            return date_ywy_qk;
         }
     }
 }

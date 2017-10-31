@@ -394,6 +394,7 @@ public class YeWuJianDangActivity extends BaseActivity {
                                         loan.setCase_state_id(4);
                                     } else if (loan.getCase_state_id() == 8) {
                                         loan.setCase_state_id(10);
+                                        loan.setDate_ywy_qk(DateUtil.getWaterDate());
                                     } else {
                                         loan.setCase_state_id(loan.getCase_state_id() % 100);
                                     }
